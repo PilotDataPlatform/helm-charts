@@ -1,0 +1,17 @@
+{{- if .Values.service.targetPort }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "queue-service.fullname" . }}
+  labels:
+    {{- include "queue-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: {{ include "queue-service.fullname" . }}
+  selector:
+    {{- include "queue-service.selectorLabels" . | nindent 4 }}
+{{- end }}

@@ -1,0 +1,88 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "upload-service.fullname" . }}
+  labels:
+    {{- include "upload-service.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+    {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "upload-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "upload-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: {{ .Values.container.port }}
+          env:
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.volumes }}
+          volumeMounts:
+            - mountPath: {{ .Values.volumes.mountPath }}
+              name: {{ .Values.volumes.name }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+      {{- if .Values.volumes }}
+      volumes:
+        - name: {{ .Values.volumes.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.volumes.claimName }}
+      {{- end }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

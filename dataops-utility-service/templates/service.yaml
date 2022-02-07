@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dataops-utility-service.fullname" . }}
+  labels:
+    {{- include "dataops-utility-service.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: {{ include "dataops-utility-service.fullname" . }}
+  selector:
+    {{- include "dataops-utility-service.selectorLabels" . | nindent 4 }}
