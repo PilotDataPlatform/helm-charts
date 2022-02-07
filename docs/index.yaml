@@ -1,0 +1,14 @@
+apiVersion: v1
+entries:
+  bff:
+  - apiVersion: v2
+    appVersion: "1471"
+    created: "2022-02-07T11:40:10.38424-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 7f5fccb10dbb6d24557e79b96413fd57e8045caa342c508b9e89d3a80f645bb0
+    name: bff
+    type: application
+    urls:
+    - https://pilotdataplatform.github.io/helm-charts/bff-0.3.0.tgz
+    version: 0.3.0
+generated: "2022-02-07T11:40:10.382584-05:00"
