@@ -1,0 +1,61 @@
+# Default values for dataset-neo4j.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: neo4j
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: 124
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  name:
+
+container:
+  port: 5062
+
+appConfig:
+  env: "dev"
+  CONFIG_CENTER_ENABLED: false
+  CONFIG_CENTER_BASE_URL:
+podAnnotations: {}
+
+deploymentAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: LoadBalancer
+  port: 5062
+
+ingress:
+  enabled: false
+
+resources: {}
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+readinessProbe: {}
+
+updateStrategy: {}
+
+extraEnv: {}
+
+extraEnvYaml: {}

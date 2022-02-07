@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "dataset-neo4j.fullname" . }}
+  labels:
+    {{- include "dataset-neo4j.labels" . | nindent 4 }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      protocol: TCP
+      name: {{ include "dataset-neo4j.fullname" . }}
+  selector:
+    {{- include "dataset-neo4j.selectorLabels" . | nindent 4 }}
