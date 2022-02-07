@@ -1,9 +1,20 @@
 apiVersion: v1
 entries:
+  approval-service:
+  - apiVersion: v2
+    appVersion: "26"
+    created: "2022-02-07T11:51:23.204076-05:00"
+    description: A Helm chart for Kubernetes
+    digest: 298301720ace0fa853503d9eac0c14ffb9c8343dae4b6adb2b2726c0c22abd04
+    name: approval-service
+    type: application
+    urls:
+    - https://pilotdataplatform.github.io/helm-charts/approval-service-0.2.0.tgz
+    version: 0.2.0
   bff:
   - apiVersion: v2
     appVersion: "1471"
-    created: "2022-02-07T11:46:54.535003-05:00"
+    created: "2022-02-07T11:51:23.204664-05:00"
     description: A Helm chart for Kubernetes
     digest: 7f5fccb10dbb6d24557e79b96413fd57e8045caa342c508b9e89d3a80f645bb0
     name: bff
@@ -11,4 +22,4 @@ entries:
     urls:
     - https://pilotdataplatform.github.io/helm-charts/bff-0.3.0.tgz
     version: 0.3.0
-generated: "2022-02-07T11:46:54.534008-05:00"
+generated: "2022-02-07T11:51:23.202043-05:00"
