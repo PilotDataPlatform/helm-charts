@@ -61,6 +61,8 @@ extraEnv: {}
 
 extraEnvYaml: {}
 
+envSecrets: {}
+
 readinessProbe: []
 
 extraVolumeMounts: []
