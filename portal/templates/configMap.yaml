@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.volumes.name }}
+data:
+  portal.conf: |-
+{{ .Files.Get "portal.conf" | indent 4}}
