@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: metadata-event-handler
+  repository: ghcr.io/pilotdataplatform/metadata-event-handler
   tag: 1
   pullPolicy: Always
 
