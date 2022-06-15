@@ -1,0 +1,45 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: {{ .Release.Name }}-database-backup-cronjob
+spec:
+  schedule: "{{ .Values.cronjob.schedule }}"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+          - name: backup-volume
+            persistentVolumeClaim:
+                claimName: {{ .Release.Name }}-database-backup-pvc
+          containers:
+          - name: {{ .Release.Name }}-database-backup-pod
+            image: {{ .Values.cronjob.image }}
+            volumeMounts:
+            - mountPath: "/pg_backup"
+              name: backup-volume
+            env:
+              - name: PGHOST
+                value: "{{ .Values.cronjob.pghost }}"
+              - name: DB_USERNAME_IN_VAULT
+                value: "{{ .Values.cronjob.dbUsernameInVault }}"
+              - name: DB_PWD_IN_VAULT
+                value: "{{ .Values.cronjob.dbPwdInVault }}"
+              - name: DB_NAME_IN_VAULT
+                value: "{{ .Values.cronjob.dbNameInVault }}"
+              - name: RELEASE_NAME
+                value: "{{ .Release.Name }}"
+              - name: VAULT_TOKEN
+                value: "{{ .Values.db_script.vault_token }}"
+              - name: DB_MAX_BACKUP
+                value: "{{ .Values.db_script.db_max_backup }}"
+              {{- range $key, $val := .Values.env }}
+              - name: "{{ $key }}"
+                value: "{{ $val }}"
+              {{- end }}
+            imagePullPolicy: Always
+            args:
+            - ./dumpDatabase.sh 
+          restartPolicy: OnFailure
+      backoffLimit: 3
+      
