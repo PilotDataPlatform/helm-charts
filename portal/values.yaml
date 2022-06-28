@@ -42,6 +42,19 @@ service:
 
 ingress:
   enabled: false
+  ## @param ingress.annotations [object] Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
+  ## e.g:
+  ## annotations: 
+  ##   cert-manager.io/cluster-issuer: letsencrypt-prod
+  ##   kubernetes.io/ingress.class: nginx
+  annotations: {}
+  ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
+  ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
+  tls: false
+  hostname: pilot.local
+  path: /
+  pathType: Prefix
+
 
 resources: {}
 
