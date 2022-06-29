@@ -42,6 +42,8 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "konga.fullname" . }}-config
+            - secretRef:
+                name: {{ include "konga.fullname" . }}-secret
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
@@ -60,3 +62,4 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+

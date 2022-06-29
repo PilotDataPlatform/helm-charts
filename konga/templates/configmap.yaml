@@ -15,11 +15,11 @@ data:
 #  SSL_CRT_PATH: {{ .Values.config.ssl_crt_path }}
   KONGA_HOOK_TIMEOUT: "{{ default 60000 .Values.config.konga_hook_timeout }}"
   DB_ADAPTER: {{ default "postgres" .Values.config.db_adapter }}
-  DB_URI: {{ .Values.config.db_uri }}
+#  DB_URI: {{ .Values.config.db_uri }}
   DB_HOST: {{ default "localhost" .Values.config.db_host }}
   DB_PORT: "{{ default 5432 .Values.config.db_port }}"
   DB_USER: {{ .Values.config.db_user }}
-  DB_PASSWORD: {{ .Values.config.db_password }}
+#  DB_PASSWORD: {{ .Values.config.db_password }}
   DB_DATABASE: {{ default "konga_database" .Values.config.db_database }}
   DB_PG_SCHEMA: {{ default "public" .Values.config.db_pg_schema }}
   {{- if eq .Values.config.node_env "development" }}
@@ -49,3 +49,4 @@ data:
   KONGA_LDAP_ATTR_LASTNAME: {{ default "sn" .Values.ldap.attr_lastname }}
   KONGA_LDAP_ATTR_EMAIL: {{ default "mail" .Values.ldap.attr_email }}
   {{- end }}
+
