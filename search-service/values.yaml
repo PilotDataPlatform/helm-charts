@@ -1,0 +1,70 @@
+# Default values for search-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: ""
+
+replicaCount: 1
+
+image:
+  repository: search
+  tag: 131
+  pullPolicy: Always
+
+appConfig:
+  port: 5061
+  env: "dev"
+  config_center_enabled: false
+  config_center_base_url: http://common.utility:5062/
+  srv_namespace: service_search
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: 
+
+container:
+  port: 5061
+
+service:
+  type: ClusterIP
+  port: 80
+
+podAnnotations: {}
+
+deploymentAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+imagePullSecrets: []
+
+ingress:
+  enabled: false
+
+resources: {}
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraEnv: {}
+
+extraEnvYaml: {}
+
+readinessProbe: []
+
+extraVolumeMounts: []
+
+extraVolumes: []
+
+updateStrategy: []
