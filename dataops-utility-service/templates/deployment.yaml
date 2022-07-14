@@ -42,8 +42,6 @@ spec:
           env:
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
-          - name: CONFIG_CENTER_BASE_URL
-            value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
 {{- if .Values.extraEnv }}
