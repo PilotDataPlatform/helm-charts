@@ -32,6 +32,20 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      initContainers:
+        - name: "init{{ .Values.name }}"
+          image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
@@ -44,15 +58,6 @@ spec:
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
-{{- if .Values.extraEnv }}
-  {{- range $key, $value := .Values.extraEnv }}
-          - name: {{ $key }}
-            value: {{ $value | quote }}
-  {{- end }}
-{{- end }}
-{{- with .Values.extraEnvYaml }}
-          {{- toYaml . | nindent 10 }}
-{{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if .Values.readinessProbe }}
