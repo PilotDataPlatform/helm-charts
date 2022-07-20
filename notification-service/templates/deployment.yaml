@@ -37,10 +37,10 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: "init{{ .Values.name }}"
-          image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-{{- if .Values.extraEnv }}
+            image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
+            imagePullPolicy: {{ .Values.image.pullPolicy }}
+            env:         
+{{- if .Values.extraEnv }} 
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
             value: {{ $value | quote }}
@@ -74,16 +74,7 @@ spec:
           - name: env
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
-            value: {{ .Values.appConfig.srv_namespace | quote }}             
-{{- if .Values.extraEnv }} 
-  {{- range $key, $value := .Values.extraEnv }}
-          - name: {{ $key }}
-            value: {{ $value | quote }}
-  {{- end }}
-{{- end }}
-{{- with .Values.extraEnvYaml }}
-          {{- toYaml . | nindent 10 }}
-{{- end }}
+            value: {{ .Values.appConfig.srv_namespace | quote }}
           ports:
               - name: http
                 containerPort: {{ .Values.container.port }}
@@ -113,4 +104,3 @@ spec:
       volumes:
         {{- toYaml .Values.extraVolumes | nindent 10 }}
       {{- end }}  
-
