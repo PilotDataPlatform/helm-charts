@@ -78,7 +78,7 @@ spec:
           {{- if .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
-          {{- end }
+          {{- end }}
       {{- if .Values.volumes }}
       volumes:
         - name: {{ .Values.volumes.name }}
