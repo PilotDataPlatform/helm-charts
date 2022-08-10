@@ -39,8 +39,8 @@ spec:
         - name: "init{{ .Values.name }}"
             image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
             imagePullPolicy: {{ .Values.image.pullPolicy }}
-            env:         
-{{- if .Values.extraEnv }} 
+            env:
+{{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
             value: {{ $value | quote }}
@@ -81,13 +81,17 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if .Values.readinessProbe }}
-          readinessProbe: 
+          readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }
           {{- if .Values.extraVolumeMounts }}
           volumeMounts:
             {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
-          {{- end }}  
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -103,4 +107,4 @@ spec:
       {{- if .Values.extraVolumes }}
       volumes:
         {{- toYaml .Values.extraVolumes | nindent 10 }}
-      {{- end }}  
+      {{- end }}

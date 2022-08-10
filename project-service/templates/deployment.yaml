@@ -74,8 +74,8 @@ spec:
           - name: env
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
-            value: {{ .Values.appConfig.srv_namespace | quote }}             
-{{- if .Values.extraEnv }} 
+            value: {{ .Values.appConfig.srv_namespace | quote }}
+{{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
             value: {{ $value | quote }}
@@ -87,7 +87,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ $secret }}
-                key: {{ $key | quote }} 
+                key: {{ $key | quote }}
   {{- end }}
 {{- end }}
 {{- with .Values.extraEnvYaml }}
@@ -99,13 +99,17 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- if .Values.readinessProbe }}
-          readinessProbe: 
+          readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
           {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }
           {{- if .Values.extraVolumeMounts }}
           volumeMounts:
             {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
-          {{- end }}  
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
@@ -121,5 +125,4 @@ spec:
       {{- if .Values.extraVolumes }}
       volumes:
         {{- toYaml .Values.extraVolumes | nindent 10 }}
-      {{- end }}  
-
+      {{- end }}
