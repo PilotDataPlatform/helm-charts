@@ -38,7 +38,7 @@ spec:
             value: {{ .Values.appConfig.KAFKA_SERVICE | quote }}
           - name: ELASTICSEARCH_SERVICE
             value: {{ .Values.appConfig.ELASTICSEARCH_SERVICE | quote }}
-{{- if .Values.extraEnv }} 
+{{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
             value: {{ $value | quote }}
@@ -50,7 +50,7 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: {{ $secret }}
-                key: {{ $key | quote }} 
+                key: {{ $key | quote }}
   {{- end }}
 {{- end }}
 {{- with .Values.extraEnvYaml }}
@@ -61,6 +61,14 @@ spec:
               containerPort: {{ .Values.container.port }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
