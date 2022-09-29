@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "workspace-service.fullname" . }}
+  labels:
+    {{- include "workspace-service.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+    {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "workspace-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "workspace-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "workspace-service.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: "init{{ .Values.name }}"
+          image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+          - name: srv_namespace
+            value: {{ .Values.appConfig.srv_namespace | quote }}
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- if .Values.envSecrets }}
+  {{- range $key, $secret :=  .Values.envSecrets }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $secret }}
+                key: {{ $key | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:workspace-{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+          - name: srv_namespace
+            value: {{ .Values.appConfig.srv_namespace | quote }}
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          ports:
+              - name: http
+                containerPort: {{ .Values.container.port }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.extraVolumeMounts }}
+          volumeMounts:
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.extraVolumes }}
+      volumes:
+        {{- toYaml .Values.extraVolumes | nindent 10 }}
+      {{- end }}
