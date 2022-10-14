@@ -9,14 +9,6 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if .Values.hostAliases }}
-  hostAliases:
-    {{- range $key, $value := .Values.hostAliases }}
-    - ip: {{ $key | quote }}
-      hostnames:
-        - {{ $value | quote }}
-    {{- end }}
-  {{- end }}
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
@@ -36,6 +28,14 @@ spec:
       labels:
         {{- include "auth-service.selectorLabels" . | nindent 8 }}
     spec:
+      {{- if .Values.hostAliases }}
+      hostAliases:
+        {{- range $key, $value := .Values.hostAliases }}
+        - ip: {{ $key | quote }}
+          hostnames:
+            - {{ $value | quote }}
+        {{- end }}
+      {{- end }}
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
