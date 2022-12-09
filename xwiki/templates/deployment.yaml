@@ -77,15 +77,30 @@ spec:
             configMapKeyRef:
               name: {{ template "fullname" . }}
               key: DB_DATABASE
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
         volumeMounts:
         - name: xwiki-data
           mountPath: /opt/solr/server/solr
+        {{- if .Values.extraVolumeMounts }}
+        {{- toYaml .Values.extraVolumeMounts | nindent 8 }}
+        {{- end }}
       volumes:
       - name: xwiki-data
         persistentVolumeClaim:
           claimName: xwiki
+      {{- if .Values.extraVolumes }}
+      {{- toYaml .Values.extraVolumes | nindent 6 }}
+      {{- end }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -97,6 +112,6 @@ spec:
   resources:
     requests:
       storage: {{ .Values.storage }}
-    {{- if .Values.storageClass }}
-    storageClassName: {{ .Values.storageClass | quote }}
-    {{- end }}
+  {{- if .Values.storageClass }}
+  storageClassName: {{ .Values.storageClass | quote }}
+  {{- end }}

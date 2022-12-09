@@ -103,3 +103,19 @@ podDisruptionBudget:
   enabled: false
   minAvailable: 1
   # maxUnavailable: 1
+
+## Add extra environment varables
+extraEnv: {}
+
+## Add extra volume mounts
+extraVolumeMounts: {}
+extraVolumes: {}
+
+## Enable Ingress
+ingress:
+  enabled: false
+  tls: false
+  hostname: pilot.local
+  path: /
+  pathType: Prefix
+
