@@ -5,10 +5,8 @@ metadata:
   name: {{ template "fullname" . }}
   annotations:
   {{- if .Values.ingress.annotations }}
-      {{ toYaml .Values.ingress.annotations | indent 0 }}
+    {{ toYaml .Values.ingress.annotations | nindent 4 }}
   {{- end }}
-  labels:
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
   rules:
   - http:
