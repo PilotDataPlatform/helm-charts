@@ -3,7 +3,7 @@ entries:
   approval-service:
   - apiVersion: v2
     appVersion: "26"
-    created: "2023-02-24T19:01:13.733492062Z"
+    created: "2023-02-24T19:47:47.693009675Z"
     description: A Helm chart for Kubernetes
     digest: e3f22315de7d9cdfeffbf36ebb8d801c1c68d35d836bb9c4937de57e04d5e1db
     name: approval-service
@@ -13,7 +13,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "26"
-    created: "2023-02-24T19:01:13.733106858Z"
+    created: "2023-02-24T19:47:47.69257847Z"
     description: A Helm chart for Kubernetes
     digest: 2373e4e2fa950b4ca9c85434c470126b1c6d0a1f37792050733655fb355748eb
     name: approval-service
@@ -23,7 +23,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "26"
-    created: "2023-02-24T19:01:13.732682353Z"
+    created: "2023-02-24T19:47:47.692085964Z"
     description: A Helm chart for Kubernetes
     digest: 968f631a340c25d06b8532e5cac74e77540527d37ca55147e1b6a8196696ef65
     name: approval-service
@@ -33,7 +33,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "26"
-    created: "2023-02-24T19:01:13.732185947Z"
+    created: "2023-02-24T19:47:47.691516457Z"
     description: A Helm chart for Kubernetes
     digest: 36aa573e3f9ad20288627c900afa89f8b58a22594135a86136876c1e17ab713d
     name: approval-service
@@ -44,7 +44,7 @@ entries:
   audit-trail-service:
   - apiVersion: v2
     appVersion: "64"
-    created: "2023-02-24T19:01:13.734286571Z"
+    created: "2023-02-24T19:47:47.693823085Z"
     description: A Helm chart for Kubernetes
     digest: 2ea131a73b5aa18e8374422c5143ea599ebaec91eaa41b7744d7a6f7f8879da4
     name: audit-trail-service
@@ -54,7 +54,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: "64"
-    created: "2023-02-24T19:01:13.733876266Z"
+    created: "2023-02-24T19:47:47.69342158Z"
     description: A Helm chart for Kubernetes
     digest: 404dce5c375e1a8fdd4158fc2999f5fadb9c06a2e18d9dd9b550b5ea22e8d374
     name: audit-trail-service
@@ -65,7 +65,7 @@ entries:
   auth-service:
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.741834955Z"
+    created: "2023-02-24T19:47:47.700469667Z"
     description: A Helm chart for Kubernetes
     digest: 3052fb23671efb0704f2b8b42e2a406131a590e9f34a80f5f2d23ecc47659ab3
     name: auth-service
@@ -75,7 +75,7 @@ entries:
     version: 0.7.2
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.741109447Z"
+    created: "2023-02-24T19:47:47.699767059Z"
     description: A Helm chart for Kubernetes
     digest: 9e9d04855c642c473ffb97092c4a628f5faa20690e7f5253a55586928dea2b9b
     name: auth-service
@@ -85,7 +85,7 @@ entries:
     version: 0.7.1
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.74044204Z"
+    created: "2023-02-24T19:47:47.699132951Z"
     description: A Helm chart for Kubernetes
     digest: f824550eae8f0d0c0380caae8a92d040ba3b93d7275690646672484044552f6e
     name: auth-service
@@ -95,7 +95,7 @@ entries:
     version: 0.6.1
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.739726132Z"
+    created: "2023-02-24T19:47:47.697944636Z"
     description: A Helm chart for Kubernetes
     digest: beb8fb1934fd56c040184475a947ac447004cab34e79d97336f136a05847791c
     name: auth-service
@@ -105,7 +105,7 @@ entries:
     version: 0.6.0
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.738442017Z"
+    created: "2023-02-24T19:47:47.697239427Z"
     description: A Helm chart for Kubernetes
     digest: 625af2eb448fd8cb5df10f2a93938a96868354a657877d1c0441cae8236e6625
     name: auth-service
@@ -115,7 +115,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.737880411Z"
+    created: "2023-02-24T19:47:47.696438418Z"
     description: A Helm chart for Kubernetes
     digest: 3a3c157eeec55dd6ae4c6317c919181cf744d6a1b1ca74f3ae3ca06aeccc871a
     name: auth-service
@@ -125,7 +125,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.737323105Z"
+    created: "2023-02-24T19:47:47.695587507Z"
     description: A Helm chart for Kubernetes
     digest: 80f4333c655a74094c3b4ee02fa3daa61b13018a4b2984b894b24bd8e813a3c6
     name: auth-service
@@ -135,7 +135,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.735359783Z"
+    created: "2023-02-24T19:47:47.694724096Z"
     description: A Helm chart for Kubernetes
     digest: 6dc4451be17d64b4d3ccacc8c7d378402da59a37526ff29866be9e9963df0729
     name: auth-service
@@ -145,7 +145,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.734698775Z"
+    created: "2023-02-24T19:47:47.694303691Z"
     description: A Helm chart for Kubernetes
     digest: a5af799f7c1b4d81d333f85802eba1909665f56c00408f7a3bf32467d953d19b
     name: auth-service
@@ -156,7 +156,7 @@ entries:
   bff:
   - apiVersion: v2
     appVersion: "1471"
-    created: "2023-02-24T19:01:13.744327783Z"
+    created: "2023-02-24T19:47:47.703245902Z"
     description: A Helm chart for Kubernetes
     digest: 1546d81768d907d24efd57097e0296d31fe01adbf56b00ec1b5ddb09575e2730
     name: bff
@@ -166,7 +166,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "1471"
-    created: "2023-02-24T19:01:13.743936179Z"
+    created: "2023-02-24T19:47:47.702751495Z"
     description: A Helm chart for Kubernetes
     digest: c0efe046cf940b02606f123b0f401c20036290630f9c25ff650918dbbf272928
     name: bff
@@ -176,7 +176,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "1471"
-    created: "2023-02-24T19:01:13.743403173Z"
+    created: "2023-02-24T19:47:47.701818784Z"
     description: A Helm chart for Kubernetes
     digest: 6d7750cb8ac98d7d5ccfa997e0bae455f7a6606c2e4b4b251a6e431da4bd04e4
     name: bff
@@ -186,7 +186,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "1471"
-    created: "2023-02-24T19:01:13.742577064Z"
+    created: "2023-02-24T19:47:47.701068475Z"
     description: A Helm chart for Kubernetes
     digest: 8ee1985765c105a1c8e5fe88e38b0b3549730d3997fd9ae82895480733f5b048
     name: bff
@@ -197,7 +197,7 @@ entries:
   bff-cli-service:
   - apiVersion: v2
     appVersion: "135"
-    created: "2023-02-24T19:01:13.745131592Z"
+    created: "2023-02-24T19:47:47.704175513Z"
     description: A Helm chart for Kubernetes
     digest: ab38a0cbe094b8dee26ee3673c641a49e9012eda977f85fe0143ff3a1c7c1052
     name: bff-cli-service
@@ -207,7 +207,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: "135"
-    created: "2023-02-24T19:01:13.744729688Z"
+    created: "2023-02-24T19:47:47.703709907Z"
     description: A Helm chart for Kubernetes
     digest: 070da2205396afefec278def7b14d32a89f0903e1328d616ebc531c7983f203a
     name: bff-cli-service
@@ -218,7 +218,7 @@ entries:
   cataloguing-service:
   - apiVersion: v2
     appVersion: "92"
-    created: "2023-02-24T19:01:13.746399506Z"
+    created: "2023-02-24T19:47:47.70557963Z"
     description: A Helm chart for Kubernetes
     digest: 3aaaf228c9692c530fe0fa5c435281ad8d4ac808774596d0a6047a95fdbe1610
     name: cataloguing-service
@@ -228,7 +228,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: "92"
-    created: "2023-02-24T19:01:13.745991002Z"
+    created: "2023-02-24T19:47:47.705107825Z"
     description: A Helm chart for Kubernetes
     digest: dedef31d3cffe64c1d2f74fb10bfffb78ac6179962496518055ac252ab79ab32
     name: cataloguing-service
@@ -238,7 +238,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "92"
-    created: "2023-02-24T19:01:13.745547997Z"
+    created: "2023-02-24T19:47:47.704631619Z"
     description: A Helm chart for Kubernetes
     digest: b96101efae20d3bef0b58eca140a76ae4cf5760e8ab8b8886ed4d0350b4b2de9
     name: cataloguing-service
@@ -249,7 +249,7 @@ entries:
   common-service:
   - apiVersion: v2
     appVersion: "29"
-    created: "2023-02-24T19:01:13.747237616Z"
+    created: "2023-02-24T19:47:47.706514342Z"
     description: A Helm chart for Kubernetes
     digest: bb6977e889c11c7d30c34f2b6b9349da4df96d46b1928f0f8f660a8ae3978aea
     name: common-service
@@ -259,7 +259,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "29"
-    created: "2023-02-24T19:01:13.746816211Z"
+    created: "2023-02-24T19:47:47.706049236Z"
     description: A Helm chart for Kubernetes
     digest: b010399ce4395cf7042ca25bbae36bb07454f390f19267095f2f5c07bbd41239
     name: common-service
@@ -270,7 +270,7 @@ entries:
   database-backup:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-24T19:01:13.74758662Z"
+    created: "2023-02-24T19:47:47.706824646Z"
     description: A Helm chart for Kubernetes
     digest: 90f7dbecdec1a63c6628cd67c74e36bc2bdfbacfaccbb37ca243b14aa177d61e
     name: database-backup
@@ -280,7 +280,7 @@ entries:
     version: 0.1.5
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-24T19:01:13.747416718Z"
+    created: "2023-02-24T19:47:47.706665444Z"
     description: A Helm chart for Kubernetes
     digest: 3591810c30cb0eccfc1946db06d035130ff069e68094c79d5b5586280f6af0c9
     name: database-backup
@@ -291,7 +291,7 @@ entries:
   dataops-gr-service:
   - apiVersion: v2
     appVersion: "174"
-    created: "2023-02-24T19:01:13.747989824Z"
+    created: "2023-02-24T19:47:47.707325052Z"
     description: A Helm chart for Kubernetes
     digest: 674ced05b87a31104601dcc22873ea77c68d9e826397b79b2deadbcc4998ad1b
     name: dataops-gr-service
@@ -302,7 +302,7 @@ entries:
   dataops-service:
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.749146237Z"
+    created: "2023-02-24T19:47:47.708506766Z"
     description: A Helm chart for Kubernetes
     digest: 5573d78779ed0901bc72f94000158f8b2b8c36fb567c992eb8b8b8599b28e20f
     name: dataops-service
@@ -312,7 +312,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.748760033Z"
+    created: "2023-02-24T19:47:47.708092161Z"
     description: A Helm chart for Kubernetes
     digest: 91a251e64f6bb196640e57edb7436b8a024ff7f783d6eb22866d7fed81574f34
     name: dataops-service
@@ -322,7 +322,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.748377229Z"
+    created: "2023-02-24T19:47:47.707710057Z"
     description: A Helm chart for Kubernetes
     digest: d36ac6ccaec19279de1478433ce5d47bdc9ea4c6a9b3d3fb73f08cef080cc783
     name: dataops-service
@@ -333,7 +333,7 @@ entries:
   dataops-utility-service:
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.752633576Z"
+    created: "2023-02-24T19:47:47.711500903Z"
     description: A Helm chart for Kubernetes
     digest: 4361163754c833042a69e2652c303f6a99aa277fcc356f6f0991eab57339c674
     name: dataops-utility-service
@@ -343,7 +343,7 @@ entries:
     version: 0.5.0
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.751883068Z"
+    created: "2023-02-24T19:47:47.710837095Z"
     description: A Helm chart for Kubernetes
     digest: 013af68c9d53c2045c1dfb16b9051e1438557c874e9042b924ac50435dfee439
     name: dataops-utility-service
@@ -353,7 +353,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.75121266Z"
+    created: "2023-02-24T19:47:47.710015485Z"
     description: A Helm chart for Kubernetes
     digest: 42dc45bbb520de66f8671c749f48692d9f9605cb9b16a7433322ebcbba34d0e8
     name: dataops-utility-service
@@ -363,7 +363,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.75031265Z"
+    created: "2023-02-24T19:47:47.709232875Z"
     description: A Helm chart for Kubernetes
     digest: b0074386c9392a5d2270f6fee4d2b75cd997fa9469666c12642189d3275e4cea
     name: dataops-utility-service
@@ -373,7 +373,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "274"
-    created: "2023-02-24T19:01:13.749530142Z"
+    created: "2023-02-24T19:47:47.708878171Z"
     description: A Helm chart for Kubernetes
     digest: 8c2bb2972c115bbddf88098de273d1154221a4c8679638041f039dc185665593
     name: dataops-utility-service
@@ -384,7 +384,7 @@ entries:
   dataset-neo4j:
   - apiVersion: v2
     appVersion: "124"
-    created: "2023-02-24T19:01:13.75567341Z"
+    created: "2023-02-24T19:47:47.714418939Z"
     description: A Helm chart for Kubernetes
     digest: 63f13a6e9219394eb0cb5f20d5d655839ca77c47e8f77f6505bd83560d158881
     name: dataset-neo4j
@@ -394,7 +394,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "124"
-    created: "2023-02-24T19:01:13.754870301Z"
+    created: "2023-02-24T19:47:47.713847832Z"
     description: A Helm chart for Kubernetes
     digest: af182b5a91583c73e759dc61ef29e392c899e5cf019c2558192c30159659317e
     name: dataset-neo4j
@@ -404,7 +404,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "124"
-    created: "2023-02-24T19:01:13.754096993Z"
+    created: "2023-02-24T19:47:47.713255625Z"
     description: A Helm chart for Kubernetes
     digest: fcf2c4bc8e7f61ca0d7ba2221dc94078388ccb366b55c7b9bd0d84edf3eebc17
     name: dataset-neo4j
@@ -414,7 +414,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "124"
-    created: "2023-02-24T19:01:13.753400585Z"
+    created: "2023-02-24T19:47:47.712635717Z"
     description: A Helm chart for Kubernetes
     digest: ec762d91e97dab0978b221b98c5754429417c78a463a265f09e6336538f8637e
     name: dataset-neo4j
@@ -425,7 +425,7 @@ entries:
   dataset-service:
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.75917535Z"
+    created: "2023-02-24T19:47:47.71689407Z"
     description: A Helm chart for Kubernetes
     digest: 04a89bc8a95fc3c6081f2961b5e6de05857197ac10dd388a6c48da86a4a459bf
     name: dataset-service
@@ -435,7 +435,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.758637044Z"
+    created: "2023-02-24T19:47:47.716328863Z"
     description: A Helm chart for Kubernetes
     digest: ff13d03d38a654ddb6b4360079d4f0aeb067253d51585f9fed5e52b52d960a81
     name: dataset-service
@@ -445,7 +445,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.758032137Z"
+    created: "2023-02-24T19:47:47.715701055Z"
     description: A Helm chart for Kubernetes
     digest: ae80a024a503e775ecb03787d127f36e798eb9e6d59a521d532db0240fa5722f
     name: dataset-service
@@ -455,7 +455,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.75744393Z"
+    created: "2023-02-24T19:47:47.715048947Z"
     description: A Helm chart for Kubernetes
     digest: 3bf19e3500ac0a2a111c874f72966f1cd53f6c2a9542ed0ed6ec317b4a2d2d10
     name: dataset-service
@@ -466,7 +466,7 @@ entries:
   download-service:
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.76100727Z"
+    created: "2023-02-24T19:47:47.719244299Z"
     description: A Helm chart for Kubernetes
     digest: dd0d502a7ed2b510a2f4531c2a0bab3a915fd5f7f7d55165e85b84bc8d5bd858
     name: download-service
@@ -476,7 +476,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.760556465Z"
+    created: "2023-02-24T19:47:47.718802594Z"
     description: A Helm chart for Kubernetes
     digest: 416dff01fc513adbeaee820cb025e9992f434b899f8d3996c40bb38b092da504
     name: download-service
@@ -486,7 +486,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.76010066Z"
+    created: "2023-02-24T19:47:47.718351088Z"
     description: A Helm chart for Kubernetes
     digest: 20ef87d765617776f03298df962f0facbdc6bbe038870274a0e3c5d4d3a705eb
     name: download-service
@@ -496,7 +496,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.759626555Z"
+    created: "2023-02-24T19:47:47.717925483Z"
     description: A Helm chart for Kubernetes
     digest: 9021de839c16a169aa14c71b377b19a75a780bbd874df6d04b8aef2506869822
     name: download-service
@@ -509,7 +509,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 8.2.3
-    created: "2023-02-24T19:01:13.794495245Z"
+    created: "2023-02-24T19:47:47.749415471Z"
     dependencies:
     - condition: global.kibanaEnabled
       name: kibana
@@ -542,7 +542,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 7.17.3
-    created: "2023-02-24T19:01:13.772211396Z"
+    created: "2023-02-24T19:47:47.727693803Z"
     dependencies:
     - condition: global.kibanaEnabled
       name: kibana
@@ -576,7 +576,7 @@ entries:
       category: Analytics
     apiVersion: v2
     appVersion: 8.2.3
-    created: "2023-02-24T19:01:13.782769414Z"
+    created: "2023-02-24T19:47:47.738409136Z"
     dependencies:
     - condition: global.kibanaEnabled
       name: kibana
@@ -608,7 +608,7 @@ entries:
   encryption-service:
   - apiVersion: v2
     appVersion: "16"
-    created: "2023-02-24T19:01:13.795368955Z"
+    created: "2023-02-24T19:47:47.750624586Z"
     description: A Helm chart for Kubernetes
     digest: d7bbcee0b73e76f54edbb78b37d83b53a8ae3f0399de025fff4d45c5a00e91ff
     name: encryption-service
@@ -618,7 +618,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: "16"
-    created: "2023-02-24T19:01:13.79494045Z"
+    created: "2023-02-24T19:47:47.750047579Z"
     description: A Helm chart for Kubernetes
     digest: b503c8aa944cf3efa78238de56a3e65fe838ae1956649f7e6295455328910479
     name: encryption-service
@@ -629,7 +629,7 @@ entries:
   entityinfo-service:
   - apiVersion: v2
     appVersion: "251"
-    created: "2023-02-24T19:01:13.796565068Z"
+    created: "2023-02-24T19:47:47.752459009Z"
     description: A Helm chart for Kubernetes
     digest: b9bd46642dd988186eb5c9e2d7eaef52827f3222b42c862f7985efb95911001d
     name: entityinfo-service
@@ -639,7 +639,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: "251"
-    created: "2023-02-24T19:01:13.796167964Z"
+    created: "2023-02-24T19:47:47.751830801Z"
     description: A Helm chart for Kubernetes
     digest: 0a835983c2f8e4bc6111f87aa9b0bf18a7bb0c6a55cf9c992f80f033c2d1f312
     name: entityinfo-service
@@ -649,7 +649,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "251"
-    created: "2023-02-24T19:01:13.79577216Z"
+    created: "2023-02-24T19:47:47.751304295Z"
     description: A Helm chart for Kubernetes
     digest: 6a16f64004854bad989fceb54270488121f4b7655d39419c82ee4d3291e2e450
     name: entityinfo-service
@@ -660,7 +660,7 @@ entries:
   hpc-service:
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.797363877Z"
+    created: "2023-02-24T19:47:47.753580023Z"
     description: A Helm chart for Kubernetes
     digest: bbf6068de318e0fa12d45542eb51cc9ef5b226289e2b4dbbc3b7f083fff557ee
     name: hpc-service
@@ -670,7 +670,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "25"
-    created: "2023-02-24T19:01:13.796972773Z"
+    created: "2023-02-24T19:47:47.753014416Z"
     description: A Helm chart for Kubernetes
     digest: c557b90c9a59e8c7f87eb992de6efbd4eb7beca23c2729df970d82799eff7483
     name: hpc-service
@@ -678,6 +678,36 @@ entries:
     urls:
     - https://pilotdataplatform.github.io/helm-charts/hpc-service-0.1.0.tgz
     version: 0.1.0
+  ingress-nginx:
+  - annotations:
+      artifacthub.io/changes: |
+        - "[8587](https://github.com/kubernetes/ingress-nginx/pull/8587) Add CAP_SYS_CHROOT to DS/PSP when needed"
+        - "[8458](https://github.com/kubernetes/ingress-nginx/pull/8458) Add portNamePreffix Helm chart parameter"
+        - "[8522](https://github.com/kubernetes/ingress-nginx/pull/8522) Add documentation for controller.service.loadBalancerIP in Helm chart"
+      artifacthub.io/prerelease: "false"
+    apiVersion: v2
+    appVersion: 1.2.0
+    created: "2023-02-24T19:47:47.758592285Z"
+    description: Ingress controller for Kubernetes using NGINX as a reverse proxy
+      and load balancer
+    digest: cbf11e45b099dc3e1a0c1e8dbe12121f6d5680c3ab115bd39ca522c04ea7e95c
+    home: https://github.com/kubernetes/ingress-nginx
+    icon: https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Nginx_logo.svg/500px-Nginx_logo.svg.png
+    keywords:
+    - ingress
+    - nginx
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - name: rikatz
+    - name: strongjz
+    - name: tao12345666333
+    name: ingress-nginx
+    sources:
+    - https://github.com/kubernetes/ingress-nginx
+    type: application
+    urls:
+    - https://pilotdataplatform.github.io/helm-charts/ingress-nginx-4.1.2.tgz
+    version: 4.1.2
   jenkins:
   - annotations:
       artifacthub.io/images: |
@@ -696,7 +726,7 @@ entries:
           url: https://www.jenkins.io/
     apiVersion: v2
     appVersion: 2.332.3
-    created: "2023-02-24T19:01:13.801303022Z"
+    created: "2023-02-24T19:47:47.762313531Z"
     description: Jenkins - Build great things at any scale! The leading open source
       automation server, Jenkins provides hundreds of plugins to support building,
       deploying and automating any project.
@@ -728,7 +758,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 3.1.0
-    created: "2023-02-24T19:01:13.812890351Z"
+    created: "2023-02-24T19:47:47.770710534Z"
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -766,7 +796,7 @@ entries:
       category: DeveloperTools
     apiVersion: v2
     appVersion: 16.1.0
-    created: "2023-02-24T19:01:13.819469625Z"
+    created: "2023-02-24T19:47:47.779931848Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -799,7 +829,7 @@ entries:
   kg-service:
   - apiVersion: v2
     appVersion: "30"
-    created: "2023-02-24T19:01:13.820623038Z"
+    created: "2023-02-24T19:47:47.781099363Z"
     description: A Helm chart for Kubernetes
     digest: 4b21fd1cee7dc553d878b459eb29173753bb3eb79a0811a7b3b3864bf1039aeb
     name: kg-service
@@ -809,7 +839,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "30"
-    created: "2023-02-24T19:01:13.820246934Z"
+    created: "2023-02-24T19:47:47.780712058Z"
     description: A Helm chart for Kubernetes
     digest: 57196f025e9647ad5a8e24b99792a035f95ee451ed36a78900b19b7dbe27f40a
     name: kg-service
@@ -819,7 +849,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "30"
-    created: "2023-02-24T19:01:13.819854229Z"
+    created: "2023-02-24T19:47:47.780331753Z"
     description: A Helm chart for Kubernetes
     digest: 6cbcbc88fdb85727d6e310d9fa76a22aefb59be3222e69b3b58c9ce3cd9e3db4
     name: kg-service
@@ -832,7 +862,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2.8.1
-    created: "2023-02-24T19:01:13.834291191Z"
+    created: "2023-02-24T19:47:47.794247425Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -873,7 +903,7 @@ entries:
   konga:
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2023-02-24T19:01:13.835085Z"
+    created: "2023-02-24T19:47:47.795347438Z"
     description: A Helm chart for Kubernetes
     digest: 9ad395a7aef5c61a3e51c1e35184af7dcc2833d5f66a461ce0b4e2cdc0916144
     name: konga
@@ -882,7 +912,7 @@ entries:
     version: 2.0.0
   - apiVersion: v1
     appVersion: "1.0"
-    created: "2023-02-24T19:01:13.834680895Z"
+    created: "2023-02-24T19:47:47.794777131Z"
     description: A Helm chart for Kubernetes
     digest: bd4fded5ea3381f1958a4993af05e7aa38ffece1c28abe51f0e05c1009e4e6d5
     name: konga
@@ -899,7 +929,7 @@ entries:
       artifacthub.io/operator: "true"
     apiVersion: v2
     appVersion: 0.57.0
-    created: "2023-02-24T19:01:13.859574974Z"
+    created: "2023-02-24T19:47:47.818789928Z"
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -952,7 +982,7 @@ entries:
   lineage-service:
   - apiVersion: v2
     appVersion: "92"
-    created: "2023-02-24T19:01:13.860407984Z"
+    created: "2023-02-24T19:47:47.819679239Z"
     description: A Helm chart for Kubernetes
     digest: 7ea3d499daed53d98aedf8346aa0598b4b03fbb49a8669adac0b071cdee5b615
     name: lineage-service
@@ -962,7 +992,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: "92"
-    created: "2023-02-24T19:01:13.860012179Z"
+    created: "2023-02-24T19:47:47.819272934Z"
     description: A Helm chart for Kubernetes
     digest: da244b0e4f89b4bd2a447202d8471e29920e2a00a6d14b72389a7db19be93160
     name: lineage-service
@@ -973,7 +1003,7 @@ entries:
   mailhog:
   - apiVersion: v2
     appVersion: v1.0.1
-    created: "2023-02-24T19:01:13.861065591Z"
+    created: "2023-02-24T19:47:47.820351147Z"
     description: An e-mail testing tool for developers
     digest: 711627ad8997d1d6587b5ec2f0689ab8e374b6244ffc2a090a09f11c322787c5
     home: http://iankent.uk/project/mailhog/
@@ -998,7 +1028,7 @@ entries:
   maintenance-page:
   - apiVersion: v2
     appVersion: "1528"
-    created: "2023-02-24T19:01:13.861811399Z"
+    created: "2023-02-24T19:47:47.821088856Z"
     description: A Helm chart for Kubernetes
     digest: fd0689491b65caa1796f38cb94e883d707345f8151c5c9e31387c52e1fa01500
     name: maintenance-page
@@ -1008,7 +1038,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "1528"
-    created: "2023-02-24T19:01:13.861441295Z"
+    created: "2023-02-24T19:47:47.820721852Z"
     description: A Helm chart for Kubernetes
     digest: 7632b52eb897055d5d3d37328f98712898a405810400be3c3f814a780c5e1c73
     name: maintenance-page
@@ -1019,7 +1049,7 @@ entries:
   metadata-event-handler:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-24T19:01:13.86272631Z"
+    created: "2023-02-24T19:47:47.821941067Z"
     description: A Helm chart for Kubernetes
     digest: d9d28ae6c12d35afc7c758f929c6acbda6ebfb0e19d4a70d46acaf608ce3f047
     name: metadata-event-handler
@@ -1029,7 +1059,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2023-02-24T19:01:13.862287705Z"
+    created: "2023-02-24T19:47:47.821514061Z"
     description: A Helm chart for Kubernetes
     digest: 2c5645271a08a4dce5058e1781d86658ed8207175c4789941eba517bb9e23246
     name: metadata-event-handler
@@ -1040,7 +1070,7 @@ entries:
   metadata-service:
   - apiVersion: v2
     appVersion: "7"
-    created: "2023-02-24T19:01:13.864820633Z"
+    created: "2023-02-24T19:47:47.825009005Z"
     description: A Helm chart for Kubernetes
     digest: 0003d7f5cc87e05634d9d0d55b6d73914b7bb315608e63d1cee824fcc328be8b
     name: metadata-service
@@ -1050,7 +1080,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: "7"
-    created: "2023-02-24T19:01:13.864414129Z"
+    created: "2023-02-24T19:47:47.824396697Z"
     description: A Helm chart for Kubernetes
     digest: 574bcd22699b49e3f70661bc7cc3d303210c5dbdb3920f1c048882c89e65b145
     name: metadata-service
@@ -1060,7 +1090,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: "7"
-    created: "2023-02-24T19:01:13.864007424Z"
+    created: "2023-02-24T19:47:47.823589987Z"
     description: A Helm chart for Kubernetes
     digest: 4559cd69500358a1e7f08c6f0208d3c3121f927b0a22a5ce6dd835d864d607b7
     name: metadata-service
@@ -1070,7 +1100,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "7"
-    created: "2023-02-24T19:01:13.863593219Z"
+    created: "2023-02-24T19:47:47.82297918Z"
     description: A Helm chart for Kubernetes
     digest: 6c056e78457cfb5bd0b7be91c3ad3ba4b1b827836397364bab2cd5bebf90a451
     name: metadata-service
@@ -1080,7 +1110,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "7"
-    created: "2023-02-24T19:01:13.863169315Z"
+    created: "2023-02-24T19:47:47.822328072Z"
     description: A Helm chart for Kubernetes
     digest: d0adfe676c0bf848b769479d00e10561c37be841d58cb41102febbfc6bf68627
     name: metadata-service
@@ -1093,7 +1123,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2022.7.17
-    created: "2023-02-24T19:01:13.868496774Z"
+    created: "2023-02-24T19:47:47.829767263Z"
     dependencies:
     - name: common
       repository: https://marketplace.azurecr.io/helm/v1/repo
@@ -1126,7 +1156,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 2022.6.17
-    created: "2023-02-24T19:01:13.87439044Z"
+    created: "2023-02-24T19:47:47.834522222Z"
     dependencies:
     - name: common
       repository: https://marketplace.azurecr.io/helm/v1/repo
@@ -1158,7 +1188,7 @@ entries:
   notification-service:
   - apiVersion: v2
     appVersion: "103"
-    created: "2023-02-24T19:01:13.877643977Z"
+    created: "2023-02-24T19:47:47.837793562Z"
     description: A Helm chart for Kubernetes
     digest: 5cc5a4acb9d076ef7ed819333621d3b03bf40936ac841404ad893deca89cc161
     name: notification-service
@@ -1168,7 +1198,7 @@ entries:
     version: 0.3.2
   - apiVersion: v2
     appVersion: "103"
-    created: "2023-02-24T19:01:13.877103471Z"
+    created: "2023-02-24T19:47:47.837261356Z"
     description: A Helm chart for Kubernetes
     digest: eee2988f0dee5ff21464c287b68a79f63215039839be16ac84ba80ad1c02d3a1
     name: notification-service
@@ -1178,7 +1208,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "103"
-    created: "2023-02-24T19:01:13.876577165Z"
+    created: "2023-02-24T19:47:47.836206343Z"
     description: A Helm chart for Kubernetes
     digest: 016147722f3cffc2046db1309e5a91f1a95c8cbdf49d3c2c631bb5a290e63d94
     name: notification-service
@@ -1188,7 +1218,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "103"
-    created: "2023-02-24T19:01:13.876039059Z"
+    created: "2023-02-24T19:47:47.835675436Z"
     description: A Helm chart for Kubernetes
     digest: 5a8bf11206d77f9f7ed20904ea97bb6eaa469c9c4761f09570d2f86c902d68ac
     name: notification-service
@@ -1198,7 +1228,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "103"
-    created: "2023-02-24T19:01:13.875505853Z"
+    created: "2023-02-24T19:47:47.835102729Z"
     description: A Helm chart for Kubernetes
     digest: 05c1a628ea8f558421f4eb949c75ce8ff66101df5a1dcd0b6ccedd7f24eecb66
     name: notification-service
@@ -1209,7 +1239,7 @@ entries:
   pact-broker:
   - apiVersion: v2
     appVersion: 2.105.0.1
-    created: "2023-02-24T19:01:13.886171872Z"
+    created: "2023-02-24T19:47:47.844644947Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -1233,7 +1263,7 @@ entries:
   pipelinewatch-service:
   - apiVersion: v2
     appVersion: "242"
-    created: "2023-02-24T19:01:13.888994704Z"
+    created: "2023-02-24T19:47:47.846617671Z"
     description: A Helm chart for Kubernetes
     digest: ecc86c291435e01a9be8e2503fbd495f9311458cb6057051d25500febe9646ef
     name: pipelinewatch-service
@@ -1243,7 +1273,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: "242"
-    created: "2023-02-24T19:01:13.8886002Z"
+    created: "2023-02-24T19:47:47.846225167Z"
     description: A Helm chart for Kubernetes
     digest: 99b1ac7e5ea94aabb555dbb76b9eb9da5ed1c76bfd51d83f66904ebd340cfa39
     name: pipelinewatch-service
@@ -1253,7 +1283,7 @@ entries:
     version: 0.4.0
   - apiVersion: v2
     appVersion: "242"
-    created: "2023-02-24T19:01:13.888120694Z"
+    created: "2023-02-24T19:47:47.845836862Z"
     description: A Helm chart for Kubernetes
     digest: 004e7fe0c7dbfb4a4fa176fc6dacb5d217a4057c291ffdc45704f560602ab1e8
     name: pipelinewatch-service
@@ -1263,7 +1293,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "242"
-    created: "2023-02-24T19:01:13.887450287Z"
+    created: "2023-02-24T19:47:47.845443857Z"
     description: A Helm chart for Kubernetes
     digest: 5f2ec7b518ff097d35bb85c37fcfbda4e3b7af47977c3611931210ff226e4060
     name: pipelinewatch-service
@@ -1273,7 +1303,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "242"
-    created: "2023-02-24T19:01:13.886731079Z"
+    created: "2023-02-24T19:47:47.845059752Z"
     description: A Helm chart for Kubernetes
     digest: 44524d6c988167fb7e6e30ddcaf0fce6324f495b7599f56816efb37f1e686c5e
     name: pipelinewatch-service
@@ -1284,7 +1314,7 @@ entries:
   portal:
   - apiVersion: v2
     appVersion: "1465"
-    created: "2023-02-24T19:01:13.890206318Z"
+    created: "2023-02-24T19:47:47.847843686Z"
     description: A Helm chart for Kubernetes
     digest: c662b9e88a19f69e0c018ac441396ff990e6b04e9413fe82e4212b750bd26f20
     name: portal
@@ -1294,7 +1324,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: "1465"
-    created: "2023-02-24T19:01:13.889793313Z"
+    created: "2023-02-24T19:47:47.847438381Z"
     description: A Helm chart for Kubernetes
     digest: 43aa83c9bd351808a06cca40bd2d8d5604c240d467c03fadd28d3c46d5464d48
     name: portal
@@ -1304,7 +1334,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "1465"
-    created: "2023-02-24T19:01:13.889384908Z"
+    created: "2023-02-24T19:47:47.847025676Z"
     description: A Helm chart for Kubernetes
     digest: 65414f048688e3f21630a2164176e004943474a51cec332c4f5d3e161dc02067
     name: portal
@@ -1318,7 +1348,7 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 15.2.0
-    created: "2023-02-24T19:01:13.899019716Z"
+    created: "2023-02-24T19:47:47.860068137Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -1352,7 +1382,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 14.3.0
-    created: "2023-02-24T19:01:13.894580867Z"
+    created: "2023-02-24T19:47:47.853935162Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -1385,7 +1415,7 @@ entries:
   project-service:
   - apiVersion: v2
     appVersion: "1"
-    created: "2023-02-24T19:01:13.900521733Z"
+    created: "2023-02-24T19:47:47.861352353Z"
     description: A Helm chart for Kubernetes
     digest: 974c75ae8cc886119d7ee3144361a894bc73460687aec2abade9ac22a78217a4
     name: project-service
@@ -1395,7 +1425,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: "1"
-    created: "2023-02-24T19:01:13.899854626Z"
+    created: "2023-02-24T19:47:47.860933748Z"
     description: A Helm chart for Kubernetes
     digest: 108728a2a51952abcf21fb796dcae581edc591318b3b2747df81f6e2d01031e2
     name: project-service
@@ -1405,7 +1435,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "1"
-    created: "2023-02-24T19:01:13.899447321Z"
+    created: "2023-02-24T19:47:47.860507643Z"
     description: A Helm chart for Kubernetes
     digest: 6690358e6a38f6e8616b213d0b873abb94bdaa3e8c1d6f875a8282491ebf4fb9
     name: project-service
@@ -1416,7 +1446,7 @@ entries:
   provenance-service:
   - apiVersion: v2
     appVersion: "64"
-    created: "2023-02-24T19:01:13.902710558Z"
+    created: "2023-02-24T19:47:47.862592769Z"
     description: A Helm chart for Kubernetes
     digest: f88e552d4277adfa23d0bb7fcc8df55046534d1940385c2fbc364cadb4f5dbee
     name: provenance-service
@@ -1426,7 +1456,7 @@ entries:
     version: 0.2.1
   - apiVersion: v1
     appVersion: "64"
-    created: "2023-02-24T19:01:13.90200875Z"
+    created: "2023-02-24T19:47:47.862172263Z"
     description: A Helm chart for Kubernetes
     digest: 1ee30d913fb464d2b0befe7565eb7c4c67a9748cbdce51af76d5e70222a59c2e
     name: provenance-service
@@ -1436,7 +1466,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "64"
-    created: "2023-02-24T19:01:13.901303342Z"
+    created: "2023-02-24T19:47:47.861755558Z"
     description: A Helm chart for Kubernetes
     digest: fb622970d6fec12f906f2063f7f70d1f68975c46d52fd99ae5b4d5da86e4a691
     name: provenance-service
@@ -1447,7 +1477,7 @@ entries:
   queue-service:
   - apiVersion: v2
     appVersion: "97"
-    created: "2023-02-24T19:01:13.905828293Z"
+    created: "2023-02-24T19:47:47.864559493Z"
     description: A Helm chart for Kubernetes
     digest: 3bb9f720248a41c72a3a68fc9c90ad3788761a054db011c7b97579a081cbf748
     name: queue-service
@@ -1457,7 +1487,7 @@ entries:
     version: 0.4.1
   - apiVersion: v2
     appVersion: "97"
-    created: "2023-02-24T19:01:13.905233786Z"
+    created: "2023-02-24T19:47:47.864187788Z"
     description: A Helm chart for Kubernetes
     digest: f06353e63bbc0f055dfcec97278bfa7e9a5c5c4e5dc68bc6cb4ec70eb061ca81
     name: queue-service
@@ -1467,7 +1497,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "97"
-    created: "2023-02-24T19:01:13.904611979Z"
+    created: "2023-02-24T19:47:47.863803483Z"
     description: A Helm chart for Kubernetes
     digest: feb578b9ec4cccb871dcab87c8a7c55d822686309d3347ddbdadd25340c26f31
     name: queue-service
@@ -1477,7 +1507,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "97"
-    created: "2023-02-24T19:01:13.904010572Z"
+    created: "2023-02-24T19:47:47.863412479Z"
     description: A Helm chart for Kubernetes
     digest: 3a6054a1eda3e8bd5a544739b5062f468d359965fe05d3311437858e6e5188e9
     name: queue-service
@@ -1487,7 +1517,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "97"
-    created: "2023-02-24T19:01:13.903341865Z"
+    created: "2023-02-24T19:47:47.863013974Z"
     description: A Helm chart for Kubernetes
     digest: 3264ada17bfabac0cc876b952b89c63574bb49ce44575fee8fec35ed477b171a
     name: queue-service
@@ -1500,7 +1530,7 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 3.10.5
-    created: "2023-02-24T19:01:13.91098775Z"
+    created: "2023-02-24T19:47:47.869611655Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -1532,7 +1562,7 @@ entries:
       category: Database
     apiVersion: v2
     appVersion: 6.2.7
-    created: "2023-02-24T19:01:13.917003218Z"
+    created: "2023-02-24T19:47:47.87727965Z"
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -1563,7 +1593,7 @@ entries:
   search-service:
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.919184142Z"
+    created: "2023-02-24T19:47:47.880067384Z"
     description: A Helm chart for Kubernetes
     digest: 22606c2d028cc3199b0793c64a78700cd7d6ba1fb48bc85fbbc8f6c950113009
     name: search-service
@@ -1573,7 +1603,7 @@ entries:
     version: 0.2.2
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.918744137Z"
+    created: "2023-02-24T19:47:47.879571478Z"
     description: A Helm chart for Kubernetes
     digest: bae6f2dca4b4874896e950668aca3844277651f6abff0bde5de2e898d09a3848
     name: search-service
@@ -1583,7 +1613,7 @@ entries:
     version: 0.2.1
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.918331033Z"
+    created: "2023-02-24T19:47:47.879124073Z"
     description: A Helm chart for Kubernetes
     digest: 07a04c706f79611ac92a2a50b4806c75b56915a123da103b40b278b4a279185c
     name: search-service
@@ -1593,7 +1623,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.917876227Z"
+    created: "2023-02-24T19:47:47.878641067Z"
     description: A Helm chart for Kubernetes
     digest: eb491c16cab3764c814fb57afa6a0710bc6b2643cb2b92d1b438ad5544013eb5
     name: search-service
@@ -1603,7 +1633,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: "131"
-    created: "2023-02-24T19:01:13.917444423Z"
+    created: "2023-02-24T19:47:47.877817956Z"
     description: A Helm chart for Kubernetes
     digest: 05f00a10ed4b50d4bc98b955d225e250d7c1e1fb02137d21478b89691d4301a8
     name: search-service
@@ -1614,7 +1644,7 @@ entries:
   superset:
   - apiVersion: v2
     appVersion: 2.0.1
-    created: "2023-02-24T19:01:13.93593733Z"
+    created: "2023-02-24T19:47:47.896372086Z"
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -1645,7 +1675,7 @@ entries:
   upload-service:
   - apiVersion: v2
     appVersion: "251"
-    created: "2023-02-24T19:01:13.937567348Z"
+    created: "2023-02-24T19:47:47.897932605Z"
     description: A Helm chart for Kubernetes
     digest: 2e73aa87665549e452941aef0e18fdfa61b05ac735d035a6d7ab94bf8252458f
     name: upload-service
@@ -1655,7 +1685,7 @@ entries:
     version: 0.3.1
   - apiVersion: v2
     appVersion: "251"
-    created: "2023-02-24T19:01:13.937171644Z"
+    created: "2023-02-24T19:47:47.8975492Z"
     description: A Helm chart for Kubernetes
     digest: ba48d40052bf0495ead400a6b96003c60de7dcab4dec191d9232116f797e1b55
     name: upload-service
@@ -1665,7 +1695,7 @@ entries:
     version: 0.3.0
   - apiVersion: v2
     appVersion: "251"
-    created: "2023-02-24T19:01:13.936767139Z"
+    created: "2023-02-24T19:47:47.897162195Z"
     description: A Helm chart for Kubernetes
     digest: cad57cd14841619ceef27b0221a02fc2125d0719603dbee95ec253910fb903d9
     name: upload-service
@@ -1675,7 +1705,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "251"
-    created: "2023-02-24T19:01:13.936366135Z"
+    created: "2023-02-24T19:47:47.89677099Z"
     description: A Helm chart for Kubernetes
     digest: 21eda6907aed2f0cc60fb4727faa190b542ac17e602a6d0e15404901d59ea7b4
     name: upload-service
@@ -1686,7 +1716,7 @@ entries:
   vault-backup:
   - apiVersion: v2
     appVersion: v0.1
-    created: "2023-02-24T19:01:13.93775285Z"
+    created: "2023-02-24T19:47:47.898104307Z"
     description: A Helm chart for Kubernetes
     digest: a0ede706e52723b0acb7a580dd75e65dd6d3de103d9e14abee4357960ed0e768
     name: vault-backup
@@ -1697,7 +1727,7 @@ entries:
   workspace-service:
   - apiVersion: v2
     appVersion: "1"
-    created: "2023-02-24T19:01:13.93858626Z"
+    created: "2023-02-24T19:47:47.898948917Z"
     description: A Helm chart for Kubernetes
     digest: 1cde473fbf4745c54425ffbaf40b52d79ca6c4bdce35ebe1acb57d5c5f7ff1dc
     name: workspace-service
@@ -1707,7 +1737,7 @@ entries:
     version: 0.2.0
   - apiVersion: v2
     appVersion: "1"
-    created: "2023-02-24T19:01:13.938171655Z"
+    created: "2023-02-24T19:47:47.898508312Z"
     description: A Helm chart for Kubernetes
     digest: 70ed4cda0862c97b192f8575156ff355967ba6b17bc8eb15bbb111928fb97620
     name: workspace-service
@@ -1718,7 +1748,7 @@ entries:
   xwiki:
   - apiVersion: v1
     appVersion: 11.10.4
-    created: "2023-02-24T19:01:13.95202091Z"
+    created: "2023-02-24T19:47:47.912173781Z"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -1753,7 +1783,7 @@ entries:
     version: 1.0-SNAPSHOT
   - apiVersion: v1
     appVersion: 11.10.4
-    created: "2023-02-24T19:01:13.947031654Z"
+    created: "2023-02-24T19:47:47.907063217Z"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -1788,7 +1818,7 @@ entries:
     version: 0.2.0
   - apiVersion: v1
     appVersion: 11.10.4
-    created: "2023-02-24T19:01:13.942047798Z"
+    created: "2023-02-24T19:47:47.902361759Z"
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -1821,4 +1851,4 @@ entries:
     urls:
     - https://pilotdataplatform.github.io/helm-charts/xwiki-0.1.0.tgz
     version: 0.1.0
-generated: "2023-02-24T19:01:13.73150714Z"
+generated: "2023-02-24T19:47:47.690859449Z"
