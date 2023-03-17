@@ -61,6 +61,12 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:approval-{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.command }}
+          command: {{ .Values.command }}
+          {{- end }}
+          {{- if .Values.args }}
+          args: {{ .Values.args }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.container.port }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
