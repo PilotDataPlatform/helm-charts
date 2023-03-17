@@ -28,6 +28,9 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.serviceAccount.create -}}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- end }}
       initContainers:
         - name: "init{{ .Values.name }}"
           image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
