@@ -41,6 +41,18 @@ spec:
         - name: "init{{ .Values.name }}"
           image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.initCommand }}
+          {{- with .Values.initCommand }}
+          command: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.initArgs }}
+          {{- with .Values.initArgs }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
           env:
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
