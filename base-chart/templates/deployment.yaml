@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include '{{ .Release.Name }}.fullname' . }}
+  name: {{ include "base-chart.fullname" . }}
   labels:
-    {{- include '{{ .Release.Name }}.labels' . | nindent 4 }}
+    {{- include "base-chart.labels" . | nindent 4 }}
   {{- with .Values.deploymentAnnotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -18,7 +18,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include '{{ .Release.Name }}'.selectorLabels' . | nindent 6 }}
+      {{- include "base-chart.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -26,7 +26,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include '{{ .Release.Name }}'.selectorLabels' . | nindent 8 }}
+        {{- include "base-chart.selectorLabels" . | nindent 8 }}
     spec:
       {{- if .Values.hostAliases }}
       hostAliases:
@@ -92,7 +92,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}{{ .Release.Name }}-{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:base-chart-{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.command }}
           {{- with .Values.command }}
