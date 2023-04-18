@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "base-chart.fullname" . }}
+  name: {{ .Chart.Name }}
   labels:
-    {{- include {{ .Release.Name }}.labels . | nindent 4 }}
+    {{- include {{ .Values.Name }}.labels . | nindent 4 }}
   {{- with .Values.deploymentAnnotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
