@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include {{ .Release.Name }}.fullname . }}
+  name: {{ include "{{ .Release.Name }}.fullname" . }}
   labels:
     {{- include {{ .Release.Name }}.labels . | nindent 4 }}
   {{- with .Values.deploymentAnnotations }}
