@@ -38,17 +38,17 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       {{- if .Values.command }}
-          {{- with .Values.command }}
-          command: 
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- end }}
-          {{- if .Values.args }}
-          {{- with .Values.args }}
-          args: 
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- end }}
+      {{- with .Values.command }}
+      command: 
+        {{- toYaml . | nindent 12 }}
+      {{- end }}
+      {{- end }}
+      {{- if .Values.args }}
+      {{- with .Values.args }}
+      args: 
+        {{- toYaml . | nindent 12 }}
+      {{- end }}
+      {{- end }}
       initContainers:
         - name: "init{{ .Values.name }}"
           image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
