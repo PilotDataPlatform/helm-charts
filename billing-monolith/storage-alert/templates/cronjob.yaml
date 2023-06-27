@@ -1,61 +1,53 @@
-{{- range $job, $val := .Values.cronjob.crons }}
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
   namespace: {{ .Values.env }}
-  name: {{ .name }}
+  name: {{ include "storage-alert.fullname" . }}
   labels:
     draft: {{ default "draft-app" $.Values.draft }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 spec:
-  schedule: {{ .schedule | quote }}
-  successfulJobsHistoryLimit: 0 
+  schedule: {{ $.Values.schedule | quote }}
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit | default 1 }} 
+  failedJobsHistoryLimit: {{ .Values.failedJobsHistoryLimit | default 2 }} 
   jobTemplate:
     spec:
       template:
         metadata:
           {{- with .Values.podAnnotations }}
           annotations:
-            {{- toYaml . | nindent 8 }}
-          {{- end }}
-          labels:
-            {{- include "storage-alert.selectorLabels" . | nindent 8 }}
-        spec:       
-               containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:storage-alert-{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.command }}
-          {{- with .Values.command }}
-          command: 
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- end }}
-          {{- if .Values.args }}
-          {{- with .Values.args }}
-          args: 
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- end }}
-          env:
-          - name: srv_namespace
-            value: {{ .Values.appConfig.srv_namespace | quote }}
-{{- if .Values.extraEnv }}
-  {{- range $key, $value := .Values.extraEnv }}
-          - name: {{ $key }}
-            value: {{ $value | quote }}
-  {{- end }}
-{{- end }}
-{{- with .Values.extraEnvYaml }}
-          {{- toYaml . | nindent 10 }}
-{{- end }}
-          ports:
-              - name: http
-                containerPort: {{ .Values.container.port }}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+        spec:
+          restartPolicy: {{ .Values.restartPolicy | default "Never" }}
+          containers:
+            - name: {{ .Chart.Name }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: "{{ .Values.image.repository }}:storage-alert-{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+                {{- if .Values.command }}
+                  {{- with .Values.command }}
+              command: 
+                  {{- toYaml . | nindent 16 }}
+                  {{- end }}
+                {{- end }}
+              {{- if .Values.args }}
+                {{- with .Values.args }}
+              args: 
+                  {{- toYaml . | nindent 16 }}
+                {{- end }}
+              {{- end }}
+              env:
+              {{- if .Values.extraEnv }}
+                {{- range $key, $value := .Values.extraEnv }}
+                - name: {{ $key }}
+                  value: {{ $value }}
+                {{- end }}
+              {{- end }}
+              {{- with .Values.extraEnvYaml }}
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
           {{- if .Values.readinessProbe }}
           readinessProbe:
             {{- toYaml .Values.readinessProbe | nindent 12 }}
@@ -84,5 +76,3 @@ spec:
       volumes:
         {{- toYaml .Values.extraVolumes | nindent 10 }}
       {{- end }}
----
-{{- end}}

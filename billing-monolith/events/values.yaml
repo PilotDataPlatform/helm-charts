@@ -6,7 +6,7 @@ replicaCount: 1
 
 image:
   repository: pilotdataplatform.azurecr.io/billing
-  tag: latest
+  tag: 0.1.0
   pullPolicy: Always
 
 appConfig:
