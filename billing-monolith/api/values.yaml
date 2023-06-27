@@ -3,13 +3,13 @@
 # Declare variables to be passed into your templates.
 ---
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: "api"
 
 replicaCount: 1
 
 image:
   repository: pilotdataplatform.azurecr.io/billing
-  tag: latest
+  tag: 0.1.0
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
 
