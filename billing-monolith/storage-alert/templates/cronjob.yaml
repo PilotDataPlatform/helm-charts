@@ -1,0 +1,78 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  namespace: {{ .Values.env }}
+  name: {{ include "storage-alert.fullname" . }}
+  labels:
+    draft: {{ default "draft-app" $.Values.draft }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+spec:
+  schedule: {{ $.Values.schedule | quote }}
+  successfulJobsHistoryLimit: {{ .Values.successfulJobsHistoryLimit | default 1 }} 
+  failedJobsHistoryLimit: {{ .Values.failedJobsHistoryLimit | default 2 }} 
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          {{- with .Values.podAnnotations }}
+          annotations:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+        spec:
+          restartPolicy: {{ .Values.restartPolicy | default "Never" }}
+          containers:
+            - name: {{ .Chart.Name }}
+              securityContext:
+                {{- toYaml .Values.securityContext | nindent 16 }}
+              image: "{{ .Values.image.repository }}:storage-alert-{{ .Values.image.tag | default .Chart.AppVersion }}"
+              imagePullPolicy: {{ .Values.image.pullPolicy }}
+                {{- if .Values.command }}
+                  {{- with .Values.command }}
+              command: 
+                  {{- toYaml . | nindent 16 }}
+                  {{- end }}
+                {{- end }}
+              {{- if .Values.args }}
+                {{- with .Values.args }}
+              args: 
+                  {{- toYaml . | nindent 16 }}
+                {{- end }}
+              {{- end }}
+              env:
+              {{- if .Values.extraEnv }}
+                {{- range $key, $value := .Values.extraEnv }}
+                - name: {{ $key }}
+                  value: {{ $value }}
+                {{- end }}
+              {{- end }}
+              {{- with .Values.extraEnvYaml }}
+                {{- toYaml . | nindent 16 }}
+              {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.extraVolumeMounts }}
+          volumeMounts:
+            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.extraVolumes }}
+      volumes:
+        {{- toYaml .Values.extraVolumes | nindent 10 }}
+      {{- end }}
