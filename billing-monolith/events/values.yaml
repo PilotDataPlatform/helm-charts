@@ -12,6 +12,7 @@ image:
 appConfig:
   KAFKA_URI: "10.3.7.113:9092"
   CONSUMER_GROUP: "billing"
+  SEEK_TO_BEGINNING: true
 
 imagePullSecrets: []
 nameOverride: ""
