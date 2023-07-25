@@ -4,6 +4,7 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.221047+02:00"
     description: A Helm chart for Kubernetes
     digest: 90d23ad45aae4547e4c2b5df66c40b769e84aba74d88ad8f2833b50f2fbbae11
@@ -18,6 +19,9 @@ entries:
 =======
     created: "2023-07-21T11:39:44.80351-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.363343-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 656a95d78adfca79ec45774ea6046669d4174e9c93e2bb78a3609af46db19657
     name: approval-service
@@ -28,10 +32,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.220292+02:00"
 =======
     created: "2023-07-21T11:39:44.802987-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.362659-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 5baf490db507dc61458f5888b52bb8172bef893a1c62a643ad3b9b2640c0d299
     name: approval-service
@@ -42,10 +50,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.220071+02:00"
 =======
     created: "2023-07-21T11:39:44.802487-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.361915-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3597a316773407d0e534d2a436ad47f5d24d101896a1c6f9033ef2f4be35f430
     name: approval-service
@@ -56,10 +68,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.219843+02:00"
 =======
     created: "2023-07-21T11:39:44.801896-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.3613-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: b724488f55b48c0919f2e328de3947294ce366763891aa4eaafee2b61235a5d1
     name: approval-service
@@ -70,10 +86,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.219634+02:00"
 =======
     created: "2023-07-21T11:39:44.801386-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.360649-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ad654722d5766a25e5b740277b506caddf536929484722d1ea63619fab48e038
     name: approval-service
@@ -84,10 +104,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.219418+02:00"
 =======
     created: "2023-07-21T11:39:44.800857-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.360014-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: e3f22315de7d9cdfeffbf36ebb8d801c1c68d35d836bb9c4937de57e04d5e1db
     name: approval-service
@@ -98,10 +122,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.219187+02:00"
 =======
     created: "2023-07-21T11:39:44.799958-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.359246-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 2373e4e2fa950b4ca9c85434c470126b1c6d0a1f37792050733655fb355748eb
     name: approval-service
@@ -112,10 +140,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.218812+02:00"
 =======
     created: "2023-07-21T11:39:44.798895-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.358414-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 968f631a340c25d06b8532e5cac74e77540527d37ca55147e1b6a8196696ef65
     name: approval-service
@@ -126,10 +158,14 @@ entries:
   - apiVersion: v2
     appVersion: "26"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.218441+02:00"
 =======
     created: "2023-07-21T11:39:44.798189-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.357526-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 36aa573e3f9ad20288627c900afa89f8b58a22594135a86136876c1e17ab713d
     name: approval-service
@@ -141,10 +177,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.221823+02:00"
 =======
     created: "2023-07-21T11:39:44.805529-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.365404-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: d05c28b80660894f8fbd87a331f25bb9a2b19e1c0f200042b3e79282ec6e5079
     name: arranger-admin-server-service
@@ -155,10 +195,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.221503+02:00"
 =======
     created: "2023-07-21T11:39:44.805014-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.364831-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: fa9d1506913534497de03f309731a38c9fa230243a4c78f01ae2f2a226030335
     name: arranger-admin-server-service
@@ -169,10 +213,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.221282+02:00"
 =======
     created: "2023-07-21T11:39:44.804046-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.363904-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: e7e0c580feb93fd8308815a0d1b03e19a5729bc10c53f86f1d377b9558f31dd8
     name: arranger-admin-server-service
@@ -184,10 +232,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.2228+02:00"
 =======
     created: "2023-07-21T11:39:44.80785-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.367673-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 6fa6d292ec0fadc575f6c1e46d3ea914a05f411d926094e531bb088784c527ef
     name: arranger-admin-ui-service
@@ -198,10 +250,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.222578+02:00"
 =======
     created: "2023-07-21T11:39:44.807234-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.36701-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 47ce5d7d23b3c2a37107adb211e0162e9f6b1b02f8d0a744b847e253f8283148
     name: arranger-admin-ui-service
@@ -212,10 +268,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.222355+02:00"
 =======
     created: "2023-07-21T11:39:44.806579-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.366523-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 364ee811fa1edaeefca032fd7e8a206dd86a408269946afcd4ce14c680f2e6c8
     name: arranger-admin-ui-service
@@ -226,10 +286,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.222129+02:00"
 =======
     created: "2023-07-21T11:39:44.80604-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.366031-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: b1442b1846becdbcc8930208d615e2939dce3ef3e0894ff840270056e20fe3de
     name: arranger-admin-ui-service
@@ -241,10 +305,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.223244+02:00"
 =======
     created: "2023-07-21T11:39:44.813006-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.37107-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: f8b4a91c2133727cacee219dedc71e713f60e3696399d9025ccabb3ae09e61bf
     name: arranger-server-filter-service
@@ -255,10 +323,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.223012+02:00"
 =======
     created: "2023-07-21T11:39:44.808427-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.368346-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 45df66f14607ac2eac38b3c34bd6459b43ac26db12d7d72d8c716fbe25cf1383
     name: arranger-server-filter-service
@@ -270,10 +342,14 @@ entries:
   - apiVersion: v2
     appVersion: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.224864+02:00"
 =======
     created: "2023-07-21T11:39:44.81485-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.372824-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 66917cf5c8c5c29e1b76bea4bd26d0dec049a41d5a813bcbc8d3343e53e3067a
     name: audit-trail-service
@@ -284,10 +360,14 @@ entries:
   - apiVersion: v2
     appVersion: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.224597+02:00"
 =======
     created: "2023-07-21T11:39:44.814194-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.372213-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 2ea131a73b5aa18e8374422c5143ea599ebaec91eaa41b7744d7a6f7f8879da4
     name: audit-trail-service
@@ -298,10 +378,14 @@ entries:
   - apiVersion: v2
     appVersion: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.223478+02:00"
 =======
     created: "2023-07-21T11:39:44.813623-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.371622-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 404dce5c375e1a8fdd4158fc2999f5fadb9c06a2e18d9dd9b550b5ea22e8d374
     name: audit-trail-service
@@ -312,6 +396,7 @@ entries:
   auth-service:
   - apiVersion: v2
     appVersion: "131"
+<<<<<<< HEAD
 <<<<<<< HEAD
     created: "2023-08-24T15:42:12.229331+02:00"
     description: A Helm chart for Kubernetes
@@ -357,6 +442,9 @@ entries:
 =======
     created: "2023-07-21T11:39:44.822361-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.380096-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 514e3837a837d780c9240312bff6da6ef2821276360775eec9f2258da5cf5b66
     name: auth-service
@@ -367,10 +455,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.227591+02:00"
 =======
     created: "2023-07-21T11:39:44.821294-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.379274-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 83ecc608c15761f6e0d1898e99c1f11600d78d14de45b03c803cb85b547ea7e5
     name: auth-service
@@ -381,10 +473,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.227358+02:00"
 =======
     created: "2023-07-21T11:39:44.820804-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.378724-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 41868c6d45c5e4671475f5bad607db9af5a8fe4c0c295649d38f2de5d3878386
     name: auth-service
@@ -395,10 +491,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.22713+02:00"
 =======
     created: "2023-07-21T11:39:44.820105-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.378157-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3052fb23671efb0704f2b8b42e2a406131a590e9f34a80f5f2d23ecc47659ab3
     name: auth-service
@@ -409,10 +509,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.2269+02:00"
 =======
     created: "2023-07-21T11:39:44.819596-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.37757-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 9e9d04855c642c473ffb97092c4a628f5faa20690e7f5253a55586928dea2b9b
     name: auth-service
@@ -423,10 +527,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.226673+02:00"
 =======
     created: "2023-07-21T11:39:44.819051-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.377012-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: f824550eae8f0d0c0380caae8a92d040ba3b93d7275690646672484044552f6e
     name: auth-service
@@ -437,10 +545,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.226427+02:00"
 =======
     created: "2023-07-21T11:39:44.818564-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.376386-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: beb8fb1934fd56c040184475a947ac447004cab34e79d97336f136a05847791c
     name: auth-service
@@ -451,10 +563,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.226199+02:00"
 =======
     created: "2023-07-21T11:39:44.817978-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.375851-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 625af2eb448fd8cb5df10f2a93938a96868354a657877d1c0441cae8236e6625
     name: auth-service
@@ -465,10 +581,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.225968+02:00"
 =======
     created: "2023-07-21T11:39:44.817421-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.375406-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3a3c157eeec55dd6ae4c6317c919181cf744d6a1b1ca74f3ae3ca06aeccc871a
     name: auth-service
@@ -479,10 +599,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.225725+02:00"
 =======
     created: "2023-07-21T11:39:44.816931-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.374862-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 80f4333c655a74094c3b4ee02fa3daa61b13018a4b2984b894b24bd8e813a3c6
     name: auth-service
@@ -493,10 +617,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.225484+02:00"
 =======
     created: "2023-07-21T11:39:44.81609-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.374042-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 6dc4451be17d64b4d3ccacc8c7d378402da59a37526ff29866be9e9963df0729
     name: auth-service
@@ -507,10 +635,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.22509+02:00"
 =======
     created: "2023-07-21T11:39:44.815477-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.373462-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: a5af799f7c1b4d81d333f85802eba1909665f56c00408f7a3bf32467d953d19b
     name: auth-service
@@ -522,10 +654,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.229564+02:00"
 =======
     created: "2023-07-21T11:39:44.82287-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.3806-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 597e75b82ceeaaf98303189ae59dd9d87eb4c7bfeff76ea01949fb1c20abfb46
     name: base-chart
@@ -537,10 +673,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.230242+02:00"
 =======
     created: "2023-07-21T11:39:44.823363-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.381242-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 9e3d99e87f52d65ac7e3ec854abff67e874d7dceb72d9cab2938107581a9dd58
     name: base-cronjob
@@ -552,10 +692,14 @@ entries:
   - apiVersion: v2
     appVersion: "1471"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.231529+02:00"
 =======
     created: "2023-07-21T11:39:44.827534-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.386562-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: bcf70ed55849026badefaa6df6e8217a707938d149bc4131931cfb085916cded
     name: bff
@@ -566,10 +710,14 @@ entries:
   - apiVersion: v2
     appVersion: "1471"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.231298+02:00"
 =======
     created: "2023-07-21T11:39:44.82697-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.384606-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 1546d81768d907d24efd57097e0296d31fe01adbf56b00ec1b5ddb09575e2730
     name: bff
@@ -580,10 +728,14 @@ entries:
   - apiVersion: v2
     appVersion: "1471"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.231076+02:00"
 =======
     created: "2023-07-21T11:39:44.825726-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.384077-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: c0efe046cf940b02606f123b0f401c20036290630f9c25ff650918dbbf272928
     name: bff
@@ -594,10 +746,14 @@ entries:
   - apiVersion: v2
     appVersion: "1471"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.230848+02:00"
 =======
     created: "2023-07-21T11:39:44.824947-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.383016-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 6d7750cb8ac98d7d5ccfa997e0bae455f7a6606c2e4b4b251a6e431da4bd04e4
     name: bff
@@ -608,10 +764,14 @@ entries:
   - apiVersion: v2
     appVersion: "1471"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.230526+02:00"
 =======
     created: "2023-07-21T11:39:44.824117-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.382045-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 8ee1985765c105a1c8e5fe88e38b0b3549730d3997fd9ae82895480733f5b048
     name: bff
@@ -623,10 +783,14 @@ entries:
   - apiVersion: v2
     appVersion: "135"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.232415+02:00"
 =======
     created: "2023-07-21T11:39:44.829742-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.389122-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 48117dd64d3e16523fa61db2a2e029be968ff6d5c50c2703b42321465ac38836
     name: bff-cli-service
@@ -637,10 +801,14 @@ entries:
   - apiVersion: v2
     appVersion: "135"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.232193+02:00"
 =======
     created: "2023-07-21T11:39:44.829187-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.388514-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ad04904403e14a558f5a99f870b5c8c98819a1f10b71f826832481bc3d633758
     name: bff-cli-service
@@ -651,10 +819,14 @@ entries:
   - apiVersion: v2
     appVersion: "135"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.231973+02:00"
 =======
     created: "2023-07-21T11:39:44.828618-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.387819-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ab38a0cbe094b8dee26ee3673c641a49e9012eda977f85fe0143ff3a1c7c1052
     name: bff-cli-service
@@ -665,10 +837,14 @@ entries:
   - apiVersion: v2
     appVersion: "135"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.23176+02:00"
 =======
     created: "2023-07-21T11:39:44.828028-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.387278-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 070da2205396afefec278def7b14d32a89f0903e1328d616ebc531c7983f203a
     name: bff-cli-service
@@ -713,10 +889,14 @@ entries:
   - apiVersion: v2
     appVersion: "92"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.233714+02:00"
 =======
     created: "2023-07-21T11:39:44.831418-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.391004-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3aaaf228c9692c530fe0fa5c435281ad8d4ac808774596d0a6047a95fdbe1610
     name: cataloguing-service
@@ -727,10 +907,14 @@ entries:
   - apiVersion: v2
     appVersion: "92"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.23348+02:00"
 =======
     created: "2023-07-21T11:39:44.830882-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.390351-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: dedef31d3cffe64c1d2f74fb10bfffb78ac6179962496518055ac252ab79ab32
     name: cataloguing-service
@@ -741,10 +925,14 @@ entries:
   - apiVersion: v2
     appVersion: "92"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.23326+02:00"
 =======
     created: "2023-07-21T11:39:44.830331-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.389779-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: b96101efae20d3bef0b58eca140a76ae4cf5760e8ab8b8886ed4d0350b4b2de9
     name: cataloguing-service
@@ -756,10 +944,14 @@ entries:
   - apiVersion: v2
     appVersion: "29"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.234292+02:00"
 =======
     created: "2023-07-21T11:39:44.832557-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.392247-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: bb6977e889c11c7d30c34f2b6b9349da4df96d46b1928f0f8f660a8ae3978aea
     name: common-service
@@ -770,10 +962,14 @@ entries:
   - apiVersion: v2
     appVersion: "29"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.234065+02:00"
 =======
     created: "2023-07-21T11:39:44.832041-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.391585-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: b010399ce4395cf7042ca25bbae36bb07454f390f19267095f2f5c07bbd41239
     name: common-service
@@ -805,10 +1001,14 @@ entries:
     apiVersion: v2
     appVersion: 1.12.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.239309+02:00"
 =======
     created: "2023-07-21T11:39:44.840559-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.399222-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: Official HashiCorp Consul Chart
     digest: 37f9d1c31653c2017bf864c6604e73c970f417dee462d576833e95908e6f637e
     home: https://www.consul.io
@@ -821,14 +1021,46 @@ entries:
     urls:
     - https://pilotdataplatform.github.io/helm-charts/consul-0.43.0.tgz
     version: 0.43.0
+  cost-analyzer:
+  - annotations:
+      artifacthub.io/links: |
+        - name: Homepage
+          url: https://www.kubecost.com
+    apiVersion: v2
+    appVersion: 1.105.0
+    created: "2023-07-25T14:37:03.409693-04:00"
+    dependencies:
+    - condition: global.grafana.enabled
+      name: grafana
+      repository: file://./charts/grafana
+      version: ~1.17.2
+    - condition: global.prometheus.enabled
+      name: prometheus
+      repository: file://./charts/prometheus
+      version: ~11.0.2
+    - condition: global.thanos.enabled
+      name: thanos
+      repository: file://./charts/thanos
+      version: ~0.29.0
+    description: A Helm chart that sets up Kubecost, Prometheus, and Grafana to monitor
+      cloud costs.
+    digest: ed75ab64f447526fa781ecd53890a7dabaad9bf12465f5c4a387e92d27dbbc4b
+    name: cost-analyzer
+    urls:
+    - https://pilotdataplatform.github.io/helm-charts/cost-analyzer-1.105.0.tgz
+    version: 1.105.0
   database-backup:
   - apiVersion: v2
     appVersion: 1.16.0
+<<<<<<< HEAD
 <<<<<<< HEAD
     created: "2023-08-24T15:42:12.23954+02:00"
 =======
     created: "2023-07-21T11:39:44.841784-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.411142-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 90f7dbecdec1a63c6628cd67c74e36bc2bdfbacfaccbb37ca243b14aa177d61e
     name: database-backup
@@ -839,10 +1071,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.239442+02:00"
 =======
     created: "2023-07-21T11:39:44.84122-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.410658-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3591810c30cb0eccfc1946db06d035130ff069e68094c79d5b5586280f6af0c9
     name: database-backup
@@ -854,10 +1090,14 @@ entries:
   - apiVersion: v2
     appVersion: "174"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.239763+02:00"
 =======
     created: "2023-07-21T11:39:44.842348-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.411798-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 674ced05b87a31104601dcc22873ea77c68d9e826397b79b2deadbcc4998ad1b
     name: dataops-gr-service
@@ -868,6 +1108,7 @@ entries:
   dataops-service:
   - apiVersion: v2
     appVersion: "274"
+<<<<<<< HEAD
 <<<<<<< HEAD
     created: "2023-08-24T15:42:12.243071+02:00"
     description: A Helm chart for Kubernetes
@@ -943,6 +1184,9 @@ entries:
 =======
     created: "2023-07-21T11:39:44.843893-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.413644-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 5573d78779ed0901bc72f94000158f8b2b8c36fb567c992eb8b8b8599b28e20f
     name: dataops-service
@@ -953,10 +1197,14 @@ entries:
   - apiVersion: v2
     appVersion: "274"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.240223+02:00"
 =======
     created: "2023-07-21T11:39:44.843371-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.413067-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 91a251e64f6bb196640e57edb7436b8a024ff7f783d6eb22866d7fed81574f34
     name: dataops-service
@@ -967,10 +1215,14 @@ entries:
   - apiVersion: v2
     appVersion: "274"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.240003+02:00"
 =======
     created: "2023-07-21T11:39:44.842818-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.412424-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: d36ac6ccaec19279de1478433ce5d47bdc9ea4c6a9b3d3fb73f08cef080cc783
     name: dataops-service
@@ -982,10 +1234,14 @@ entries:
   - apiVersion: v2
     appVersion: "274"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.244711+02:00"
 =======
     created: "2023-07-21T11:39:44.846472-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.416727-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 4361163754c833042a69e2652c303f6a99aa277fcc356f6f0991eab57339c674
     name: dataops-utility-service
@@ -996,10 +1252,14 @@ entries:
   - apiVersion: v2
     appVersion: "274"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.244481+02:00"
 =======
     created: "2023-07-21T11:39:44.846014-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.41606-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 013af68c9d53c2045c1dfb16b9051e1438557c874e9042b924ac50435dfee439
     name: dataops-utility-service
@@ -1010,10 +1270,14 @@ entries:
   - apiVersion: v2
     appVersion: "274"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.244182+02:00"
 =======
     created: "2023-07-21T11:39:44.845449-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.415493-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 42dc45bbb520de66f8671c749f48692d9f9605cb9b16a7433322ebcbba34d0e8
     name: dataops-utility-service
@@ -1024,10 +1288,14 @@ entries:
   - apiVersion: v2
     appVersion: "274"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.243506+02:00"
 =======
     created: "2023-07-21T11:39:44.844943-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.414849-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: b0074386c9392a5d2270f6fee4d2b75cd997fa9469666c12642189d3275e4cea
     name: dataops-utility-service
@@ -1038,10 +1306,14 @@ entries:
   - apiVersion: v2
     appVersion: "274"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.24329+02:00"
 =======
     created: "2023-07-21T11:39:44.84443-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.414275-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 8c2bb2972c115bbddf88098de273d1154221a4c8679638041f039dc185665593
     name: dataops-utility-service
@@ -1053,10 +1325,14 @@ entries:
   - apiVersion: v2
     appVersion: "124"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.245731+02:00"
 =======
     created: "2023-07-21T11:39:44.84879-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.41948-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 63f13a6e9219394eb0cb5f20d5d655839ca77c47e8f77f6505bd83560d158881
     name: dataset-neo4j
@@ -1067,10 +1343,14 @@ entries:
   - apiVersion: v2
     appVersion: "124"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.245484+02:00"
 =======
     created: "2023-07-21T11:39:44.848245-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.418919-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: af182b5a91583c73e759dc61ef29e392c899e5cf019c2558192c30159659317e
     name: dataset-neo4j
@@ -1081,10 +1361,14 @@ entries:
   - apiVersion: v2
     appVersion: "124"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.245259+02:00"
 =======
     created: "2023-07-21T11:39:44.847781-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.418258-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: fcf2c4bc8e7f61ca0d7ba2221dc94078388ccb366b55c7b9bd0d84edf3eebc17
     name: dataset-neo4j
@@ -1095,10 +1379,14 @@ entries:
   - apiVersion: v2
     appVersion: "124"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.244928+02:00"
 =======
     created: "2023-07-21T11:39:44.846939-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.41728-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ec762d91e97dab0978b221b98c5754429417c78a463a265f09e6336538f8637e
     name: dataset-neo4j
@@ -1110,10 +1398,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.246874+02:00"
 =======
     created: "2023-07-21T11:39:44.851649-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.422461-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 9f5d37cd44c4207f76acc6ff87a96c82ade635a26931f9b9f3eea75947d93ea1
     name: dataset-service
@@ -1124,10 +1416,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.24666+02:00"
 =======
     created: "2023-07-21T11:39:44.850968-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.421874-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 04a89bc8a95fc3c6081f2961b5e6de05857197ac10dd388a6c48da86a4a459bf
     name: dataset-service
@@ -1138,10 +1434,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.24643+02:00"
 =======
     created: "2023-07-21T11:39:44.850443-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.421258-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ff13d03d38a654ddb6b4360079d4f0aeb067253d51585f9fed5e52b52d960a81
     name: dataset-service
@@ -1152,10 +1452,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.246207+02:00"
 =======
     created: "2023-07-21T11:39:44.849903-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.420533-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ae80a024a503e775ecb03787d127f36e798eb9e6d59a521d532db0240fa5722f
     name: dataset-service
@@ -1166,10 +1470,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.245976+02:00"
 =======
     created: "2023-07-21T11:39:44.849301-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.420016-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3bf19e3500ac0a2a111c874f72966f1cd53f6c2a9542ed0ed6ec317b4a2d2d10
     name: dataset-service
@@ -1181,10 +1489,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.248029+02:00"
 =======
     created: "2023-07-21T11:39:44.854878-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.426129-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 68564668180d3d61599ad657011852c1a718dddb7fe40ce70a5d1cf3a1954366
     name: download-service
@@ -1195,10 +1507,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.247798+02:00"
 =======
     created: "2023-07-21T11:39:44.854014-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.425093-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: dd0d502a7ed2b510a2f4531c2a0bab3a915fd5f7f7d55165e85b84bc8d5bd858
     name: download-service
@@ -1209,10 +1525,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.247556+02:00"
 =======
     created: "2023-07-21T11:39:44.853442-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.424393-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 416dff01fc513adbeaee820cb025e9992f434b899f8d3996c40bb38b092da504
     name: download-service
@@ -1223,10 +1543,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.24732+02:00"
 =======
     created: "2023-07-21T11:39:44.852884-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.423735-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 20ef87d765617776f03298df962f0facbdc6bbe038870274a0e3c5d4d3a705eb
     name: download-service
@@ -1237,10 +1561,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.247089+02:00"
 =======
     created: "2023-07-21T11:39:44.85223-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.4231-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 9021de839c16a169aa14c71b377b19a75a780bbd874df6d04b8aef2506869822
     name: download-service
@@ -1254,10 +1582,14 @@ entries:
     apiVersion: v2
     appVersion: 8.2.3
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.26241+02:00"
 =======
     created: "2023-07-21T11:39:44.879166-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.453086-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: global.kibanaEnabled
       name: kibana
@@ -1291,10 +1623,14 @@ entries:
     apiVersion: v2
     appVersion: 7.17.3
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.252272+02:00"
 =======
     created: "2023-07-21T11:39:44.862848-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.434519-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: global.kibanaEnabled
       name: kibana
@@ -1329,10 +1665,14 @@ entries:
     apiVersion: v2
     appVersion: 8.2.3
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.257506+02:00"
 =======
     created: "2023-07-21T11:39:44.87084-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.443515-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: global.kibanaEnabled
       name: kibana
@@ -1365,10 +1705,14 @@ entries:
   - apiVersion: v2
     appVersion: "16"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.262908+02:00"
 =======
     created: "2023-07-21T11:39:44.880513-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.454359-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: d7bbcee0b73e76f54edbb78b37d83b53a8ae3f0399de025fff4d45c5a00e91ff
     name: encryption-service
@@ -1379,10 +1723,14 @@ entries:
   - apiVersion: v2
     appVersion: "16"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.262665+02:00"
 =======
     created: "2023-07-21T11:39:44.87984-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.453745-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: b503c8aa944cf3efa78238de56a3e65fe838ae1956649f7e6295455328910479
     name: encryption-service
@@ -1394,10 +1742,14 @@ entries:
   - apiVersion: v2
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.263592+02:00"
 =======
     created: "2023-07-21T11:39:44.882387-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.456125-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: b9bd46642dd988186eb5c9e2d7eaef52827f3222b42c862f7985efb95911001d
     name: entityinfo-service
@@ -1408,10 +1760,14 @@ entries:
   - apiVersion: v1
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.263365+02:00"
 =======
     created: "2023-07-21T11:39:44.88174-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.455563-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 0a835983c2f8e4bc6111f87aa9b0bf18a7bb0c6a55cf9c992f80f033c2d1f312
     name: entityinfo-service
@@ -1422,10 +1778,14 @@ entries:
   - apiVersion: v2
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.263134+02:00"
 =======
     created: "2023-07-21T11:39:44.881088-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.45493-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 6a16f64004854bad989fceb54270488121f4b7655d39419c82ee4d3291e2e450
     name: entityinfo-service
@@ -1439,10 +1799,14 @@ entries:
     apiVersion: v2
     appVersion: 1.15.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.265982+02:00"
 =======
     created: "2023-07-21T11:39:44.885892-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.45944-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -1474,10 +1838,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.266493+02:00"
 =======
     created: "2023-07-21T11:39:44.887153-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.460949-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: bbf6068de318e0fa12d45542eb51cc9ef5b226289e2b4dbbc3b7f083fff557ee
     name: hpc-service
@@ -1488,10 +1856,14 @@ entries:
   - apiVersion: v2
     appVersion: "25"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.266249+02:00"
 =======
     created: "2023-07-21T11:39:44.886516-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.460014-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: c557b90c9a59e8c7f87eb992de6efbd4eb7beca23c2729df970d82799eff7483
     name: hpc-service
@@ -1509,10 +1881,14 @@ entries:
     apiVersion: v2
     appVersion: 1.2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.268199+02:00"
 =======
     created: "2023-07-21T11:39:44.891065-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.464703-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: Ingress controller for Kubernetes using NGINX as a reverse proxy
       and load balancer
     digest: cbf11e45b099dc3e1a0c1e8dbe12121f6d5680c3ab115bd39ca522c04ea7e95c
@@ -1552,10 +1928,14 @@ entries:
     apiVersion: v2
     appVersion: 2.332.3
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.270234+02:00"
 =======
     created: "2023-07-21T11:39:44.894795-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.468678-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: Jenkins - Build great things at any scale! The leading open source
       automation server, Jenkins provides hundreds of plugins to support building,
       deploying and automating any project.
@@ -1608,10 +1988,14 @@ entries:
     apiVersion: v2
     appVersion: 1.5.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.272409+02:00"
 =======
     created: "2023-07-21T11:39:44.8986-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.473197-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: Multi-user Jupyter installation
     digest: 507f71b7a9e88bd3d4f3f3b6dc1700e03c00ce1c9307106a1c58066b25255b89
     home: https://z2jh.jupyter.org
@@ -1638,10 +2022,14 @@ entries:
     apiVersion: v2
     appVersion: 3.1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.27674+02:00"
 =======
     created: "2023-07-21T11:39:44.905977-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.47967-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: zookeeper.enabled
       name: zookeeper
@@ -1681,10 +2069,14 @@ entries:
     apiVersion: v2
     appVersion: 20.0.5
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.281227+02:00"
 =======
     created: "2023-07-21T11:39:44.915723-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.487357-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -1719,10 +2111,14 @@ entries:
     apiVersion: v2
     appVersion: 16.1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.288916+02:00"
 =======
     created: "2023-07-21T11:39:44.931021-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.500732-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -1757,10 +2153,14 @@ entries:
     apiVersion: v2
     appVersion: 16.1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.285357+02:00"
 =======
     created: "2023-07-21T11:39:44.924765-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.494495-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -1794,10 +2194,14 @@ entries:
   - apiVersion: v2
     appVersion: "30"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.289629+02:00"
 =======
     created: "2023-07-21T11:39:44.932956-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.502669-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 4b21fd1cee7dc553d878b459eb29173753bb3eb79a0811a7b3b3864bf1039aeb
     name: kg-service
@@ -1808,10 +2212,14 @@ entries:
   - apiVersion: v2
     appVersion: "30"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.289392+02:00"
 =======
     created: "2023-07-21T11:39:44.932392-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.502019-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 57196f025e9647ad5a8e24b99792a035f95ee451ed36a78900b19b7dbe27f40a
     name: kg-service
@@ -1822,10 +2230,14 @@ entries:
   - apiVersion: v2
     appVersion: "30"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.289172+02:00"
 =======
     created: "2023-07-21T11:39:44.9318-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.501508-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 6cbcbc88fdb85727d6e310d9fa76a22aefb59be3222e69b3b58c9ce3cd9e3db4
     name: kg-service
@@ -1839,10 +2251,14 @@ entries:
     apiVersion: v2
     appVersion: 2.8.1
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.295519+02:00"
 =======
     created: "2023-07-21T11:39:44.94241-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.512288-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -1884,10 +2300,14 @@ entries:
   - apiVersion: v1
     appVersion: "1.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.296251+02:00"
 =======
     created: "2023-07-21T11:39:44.944353-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.514126-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 9ad395a7aef5c61a3e51c1e35184af7dcc2833d5f66a461ce0b4e2cdc0916144
     name: konga
@@ -1897,10 +2317,14 @@ entries:
   - apiVersion: v1
     appVersion: "1.0"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.295889+02:00"
 =======
     created: "2023-07-21T11:39:44.94327-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.513259-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: bd4fded5ea3381f1958a4993af05e7aa38ffece1c28abe51f0e05c1009e4e6d5
     name: konga
@@ -1919,10 +2343,14 @@ entries:
     apiVersion: v2
     appVersion: v0.65.2
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.322338+02:00"
 =======
     created: "2023-07-21T11:39:44.989177-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.557395-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -1981,10 +2409,14 @@ entries:
     apiVersion: v2
     appVersion: 0.57.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.308146+02:00"
 =======
     created: "2023-07-21T11:39:44.964898-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.534232-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: kubeStateMetrics.enabled
       name: kube-state-metrics
@@ -2038,10 +2470,14 @@ entries:
   - apiVersion: v2
     appVersion: "92"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.323043+02:00"
 =======
     created: "2023-07-21T11:39:44.991051-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.55967-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 7ea3d499daed53d98aedf8346aa0598b4b03fbb49a8669adac0b071cdee5b615
     name: lineage-service
@@ -2052,10 +2488,14 @@ entries:
   - apiVersion: v2
     appVersion: "92"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.322744+02:00"
 =======
     created: "2023-07-21T11:39:44.990158-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.55854-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: da244b0e4f89b4bd2a447202d8471e29920e2a00a6d14b72389a7db19be93160
     name: lineage-service
@@ -2067,10 +2507,14 @@ entries:
   - apiVersion: v2
     appVersion: v1.0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.323402+02:00"
 =======
     created: "2023-07-21T11:39:44.992232-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.560689-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: An e-mail testing tool for developers
     digest: 711627ad8997d1d6587b5ec2f0689ab8e374b6244ffc2a090a09f11c322787c5
     home: http://iankent.uk/project/mailhog/
@@ -2096,10 +2540,14 @@ entries:
   - apiVersion: v2
     appVersion: "1528"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.323856+02:00"
 =======
     created: "2023-07-21T11:39:44.993617-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.561803-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: fd0689491b65caa1796f38cb94e883d707345f8151c5c9e31387c52e1fa01500
     name: maintenance-page
@@ -2110,10 +2558,14 @@ entries:
   - apiVersion: v2
     appVersion: "1528"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.323636+02:00"
 =======
     created: "2023-07-21T11:39:44.993003-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.561241-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 7632b52eb897055d5d3d37328f98712898a405810400be3c3f814a780c5e1c73
     name: maintenance-page
@@ -2125,10 +2577,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.324519+02:00"
 =======
     created: "2023-07-21T11:39:44.995385-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.563685-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: d9d28ae6c12d35afc7c758f929c6acbda6ebfb0e19d4a70d46acaf608ce3f047
     name: metadata-event-handler
@@ -2139,10 +2595,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.324254+02:00"
 =======
     created: "2023-07-21T11:39:44.994478-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.562623-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 2c5645271a08a4dce5058e1781d86658ed8207175c4789941eba517bb9e23246
     name: metadata-event-handler
@@ -2153,6 +2613,7 @@ entries:
   metadata-service:
   - apiVersion: v2
     appVersion: "7"
+<<<<<<< HEAD
 <<<<<<< HEAD
     created: "2023-08-24T15:42:12.326528+02:00"
     description: A Helm chart for Kubernetes
@@ -2168,6 +2629,9 @@ entries:
 =======
     created: "2023-07-21T11:39:45.000982-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.569954-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: fa86ed0e16bcb94e8818c495dbc757f6a069a21fb592e69e9c5f21532351dcfd
     name: metadata-service
@@ -2178,10 +2642,14 @@ entries:
   - apiVersion: v2
     appVersion: "7"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.325912+02:00"
 =======
     created: "2023-07-21T11:39:45.000325-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.569131-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ed5b5621795021cb9ed819657ee1afccf32ccf0e4c19b4a14189b9a6954a8d3a
     name: metadata-service
@@ -2192,10 +2660,14 @@ entries:
   - apiVersion: v2
     appVersion: "7"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.325677+02:00"
 =======
     created: "2023-07-21T11:39:44.999547-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.568373-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 0003d7f5cc87e05634d9d0d55b6d73914b7bb315608e63d1cee824fcc328be8b
     name: metadata-service
@@ -2206,10 +2678,14 @@ entries:
   - apiVersion: v2
     appVersion: "7"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.325453+02:00"
 =======
     created: "2023-07-21T11:39:44.998927-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.567543-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 574bcd22699b49e3f70661bc7cc3d303210c5dbdb3920f1c048882c89e65b145
     name: metadata-service
@@ -2220,10 +2696,14 @@ entries:
   - apiVersion: v2
     appVersion: "7"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.32522+02:00"
 =======
     created: "2023-07-21T11:39:44.997723-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.566184-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 4559cd69500358a1e7f08c6f0208d3c3121f927b0a22a5ce6dd835d864d607b7
     name: metadata-service
@@ -2234,10 +2714,14 @@ entries:
   - apiVersion: v2
     appVersion: "7"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.324988+02:00"
 =======
     created: "2023-07-21T11:39:44.997088-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.565207-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 6c056e78457cfb5bd0b7be91c3ad3ba4b1b827836397364bab2cd5bebf90a451
     name: metadata-service
@@ -2248,10 +2732,14 @@ entries:
   - apiVersion: v2
     appVersion: "7"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.324752+02:00"
 =======
     created: "2023-07-21T11:39:44.996434-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.564441-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: d0adfe676c0bf848b769479d00e10561c37be841d58cb41102febbfc6bf68627
     name: metadata-service
@@ -2265,10 +2753,14 @@ entries:
     apiVersion: v2
     appVersion: 2022.7.17
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.328468+02:00"
 =======
     created: "2023-07-21T11:39:45.004676-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.57489-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://marketplace.azurecr.io/helm/v1/repo
@@ -2302,10 +2794,14 @@ entries:
     apiVersion: v2
     appVersion: 2022.6.17
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.330462+02:00"
 =======
     created: "2023-07-21T11:39:45.008679-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.578912-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://marketplace.azurecr.io/helm/v1/repo
@@ -2338,10 +2834,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.333178+02:00"
 =======
     created: "2023-07-21T11:39:45.015227-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.585742-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3eb44e1f410216104f70dce5967d3070db7afbc9e3df2fdaa70cfb85ea834f85
     name: notification-service
@@ -2352,10 +2852,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.332949+02:00"
 =======
     created: "2023-07-21T11:39:45.014499-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.585046-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: a6336136421e5da402e1b445f4ec0ba278848f3685ded9c2d8774696a949854e
     name: notification-service
@@ -2366,10 +2870,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.332684+02:00"
 =======
     created: "2023-07-21T11:39:45.013515-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.583799-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: c36b7776f7b771e057eb26e36b8b4bf2fc9e4bf5ff111d06e01e630314946b01
     name: notification-service
@@ -2380,10 +2888,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.332418+02:00"
 =======
     created: "2023-07-21T11:39:45.012865-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.583193-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 5cc5a4acb9d076ef7ed819333621d3b03bf40936ac841404ad893deca89cc161
     name: notification-service
@@ -2394,10 +2906,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.331527+02:00"
 =======
     created: "2023-07-21T11:39:45.01228-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.582485-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: eee2988f0dee5ff21464c287b68a79f63215039839be16ac84ba80ad1c02d3a1
     name: notification-service
@@ -2408,10 +2924,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.331154+02:00"
 =======
     created: "2023-07-21T11:39:45.011712-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.58169-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 016147722f3cffc2046db1309e5a91f1a95c8cbdf49d3c2c631bb5a290e63d94
     name: notification-service
@@ -2422,10 +2942,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.330929+02:00"
 =======
     created: "2023-07-21T11:39:45.010904-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.580942-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 5a8bf11206d77f9f7ed20904ea97bb6eaa469c9c4761f09570d2f86c902d68ac
     name: notification-service
@@ -2436,10 +2960,14 @@ entries:
   - apiVersion: v2
     appVersion: "103"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.330701+02:00"
 =======
     created: "2023-07-21T11:39:45.009433-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.580043-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 05c1a628ea8f558421f4eb949c75ce8ff66101df5a1dcd0b6ccedd7f24eecb66
     name: notification-service
@@ -2450,7 +2978,7 @@ entries:
   opencost:
   - apiVersion: v2
     appVersion: 1.105.0
-    created: "2023-07-21T11:39:45.019063-04:00"
+    created: "2023-07-25T14:37:03.589499-04:00"
     description: OpenCost and OpenCost UI
     digest: e521c49e1ef08036e07d10329c018e74de4b61dc082e2f4cc5317cf767a02551
     keywords:
@@ -2470,7 +2998,7 @@ entries:
     version: 1.18.0
   - apiVersion: v2
     appVersion: 1.104.4
-    created: "2023-07-21T11:39:45.016729-04:00"
+    created: "2023-07-25T14:37:03.587327-04:00"
     description: OpenCost and OpenCost UI
     digest: 82e7bd4cbd0e5926b307e8fffb2180b6c3fc458f383a1fcce43bae26e7f6ef0f
     keywords:
@@ -2492,10 +3020,14 @@ entries:
   - apiVersion: v2
     appVersion: 2.105.0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.336549+02:00"
 =======
     created: "2023-07-21T11:39:45.026209-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.59496-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -2520,10 +3052,14 @@ entries:
   - apiVersion: v2
     appVersion: "242"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.338237+02:00"
 =======
     created: "2023-07-21T11:39:45.030493-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.59942-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 313b0473c296adcf53f3aa088e85036f60f5b0ae9293118b12b247b01ded6ec8
     name: pipelinewatch-service
@@ -2534,10 +3070,14 @@ entries:
   - apiVersion: v2
     appVersion: "242"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.337996+02:00"
 =======
     created: "2023-07-21T11:39:45.029857-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.598802-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ecc86c291435e01a9be8e2503fbd495f9311458cb6057051d25500febe9646ef
     name: pipelinewatch-service
@@ -2548,10 +3088,14 @@ entries:
   - apiVersion: v2
     appVersion: "242"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.337651+02:00"
 =======
     created: "2023-07-21T11:39:45.029302-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.598076-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 99b1ac7e5ea94aabb555dbb76b9eb9da5ed1c76bfd51d83f66904ebd340cfa39
     name: pipelinewatch-service
@@ -2562,10 +3106,14 @@ entries:
   - apiVersion: v2
     appVersion: "242"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.337284+02:00"
 =======
     created: "2023-07-21T11:39:45.028622-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.597314-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 004e7fe0c7dbfb4a4fa176fc6dacb5d217a4057c291ffdc45704f560602ab1e8
     name: pipelinewatch-service
@@ -2576,10 +3124,14 @@ entries:
   - apiVersion: v2
     appVersion: "242"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.33703+02:00"
 =======
     created: "2023-07-21T11:39:45.027808-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.596691-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 5f2ec7b518ff097d35bb85c37fcfbda4e3b7af47977c3611931210ff226e4060
     name: pipelinewatch-service
@@ -2590,10 +3142,14 @@ entries:
   - apiVersion: v2
     appVersion: "242"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.336796+02:00"
 =======
     created: "2023-07-21T11:39:45.027255-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.595737-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 44524d6c988167fb7e6e30ddcaf0fce6324f495b7599f56816efb37f1e686c5e
     name: pipelinewatch-service
@@ -2605,10 +3161,14 @@ entries:
   - apiVersion: v2
     appVersion: "1465"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.339187+02:00"
 =======
     created: "2023-07-21T11:39:45.033366-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.602846-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ed795796b09a1433d36e08b02254e457490a4c1a37e4ad30a6213f96ce428aa2
     name: portal
@@ -2619,10 +3179,14 @@ entries:
   - apiVersion: v2
     appVersion: "1465"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.338945+02:00"
 =======
     created: "2023-07-21T11:39:45.032409-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.601541-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: c662b9e88a19f69e0c018ac441396ff990e6b04e9413fe82e4212b750bd26f20
     name: portal
@@ -2633,10 +3197,14 @@ entries:
   - apiVersion: v2
     appVersion: "1465"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.3387+02:00"
 =======
     created: "2023-07-21T11:39:45.031798-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.600807-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 43aa83c9bd351808a06cca40bd2d8d5604c240d467c03fadd28d3c46d5464d48
     name: portal
@@ -2647,10 +3215,14 @@ entries:
   - apiVersion: v2
     appVersion: "1465"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.338457+02:00"
 =======
     created: "2023-07-21T11:39:45.031073-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.600106-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 65414f048688e3f21630a2164176e004943474a51cec332c4f5d3e161dc02067
     name: portal
@@ -2665,10 +3237,14 @@ entries:
     apiVersion: v2
     appVersion: 15.2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.349059+02:00"
 =======
     created: "2023-07-21T11:39:45.048682-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.617315-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -2704,10 +3280,14 @@ entries:
     apiVersion: v2
     appVersion: 15.2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.344785+02:00"
 =======
     created: "2023-07-21T11:39:45.04466-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.612382-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -2742,10 +3322,14 @@ entries:
     apiVersion: v2
     appVersion: 14.3.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.341682+02:00"
 =======
     created: "2023-07-21T11:39:45.037325-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.607243-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -2782,10 +3366,14 @@ entries:
     apiVersion: v2
     appVersion: 15.2.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.352027+02:00"
 =======
     created: "2023-07-21T11:39:45.053656-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.62324-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: oci://registry-1.docker.io/bitnamicharts
@@ -2822,10 +3410,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.354287+02:00"
 =======
     created: "2023-07-21T11:39:45.060042-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.627519-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: a2551692318e36fba141bcc2d490ff8a26132e74290c6b012a087f8174e3d405
     name: project-service
@@ -2836,10 +3428,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.354024+02:00"
 =======
     created: "2023-07-21T11:39:45.05927-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.626866-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 655ad7b20353a63e58c7e30cc37364da54a412ac317fdeedb4ed0776572da971
     name: project-service
@@ -2850,10 +3446,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.353715+02:00"
 =======
     created: "2023-07-21T11:39:45.05852-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.626199-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 5d68206d2f35c59f55838076c76b40d5d034dc5b0970ea0fe02917fa737650ba
     name: project-service
@@ -2864,10 +3464,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.352895+02:00"
 =======
     created: "2023-07-21T11:39:45.056845-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.625485-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 974c75ae8cc886119d7ee3144361a894bc73460687aec2abade9ac22a78217a4
     name: project-service
@@ -2878,10 +3482,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.352617+02:00"
 =======
     created: "2023-07-21T11:39:45.056038-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.624789-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 108728a2a51952abcf21fb796dcae581edc591318b3b2747df81f6e2d01031e2
     name: project-service
@@ -2892,10 +3500,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.35233+02:00"
 =======
     created: "2023-07-21T11:39:45.054883-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.624111-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 6690358e6a38f6e8616b213d0b873abb94bdaa3e8c1d6f875a8282491ebf4fb9
     name: project-service
@@ -2907,10 +3519,14 @@ entries:
   - apiVersion: v2
     appVersion: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.354998+02:00"
 =======
     created: "2023-07-21T11:39:45.062225-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.630561-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: f88e552d4277adfa23d0bb7fcc8df55046534d1940385c2fbc364cadb4f5dbee
     name: provenance-service
@@ -2921,10 +3537,14 @@ entries:
   - apiVersion: v1
     appVersion: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.35477+02:00"
 =======
     created: "2023-07-21T11:39:45.061621-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.629821-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 1ee30d913fb464d2b0befe7565eb7c4c67a9748cbdce51af76d5e70222a59c2e
     name: provenance-service
@@ -2935,10 +3555,14 @@ entries:
   - apiVersion: v2
     appVersion: "64"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.35451+02:00"
 =======
     created: "2023-07-21T11:39:45.060825-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.628227-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: fb622970d6fec12f906f2063f7f70d1f68975c46d52fd99ae5b4d5da86e4a691
     name: provenance-service
@@ -2950,10 +3574,14 @@ entries:
   - apiVersion: v2
     appVersion: "97"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.356791+02:00"
 =======
     created: "2023-07-21T11:39:45.067681-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.635444-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: d6f070d04d99c0beffe36bef02cbfcc13ad0f927687481fa5eb0ca31f708d916
     name: queue-service
@@ -2964,10 +3592,14 @@ entries:
   - apiVersion: v2
     appVersion: "97"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.356545+02:00"
 =======
     created: "2023-07-21T11:39:45.067013-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.634879-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 0e545a908f1c9036ac66762a7867f946553fabf95aca8756081d0c415edb599c
     name: queue-service
@@ -2978,10 +3610,14 @@ entries:
   - apiVersion: v2
     appVersion: "97"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.356318+02:00"
 =======
     created: "2023-07-21T11:39:45.066366-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.634222-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3bb9f720248a41c72a3a68fc9c90ad3788761a054db011c7b97579a081cbf748
     name: queue-service
@@ -2992,10 +3628,14 @@ entries:
   - apiVersion: v2
     appVersion: "97"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.356079+02:00"
 =======
     created: "2023-07-21T11:39:45.065575-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.63351-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: f06353e63bbc0f055dfcec97278bfa7e9a5c5c4e5dc68bc6cb4ec70eb061ca81
     name: queue-service
@@ -3006,10 +3646,14 @@ entries:
   - apiVersion: v2
     appVersion: "97"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.355824+02:00"
 =======
     created: "2023-07-21T11:39:45.064915-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.632984-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: feb578b9ec4cccb871dcab87c8a7c55d822686309d3347ddbdadd25340c26f31
     name: queue-service
@@ -3020,10 +3664,14 @@ entries:
   - apiVersion: v2
     appVersion: "97"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.355456+02:00"
 =======
     created: "2023-07-21T11:39:45.064167-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.632309-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3a6054a1eda3e8bd5a544739b5062f468d359965fe05d3311437858e6e5188e9
     name: queue-service
@@ -3034,10 +3682,14 @@ entries:
   - apiVersion: v2
     appVersion: "97"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.355234+02:00"
 =======
     created: "2023-07-21T11:39:45.063521-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.631653-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 3264ada17bfabac0cc876b952b89c63574bb49ce44575fee8fec35ed477b171a
     name: queue-service
@@ -3051,10 +3703,14 @@ entries:
     apiVersion: v2
     appVersion: 3.10.5
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.359073+02:00"
 =======
     created: "2023-07-21T11:39:45.072237-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.639966-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -3087,10 +3743,14 @@ entries:
     apiVersion: v2
     appVersion: 6.2.7
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.362336+02:00"
 =======
     created: "2023-07-21T11:39:45.078087-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.646098-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - name: common
       repository: https://charts.bitnami.com/bitnami
@@ -3122,10 +3782,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.366718+02:00"
 =======
     created: "2023-07-21T11:39:45.082737-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.650309-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: a79f1c55a9cac2554eb1219c1ec15887ba2c2fb596e8f8e9d2b268a0d2d3dc6c
     name: search-service
@@ -3216,10 +3880,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.363524+02:00"
 =======
     created: "2023-07-21T11:39:45.082168-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.649636-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 22606c2d028cc3199b0793c64a78700cd7d6ba1fb48bc85fbbc8f6c950113009
     name: search-service
@@ -3230,10 +3898,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.3633+02:00"
 =======
     created: "2023-07-21T11:39:45.080847-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.648862-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: bae6f2dca4b4874896e950668aca3844277651f6abff0bde5de2e898d09a3848
     name: search-service
@@ -3244,10 +3916,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.36308+02:00"
 =======
     created: "2023-07-21T11:39:45.080077-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.648239-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 07a04c706f79611ac92a2a50b4806c75b56915a123da103b40b278b4a279185c
     name: search-service
@@ -3258,10 +3934,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.362852+02:00"
 =======
     created: "2023-07-21T11:39:45.079553-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.647543-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: eb491c16cab3764c814fb57afa6a0710bc6b2643cb2b92d1b438ad5544013eb5
     name: search-service
@@ -3272,10 +3952,14 @@ entries:
   - apiVersion: v2
     appVersion: "131"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.362604+02:00"
 =======
     created: "2023-07-21T11:39:45.078852-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.646724-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 05f00a10ed4b50d4bc98b955d225e250d7c1e1fb02137d21478b89691d4301a8
     name: search-service
@@ -3298,10 +3982,14 @@ entries:
   - apiVersion: v2
     appVersion: 2.0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.373513+02:00"
 =======
     created: "2023-07-21T11:39:45.094355-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.66115-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: postgresql.enabled
       name: postgresql
@@ -3333,10 +4021,14 @@ entries:
   - apiVersion: v2
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.375393+02:00"
 =======
     created: "2023-07-21T11:39:45.098081-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.664607-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: db5a57e4861ec93d3a34434b0b85bd531948f946a12d60555eed9445b65bfd8d
     name: upload-service
@@ -3347,10 +4039,14 @@ entries:
   - apiVersion: v2
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.375169+02:00"
 =======
     created: "2023-07-21T11:39:45.097503-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.663868-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 2e73aa87665549e452941aef0e18fdfa61b05ac735d035a6d7ab94bf8252458f
     name: upload-service
@@ -3361,10 +4057,14 @@ entries:
   - apiVersion: v2
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.374949+02:00"
 =======
     created: "2023-07-21T11:39:45.096892-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.663259-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: ba48d40052bf0495ead400a6b96003c60de7dcab4dec191d9232116f797e1b55
     name: upload-service
@@ -3375,10 +4075,14 @@ entries:
   - apiVersion: v2
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.374714+02:00"
 =======
     created: "2023-07-21T11:39:45.096217-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.662674-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: cad57cd14841619ceef27b0221a02fc2125d0719603dbee95ec253910fb903d9
     name: upload-service
@@ -3389,10 +4093,14 @@ entries:
   - apiVersion: v2
     appVersion: "251"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.374043+02:00"
 =======
     created: "2023-07-21T11:39:45.095364-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.66198-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 21eda6907aed2f0cc60fb4727faa190b542ac17e602a6d0e15404901d59ea7b4
     name: upload-service
@@ -3404,10 +4112,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.9.2
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.376954+02:00"
 =======
     created: "2023-07-21T11:39:45.101016-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.667854-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: Official HashiCorp Vault Chart
     digest: 01d2da896146578ec9ade858083167da4084cc99c96a94a0745ec4fd38fe1a69
     home: https://www.vaultproject.io
@@ -3433,10 +4145,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.9.2
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.378507+02:00"
 =======
     created: "2023-07-21T11:39:45.105187-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.67138-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: Official HashiCorp Vault Chart
     digest: fb7a99fc3d29ccb387fcf741a304124ae0c665a1d3a238024b4a54593f1fa464
     home: https://www.vaultproject.io
@@ -3463,10 +4179,14 @@ entries:
   - apiVersion: v2
     appVersion: v0.1
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.378622+02:00"
 =======
     created: "2023-07-21T11:39:45.105611-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.671796-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: a0ede706e52723b0acb7a580dd75e65dd6d3de103d9e14abee4357960ed0e768
     name: vault-backup
@@ -3478,10 +4198,14 @@ entries:
   - apiVersion: v2
     appVersion: 1.16.0
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.378874+02:00"
 =======
     created: "2023-07-21T11:39:45.106326-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.672486-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: e27784a3725cc9a12a84c72d2667483c5ead065af47241db57ca61059f0d109b
     name: vault-backup-openstack
@@ -3493,10 +4217,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.379564+02:00"
 =======
     created: "2023-07-21T11:39:45.108791-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.675059-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: d3bdcd5951efe84b4e7221d62199fcb93c83da3b070a7929c6a16e8d812a8b90
     name: workspace-service
@@ -3507,10 +4235,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.37933+02:00"
 =======
     created: "2023-07-21T11:39:45.108018-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.67436-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 1cde473fbf4745c54425ffbaf40b52d79ca6c4bdce35ebe1acb57d5c5f7ff1dc
     name: workspace-service
@@ -3521,10 +4253,14 @@ entries:
   - apiVersion: v2
     appVersion: "1"
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.379111+02:00"
 =======
     created: "2023-07-21T11:39:45.107455-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.673017-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     description: A Helm chart for Kubernetes
     digest: 70ed4cda0862c97b192f8575156ff355967ba6b17bc8eb15bbb111928fb97620
     name: workspace-service
@@ -3536,10 +4272,14 @@ entries:
   - apiVersion: v1
     appVersion: 11.10.4
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.387535+02:00"
 =======
     created: "2023-07-21T11:39:45.123587-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.689004-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -3575,10 +4315,14 @@ entries:
   - apiVersion: v1
     appVersion: 11.10.4
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.385685+02:00"
 =======
     created: "2023-07-21T11:39:45.119287-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.6851-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -3614,10 +4358,14 @@ entries:
   - apiVersion: v1
     appVersion: 11.10.4
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.383831+02:00"
 =======
     created: "2023-07-21T11:39:45.115347-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.681693-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -3653,10 +4401,14 @@ entries:
   - apiVersion: v1
     appVersion: 11.10.4
 <<<<<<< HEAD
+<<<<<<< HEAD
     created: "2023-08-24T15:42:12.38192+02:00"
 =======
     created: "2023-07-21T11:39:45.112064-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+    created: "2023-07-25T14:37:03.678201-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
     dependencies:
     - condition: mysql.enabled
       name: mysql
@@ -3690,7 +4442,11 @@ entries:
     - https://pilotdataplatform.github.io/helm-charts/xwiki-0.1.0.tgz
     version: 0.1.0
 <<<<<<< HEAD
+<<<<<<< HEAD
 generated: "2023-08-24T15:42:12.217332+02:00"
 =======
 generated: "2023-07-21T11:39:44.796686-04:00"
 >>>>>>> a2aee37 (PILOT-3340: Patriate OpenCost chart)
+=======
+generated: "2023-07-25T14:37:03.356121-04:00"
+>>>>>>> 7f965a7 (PILOT-3340: Patriate KubeCost chart)
