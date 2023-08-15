@@ -1,0 +1,85 @@
+# Default values for guacamole.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+global:
+  postgresql:
+    auth:
+      username: postgres
+      password: password
+      database: postgres
+  project_name: indoctestproject
+  namespace: default
+  zone: greenroom
+  env: dev
+
+
+guacamole:
+  image:
+    repository: guacamole/guacamole
+    tag: 1.2.0
+    pullPolicy: IfNotPresent
+  settings: {}
+  replicaCount: 1
+  postgresql:
+    auth:
+      hostname: postgres-guacamole
+      port: "5432"
+      database: guacamole_db
+      username: guacamole_user
+      password: password
+    absolute_maximum_connections: 100
+  port: "8080"
+
+guacd:
+  image:
+    repository: guacamole/guacd
+    tag: 1.0.0
+    pullPolicy: IfNotPresent
+  replicaCount: 1
+  port: "4822"
+
+dbinit:
+  image:
+    repository: bitnami/postgresql
+    tag: 14.3.0-debian-10-r9
+    pullPolicy: IfNotPresent
+
+
+deploymentAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 80
+
+serviceAccount:
+  create: false
+  name:
+
+ingress:
+  enabled: false
+
+resources: {}
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+readinessProbe: {}
+
+livenessProbe: {}
+
+updateStrategy: {}
+
+extraEnv: {}
+
+extraEnvYaml: {}

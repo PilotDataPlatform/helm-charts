@@ -1,0 +1,136 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "guacamole.fullname" . }}-guacamole
+  namespace: {{ .Values.global.namespace }}
+  labels:
+{{ include "guacamole.labels" . | indent 4 }}
+spec:
+  replicas: {{ .Values.guacamole.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "guacamole.name" . }}-guacamole
+      app.kubernetes.io/instance: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ include "guacamole.name" . }}-guacamole
+        app.kubernetes.io/instance: {{ .Release.Name }}
+    spec:
+    {{- with .Values.guacamole.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      dnsConfig:
+        options:
+          - name: ndots
+            value: "1"
+      serviceAccountName: {{ template "guacamole.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: loaddb
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.dbinit.image.repository }}:{{ .Values.dbinit.image.tag }}"
+          imagePullPolicy: {{ .Values.dbinit.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ include "guacamole.fullname" . }}
+#          volumeMounts:
+#            - name: initdb
+#              mountPath: /data
+          volumeMounts:
+            - name: initdb-guacamole
+              mountPath: /etc/data/initdb_guacamole.sql
+              subPath: initdb_guacamole.sql
+          command: ["/bin/sh"]
+          args:
+            - -c
+            - |
+              export PGPASSWORD=$GLOBAL_POSTGRES_PASSWORD
+              psql -h $POSTGRES_HOSTNAME -U $GLOBAL_POSTGRES_USER -p "{{ .Values.guacamole.postgresql.auth.port }}" -c "CREATE DATABASE IF NOT EXISTS guacamole_db"
+              psql -h $POSTGRES_HOSTNAME -d "{{ .Values.guacamole.postgresql.auth.database }}" -U $GLOBAL_POSTGRES_USER -p "{{ .Values.guacamole.postgresql.auth.port }}" -a -w -f /etc/data/initdb_guacamole.sql || true
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.guacamole.image.repository }}:{{ tpl .Values.guacamole.image.tag . }}"
+          imagePullPolicy: {{ .Values.guacamole.image.pullPolicy }}
+          envFrom:
+            - secretRef:
+                name: {{ include "guacamole.fullname" . }}
+          env:
+            - name: GUACD_HOSTNAME
+              value: "guacd"
+            - name: POSTGRES_ABSOLUTE_MAX_CONNECTIONS
+              value: "{{ .Values.guacamole.postgresql.absolute_maximum_connections }}"
+            - name: POSTGRES_DATABASE
+              value: "{{ .Values.guacamole.postgresql.auth.database }}"
+            - name: POSTGRES_HOSTNAME
+              value: "{{ .Values.guacamole.postgresql.auth.hostname }}"
+            - name: POSTGRES_PORT
+              value: "{{ .Values.guacamole.postgresql.auth.port }}"
+            - name: OPENID_AUTHORIZATION_ENDPOINT
+              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/auth"
+            - name: OPENID_JWKS_ENDPOINT
+              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/certs"
+            - name: OPENID_ISSUER
+              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot"
+            - name: OPENID_CLIENT_ID
+              value: "workspace-{{ .Values.global.project_name }}-guacamole"
+            - name: OPENID_REDIRECT_URI
+              value: "https://{{ .Values.global.env }}.pilot.indocresearch.org/workbench/{{ .Values.global.project_name }}/guacamole/"
+            - name: OPENID_USERNAME_CLAIM_TYPE
+              value: "username"
+            - name: OPENID_SCOPE
+              value: "openid username email profile groups"
+          volumeMounts:
+            - name: guacamole-extensions-storage
+              mountPath: /etc/guacamole/extensions
+            - name: configurations
+              mountPath: /etc/guacamole/
+          ports:
+            - name: http
+              containerPort: {{ .Values.guacamole.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+            initialDelaySeconds: 60
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+        - name: initdb-guacamole
+          configMap:
+            name: guacamole-init-file
+            items:
+              - key: initdb_guacamole.sql
+                path: initdb_guacamole.sql
+        - name: guacamole-extensions-storage
+          persistentVolumeClaim:
+            claimName: guacamole-extensions
+        - name: configurations
+          configMap:
+            name: guacamole-configuration
+
