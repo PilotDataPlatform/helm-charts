@@ -6,8 +6,8 @@ global:
   postgresql:
     auth:
       username: postgres
-      password: password
       database: postgres
+    port: "5432"
   project_name: indoctestproject
   namespace: default
   zone: greenroom
@@ -19,15 +19,12 @@ guacamole:
     repository: guacamole/guacamole
     tag: 1.2.0
     pullPolicy: IfNotPresent
-  settings: {}
   replicaCount: 1
   postgresql:
     auth:
       hostname: postgres-guacamole
-      port: "5432"
       database: guacamole_db
       username: guacamole_user
-      password: password
     absolute_maximum_connections: 100
   port: "8080"
 

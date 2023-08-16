@@ -6,4 +6,3 @@ data:
   guacamole.properties: |-
     enable-environment-properties: true
     postgresql-auto-create-accounts: true
-    extension-priority: postgresql

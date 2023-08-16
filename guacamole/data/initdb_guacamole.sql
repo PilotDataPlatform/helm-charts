@@ -791,10 +791,7 @@ JOIN guacamole_entity affected ON permissions.affected_username = affected.name 
 JOIN guacamole_user            ON guacamole_user.entity_id = affected.entity_id;
 
 -- 003-create-guacamol_user-user.sql
--- Note: guacamole_db DATABASE will be created before the init.sql be applied in Helm values.yaml
--- CREATE DATABASE guacamole_db;
-CREATE USER guacamole_user WITH PASSWORD 'guacamole';
-GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA public TO guacamole_user;
-GRANT SELECT,USAGE ON ALL SEQUENCES IN SCHEMA public TO guacamole_user;
-GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO guacamole_user;
-GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO guacamole_user;
+GRANT SELECT,INSERT,UPDATE,DELETE ON ALL TABLES IN SCHEMA public TO :guac_user;
+GRANT SELECT,USAGE ON ALL SEQUENCES IN SCHEMA public TO :guac_user;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO :guac_user;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO :guac_user;

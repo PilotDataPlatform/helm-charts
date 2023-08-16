@@ -46,8 +46,9 @@ spec:
             - -c
             - |
               export PGPASSWORD=$GLOBAL_POSTGRES_PASSWORD
-              psql -h $POSTGRES_HOSTNAME -U $GLOBAL_POSTGRES_USER -p "{{ .Values.guacamole.postgresql.auth.port }}" -c "CREATE DATABASE IF NOT EXISTS guacamole_db"
-              psql -h $POSTGRES_HOSTNAME -d "{{ .Values.guacamole.postgresql.auth.database }}" -U $GLOBAL_POSTGRES_USER -p "{{ .Values.guacamole.postgresql.auth.port }}" -a -w -f /etc/data/initdb_guacamole.sql || true
+              psql -h "{{ .Values.guacamole.postgresql.auth.hostname }}" -U  "{{ .Values.global.postgresql.auth.username }}" -p "{{ .Values.guacamole.postgresql.auth.port }}" -c "CREATE USER {{ .Values.guacamole.postgresql.auth.username }} WITH PASSWORD '$POSTGRES_PASSWORD';"
+              psql -h "{{ .Values.guacamole.postgresql.auth.hostname }}" -U  "{{ .Values.global.postgresql.auth.username }}" -p "{{ .Values.guacamole.postgresql.auth.port }}" -c "CREATE DATABASE {{ .Values.guacamole.postgresql.auth.database }};"
+              psql -h "{{ .Values.guacamole.postgresql.auth.hostname }}" -d "{{ .Values.guacamole.postgresql.auth.database }}" -U "{{ .Values.global.postgresql.auth.username }}" -p "{{ .Values.global.postgresql.port }}" -a -w -f /etc/data/initdb_guacamole.sql -v guac_user="{{ .Values.guacamole.postgresql.auth.username }}" || true
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       containers:
@@ -64,26 +65,28 @@ spec:
               value: "guacd"
             - name: POSTGRES_ABSOLUTE_MAX_CONNECTIONS
               value: "{{ .Values.guacamole.postgresql.absolute_maximum_connections }}"
+            - name: POSTGRES_USER
+              value: "{{ .Values.guacamole.postgresql.auth.username }}"
             - name: POSTGRES_DATABASE
               value: "{{ .Values.guacamole.postgresql.auth.database }}"
             - name: POSTGRES_HOSTNAME
               value: "{{ .Values.guacamole.postgresql.auth.hostname }}"
             - name: POSTGRES_PORT
-              value: "{{ .Values.guacamole.postgresql.auth.port }}"
-            - name: OPENID_AUTHORIZATION_ENDPOINT
-              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/auth"
-            - name: OPENID_JWKS_ENDPOINT
-              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/certs"
-            - name: OPENID_ISSUER
-              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot"
-            - name: OPENID_CLIENT_ID
-              value: "workspace-{{ .Values.global.project_name }}-guacamole"
-            - name: OPENID_REDIRECT_URI
-              value: "https://{{ .Values.global.env }}.pilot.indocresearch.org/workbench/{{ .Values.global.project_name }}/guacamole/"
-            - name: OPENID_USERNAME_CLAIM_TYPE
-              value: "username"
-            - name: OPENID_SCOPE
-              value: "openid username email profile groups"
+              value: "{{ .Values.global.postgresql.port }}"
+#            - name: OPENID_AUTHORIZATION_ENDPOINT
+#              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/auth"
+#            - name: OPENID_JWKS_ENDPOINT
+#              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/certs"
+#            - name: OPENID_ISSUER
+#              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot"
+#            - name: OPENID_CLIENT_ID
+#              value: "workspace-{{ .Values.global.project_name }}-guacamole"
+#            - name: OPENID_REDIRECT_URI
+#              value: "https://{{ .Values.global.env }}.pilot.indocresearch.org/workbench/{{ .Values.global.project_name }}/guacamole/"
+#            - name: OPENID_USERNAME_CLAIM_TYPE
+#              value: "username"
+#            - name: OPENID_SCOPE
+#              value: "openid username email profile groups"
           volumeMounts:
             - name: guacamole-extensions-storage
               mountPath: /etc/guacamole/extensions
@@ -97,12 +100,12 @@ spec:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: 10
           readinessProbe:
             httpGet:
               path: /
               port: http
-            initialDelaySeconds: 60
+            initialDelaySeconds: 10
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
