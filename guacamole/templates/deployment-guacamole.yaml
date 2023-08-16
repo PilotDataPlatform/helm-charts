@@ -1,45 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "guacamole.fullname" . }}-guacamole
+  name: {{ include "guacamole.fullname" . }}
   namespace: {{ .Values.global.namespace }}
   labels:
-{{ include "guacamole.labels" . | indent 4 }}
+    {{- include "guacd.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   replicas: {{ .Values.guacamole.replicaCount }}
   selector:
     matchLabels:
-      app.kubernetes.io/name: {{ include "guacamole.name" . }}-guacamole
-      app.kubernetes.io/instance: {{ .Release.Name }}
+       {{- include "guacamole.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: {{ include "guacamole.name" . }}-guacamole
-        app.kubernetes.io/instance: {{ .Release.Name }}
+        {{- include "guacamole.selectorLabels" . | nindent 8 }}
     spec:
-    {{- with .Values.guacamole.imagePullSecrets }}
+    {{- with .Values.imagePullSecrets }}
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-      dnsConfig:
-        options:
-          - name: ndots
-            value: "1"
-      serviceAccountName: {{ template "guacamole.serviceAccountName" . }}
+    {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+    {{- end }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
-        - name: loaddb
+        - name: configure-db
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.dbinit.image.repository }}:{{ .Values.dbinit.image.tag }}"
+          image: "{{ .Values.dbinit.image.repository }}:{{ .Values.dbinit.image.tag | default .Chart.AppVersion}}"
           imagePullPolicy: {{ .Values.dbinit.image.pullPolicy }}
           envFrom:
             - secretRef:
                 name: {{ include "guacamole.fullname" . }}
-#          volumeMounts:
-#            - name: initdb
-#              mountPath: /data
           volumeMounts:
             - name: initdb-guacamole
               mountPath: /etc/data/initdb_guacamole.sql
@@ -57,7 +54,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.guacamole.image.repository }}:{{ tpl .Values.guacamole.image.tag . }}"
+          image: "{{ .Values.guacamole.image.repository }}:{{ .Values.guacamole.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.guacamole.image.pullPolicy }}
           envFrom:
             - secretRef:
