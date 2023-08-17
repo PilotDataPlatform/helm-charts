@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: guacd
-  namespace: {{ .Values.global.namespace }}
   labels:
     {{- include "guacd.labels" . | nindent 4 }}
   {{- with .Values.deploymentAnnotations }}

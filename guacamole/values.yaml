@@ -9,8 +9,6 @@ global:
       database: postgres
     port: "5432"
   project_name: indoctestproject
-  namespace: default
-  zone: greenroom
   env: dev
 
 
@@ -23,8 +21,8 @@ guacamole:
   postgresql:
     auth:
       hostname: postgres-guacamole
-      database: guacamole_db
-      username: guacamole_user
+      database: guacamole_db11
+      username: guacamole_user11
     absolute_maximum_connections: 100
   port: "8080"
 

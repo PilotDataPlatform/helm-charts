@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "guacamole.fullname" . }}
-  namespace: {{ .Values.global.namespace }}
   labels:
     {{- include "guacd.labels" . | nindent 4 }}
   {{- with .Values.deploymentAnnotations }}
@@ -63,6 +62,10 @@ spec:
           env:
             - name: GUACD_HOSTNAME
               value: "guacd"
+            - name: GUACD_PORT
+              value: "{{ .Values.guacd.port }}"
+            - name: GUACAMOLE_HOME
+              value: "/etc/guacamole"
             - name: POSTGRES_ABSOLUTE_MAX_CONNECTIONS
               value: "{{ .Values.guacamole.postgresql.absolute_maximum_connections }}"
             - name: POSTGRES_USER
@@ -73,20 +76,20 @@ spec:
               value: "{{ .Values.guacamole.postgresql.auth.hostname }}"
             - name: POSTGRES_PORT
               value: "{{ .Values.global.postgresql.port }}"
-#            - name: OPENID_AUTHORIZATION_ENDPOINT
-#              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/auth"
-#            - name: OPENID_JWKS_ENDPOINT
-#              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/certs"
-#            - name: OPENID_ISSUER
-#              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot"
-#            - name: OPENID_CLIENT_ID
-#              value: "workspace-{{ .Values.global.project_name }}-guacamole"
-#            - name: OPENID_REDIRECT_URI
-#              value: "https://{{ .Values.global.env }}.pilot.indocresearch.org/workbench/{{ .Values.global.project_name }}/guacamole/"
-#            - name: OPENID_USERNAME_CLAIM_TYPE
-#              value: "username"
-#            - name: OPENID_SCOPE
-#              value: "openid username email profile groups"
+            - name: OPENID_AUTHORIZATION_ENDPOINT
+              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/auth"
+            - name: OPENID_JWKS_ENDPOINT
+              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot/protocol/openid-connect/certs"
+            - name: OPENID_ISSUER
+              value: "https://iam.{{ .Values.global.env }}.pilot.indocresearch.org/auth/realms/pilot"
+            - name: OPENID_CLIENT_ID
+              value: "workspace-{{ .Values.global.project_name }}-guacamole"
+            - name: OPENID_REDIRECT_URI
+              value: "https://{{ .Values.global.env }}.pilot.indocresearch.org/workbench/{{ .Values.global.project_name }}/guacamole/"
+            - name: OPENID_USERNAME_CLAIM_TYPE
+              value: "username"
+            - name: OPENID_SCOPE
+              value: "openid username email profile groups"
           volumeMounts:
             - name: guacamole-extensions-storage
               mountPath: /etc/guacamole/extensions
