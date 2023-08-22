@@ -19,6 +19,85 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_auth
 
+  tenant_id: ""
+
+  APP_NAME: service_auth
+  HOST: "0.0.0.0"
+  PORT: 5061
+  WORKERS: 2
+  SERVICE_CLIENT_TIMEOUT: 5
+
+  RDS_HOST: postgres.utility
+  RDS_PORT: 5432
+  RDS_DBNAME: auth
+  RDS_USER: postgres
+  RDS_SCHEMA_PREFIX: pilot
+
+  ENABLE_ACTIVE_DIRECTORY: False
+  AD_USER_GROUP: pilot-users
+  AD_ADMIN_GROUP: platform-admin
+  PROJECT_NAME: PILOT
+
+  ROLE_NAME_REGEX: '^[a-zA-Z0-9_]*$'
+
+  LOG_LEVEL_DEFAULT: 10
+  LOG_LEVEL_FILE: 10
+  LOG_LEVEL_STDOUT: 10
+  LOG_LEVEL_STDERR: 40
+
+  TEST_PROJECT_CODE: indoctestproject
+  TEST_PROJECT_ROLE: collaborator
+  TEST_PROJECT_NAME: Indoc Test Project
+
+  REDIS_HOST: redis-master.redis
+  REDIS_PORT: 6379
+
+  OPEN_TELEMETRY_ENABLED: false
+  OPEN_TELEMETRY_HOST: 127.0.0.1
+  OPEN_TELEMETRY_PORT: 6831
+
+  LDAP_URL: ldap://localhost:389/
+  LDAP_ADMIN_DN: "uid=admin,cn=users,cn=accounts,dc=example,dc=org"
+  LDAP_OU: groups
+  LDAP_DC1: example
+  LDAP_DC2: org
+  LDAP_USER_GROUP: "users,cn=users,cn=accounts"
+  LDAP_USER_QUERY_FIELD: cn
+  LDAP_PREFIX: pilot
+  LDAP_SET_GIDNUMBER: true
+  LDAP_OPT_REFERRALS: 0
+  LDAP_GID_LOWER_BOUND: 30000
+  LDAP_GID_UPPER_BOUND: 40000
+  LDAP_GROUP_OBJECTCLASS: posixGroup
+  LDAP_COMMON_NAME_PREFIX: pilot
+
+  INVITE_EXPIRY_MINUTES: 120
+  ALLOW_EXTERNAL_REGISTRATION: true
+
+  DOMAIN_NAME: https://dev.pilot.indocresearch.com
+  START_PATH: pilot
+  GUIDE_PATH: xwiki
+  INVITATION_URL_LOGIN: 
+  INVITATION_REGISTER_URL: 
+  PASSWORD_RESET_URL: 
+
+  EMAIL_SUPPORT: pilotplatform_support@indocresearch.com
+  EMAIL_ADMIN: pilotplatform_support@indocresearch.com
+  EMAIL_HELPDESK: helpdesk@pilot
+
+  IDENTITY_BACKEND: freeipa
+  FREEIPA_URL: ipa.example.org
+  FREEIPA_USERNAME: admin
+
+  KEYCLOAK_ID: 
+  KEYCLOAK_SERVER_URL: "http://keycloak.keycloak/"
+  KEYCLOAK_CLIENT_ID: "kong"
+  KEYCLOAK_REALM: "pilot"
+
+  USER_OBJECT_GROUPS: []
+
+  ENABLE_PROMETHEUS_METRICS: true
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false

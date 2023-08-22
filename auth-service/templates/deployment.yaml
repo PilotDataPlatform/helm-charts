@@ -62,6 +62,9 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################         
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
@@ -70,6 +73,205 @@ spec:
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
+
+
+# basic app setup
+          - name: APP_NAME
+            value: {{ .Values.appConfig.APP_NAME | quote }}
+           - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }}           
+          - name: PORT
+            value: {{ .Values.appConfig.PORT }}  
+          - name: APP_NAME
+            value: {{ .Values.appConfig.WORKERS }}
+          - name: SERVICE_CLIENT_TIMEOUT
+            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT }}
+
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
+{{- else }}
+          - name: RDS_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+          - name: RDS_DBNAME
+            value: {{ .Values.appConfig.RDS_DBNAME | quote }}
+          - name: RDS_USER
+            value: {{ .Values.appConfig.RDS_USER | quote }}
+          - name: RDS_SCHEMA_PREFIX
+            value: {{ .Values.appConfig.RDS_SCHEMA_PREFIX | quote }}
+
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: NOTIFY_SERVICE
+            value: "http://notification.utility:5065"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5065"
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.utility:5065"
+{{- else }}
+          - name: NOTIFY_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5065"
+{{- end}}
+
+# AD
+          - name: ENABLE_ACTIVE_DIRECTORY
+            value: {{ .Values.appConfig.ENABLE_ACTIVE_DIRECTORY }}
+          - name: AD_USER_GROUP
+            value: {{ .Values.appConfig.AD_USER_GROUP | quote }}
+          - name: AD_ADMIN_GROUP
+            value: {{ .Values.appConfig.AD_ADMIN_GROUP | quote }}
+          - name: PROJECT_NAME
+            value: {{ .Values.appConfig.PROJECT_NAME | quote }}
+
+# Role regex
+          - name: AD_UROLE_NAME_REGEXSER_GROUP
+            value: {{ .Values.appConfig.ROLE_NAME_REGEX }}
+
+# log levels
+          - name: LOG_LEVEL_DEFAULT
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT }}
+          - name: LOG_LEVEL_FILE
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE }}
+          - name: LOG_LEVEL_STDOUT
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT }}
+          - name: LOG_LEVEL_STDERR
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR }}
+
+# test project
+          - name: TEST_PROJECT_CODE
+            value: {{ .Values.appConfig.TEST_PROJECT_CODE | quote }}
+          - name: TEST_PROJECT_ROLE
+            value: {{ .Values.appConfig.TEST_PROJECT_ROLE | quote }}
+          - name: TEST_PROJECT_NAME
+            value: {{ .Values.appConfig.TEST_PROJECT_NAME | quote }}
+
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+
+# open telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT }}
+
+# ldap
+          - name: LDAP_URL
+            value: {{ .Values.appConfig.LDAP_URL | quote }}
+          - name: LDAP_ADMIN_DN
+            value: {{ .Values.appConfig.LDAP_ADMIN_DN }}
+          - name: LDAP_OU
+            value: {{ .Values.appConfig.LDAP_OU | quote }}
+          - name: LDAP_DC1
+            value: {{ .Values.appConfig.LDAP_DC1 | quote }}
+          - name: LDAP_DC2
+            value: {{ .Values.appConfig.LDAP_DC2 | quote }}
+          - name: LDAP_USER_QUERY_FIELD
+            value: {{ .Values.appConfig.LDAP_USER_QUERY_FIELD }}
+          - name: LDAP_PREFIX
+            value: {{ .Values.appConfig.LDAP_PREFIX | quote }}
+          - name: LDAP_SET_GIDNUMBER
+            value: {{ .Values.appConfig.LDAP_SET_GIDNUMBER }}
+          - name: LDAP_OPT_REFERRALS
+            value: {{ .Values.appConfig.LDAP_OPT_REFERRALS }}
+          - name: LDAP_GID_LOWER_BOUND
+            value: {{ .Values.appConfig.LDAP_GID_LOWER_BOUND }}
+          - name: LDAP_GID_UPPER_BOUND
+            value: {{ .Values.appConfig.LDAP_GID_UPPER_BOUND }}
+          - name: LDAP_GROUP_OBJECTCLASS
+            value: {{ .Values.appConfig.LDAP_GROUP_OBJECTCLASS | quote }}
+          - name: LDAP_COMMON_NAME_PREFIX
+            value: {{ .Values.appConfig.LDAP_COMMON_NAME_PREFIX | quote }}
+
+# invites
+          - name: INVITE_EXPIRY_MINUTES
+            value: {{ .Values.appConfig.INVITE_EXPIRY_MINUTES }}
+          - name: ALLOW_EXTERNAL_REGISTRATION
+            value: {{ .Values.appConfig.ALLOW_EXTERNAL_REGISTRATION }}
+
+# domain and paths (logins and invitation)
+          - name: DOMAIN_NAME
+            value: {{ .Values.appConfig.DOMAIN_NAME | quote }}
+          - name: START_PATH
+            value: {{ .Values.appConfig.START_PATH | quote }}
+          - name: GUIDE_PATH
+            value: {{ .Values.appConfig.GUIDE_PATH | quote }}
+{{- if not .Values.appConfig.INVITATION_URL_LOGIN }}
+          - name: INVITATION_URL_LOGIN
+            value: "{{ .Values.appConfig.DOMAIN_NAME }}/login"
+{{- else }}
+          - name: INVITATION_URL_LOGIN
+            value: {{ .Values.appConfig.INVITATION_URL_LOGIN | quote }}
+{{- end }}
+{{- if not .Values.appConfig.INVITATION_REGISTER_URL }}
+          - name: INVITATION_REGISTER_URL
+            value: "{{ .Values.appConfig.DOMAIN_NAME }}/self-registration/{invitation_code}/"
+{{- else }}
+          - name: INVITATION_REGISTER_URL
+            value: {{ .Values.appConfig.INVITATION_REGISTER_URL | quote }}
+{{- end }}
+{{- if not .Values.appConfig.PASSWORD_RESET_URL }}
+          - name: PASSWORD_RESET_URL
+            value: "{{ .Values.appConfig.DOMAIN_NAME }}/password-reset/{reset_token}"
+{{- else }}
+          - name: PASSWORD_RESET_URL
+            value: {{ .Values.appConfig.PASSWORD_RESET_URL | quote }}
+{{- end }}
+
+# identity backend
+          - name: IDENTITY_BACKEND
+            value: {{ .Values.appConfig.IDENTITY_BACKEND | quote }}
+          - name: FREEIPA_URL
+            value: {{ .Values.appConfig.FREEIPA_URL | quote }}
+          - name: FREEIPA_USERNAME
+            value: {{ .Values.appConfig.FREEIPA_USERNAME | quote }}
+
+# keycloak
+          - name: KEYCLOAK_ID
+            value: {{ .Values.appConfig.KEYCLOAK_ID | quote }}
+          - name: KEYCLOAK_SERVER_URL
+            value: {{ .Values.appConfig.KEYCLOAK_SERVER_URL | quote }}
+          - name: KEYCLOAK_CLIENT_ID
+            value: {{ .Values.appConfig.KEYCLOAK_CLIENT_ID | quote }}
+          - name: KEYCLOAK_REALM
+            value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}
+
+# emails
+          - name: EMAIL_SUPPORT
+            value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
+          - name: EMAIL_ADMIN
+            value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}
+          - name: EMAIL_HELPDESK
+            value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}
+
+# ldap object groups
+          - name: USER_OBJECT_GROUPS
+            value: {{ .Values.appConfig.USER_OBJECT_GROUPS | quote }}
+
+# prometheus
+          - name: ENABLE_PROMETHEUS_METRICS
+            value: {{ .Values.appConfig.ENABLE_PROMETHEUS_METRICS }}
+
+###################### END OF APP CONFIG #############################
+
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
@@ -107,6 +309,8 @@ spec:
           {{- end }}
           {{- end }}
           env:
+
+###################### START OF APP CONFIG #############################         
           - name: port
             value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
@@ -117,6 +321,205 @@ spec:
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
+
+
+# basic app setup
+          - name: APP_NAME
+            value: {{ .Values.appConfig.APP_NAME | quote }}
+           - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }}           
+          - name: PORT
+            value: {{ .Values.appConfig.PORT }}  
+          - name: APP_NAME
+            value: {{ .Values.appConfig.WORKERS }}
+          - name: SERVICE_CLIENT_TIMEOUT
+            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT }}
+
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
+{{- else }}
+          - name: RDS_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+          - name: RDS_DBNAME
+            value: {{ .Values.appConfig.RDS_DBNAME | quote }}
+          - name: RDS_USER
+            value: {{ .Values.appConfig.RDS_USER | quote }}
+          - name: RDS_SCHEMA_PREFIX
+            value: {{ .Values.appConfig.RDS_SCHEMA_PREFIX | quote }}
+
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: NOTIFY_SERVICE
+            value: "http://notification.utility:5065"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5065"
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.utility:5065"
+{{- else }}
+          - name: NOTIFY_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5065"
+{{- end}}
+
+# AD
+          - name: ENABLE_ACTIVE_DIRECTORY
+            value: {{ .Values.appConfig.ENABLE_ACTIVE_DIRECTORY }}
+          - name: AD_USER_GROUP
+            value: {{ .Values.appConfig.AD_USER_GROUP | quote }}
+          - name: AD_ADMIN_GROUP
+            value: {{ .Values.appConfig.AD_ADMIN_GROUP | quote }}
+          - name: PROJECT_NAME
+            value: {{ .Values.appConfig.PROJECT_NAME | quote }}
+
+# Role regex
+          - name: AD_UROLE_NAME_REGEXSER_GROUP
+            value: {{ .Values.appConfig.ROLE_NAME_REGEX }}
+
+# log levels
+          - name: LOG_LEVEL_DEFAULT
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT }}
+          - name: LOG_LEVEL_FILE
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE }}
+          - name: LOG_LEVEL_STDOUT
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT }}
+          - name: LOG_LEVEL_STDERR
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR }}
+
+# test project
+          - name: TEST_PROJECT_CODE
+            value: {{ .Values.appConfig.TEST_PROJECT_CODE | quote }}
+          - name: TEST_PROJECT_ROLE
+            value: {{ .Values.appConfig.TEST_PROJECT_ROLE | quote }}
+          - name: TEST_PROJECT_NAME
+            value: {{ .Values.appConfig.TEST_PROJECT_NAME | quote }}
+
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+
+# open telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT }}
+
+# ldap
+          - name: LDAP_URL
+            value: {{ .Values.appConfig.LDAP_URL | quote }}
+          - name: LDAP_ADMIN_DN
+            value: {{ .Values.appConfig.LDAP_ADMIN_DN }}
+          - name: LDAP_OU
+            value: {{ .Values.appConfig.LDAP_OU | quote }}
+          - name: LDAP_DC1
+            value: {{ .Values.appConfig.LDAP_DC1 | quote }}
+          - name: LDAP_DC2
+            value: {{ .Values.appConfig.LDAP_DC2 | quote }}
+          - name: LDAP_USER_QUERY_FIELD
+            value: {{ .Values.appConfig.LDAP_USER_QUERY_FIELD }}
+          - name: LDAP_PREFIX
+            value: {{ .Values.appConfig.LDAP_PREFIX | quote }}
+          - name: LDAP_SET_GIDNUMBER
+            value: {{ .Values.appConfig.LDAP_SET_GIDNUMBER }}
+          - name: LDAP_OPT_REFERRALS
+            value: {{ .Values.appConfig.LDAP_OPT_REFERRALS }}
+          - name: LDAP_GID_LOWER_BOUND
+            value: {{ .Values.appConfig.LDAP_GID_LOWER_BOUND }}
+          - name: LDAP_GID_UPPER_BOUND
+            value: {{ .Values.appConfig.LDAP_GID_UPPER_BOUND }}
+          - name: LDAP_GROUP_OBJECTCLASS
+            value: {{ .Values.appConfig.LDAP_GROUP_OBJECTCLASS | quote }}
+          - name: LDAP_COMMON_NAME_PREFIX
+            value: {{ .Values.appConfig.LDAP_COMMON_NAME_PREFIX | quote }}
+
+# invites
+          - name: INVITE_EXPIRY_MINUTES
+            value: {{ .Values.appConfig.INVITE_EXPIRY_MINUTES }}
+          - name: ALLOW_EXTERNAL_REGISTRATION
+            value: {{ .Values.appConfig.ALLOW_EXTERNAL_REGISTRATION }}
+
+# domain and paths (logins and invitation)
+          - name: DOMAIN_NAME
+            value: {{ .Values.appConfig.DOMAIN_NAME | quote }}
+          - name: START_PATH
+            value: {{ .Values.appConfig.START_PATH | quote }}
+          - name: GUIDE_PATH
+            value: {{ .Values.appConfig.GUIDE_PATH | quote }}
+{{- if not .Values.appConfig.INVITATION_URL_LOGIN }}
+          - name: INVITATION_URL_LOGIN
+            value: "{{ .Values.appConfig.DOMAIN_NAME }}/login"
+{{- else }}
+          - name: INVITATION_URL_LOGIN
+            value: {{ .Values.appConfig.INVITATION_URL_LOGIN | quote }}
+{{- end }}
+{{- if not .Values.appConfig.INVITATION_REGISTER_URL }}
+          - name: INVITATION_REGISTER_URL
+            value: "{{ .Values.appConfig.DOMAIN_NAME }}/self-registration/{invitation_code}/"
+{{- else }}
+          - name: INVITATION_REGISTER_URL
+            value: {{ .Values.appConfig.INVITATION_REGISTER_URL | quote }}
+{{- end }}
+{{- if not .Values.appConfig.PASSWORD_RESET_URL }}
+          - name: PASSWORD_RESET_URL
+            value: "{{ .Values.appConfig.DOMAIN_NAME }}/password-reset/{reset_token}"
+{{- else }}
+          - name: PASSWORD_RESET_URL
+            value: {{ .Values.appConfig.PASSWORD_RESET_URL | quote }}
+{{- end }}
+
+# identity backend
+          - name: IDENTITY_BACKEND
+            value: {{ .Values.appConfig.IDENTITY_BACKEND | quote }}
+          - name: FREEIPA_URL
+            value: {{ .Values.appConfig.FREEIPA_URL | quote }}
+          - name: FREEIPA_USERNAME
+            value: {{ .Values.appConfig.FREEIPA_USERNAME | quote }}
+
+# keycloak
+          - name: KEYCLOAK_ID
+            value: {{ .Values.appConfig.KEYCLOAK_ID | quote }}
+          - name: KEYCLOAK_SERVER_URL
+            value: {{ .Values.appConfig.KEYCLOAK_SERVER_URL | quote }}
+          - name: KEYCLOAK_CLIENT_ID
+            value: {{ .Values.appConfig.KEYCLOAK_CLIENT_ID | quote }}
+          - name: KEYCLOAK_REALM
+            value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}
+
+# emails
+          - name: EMAIL_SUPPORT
+            value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
+          - name: EMAIL_ADMIN
+            value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}
+          - name: EMAIL_HELPDESK
+            value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}
+
+# ldap object groups
+          - name: USER_OBJECT_GROUPS
+            value: {{ .Values.appConfig.USER_OBJECT_GROUPS | quote }}
+
+# prometheus
+          - name: ENABLE_PROMETHEUS_METRICS
+            value: {{ .Values.appConfig.ENABLE_PROMETHEUS_METRICS }}
+
+###################### END OF APP CONFIG #############################
+
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
