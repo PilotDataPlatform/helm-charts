@@ -81,11 +81,11 @@ spec:
           - name: HOST
             value: {{ .Values.appConfig.HOST }}           
           - name: PORT
-            value: {{ .Values.appConfig.PORT }}  
+            value: {{ .Values.appConfig.PORT | quote }}  
           - name: APP_NAME
-            value: {{ .Values.appConfig.WORKERS }}
+            value: {{ .Values.appConfig.WORKERS | quote }}
           - name: SERVICE_CLIENT_TIMEOUT
-            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT }}
+            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT | quote }}
 
 # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
@@ -124,7 +124,7 @@ spec:
 
 # AD
           - name: ENABLE_ACTIVE_DIRECTORY
-            value: {{ .Values.appConfig.ENABLE_ACTIVE_DIRECTORY }}
+            value: {{ .Values.appConfig.ENABLE_ACTIVE_DIRECTORY | quote }}
           - name: AD_USER_GROUP
             value: {{ .Values.appConfig.AD_USER_GROUP | quote }}
           - name: AD_ADMIN_GROUP
@@ -138,13 +138,13 @@ spec:
 
 # log levels
           - name: LOG_LEVEL_DEFAULT
-            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT }}
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote}}
           - name: LOG_LEVEL_FILE
-            value: {{ .Values.appConfig.LOG_LEVEL_FILE }}
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE | quote}}
           - name: LOG_LEVEL_STDOUT
-            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT }}
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote}}
           - name: LOG_LEVEL_STDERR
-            value: {{ .Values.appConfig.LOG_LEVEL_STDERR }}
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
 
 # test project
           - name: TEST_PROJECT_CODE
@@ -167,11 +167,11 @@ spec:
 
 # open telemetry
           - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED }}
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
           - name: OPEN_TELEMETRY_HOST
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT }}
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 
 # ldap
           - name: LDAP_URL
@@ -189,13 +189,13 @@ spec:
           - name: LDAP_PREFIX
             value: {{ .Values.appConfig.LDAP_PREFIX | quote }}
           - name: LDAP_SET_GIDNUMBER
-            value: {{ .Values.appConfig.LDAP_SET_GIDNUMBER }}
+            value: {{ .Values.appConfig.LDAP_SET_GIDNUMBER | quote }}
           - name: LDAP_OPT_REFERRALS
-            value: {{ .Values.appConfig.LDAP_OPT_REFERRALS }}
+            value: {{ .Values.appConfig.LDAP_OPT_REFERRALS | quote }}
           - name: LDAP_GID_LOWER_BOUND
-            value: {{ .Values.appConfig.LDAP_GID_LOWER_BOUND }}
+            value: {{ .Values.appConfig.LDAP_GID_LOWER_BOUND | quote }}
           - name: LDAP_GID_UPPER_BOUND
-            value: {{ .Values.appConfig.LDAP_GID_UPPER_BOUND }}
+            value: {{ .Values.appConfig.LDAP_GID_UPPER_BOUND | quote }}
           - name: LDAP_GROUP_OBJECTCLASS
             value: {{ .Values.appConfig.LDAP_GROUP_OBJECTCLASS | quote }}
           - name: LDAP_COMMON_NAME_PREFIX
@@ -203,9 +203,9 @@ spec:
 
 # invites
           - name: INVITE_EXPIRY_MINUTES
-            value: {{ .Values.appConfig.INVITE_EXPIRY_MINUTES }}
+            value: {{ .Values.appConfig.INVITE_EXPIRY_MINUTES | quote  }}
           - name: ALLOW_EXTERNAL_REGISTRATION
-            value: {{ .Values.appConfig.ALLOW_EXTERNAL_REGISTRATION }}
+            value: {{ .Values.appConfig.ALLOW_EXTERNAL_REGISTRATION | quote }}
 
 # domain and paths (logins and invitation)
           - name: DOMAIN_NAME
@@ -268,7 +268,7 @@ spec:
 
 # prometheus
           - name: ENABLE_PROMETHEUS_METRICS
-            value: {{ .Values.appConfig.ENABLE_PROMETHEUS_METRICS }}
+            value: {{ .Values.appConfig.ENABLE_PROMETHEUS_METRICS | quote }}
 
 ###################### END OF APP CONFIG #############################
 
@@ -327,13 +327,13 @@ spec:
           - name: APP_NAME
             value: {{ .Values.appConfig.APP_NAME | quote }}
           - name: HOST
-            value: {{ .Values.appConfig.HOST | quote }}           
+            value: {{ .Values.appConfig.HOST }}           
           - name: PORT
-            value: {{ .Values.appConfig.PORT }}  
+            value: {{ .Values.appConfig.PORT | quote }}  
           - name: APP_NAME
-            value: {{ .Values.appConfig.WORKERS }}
+            value: {{ .Values.appConfig.WORKERS | quote }}
           - name: SERVICE_CLIENT_TIMEOUT
-            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT }}
+            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT | quote }}
 
 # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
@@ -372,7 +372,7 @@ spec:
 
 # AD
           - name: ENABLE_ACTIVE_DIRECTORY
-            value: {{ .Values.appConfig.ENABLE_ACTIVE_DIRECTORY }}
+            value: {{ .Values.appConfig.ENABLE_ACTIVE_DIRECTORY | quote }}
           - name: AD_USER_GROUP
             value: {{ .Values.appConfig.AD_USER_GROUP | quote }}
           - name: AD_ADMIN_GROUP
@@ -386,13 +386,13 @@ spec:
 
 # log levels
           - name: LOG_LEVEL_DEFAULT
-            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT }}
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote}}
           - name: LOG_LEVEL_FILE
-            value: {{ .Values.appConfig.LOG_LEVEL_FILE }}
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE | quote}}
           - name: LOG_LEVEL_STDOUT
-            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT }}
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote}}
           - name: LOG_LEVEL_STDERR
-            value: {{ .Values.appConfig.LOG_LEVEL_STDERR }}
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
 
 # test project
           - name: TEST_PROJECT_CODE
@@ -415,11 +415,11 @@ spec:
 
 # open telemetry
           - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED }}
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
           - name: OPEN_TELEMETRY_HOST
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT }}
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 
 # ldap
           - name: LDAP_URL
@@ -437,13 +437,13 @@ spec:
           - name: LDAP_PREFIX
             value: {{ .Values.appConfig.LDAP_PREFIX | quote }}
           - name: LDAP_SET_GIDNUMBER
-            value: {{ .Values.appConfig.LDAP_SET_GIDNUMBER }}
+            value: {{ .Values.appConfig.LDAP_SET_GIDNUMBER | quote }}
           - name: LDAP_OPT_REFERRALS
-            value: {{ .Values.appConfig.LDAP_OPT_REFERRALS }}
+            value: {{ .Values.appConfig.LDAP_OPT_REFERRALS | quote }}
           - name: LDAP_GID_LOWER_BOUND
-            value: {{ .Values.appConfig.LDAP_GID_LOWER_BOUND }}
+            value: {{ .Values.appConfig.LDAP_GID_LOWER_BOUND | quote }}
           - name: LDAP_GID_UPPER_BOUND
-            value: {{ .Values.appConfig.LDAP_GID_UPPER_BOUND }}
+            value: {{ .Values.appConfig.LDAP_GID_UPPER_BOUND | quote }}
           - name: LDAP_GROUP_OBJECTCLASS
             value: {{ .Values.appConfig.LDAP_GROUP_OBJECTCLASS | quote }}
           - name: LDAP_COMMON_NAME_PREFIX
@@ -451,9 +451,9 @@ spec:
 
 # invites
           - name: INVITE_EXPIRY_MINUTES
-            value: {{ .Values.appConfig.INVITE_EXPIRY_MINUTES }}
+            value: {{ .Values.appConfig.INVITE_EXPIRY_MINUTES | quote  }}
           - name: ALLOW_EXTERNAL_REGISTRATION
-            value: {{ .Values.appConfig.ALLOW_EXTERNAL_REGISTRATION }}
+            value: {{ .Values.appConfig.ALLOW_EXTERNAL_REGISTRATION | quote }}
 
 # domain and paths (logins and invitation)
           - name: DOMAIN_NAME
@@ -516,7 +516,7 @@ spec:
 
 # prometheus
           - name: ENABLE_PROMETHEUS_METRICS
-            value: {{ .Values.appConfig.ENABLE_PROMETHEUS_METRICS }}
+            value: {{ .Values.appConfig.ENABLE_PROMETHEUS_METRICS | quote }}
 
 ###################### END OF APP CONFIG #############################
 
