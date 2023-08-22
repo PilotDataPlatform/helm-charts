@@ -78,8 +78,8 @@ spec:
 # basic app setup
           - name: APP_NAME
             value: {{ .Values.appConfig.APP_NAME | quote }}
-           - name: HOST
-            value: {{ .Values.appConfig.HOST | quote }}           
+          - name: HOST
+            value: {{ .Values.appConfig.HOST }}           
           - name: PORT
             value: {{ .Values.appConfig.PORT }}  
           - name: APP_NAME
@@ -326,7 +326,7 @@ spec:
 # basic app setup
           - name: APP_NAME
             value: {{ .Values.appConfig.APP_NAME | quote }}
-           - name: HOST
+          - name: HOST
             value: {{ .Values.appConfig.HOST | quote }}           
           - name: PORT
             value: {{ .Values.appConfig.PORT }}  
