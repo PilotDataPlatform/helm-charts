@@ -23,9 +23,9 @@ appConfig:
   PORT: "5064"
   ELASTICSEARCH_URI: "http://elasticsearch-master.utility:9200"
   WORKERS: 2
-  OPEN_TELEMETRY_ENABLED: "True"
+  OPEN_TELEMETRY_ENABLED: true
   OPEN_TELEMETRY_HOST: "127.0.0.1"
-  OPEN_TELEMETRY_PORT: "6831"
+  OPEN_TELEMETRY_PORT: 6831
 
 
 serviceAccount:
