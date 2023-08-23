@@ -80,7 +80,7 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: port
-            value: {{ .Values.appConfig.port | quote }}
+            value: {{ .Values.appConfig.port }}
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
