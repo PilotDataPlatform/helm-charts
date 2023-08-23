@@ -5,10 +5,12 @@
 nameOverride: ""
 fullnameOverride: ""
 
+replicaCount: 1
+
+
 image:
   repository: search
   tag: 131
-
   pullPolicy: Always
 
 appConfig:
