@@ -19,6 +19,18 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_metadata
 
+  tenant_id: ""
+
+  KAFKA_URL: "kafka.utility:9092"
+  KAFKA_TOPIC: "metadata.items"
+  DCM_PROJECT_ID: generate_id
+  RUN_MIGRATIONS: "true"
+  
+  METADATA_SCHEMA: "metadata"
+  OPSDB_UTILITY_USERNAME: "postgres"
+  OPSDB_UTILITY_HOST: "postgres.utility"
+  OPSDB_UTILITY_PORT: "5432"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false

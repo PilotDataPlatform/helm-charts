@@ -54,6 +54,64 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################   
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+          - name: srv_namespace
+            value: {{ .Values.appConfig.srv_namespace | quote }}
+
+#kafka
+          - name: KAFKA_URL
+            value: {{ .Values.appConfig.KAFKA_URL | quote }}
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: KAFKA_TOPIC
+            value: {{ .Values.appConfig.KAFKA_TOPIC | quote }}
+{{- else }}
+          - name: KAFKA_TOPIC
+            value: "{{.Values.appConfig.tenant_id}}.metadata.items"
+{{- end}}
+
+# generate project
+          - name: DCM_PROJECT_ID
+            value: {{ .Values.appConfig.DCM_PROJECT_ID | quote }}
+
+# run migrations
+          - name: RUN_MIGRATIONS
+            value: {{ .Values.appConfig.RUN_MIGRATIONS | quote }}
+
+# auth_host
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_HOST
+            value: "http://auth.utility:5061"
+{{- else }}
+          - name: AUTH_HOST
+            value: "http://auth.{{.Values.appConfig.tenant_id}}-utility:5061"
+{{- end}}
+  
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: OPSDB_UTILITY_HOST
+            value: {{ .Values.appConfig.OPSDB_UTILITY_HOST | quote }}
+{{- else }}
+          - name: OPSDB_UTILITY_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: OPSDB_UTILITY_PORT
+            value: {{ .Values.appConfig.OPSDB_UTILITY_PORT | quote }}
+          - name: OPSDB_UTILITY_USERNAME
+            value: {{ .Values.appConfig.OPSDB_UTILITY_USERNAME | quote }}
+          - name: METADATA_SCHEMA
+            value: {{ .Values.appConfig.METADATA_SCHEMA | quote }}
+
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
@@ -91,6 +149,7 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################   
           - name: port
             value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
@@ -101,6 +160,53 @@ spec:
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
+
+#kafka
+          - name: KAFKA_URL
+            value: {{ .Values.appConfig.KAFKA_URL | quote }}
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: KAFKA_TOPIC
+            value: {{ .Values.appConfig.KAFKA_TOPIC | quote }}
+{{- else }}
+          - name: KAFKA_TOPIC
+            value: "{{.Values.appConfig.tenant_id}}.metadata.items"
+{{- end}}
+
+# generate project
+          - name: DCM_PROJECT_ID
+            value: {{ .Values.appConfig.DCM_PROJECT_ID | quote }}
+
+# run migrations
+          - name: RUN_MIGRATIONS
+            value: {{ .Values.appConfig.RUN_MIGRATIONS | quote }}
+
+# auth_host
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_HOST
+            value: "http://auth.utility:5061"
+{{- else }}
+          - name: AUTH_HOST
+            value: "http://auth.{{.Values.appConfig.tenant_id}}-utility:5061"
+{{- end}}
+  
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: OPSDB_UTILITY_HOST
+            value: {{ .Values.appConfig.OPSDB_UTILITY_HOST | quote }}
+{{- else }}
+          - name: OPSDB_UTILITY_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: OPSDB_UTILITY_PORT
+            value: {{ .Values.appConfig.OPSDB_UTILITY_PORT | quote }}
+          - name: OPSDB_UTILITY_USERNAME
+            value: {{ .Values.appConfig.OPSDB_UTILITY_USERNAME | quote }}
+          - name: METADATA_SCHEMA
+            value: {{ .Values.appConfig.METADATA_SCHEMA | quote }}
+
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
