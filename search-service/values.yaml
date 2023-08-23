@@ -19,12 +19,21 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_search
 
+  HOST: "0.0.0.0"
+  PORT: "5064"
+  ELASTICSEARCH_URI: "http://elasticsearch-master.utility:9200"
+  WORKERS: 2
+  OPEN_TELEMETRY_ENABLED: "True"
+  OPEN_TELEMETRY_HOST: "127.0.0.1"
+  OPEN_TELEMETRY_PORT: "6831"
+
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: 
+  name:
 
 container:
   port: 5061
