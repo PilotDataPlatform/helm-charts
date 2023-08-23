@@ -93,14 +93,14 @@ spec:
           - name: HOST
             value: {{ .Values.appConfig.HOST | quote }}           
           - name: PORT
-            value: {{ .Values.appConfig.PORT }}  
+            value: {{ .Values.appConfig.PORT | quote }}  
           - name: ELASTICSEARCH_URI
             value: {{ .Values.appConfig.ELASTICSEARCH_URI | quote}}
           - name: WORKERS
-            value: {{ .Values.appConfig.WORKERS  }}
+            value: {{ .Values.appConfig.WORKERS | quote }}
           ## Telemetry
           - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED }}
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
           - name: OPEN_TELEMETRY_HOST
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
