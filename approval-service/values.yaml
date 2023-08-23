@@ -23,8 +23,40 @@ container:
 
 appConfig:
   env: "dev"
+  port: 8000
   CONFIG_CENTER_ENABLED: false
-  CONFIG_CENTER_BASE_URL:
+  CONFIG_CENTER_BASE_URL: "http://common.utility:5062/"
+
+  tenant_id: ""
+
+  HOST: 0.0.0.0
+  SRV_NAMESPACE: service_approval
+
+  # Microservices connections
+  AUTH_SERVICE: "http://auth.utility:5061"
+  DATAOPS_SERVICE: "http://dataops.utility:5063"
+  EMAIL_SERVICE: "http://notification.utility:5065"
+  METADATA_SERVICE: "http://metadata.utility:5066"
+  PROJECT_SERVICE: "http://project.utility:5064"
+  NOTIFICATION_SERVICE: "http://notification.utility:5065"
+
+  # Relation Database Service
+  RDS_SCHEMA_DEFAULT: "pilot_approval"
+  RDS_DB: "approval"
+  RDS_HOST: "postgres.utility"
+  RDS_USER: "postgres"
+  RDS_PORT: 5432
+
+  # Redis Service
+  REDIS_HOST: "redis-master.redis"
+  REDIS_PORT: 6379
+  REDIS_DB: 0
+
+  # Email configuration
+  EMAIL_SUPPORT: "pilotplatform_support@indocresearch.com"
+
+
+
 podAnnotations: {}
 
 podSecurityContext: {}

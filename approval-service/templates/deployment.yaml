@@ -36,12 +36,83 @@ spec:
           image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+###################### START OF APP CONFIG #############################      
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
+
+          - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }}
+          - name: SRV_NAMESPACE
+            value: {{ .Values.appConfig.SRV_NAMESPACE | quote }}
+
+# Microservices connections
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"
+          - name: EMAIL_SERVICE
+            value: "http://notification.utility:5065"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.utility:5065"
+{{- else }}
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: EMAIL_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+{{- end}}
+
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
+{{- else }}
+          - name: RDS_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+          - name: RDS_DB
+            value: {{ .Values.appConfig.RDS_DB | quote }}
+          - name: RDS_USER
+            value: {{ .Values.appConfig.RDS_USER | quote }}
+          - name: RDS_SCHEMA_DEFAULT
+            value: {{ .Values.appConfig.RDS_SCHEMA_DEFAULT | quote }}
+
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+
+# email configuration
+          - name: EMAIL_SUPPORT
+            value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
+###################### END OF APP CONFIG #############################
+
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
@@ -80,12 +151,82 @@ spec:
             - containerPort: {{ .Values.container.port }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+###################### START OF APP CONFIG #############################      
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
+
+          - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }}
+          - name: SRV_NAMESPACE
+            value: {{ .Values.appConfig.SRV_NAMESPACE | quote }}
+
+# Microservices connections
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"
+          - name: EMAIL_SERVICE
+            value: "http://notification.utility:5065"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.utility:5065"
+{{- else }}
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: EMAIL_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+{{- end}}
+
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
+{{- else }}
+          - name: RDS_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+          - name: RDS_DB
+            value: {{ .Values.appConfig.RDS_DB | quote }}
+          - name: RDS_USER
+            value: {{ .Values.appConfig.RDS_USER | quote }}
+          - name: RDS_SCHEMA_DEFAULT
+            value: {{ .Values.appConfig.RDS_SCHEMA_DEFAULT | quote }}
+
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+
+# email configuration
+          - name: EMAIL_SUPPORT
+            value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
