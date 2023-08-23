@@ -82,7 +82,7 @@ spec:
             value: {{ .Values.appConfig.HOST }}           
           - name: PORT
             value: {{ .Values.appConfig.PORT | quote }}  
-          - name: APP_NAME
+          - name: WORKERS
             value: {{ .Values.appConfig.WORKERS | quote }}
           - name: SERVICE_CLIENT_TIMEOUT
             value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT | quote }}
