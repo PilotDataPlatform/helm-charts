@@ -10,6 +10,7 @@ replicaCount: 1
 image:
   repository: search
   tag: 131
+
   pullPolicy: Always
 
 appConfig:
@@ -19,11 +20,14 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_search
 
+  tenant_id: ""
+
   HOST: "0.0.0.0"
   PORT: 5064
   ELASTICSEARCH_URI: "http://elasticsearch-master.utility:9200"
   WORKERS: 2
-  OPEN_TELEMETRY_ENABLED: true
+
+  OPEN_TELEMETRY_ENABLED: false
   OPEN_TELEMETRY_HOST: 127.0.0.1
   OPEN_TELEMETRY_PORT: 6831
 
