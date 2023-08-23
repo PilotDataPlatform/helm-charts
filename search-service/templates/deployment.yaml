@@ -96,14 +96,14 @@ spec:
           - name: ELASTICSEARCH_URI
             value: {{ .Values.appConfig.elasticsearch_uri | quote}}
           - name: WORKERS
-            value: {{ .Values.appConfig.workers | quote }}
+            value: {{ .Values.appConfig.workers  }}
           ## Telemetry
           - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.open_telemetry_enabled | quote }}
+            value: {{ .Values.appConfig.open_telemetry_enabled  }}
           - name: OPEN_TELEMETRY_HOST
             value: {{ .Values.appConfig.open_telemetry_host | quote }}
           - name: OPEN_TELEMETRY_PORT
-            value: {{ .Values.appConfig.open_telemetry_port | quote }}
+            value: {{ .Values.appConfig.open_telemetry_port  }}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
