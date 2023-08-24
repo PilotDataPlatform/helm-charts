@@ -17,7 +17,26 @@ appConfig:
   env: "dev"
   config_center_enabled: false
   config_center_base_url: http://common.utility:5062/
-  srv_namespace: service_notification
+
+  tenant_id: ""
+
+  HOST: 0.0.0.0
+  WORKERS: 2
+
+  POSTFIX: mailhog.utility
+  POSTFIX_URL: mailhog.utility
+  POSTFIX_PORT: 1025
+  EMAIL_ATTACHMENT_MAX_SIZE_BYTES: 2097152
+  SMTP_PORT: 1025
+  SMTP_USER: user
+  SMTP_PASS: pass
+  SMTP_STARTTLS: false #starttls
+
+  RDS_DB_NAME: "notifications"
+  RDS_USER: 'postgres'
+  RDS_PORT: 5432
+  RDS_HOST: 'postgres.utility'
+  RDS_ECHO_SQL_QUERIES: false
 
 serviceAccount:
   # Specifies whether a service account should be created

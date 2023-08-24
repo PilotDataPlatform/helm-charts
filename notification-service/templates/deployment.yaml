@@ -54,6 +54,25 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################   
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_DB_NAME
+            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+{{- else }}
+          - name: RDS_DB_NAME
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+          - name: RDS_USER
+            value: {{ .Values.appConfig.RDS_USER | quote }}
+          - name: RDS_DB_NAME
+            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+          - name: RDS_ECHO_SQL_QUERIES
+            value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
@@ -91,16 +110,54 @@ spec:
           {{- end }}
           {{- end }}          
           env:
+###################### START OF APP CONFIG #############################   
           - name: port
             value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
             value: {{ .Values.appConfig.config_center_base_url | quote }}
-          - name: env
-            value: {{ .Values.appConfig.env | quote }}
-          - name: srv_namespace
-            value: {{ .Values.appConfig.srv_namespace | quote }}
+          - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }}
+          - name: WORKERS
+            value: {{ .Values.appConfig.WORKERS | quote }} 
+# email
+          - name: POSTFIX
+            value: {{ .Values.appConfig.POSTFIX | quote }}
+          - name: POSTFIX_URL
+            value: {{ .Values.appConfig.POSTFIX_URL | quote }}      
+          - name: POSTFIX_PORT
+            value: {{ .Values.appConfig.POSTFIX_PORT | quote }}       
+          - name: EMAIL_ATTACHMENT_MAX_SIZE_BYTES
+            value: {{ .Values.appConfig.EMAIL_ATTACHMENT_MAX_SIZE_BYTES | quote }} 
+          - name: SMTP_PORT
+            value: {{ .Values.appConfig.SMTP_PORT | quote }} 
+          - name: SMTP_USER
+            value: {{ .Values.appConfig.SMTP_USER | quote }}
+          - name: SMTP_PASS
+            value: {{ .Values.appConfig.SMTP_PASS | quote }}      
+          - name: SMTP_STARTTLS
+            value: {{ .Values.appConfig.SMTP_STARTTLS | quote }} 
+
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_DB_NAME
+            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+{{- else }}
+          - name: RDS_DB_NAME
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+          - name: RDS_USER
+            value: {{ .Values.appConfig.RDS_USER | quote }}
+          - name: RDS_DB_NAME
+            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+          - name: RDS_ECHO_SQL_QUERIES
+            value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
+###################### END OF APP CONFIG #############################
+
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
