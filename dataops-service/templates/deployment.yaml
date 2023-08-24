@@ -70,8 +70,8 @@ spec:
             value: {{ .Values.appConfig.RDS_NAME | quote }}
           - name: RDS_USERNAME
             value: {{ .Values.appConfig.RDS_USERNAME | quote }}
-          - name: RDS_SCHEMA_PREFIX
-            value: {{ .Values.appConfig.RDS_SCHEMA_PREFIX | quote }}
+          - name: RDS_SCHEMA
+            value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
           - name: RDS_ECHO_SQL_QUERIES
             value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
           #if tenant id is not set
@@ -174,8 +174,8 @@ spec:
             value: {{ .Values.appConfig.RDS_NAME | quote }}
           - name: RDS_USERNAME
             value: {{ .Values.appConfig.RDS_USERNAME | quote }}
-          - name: RDS_SCHEMA_PREFIX
-            value: {{ .Values.appConfig.RDS_SCHEMA_PREFIX | quote }}
+          - name: RDS_SCHEMA
+            value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
           - name: RDS_ECHO_SQL_QUERIES
             value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
           #if tenant id is not set
