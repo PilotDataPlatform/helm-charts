@@ -22,9 +22,27 @@ container:
   port: 5063
 
 appConfig:
+
   env: "dev"
   CONFIG_CENTER_ENABLED: false
   CONFIG_CENTER_BASE_URL:
+
+  tenant_id: ""
+
+
+  OPEN_TELEMETRY_ENABLED: true
+  HOST: "0.0.0.0"
+  RDS_HOST: "postgres.utility"
+  RDS_PORT: 5432
+  RDS_NAME: "dataops"
+  RDS_USERNAME: "postgres"
+  RDS_SCHEMA: "public"
+  RDS_ECHO_SQL_QUERIES: false
+
+  REDIS_HOST: "redis-master.redis"
+  REDIS_PORT: 6379
+  REDIS_DB: 0
+
 podAnnotations: {}
 
 deploymentAnnotations: {}
