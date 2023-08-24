@@ -38,85 +38,85 @@ spec:
         - name: "init{{ .Values.name }}"
           image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-         env:
-          - name: CONFIG_CENTER_ENABLED
-            value: {{ .Values.appConfig.config_center_enabled | quote }}
-          - name: CONFIG_CENTER_BASE_URL
-            value: {{ .Values.appConfig.config_center_base_url | quote }}
-          - name: env
-            value: {{ .Values.appConfig.env | quote }}
-{{- if not .Values.appConfig.tenant_id }}
-          - name: VAULT_URL
-            value: "https://vault.vault:8200/v1/pilot/app/config"
-          - name: VAULT_CRT
-            value: "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-{{- end }}
-          # telemetry
-          - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
-          - name: HOST
-            value: {{ .Values.appConfig.HOST }}           
-          # Relational Database 
-{{- if not .Values.appConfig.tenant_id }}
-          - name: RDS_HOST
-            value: {{ .Values.appConfig.RDS_HOST | quote }}
-{{- else }}
-          - name: RDS_HOST
-            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
-{{- end}}
-          - name: RDS_PORT
-            value: {{ .Values.appConfig.RDS_PORT | quote }}
-          - name: RDS_NAME
-            value: {{ .Values.appConfig.RDS_NAME | quote }}
-          - name: RDS_USERNAME
-            value: {{ .Values.appConfig.RDS_USERNAME | quote }}
-          - name: RDS_SCHEMA
-            value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
-          - name: RDS_ECHO_SQL_QUERIES
-            value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
-          #if tenant id is not set
-{{- if not .Values.appConfig.tenant_id }}
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.utility:5065"
-          - name: QUEUE_SERVICE
-            value: "http://queue-producer.utility:5065"
-          - name: METADATA_SERVICE
-            value: "http://metadata.utility:5065"
-          - name: AUTH_SERVICE
-            value: "http://auth.utility:5065"
-{{- else }}
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.{{ .Values.appConfig.tenant_id }}-utility:5065"
-          - name: QUEUE_SERVICE
-            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-utility:5065"
-          - name: METADATA_SERVICE
-            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5065"
-          - name: AUTH_SERVICE
-            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5065"
-{{- end}}
-          # redis
-{{- if not .Values.appConfig.tenant_id }}
-          - name: REDIS_HOST
-            value: {{ .Values.appConfig.REDIS_HOST | quote }}
-{{- else }}
-          - name: REDIS_HOST
-            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
-{{- end }}
-          - name: REDIS_PORT
-            value: {{ .Values.appConfig.REDIS_PORT | quote }}
-          - name: REDIS_DB
-            value: {{ .Values.appConfig.REDIS_DB | quote }}
-          #minio
-{{- if not .Values.appConfig.tenant_id }}
-          - name: MINIO_HOST
-            value: "http://minio.minio"
-          - name: MINIO_PORT
-            value: "9000"
-{{- end }}    
-          - name: RSA_PUBLIC_KEY
-            value: {{ .Values.appConfig.RSA_PUBLIC_KEY | quote }}
-          - name: WORKERS
-            value: {{ .Values.appConfig.WORKERS | quote }}
+          env:
+            - name: CONFIG_CENTER_ENABLED
+              value: {{ .Values.appConfig.config_center_enabled | quote }}
+            - name: CONFIG_CENTER_BASE_URL
+              value: {{ .Values.appConfig.config_center_base_url | quote }}
+            - name: env
+              value: {{ .Values.appConfig.env | quote }}
+  {{- if not .Values.appConfig.tenant_id }}
+            - name: VAULT_URL
+              value: "https://vault.vault:8200/v1/pilot/app/config"
+            - name: VAULT_CRT
+              value: "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
+  {{- end }}
+            # telemetry
+            - name: OPEN_TELEMETRY_ENABLED
+              value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+            - name: HOST
+              value: {{ .Values.appConfig.HOST }}           
+            # Relational Database 
+  {{- if not .Values.appConfig.tenant_id }}
+            - name: RDS_HOST
+              value: {{ .Values.appConfig.RDS_HOST | quote }}
+  {{- else }}
+            - name: RDS_HOST
+              value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+  {{- end}}
+            - name: RDS_PORT
+              value: {{ .Values.appConfig.RDS_PORT | quote }}
+            - name: RDS_NAME
+              value: {{ .Values.appConfig.RDS_NAME | quote }}
+            - name: RDS_USERNAME
+              value: {{ .Values.appConfig.RDS_USERNAME | quote }}
+            - name: RDS_SCHEMA
+              value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
+            - name: RDS_ECHO_SQL_QUERIES
+              value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
+            #if tenant id is not set
+  {{- if not .Values.appConfig.tenant_id }}
+            - name: LINEAGE_SERVICE
+              value: "http://lineage.utility:5065"
+            - name: QUEUE_SERVICE
+              value: "http://queue-producer.utility:5065"
+            - name: METADATA_SERVICE
+              value: "http://metadata.utility:5065"
+            - name: AUTH_SERVICE
+              value: "http://auth.utility:5065"
+  {{- else }}
+            - name: LINEAGE_SERVICE
+              value: "http://lineage.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            - name: QUEUE_SERVICE
+              value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            - name: METADATA_SERVICE
+              value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            - name: AUTH_SERVICE
+              value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5065"
+  {{- end}}
+            # redis
+  {{- if not .Values.appConfig.tenant_id }}
+            - name: REDIS_HOST
+              value: {{ .Values.appConfig.REDIS_HOST | quote }}
+  {{- else }}
+            - name: REDIS_HOST
+              value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+  {{- end }}
+            - name: REDIS_PORT
+              value: {{ .Values.appConfig.REDIS_PORT | quote }}
+            - name: REDIS_DB
+              value: {{ .Values.appConfig.REDIS_DB | quote }}
+            #minio
+  {{- if not .Values.appConfig.tenant_id }}
+            - name: MINIO_HOST
+              value: "http://minio.minio"
+            - name: MINIO_PORT
+              value: "9000"
+  {{- end }}    
+            - name: RSA_PUBLIC_KEY
+              value: {{ .Values.appConfig.RSA_PUBLIC_KEY | quote }}
+            - name: WORKERS
+              value: {{ .Values.appConfig.WORKERS | quote }}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
