@@ -91,20 +91,20 @@ spec:
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
           - name: HOST
-            value: {{ .Values.appConfig.HOST | quote }}           
+            value: {{ .Values.appConfig.HOST }}           
           - name: PORT
             value: {{ .Values.appConfig.PORT | quote }}  
-          - name: ELASTICSEARCH_URI
-            value: {{ .Values.appConfig.ELASTICSEARCH_URI | quote}}
           - name: WORKERS
             value: {{ .Values.appConfig.WORKERS | quote }}
+          - name: ELASTICSEARCH_URI
+            value: {{ .Values.appConfig.ELASTICSEARCH_URI | quote}}
           ## Telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
           - name: OPEN_TELEMETRY_HOST
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT }}
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
