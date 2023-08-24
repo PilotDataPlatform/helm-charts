@@ -23,9 +23,9 @@ container:
 
 appConfig:
 
-  env: "dev"
   CONFIG_CENTER_ENABLED: false
   CONFIG_CENTER_BASE_URL:
+  env: "dev"
 
   tenant_id: ""
 
@@ -42,6 +42,9 @@ appConfig:
   REDIS_HOST: "redis-master.redis"
   REDIS_PORT: 6379
   REDIS_DB: 0
+
+  RSA_PUBLIC_KEY: ""
+  WORKERS: ""
 
 podAnnotations: {}
 
