@@ -57,10 +57,10 @@ spec:
 ###################### START OF APP CONFIG #############################   
 # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
-          - name: RDS_DB_NAME
-            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
 {{- else }}
-          - name: RDS_DB_NAME
+          - name: RDS_HOST
             value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
 {{- end}}
 
@@ -141,10 +141,10 @@ spec:
 
 # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
-          - name: RDS_DB_NAME
-            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
 {{- else }}
-          - name: RDS_DB_NAME
+          - name: RDS_HOST
             value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
 {{- end}}
 
