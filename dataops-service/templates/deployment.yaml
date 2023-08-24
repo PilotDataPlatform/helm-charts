@@ -71,7 +71,7 @@ spec:
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
-          {{- if not .Values.appConfig.tenant_id }}
+{{- if not .Values.appConfig.tenant_id }}
           - name: VAULT_URL
             value: "https://vault.vault:8200/v1/pilot/app/config"
           - name: VAULT_CRT
@@ -137,7 +137,7 @@ spec:
           - name: MINIO_HOST
             value: "http://minio.minio"
           - name: MINIO_PORT
-            value: 9000
+            value: "9000"
 {{- end }}    
           - name: RSA_PUBLIC_KEY
             value: {{ .Values.appConfig.RSA_PUBLIC_KEY | quote }}
