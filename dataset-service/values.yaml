@@ -19,12 +19,22 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_dataset
 
+  tenant_id: ""
+
+
+  OPEN_TELEMETRY_ENABLED: true
+  DATASET_FILE_FOLDER: "data"
+  DATASET_SCHEMA_FOLDER: "schema"
+  DATASET_CODE_REGEX: "^[a-z0-9]{3,32}$"
+  RDS_HOST: "postgres.utility"
+  RDS_PORT: 5432
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: 
+  name:
 
 container:
   port: 5081
