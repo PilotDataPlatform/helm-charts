@@ -59,7 +59,7 @@ spec:
           # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
           - name: RDS_HOST
-            value: {{ .Values.appConfig.RDS_HOST | quote }}
+            value: "postgres.utility"
 {{- else }}
           - name: RDS_HOST
             value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
@@ -163,7 +163,7 @@ spec:
           # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
           - name: RDS_HOST
-            value: {{ .Values.appConfig.RDS_HOST | quote }}
+            value: "postgre.utility"
 {{- else }}
           - name: RDS_HOST
             value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
