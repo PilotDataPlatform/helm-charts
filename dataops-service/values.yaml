@@ -27,7 +27,7 @@ appConfig:
   CONFIG_CENTER_BASE_URL: http://common.utility:5062/
   env: "dev"
 
-  tenant_id: ""
+  tenant_id:
 
 
   OPEN_TELEMETRY_ENABLED: true
