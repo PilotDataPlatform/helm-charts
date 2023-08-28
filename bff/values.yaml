@@ -25,6 +25,12 @@ container:
   port: 5060
   portalPort: 3000
 
+command:
+  - "/bin/bash"
+args:
+  - "-c"
+  - "python -m app"
+
 appConfig:
   env: "dev"
   CONFIG_CENTER_ENABLED: false
@@ -33,19 +39,19 @@ appConfig:
   tenant_id: ""
 
   WORKERS: 3
-  SITE_DOMAIN: "https://dev.pilot.indocresearch.com"
-  CORE_ZONE_LABEL: "Core"
-  GREENROOM_ZONE_LABEL: "Greenroom"
-  PROJECT_NAME: "PILOT"
-  KEYCLOAK_REALM: "pilot"
+  SITE_DOMAIN: https://dev.pilot.indocresearch.com
+  CORE_ZONE_LABEL: Core
+  GREENROOM_ZONE_LABEL: Greenroom
+  PROJECT_NAME: PILOT
+  KEYCLOAK_REALM: pilot
 
-  EMAIL_SUPPORT: "pilotplatform_support@indocresearch.com"
-  EMAIL_ADMIN: "pilotplatform_support@indocresearch.com"
-  EMAIL_HELPDESK: "helpdesk@pilot"
+  EMAIL_SUPPORT: pilotplatform_support@indocresearch.com
+  EMAIL_ADMIN: pilotplatform_support@indocresearch.com
+  EMAIL_HELPDESK: helpdesk@pilot
 
-  KONG_PATH: "/pilot/"
-  RESOURCE_REQUEST_ADMIN: "admin"
-  REDIS_HOST: "redis-master.redis"
+  KONG_PATH: /pilot/
+  RESOURCE_REQUEST_ADMIN: admin
+  REDIS_HOST: redis-master.redis
   REDIS_PORT: 6379
   INVITATION_URL_LOGIN: 
 

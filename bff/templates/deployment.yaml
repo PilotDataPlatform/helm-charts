@@ -62,12 +62,10 @@ spec:
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
-
-
           - name: PROJECT_NAME
-            value: value: {{ .Values.appConfig.PROJECT_NAME | quote }}
+            value: {{ .Values.appConfig.PROJECT_NAME | quote }}
           - name: KEYCLOAK_REALM
-            value: value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}  
+            value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}  
 
 # workers
           - name: WORKERS
@@ -79,34 +77,34 @@ spec:
 
 # domains and paths
           - name: SITE_DOMAIN
-            value: value: {{ .Values.appConfig.SITE_DOMAIN | quote }}
+            value: {{ .Values.appConfig.SITE_DOMAIN | quote }}
           - name: KONG_PATH
-            value: value: {{ .Values.appConfig.KONG_PATH | quote }}
+            value: {{ .Values.appConfig.KONG_PATH | quote }}
 {{- if not .Values.appConfig.INVITATION_URL_LOGIN }}
           - name: INVITATION_URL_LOGIN
-            value: value: "{{ .Values.appConfig.SITE_DOMAIN }}/login"
+            value: "{{ .Values.appConfig.SITE_DOMAIN }}/login"
 {{- else }}
           - name: INVITATION_URL_LOGIN
-            value: value: {{ .Values.appConfig.INVITATION_URL_LOGIN | quote }}
+            value: {{ .Values.appConfig.INVITATION_URL_LOGIN | quote }}
 {{- end }}
 
 # zones
           - name: CORE_ZONE_LABEL
-            value: value: {{ .Values.appConfig.CORE_ZONE_LABEL | quote }}
+            value: {{ .Values.appConfig.CORE_ZONE_LABEL | quote }}
           - name: GREENROOM_ZONE_LABEL
-            value: value: {{ .Values.appConfig.GREENROOM_ZONE_LABEL | quote }}  
+            value: {{ .Values.appConfig.GREENROOM_ZONE_LABEL | quote }}  
       
 #email 
           - name: EMAIL_SUPPORT
-            value: value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
+            value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
           - name: EMAIL_ADMIN
-            value: value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}  
+            value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}  
           - name: EMAIL_HELPDESK
-            value: value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}  
+            value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}  
 
 # resource request admin
           - name: RESOURCE_REQUEST_ADMIN
-            value: value: {{ .Values.appConfig.RESOURCE_REQUEST_ADMIN | quote }}
+            value: {{ .Values.appConfig.RESOURCE_REQUEST_ADMIN | quote }}
 
 
 # redis
