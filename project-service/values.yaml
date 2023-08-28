@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: project
 
 replicaCount: 1
 
@@ -19,7 +19,7 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_project
 
-  tenant_id: ""
+  tenant_id: 
 
   APP_NAME: "project"
   HOST: "0.0.0.0"
@@ -65,11 +65,11 @@ serviceAccount:
   name: 
 
 container:
-  port: 5066
+  port: 5064
 
 service:
   type: ClusterIP
-  port: 80
+  port: 5064
 
 podAnnotations: {}
 
@@ -84,7 +84,13 @@ imagePullSecrets: []
 ingress:
   enabled: false
 
-resources: {}
+resources:
+  limits:
+    cpu: "1"
+    memory: 500Mi
+  requests:
+    cpu: "10m"
+    memory: 50Mi
 
 autoscaling:
   enabled: false
@@ -101,10 +107,30 @@ extraEnvYaml: {}
 
 envSecrets: {}
 
-readinessProbe: []
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  tcpSocket:
+    port: 5064
+
+livenessProbe:
+  failureThreshold: 3
+  httpGet:
+    path: /v1/health/
+    port: 5064
+    scheme: HTTP
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 3
 
 extraVolumeMounts: []
 
 extraVolumes: []
 
-updateStrategy: []
+updateStrategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 33%
+  type: RollingUpdate
