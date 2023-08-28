@@ -12,7 +12,7 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: bff
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -23,12 +23,31 @@ serviceAccount:
 
 container:
   port: 5060
-  portal-port: 3000
+  portalPort: 3000
 
 appConfig:
   env: "dev"
   CONFIG_CENTER_ENABLED: false
   CONFIG_CENTER_BASE_URL:
+
+  tenant_id: ""
+
+  WORKERS: 3
+  SITE_DOMAIN: "https://dev.pilot.indocresearch.com"
+  CORE_ZONE_LABEL: "Core"
+  GREENROOM_ZONE_LABEL: "Greenroom"
+  PROJECT_NAME: "PILOT"
+  KEYCLOAK_REALM: "pilot"
+
+  EMAIL_SUPPORT: "pilotplatform_support@indocresearch.com"
+  EMAIL_ADMIN: "pilotplatform_support@indocresearch.com"
+  EMAIL_HELPDESK: "helpdesk@pilot"
+
+  KONG_PATH: "/pilot/"
+  RESOURCE_REQUEST_ADMIN: "admin"
+  REDIS_HOST: "redis-master.redis"
+  REDIS_PORT: 6379
+  INVITATION_URL_LOGIN: 
 
 podAnnotations: {}
 
@@ -39,14 +58,20 @@ podSecurityContext: {}
 securityContext: {}
 
 service:
-  type: LoadBalancer
+  type: ClusterIP
   port: 5060
   portalPort: 3000
 
 ingress:
   enabled: false
 
-resources: {}
+resources:
+  requests:
+    memory: "500Mi"
+    cpu: "10m"
+  limits:
+    memory: "1000Mi"
+    cpu: "1"
 
 autoscaling:
   enabled: false
@@ -57,7 +82,11 @@ tolerations: []
 
 affinity: {}
 
-readinessProbe: {}
+readinessProbe:
+  tcpSocket:
+    port: 5060
+  initialDelaySeconds: 5
+  periodSeconds: 10
 
 updateStrategy: {}
 

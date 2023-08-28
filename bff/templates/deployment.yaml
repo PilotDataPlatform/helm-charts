@@ -55,12 +55,126 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################    
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
+
+
+          - name: PROJECT_NAME
+            value: value: {{ .Values.appConfig.PROJECT_NAME | quote }}
+          - name: KEYCLOAK_REALM
+            value: value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}  
+
+# workers
+          - name: WORKERS
+            value: {{ .Values.appConfig.WORKERS | quote }}
+
+# deprecated
+          - name: KG_SERVICE
+            value: "http://kg.utility:5064"
+
+# domains and paths
+          - name: SITE_DOMAIN
+            value: value: {{ .Values.appConfig.SITE_DOMAIN | quote }}
+          - name: KONG_PATH
+            value: value: {{ .Values.appConfig.KONG_PATH | quote }}
+{{- if not .Values.appConfig.INVITATION_URL_LOGIN }}
+          - name: INVITATION_URL_LOGIN
+            value: value: "{{ .Values.appConfig.SITE_DOMAIN }}/login"
+{{- else }}
+          - name: INVITATION_URL_LOGIN
+            value: value: {{ .Values.appConfig.INVITATION_URL_LOGIN | quote }}
+{{- end }}
+
+# zones
+          - name: CORE_ZONE_LABEL
+            value: value: {{ .Values.appConfig.CORE_ZONE_LABEL | quote }}
+          - name: GREENROOM_ZONE_LABEL
+            value: value: {{ .Values.appConfig.GREENROOM_ZONE_LABEL | quote }}  
+      
+#email 
+          - name: EMAIL_SUPPORT
+            value: value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
+          - name: EMAIL_ADMIN
+            value: value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}  
+          - name: EMAIL_HELPDESK
+            value: value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}  
+
+# resource request admin
+          - name: RESOURCE_REQUEST_ADMIN
+            value: value: {{ .Values.appConfig.RESOURCE_REQUEST_ADMIN | quote }}
+
+
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+
+
+# Microservices connections
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+          - name: APPROVAL_SERVICE
+            value: "http://approval.utility:5061"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.utility:5063"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: NOTIFY_SERVICE
+            value: "http://notification.utility:5065"
+          - name: UPLOAD_SERVICE
+            value: "http://upload.greenroom:5065"      
+          - name: DOWNLOAD_SERVICE_CORE
+            value: "http://upload.core:5065" 
+          - name: DOWNLOAD_SERVICE_GR
+            value: "http://upload.greenroom:5065"    
+          - name: SEARCH_SERVICE
+            value: "http://search.utility:5064"
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.utility:5068"      
+{{- else }}
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+          - name: APPROVAL_SERVICE
+            value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:5061"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: NOTIFY_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: UPLOAD_SERVICE
+            value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5065"  
+          - name: DOWNLOAD_SERVICE_CORE
+            value: "http://upload.{{ .Values.appConfig.tenant_id }}-core:5065" 
+          - name: DOWNLOAD_SERVICE_GR
+            value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5065"       
+          - name: SEARCH_SERVICE
+            value: "http://search.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"  
+{{- end}}
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
