@@ -129,7 +129,7 @@ spec:
           - name: DATAOPS_SERVICE
             value: "http://dataops.utility:5063"
           - name: DATASET_SERVICE
-            value: "http://dataset.utility:5063"
+            value: "http://dataset.utility:5081"
           - name: METADATA_SERVICE
             value: "http://metadata.utility:5066"
           - name: PROJECT_SERVICE
@@ -154,7 +154,7 @@ spec:
           - name: DATAOPS_SERVICE
             value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: DATASET_SERVICE
-            value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5063"
+            value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5081"
           - name: METADATA_SERVICE
             value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: PROJECT_SERVICE
