@@ -32,6 +32,7 @@ appConfig:
 
   OPEN_TELEMETRY_ENABLED: true
   HOST: "0.0.0.0"
+  RDS_HOST: postgres.utility
   RDS_PORT: 5432
   RDS_NAME: dataops
   RDS_USERNAME: postgres

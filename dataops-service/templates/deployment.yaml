@@ -57,19 +57,21 @@ spec:
           - name: HOST
             value: {{ .Values.appConfig.HOST }}           
           # Relational Database 
+# Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
           - name: RDS_HOST
-            value: "postgres.utility"
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
 {{- else }}
           - name: RDS_HOST
             value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
 {{- end}}
+
           - name: RDS_PORT
             value: {{ .Values.appConfig.RDS_PORT | quote }}
           - name: RDS_NAME
-            value: {{ .Values.appConfig.RDS_NAME | quote }}
+            value: {{ .Values.appConfig.RDS_DBNAME | quote }}
           - name: RDS_USERNAME
-            value: {{ .Values.appConfig.RDS_USERNAME | quote }}
+            value: {{ .Values.appConfig.RDS_USER | quote }}
           - name: RDS_SCHEMA
             value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
           - name: RDS_ECHO_SQL_QUERIES
