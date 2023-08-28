@@ -19,6 +19,44 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_project
 
+  tenant_id: ""
+
+  APP_NAME: "project"
+  HOST: "0.0.0.0"
+  PORT: "5064"
+  WORKERS: "1"
+
+  RDS_DB_HOST: "postgres.utility"
+  RDS_DB_PORT: "5432"
+  RDS_DB_USERNAME: "postgres"
+  RDS_DB_NAME: "project"
+  RDS_ECHO_SQL_QUERIES: "false"
+
+  S3_HOST: "minio.minio"
+  S3_PORT: "9000"
+  S3_HTTPS_ENABLED: "false"
+  S3_GATEWAY_ENABLED: "true"
+  S3_BUCKET_ENCRYPTION_ENABLED: "false"
+  S3_BUCKET_FOR_PROJECT_LOGOS: "project-logos"
+  S3_PREFIX_FOR_PROJECT_IMAGE_URLS: "https://minio.dev.pilot.indocresearch.com/project-logos"
+  OBJECT_STORAGE_PROVIDER: "azure"
+
+  OPEN_TELEMETRY_ENABLED: "false"
+  OPEN_TELEMETRY_HOST: "simplest-agent.utility"
+  OPEN_TELEMETRY_PORT: "6831"
+
+  METADATA_SERVICE: "http://metadata.utility:5066"
+  AUTH_SERVICE: "http://auth.utility:5061"
+
+  ICON_SIZE_LIMIT: "16777216"
+
+  SERVICE_CLIENT_TIMEOUT: "5"
+
+  LOG_LEVEL_DEFAULT: "30"
+  LOG_LEVEL_FILE: "30"
+  LOG_LEVEL_STDOUT: "30"
+  LOG_LEVEL_STDERR: "40"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false

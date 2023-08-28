@@ -54,6 +54,107 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################      
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+          - name: srv_namespace
+            value: {{ .Values.appConfig.srv_namespace | quote }}
+
+
+          - name: APP_NAME
+            value: {{ .Values.appConfig.APP_NAME | quote }}
+          - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }} 
+          - name: PORT
+            value: {{ .Values.appConfig.PORT | quote }}
+          - name: WORKERS
+            value: {{ .Values.appConfig.WORKERS | quote }}
+
+
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_DB_HOST
+            value: {{ .Values.appConfig.RDS_DB_HOST | quote }}
+{{- else }}
+          - name: RDS_DB_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_DB_PORT
+            value: {{ .Values.appConfig.RDS_DB_PORT | quote }}
+          - name: RDS_DB_NAME
+            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+          - name: RDS_DB_USERNAME
+            value: {{ .Values.appConfig.RDS_DB_USERNAME | quote }}
+          - name: RDS_ECHO_SQL_QUERIES
+            value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
+
+
+# object storage
+          - name: S3_HOST
+            value: {{ .Values.appConfig.S3_HOST | quote }}
+          - name: S3_PORT
+            value: {{ .Values.appConfig.S3_PORT | quote }}
+          - name: S3_HTTPS_ENABLED
+            value: {{ .Values.appConfig.S3_HTTPS_ENABLED | quote }}
+          - name: S3_GATEWAY_ENABLED
+            value: {{ .Values.appConfig.S3_GATEWAY_ENABLED | quote }}
+          - name: S3_BUCKET_ENCRYPTION_ENABLED
+            value: {{ .Values.appConfig.S3_BUCKET_ENCRYPTION_ENABLED | quote }}
+          - name: S3_BUCKET_FOR_PROJECT_LOGOS
+            value: {{ .Values.appConfig.S3_BUCKET_FOR_PROJECT_LOGOS | quote }}
+          - name: S3_PREFIX_FOR_PROJECT_IMAGE_URLS
+            value: {{ .Values.appConfig.S3_PREFIX_FOR_PROJECT_IMAGE_URLS | quote }}
+          - name: OBJECT_STORAGE_PROVIDER
+            value: {{ .Values.appConfig.OBJECT_STORAGE_PROVIDER | quote }}
+
+# open telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+
+# Microservices connections
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+{{- else }}
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+{{- end}}
+
+# icon size
+          - name: ICON_SIZE_LIMIT
+            value: {{ .Values.appConfig.ICON_SIZE_LIMIT | quote }}
+
+# timeout
+          - name: SERVICE_CLIENT_TIMEOUT
+            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT | quote }}
+
+# log levels
+          - name: LOG_LEVEL_DEFAULT
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote }}
+          - name: LOG_LEVEL_FILE
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE | quote }}
+          - name: LOG_LEVEL_STDOUT
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote }}
+          - name: LOG_LEVEL_STDERR
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
+
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
@@ -91,6 +192,7 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################      
           - name: port
             value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
@@ -101,6 +203,96 @@ spec:
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
+
+
+          - name: APP_NAME
+            value: {{ .Values.appConfig.APP_NAME | quote }}
+          - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }} 
+          - name: PORT
+            value: {{ .Values.appConfig.PORT | quote }}
+          - name: WORKERS
+            value: {{ .Values.appConfig.WORKERS | quote }}
+
+
+# Relational Database 
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_DB_HOST
+            value: {{ .Values.appConfig.RDS_DB_HOST | quote }}
+{{- else }}
+          - name: RDS_DB_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+
+          - name: RDS_DB_PORT
+            value: {{ .Values.appConfig.RDS_DB_PORT | quote }}
+          - name: RDS_DB_NAME
+            value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
+          - name: RDS_DB_USERNAME
+            value: {{ .Values.appConfig.RDS_DB_USERNAME | quote }}
+          - name: RDS_ECHO_SQL_QUERIES
+            value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
+
+
+# object storage
+          - name: S3_HOST
+            value: {{ .Values.appConfig.S3_HOST | quote }}
+          - name: S3_PORT
+            value: {{ .Values.appConfig.S3_PORT | quote }}
+          - name: S3_HTTPS_ENABLED
+            value: {{ .Values.appConfig.S3_HTTPS_ENABLED | quote }}
+          - name: S3_GATEWAY_ENABLED
+            value: {{ .Values.appConfig.S3_GATEWAY_ENABLED | quote }}
+          - name: S3_BUCKET_ENCRYPTION_ENABLED
+            value: {{ .Values.appConfig.S3_BUCKET_ENCRYPTION_ENABLED | quote }}
+          - name: S3_BUCKET_FOR_PROJECT_LOGOS
+            value: {{ .Values.appConfig.S3_BUCKET_FOR_PROJECT_LOGOS | quote }}
+          - name: S3_PREFIX_FOR_PROJECT_IMAGE_URLS
+            value: {{ .Values.appConfig.S3_PREFIX_FOR_PROJECT_IMAGE_URLS | quote }}
+          - name: OBJECT_STORAGE_PROVIDER
+            value: {{ .Values.appConfig.OBJECT_STORAGE_PROVIDER | quote }}
+
+# open telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+
+# Microservices connections
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+{{- else }}
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+{{- end}}
+
+# icon size
+          - name: ICON_SIZE_LIMIT
+            value: {{ .Values.appConfig.ICON_SIZE_LIMIT | quote }}
+
+# timeout
+          - name: SERVICE_CLIENT_TIMEOUT
+            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT | quote }}
+
+# log levels
+          - name: LOG_LEVEL_DEFAULT
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote }}
+          - name: LOG_LEVEL_FILE
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE | quote }}
+          - name: LOG_LEVEL_STDOUT
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote }}
+          - name: LOG_LEVEL_STDERR
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
+
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
