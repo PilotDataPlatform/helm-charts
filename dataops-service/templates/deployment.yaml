@@ -76,6 +76,7 @@ spec:
             value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
           - name: RDS_ECHO_SQL_QUERIES
             value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
+
           #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
           - name: LINEAGE_SERVICE
@@ -143,7 +144,6 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.container.port }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}

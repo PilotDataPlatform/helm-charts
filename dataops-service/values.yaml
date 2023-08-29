@@ -27,16 +27,16 @@ appConfig:
   CONFIG_CENTER_BASE_URL: http://common.utility:5062/
   env: "dev"
 
-  tenant_id:
+  tenant_id: ""
 
 
   OPEN_TELEMETRY_ENABLED: true
-  HOST: "0.0.0.0"
-  RDS_HOST: postgres.utility
+  HOST: 0.0.0.0
+  RDS_HOST: 'postgres.utility'
   RDS_PORT: 5432
-  RDS_NAME: dataops
-  RDS_USERNAME: postgres
-  RDS_SCHEMA: public
+  RDS_NAME: "dataops"
+  RDS_USERNAME: 'postgres'
+  RDS_SCHEMA: "public"
   RDS_ECHO_SQL_QUERIES: false
 
   REDIS_HOST: redis-master.redis
@@ -44,7 +44,7 @@ appConfig:
   REDIS_DB: 0
 
   RSA_PUBLIC_KEY:
-  WORKERS:
+  WORKERS: 2
 
 podAnnotations: {}
 
