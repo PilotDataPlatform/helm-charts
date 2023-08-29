@@ -138,8 +138,6 @@ spec:
           - name: MINIO_PORT
             value: "9000"
 {{- end }}    
-          - name: RSA_PUBLIC_KEY
-            value: {{ .Values.appConfig.RSA_PUBLIC_KEY | quote }}
           - name: WORKERS
             value: {{ .Values.appConfig.WORKERS | quote }}
 {{- if .Values.extraEnv }}

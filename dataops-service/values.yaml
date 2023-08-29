@@ -24,9 +24,9 @@ container:
 
 appConfig:
 
-  CONFIG_CENTER_ENABLED: false
-  CONFIG_CENTER_BASE_URL: http://common.utility:5062/
   env: "dev"
+  CONFIG_CENTER_ENABLED: false
+  CONFIG_CENTER_BASE_URL:
 
   tenant_id: ""
 
@@ -44,7 +44,6 @@ appConfig:
   REDIS_PORT: 6379
   REDIS_DB: 0
 
-  RSA_PUBLIC_KEY: ""
   WORKERS: 2
 
 podAnnotations: {}
