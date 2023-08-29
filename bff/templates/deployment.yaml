@@ -139,9 +139,9 @@ spec:
           - name: UPLOAD_SERVICE
             value: "http://upload.greenroom:5065"      
           - name: DOWNLOAD_SERVICE_CORE
-            value: "http://download.core:5065" 
+            value: "http://download.core:5077" 
           - name: DOWNLOAD_SERVICE_GR
-            value: "http://download.greenroom:5065"    
+            value: "http://download.greenroom:5077"    
           - name: SEARCH_SERVICE
             value: "http://search.utility:5064"
           - name: WORKSPACE_SERVICE
@@ -164,9 +164,9 @@ spec:
           - name: UPLOAD_SERVICE
             value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5065"  
           - name: DOWNLOAD_SERVICE_CORE
-            value: "http://download.{{ .Values.appConfig.tenant_id }}-core:5065" 
+            value: "http://download.{{ .Values.appConfig.tenant_id }}-core:5077" 
           - name: DOWNLOAD_SERVICE_GR
-            value: "http://download.{{ .Values.appConfig.tenant_id }}-greenroom:5065"       
+            value: "http://download.{{ .Values.appConfig.tenant_id }}-greenroom:5077"       
           - name: SEARCH_SERVICE
             value: "http://search.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: WORKSPACE_SERVICE
