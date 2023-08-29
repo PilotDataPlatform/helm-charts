@@ -76,23 +76,19 @@ spec:
             value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
           #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.utility:5065"
           - name: QUEUE_SERVICE
-            value: "http://queue-producer.utility:5065"
+            value: "http://queue-producer.utility:6060"
           - name: METADATA_SERVICE
-            value: "http://metadata.utility:5065"
+            value: "http://metadata.utility:5066"
           - name: AUTH_SERVICE
-            value: "http://auth.utility:5065"
+            value: "http://auth.utility:5061"
 {{- else }}
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.{{ .Values.appConfig.tenant_id }}-utility:5065"
           - name: QUEUE_SERVICE
-            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-utility:6060"
           - name: METADATA_SERVICE
-            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: AUTH_SERVICE
-            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
 {{- end}}
           # redis
 {{- if not .Values.appConfig.tenant_id }}
