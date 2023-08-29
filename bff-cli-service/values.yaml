@@ -19,6 +19,27 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_bff-cli
 
+  tenant_id: ""
+
+  log_level: info
+  namespace: utility
+  OPEN_TELEMETRY_ENABLED: "True"
+
+  CLI_PUBLIC_KEY_PATH: "/var/run/secrets/guacamole/jwt-key.pub"
+  GREEN_ZONE_LABEL: "Greenroom"
+  CORE_ZONE_LABEL: "Core"
+
+  REDIS_HOST: "redis-master.redis"
+  REDIS_DB: "0"
+  REDIS_PORT: "6379"
+  HPC_SERVICE: ""
+  KG_SERVICE: ""
+  ATLAS_API: "http://atlas.utility:21000"
+  ATLAS_ENTITY_TYPE: "metadata_items"
+
+  JUPYTER_IP_LOWER: "15.0.0.0"
+  JUPYTER_IP_UPPER: "15.0.255.255"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
@@ -31,7 +52,7 @@ container:
 
 service:
   type: ClusterIP
-  port: 80
+  port: 5080
 
 podAnnotations: {}
 deploymentAnnotations: {}
@@ -42,10 +63,22 @@ securityContext: {}
 
 imagePullSecrets: []
 
+command:
+  - "/bin/bash"
+args:
+  - "-c"
+  - "./gunicorn_starter.sh"
+
 ingress:
   enabled: false
 
-resources: {}
+resources:
+  limits:
+    cpu: "1"
+    memory: 500Mi
+  requests:
+    cpu: "10m"
+    memory: 10Mi
 
 autoscaling:
   enabled: false
@@ -60,10 +93,20 @@ extraEnv: {}
 
 extraEnvYaml: {}
 
-readinessProbe: []
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  tcpSocket:
+    port: 5080
 
 extraVolumeMounts: []
 
 extraVolumes: []
 
-updateStrategy: []
+updateStrategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 33%
+  type: RollingUpdate

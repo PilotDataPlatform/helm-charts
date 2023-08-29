@@ -56,6 +56,7 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################    
           - name: port
             value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
@@ -66,6 +67,95 @@ spec:
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
+
+# logging
+          - name: log_level
+            value: {{ .Values.appConfig.log_level | quote }}
+          - name: namespace
+            value: {{ .Values.appConfig.namespace | quote }}
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+
+# labels and vm
+          - name: CLI_PUBLIC_KEY_PATH
+            value: {{ .Values.appConfig.CLI_PUBLIC_KEY_PATH | quote }}
+          - name: GREEN_ZONE_LABEL
+            value: {{ .Values.appConfig.GREEN_ZONE_LABEL | quote }}
+          - name: CORE_ZONE_LABEL
+            value: {{ .Values.appConfig.CORE_ZONE_LABEL | quote }}
+
+
+# deprecated
+          - name: ATLAS_API
+            value: {{ .Values.appConfig.ATLAS_API | quote }}
+          - name: ATLAS_ENTITY_TYPE
+            value: {{ .Values.appConfig.ATLAS_ENTITY_TYPE | quote }}
+          - name: HPC_SERVICE
+            value: {{ .Values.appConfig.HPC_SERVICE | quote }}
+          - name: KG_SERVICE
+            value: {{ .Values.appConfig.KG_SERVICE | quote }}
+
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+          - name: REDIS_DB
+            value: {{ .Values.appConfig.REDIS_DB | quote }}
+
+# jupyter
+          - name: JUPYTER_IP_LOWER
+            value: {{ .Values.appConfig.JUPYTER_IP_LOWER | quote }}
+          - name: JUPYTER_IP_UPPER
+            value: {{ .Values.appConfig.JUPYTER_IP_UPPER | quote }}
+
+# Microservices connections
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+          - name: DATASET_SERVICE
+            value: "http://dataset.utility:5081"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: UPLOAD_SERVICE_CORE
+            value: "http://upload.core:5065"     
+          - name: UPLOAD_SERVICE_GREENROOM
+            value: "http://upload.greenroom:5065"     
+          - name: DOWNLOAD_SERVICE_CORE
+            value: "http://download.core:5065" 
+          - name: DOWNLOAD_SERVICE_GREENROOM
+            value: "http://download.greenroom:5065"    
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.utility:5068"      
+{{- else }}
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+          - name: DATASET_SERVICE
+            value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5081"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: UPLOAD_SERVICE_CORE
+            value: "http://upload{{ .Values.appConfig.tenant_id }}-.core:5065"     
+          - name: UPLOAD_SERVICE_GREENROOM
+            value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5065"  
+          - name: DOWNLOAD_SERVICE_CORE
+            value: "http://download.{{ .Values.appConfig.tenant_id }}-core:5065" 
+          - name: DOWNLOAD_SERVICE_GREENROOM
+            value: "http://download.{{ .Values.appConfig.tenant_id }}-greenroom:5065"       
+          - name: WORKSPACE_SERVICE
+            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"  
+{{- end}}
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
