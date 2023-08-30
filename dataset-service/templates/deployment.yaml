@@ -62,6 +62,8 @@ spec:
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
+          - name: srv_namespace
+            value: {{ .Values.appConfig.srv_namespace | quote }}
           # telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
@@ -229,6 +231,8 @@ spec:
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
+          - name: srv_namespace
+            value: {{ .Values.appConfig.srv_namespace | quote }}
           # telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
