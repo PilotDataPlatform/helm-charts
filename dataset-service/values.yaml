@@ -17,17 +17,26 @@ appConfig:
   env: "dev"
   config_center_enabled: false
   config_center_base_url: http://common.utility:5062/
-  srv_namespace: service_dataset
 
   tenant_id: ""
-
 
   OPEN_TELEMETRY_ENABLED: true
   DATASET_FILE_FOLDER: "data"
   DATASET_SCHEMA_FOLDER: "schema"
   DATASET_CODE_REGEX: "^[a-z0-9]{3,32}$"
-  RDS_HOST: "postgres.utility"
-  RDS_PORT: 5432
+  OPSDB_UTILITY_HOST: "postgres.utility"
+  OPSDB_UTILITY_PORT: "5432"
+  OPSDB_UTILITY_USERNAME: "postgres"
+  RDS_DBNAME: "dataset"
+  REDIS_HOST: "redis-master.redis"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+  RUN_MIGRATIONS_ON_BUILD: "false"
+  DOWNLOAD_TOKEN_EXPIRE_AT: "5"
+  MAX_PREVIEW_SIZE: "500000"
+  ESSENTIALS_NAME: "essential.schema.json"
+  ESSENTIALS_TPL_NAME: "Essential"
+  ALEMBIC_CONFIG: "migrations/alembic.ini"
 
 serviceAccount:
   # Specifies whether a service account should be created

@@ -54,20 +54,14 @@ spec:
           {{- end }}
           {{- end }}
           env:
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
-          - name: srv_namespace
-            value: {{ .Values.appConfig.srv_namespace | quote }}
-{{- if not .Values.appConfig.tenant_id }}
-          - name: VAULT_URL
-            value: "https://vault.vault:8200/v1/pilot/app/config"
-          - name: VAULT_CRT
-            value: "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-{{- end }}
           # telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
@@ -76,7 +70,7 @@ spec:
             value: {{ .Values.appConfig.DATASET_FILE_FOLDER }}
           - name: DATASET_SCHEMA_FOLDER
             value: {{ .Values.appConfig.DATASET_SCHEMA_FOLDER }}
-          - name: AD_UROLE_NAME_REGEXSER_GROUP
+          - name: DATASET_CODE_REGEX
             value: {{ .Values.appConfig.DATASET_CODE_REGEX }}
           #greenroom
           - name: ROOT_PATH
@@ -85,6 +79,16 @@ spec:
             value: "Core"
           - name: GREEN_ZONE_LABEL
             value: "Greenroom"
+{{- if not .Values.appConfig.tenant_id }}
+          - name: MINIO_OPENID_CLIENT
+            value: "react-app"
+          - name: MINIO_ENDPOINT
+            value: "minio.minio:9000"
+          - name: MINIO_HTTPS
+            value: "False"
+          - name: S3_GATEWAY 
+            value: "True"
+{{- end }}
           #keycloak
           - name: KEYCLOAK_URL
             value: {{ .Values.appConfig.KEYCLOAK_URL | quote }}
@@ -114,8 +118,6 @@ spec:
             value: "http://dataops.utility:5063"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.greenroom:6060"
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.utility:5064"
 {{- else }}
           - name: NEO4J_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
@@ -143,25 +145,21 @@ spec:
             value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.{{ .Values.appConfig.tenant_id }}-utility:5064"
 {{- end}}
           # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
-          - name: RDS_HOST
-            value: {{ .Values.appConfig.RDS_HOST | quote }}
+          - name: OPSDB_UTILITY_HOST
+            value: {{ .Values.appConfig.OPSDB_UTILITY_HOST | quote }}
 {{- else }}
-          - name: RDS_HOST
+          - name: OPSDB_UTILITY_HOST
             value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
 {{- end}}
-          - name: RDS_PORT
-            value: {{ .Values.appConfig.RDS_PORT | quote }}
-          - name: RDS_NAME
-            value: {{ .Values.appConfig.RDS_NAME | quote }}
-          - name: RDS_USERNAME
-            value: {{ .Values.appConfig.RDS_USERNAME | quote }}
-          - name: RDS_SCHEMA
-            value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
+          - name: OPSDB_UTILITY_PORT
+            value: {{ .Values.appConfig.OPSDB_UTILITY_PORT | quote }}
+          - name: OPSDB_UTILITY_USERNAME
+            value: {{ .Values.appConfig.OPSDB_UTILITY_USERNAME | quote }}
+          - name: RDS_DBNAME
+            value: {{ .Values.appConfig.RDS_DBNAME | quote }}
           # redis
 {{- if not .Values.appConfig.tenant_id }}
           - name: REDIS_HOST
@@ -172,6 +170,8 @@ spec:
 {{- end }}
           - name: REDIS_PORT
             value: {{ .Values.appConfig.REDIS_PORT | quote }}
+          - name: REDIS_DB
+            value: {{ .Values.appConfig.REDIS_DB | quote }}
           - name: RUN_MIGRATIONS_ON_BUILD
             value: {{ .Values.appConfig.RUN_MIGRATIONS_ON_BUILD | quote }}
           - name: DOWNLOAD_TOKEN_EXPIRE_AT
@@ -229,14 +229,6 @@ spec:
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
-          - name: srv_namespace
-            value: {{ .Values.appConfig.srv_namespace | quote }}
-{{- if not .Values.appConfig.tenant_id }}
-          - name: VAULT_URL
-            value: "https://vault.vault:8200/v1/pilot/app/config"
-          - name: VAULT_CRT
-            value: "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-{{- end }}
           # telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
@@ -245,7 +237,7 @@ spec:
             value: {{ .Values.appConfig.DATASET_FILE_FOLDER }}
           - name: DATASET_SCHEMA_FOLDER
             value: {{ .Values.appConfig.DATASET_SCHEMA_FOLDER }}
-          - name: AD_UROLE_NAME_REGEXSER_GROUP
+          - name: DATASET_CODE_REGEX
             value: {{ .Values.appConfig.DATASET_CODE_REGEX }}
           #greenroom
           - name: ROOT_PATH
@@ -254,6 +246,16 @@ spec:
             value: "Core"
           - name: GREEN_ZONE_LABEL
             value: "Greenroom"
+{{- if not .Values.appConfig.tenant_id }}
+          - name: MINIO_OPENID_CLIENT
+            value: "react-app"
+          - name: MINIO_ENDPOINT
+            value: "minio.minio:9000"
+          - name: MINIO_HTTPS
+            value: "False"
+          - name: S3_GATEWAY 
+            value: "True"
+{{- end }}
           #keycloak
           - name: KEYCLOAK_URL
             value: {{ .Values.appConfig.KEYCLOAK_URL | quote }}
@@ -283,8 +285,6 @@ spec:
             value: "http://dataops.utility:5063"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.greenroom:6060"
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.utility:5064"
 {{- else }}
           - name: NEO4J_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
@@ -312,25 +312,21 @@ spec:
             value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
-          - name: LINEAGE_SERVICE
-            value: "http://lineage.{{ .Values.appConfig.tenant_id }}-utility:5064"
 {{- end}}
           # Relational Database 
 {{- if not .Values.appConfig.tenant_id }}
-          - name: RDS_HOST
-            value: {{ .Values.appConfig.RDS_HOST | quote }}
+          - name: OPSDB_UTILITY_HOST
+            value: {{ .Values.appConfig.OPSDB_UTILITY_HOST | quote }}
 {{- else }}
-          - name: RDS_HOST
+          - name: OPSDB_UTILITY_HOST
             value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
 {{- end}}
-          - name: RDS_PORT
-            value: {{ .Values.appConfig.RDS_PORT | quote }}
-          - name: RDS_NAME
-            value: {{ .Values.appConfig.RDS_NAME | quote }}
-          - name: RDS_USERNAME
-            value: {{ .Values.appConfig.RDS_USERNAME | quote }}
-          - name: RDS_SCHEMA
-            value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
+          - name: OPSDB_UTILITY_PORT
+            value: {{ .Values.appConfig.OPSDB_UTILITY_PORT | quote }}
+          - name: OPSDB_UTILITY_USERNAME
+            value: {{ .Values.appConfig.OPSDB_UTILITY_USERNAME | quote }}
+          - name: RDS_DBNAME
+            value: {{ .Values.appConfig.RDS_DBNAME | quote }}
           # redis
 {{- if not .Values.appConfig.tenant_id }}
           - name: REDIS_HOST
@@ -341,6 +337,8 @@ spec:
 {{- end }}
           - name: REDIS_PORT
             value: {{ .Values.appConfig.REDIS_PORT | quote }}
+          - name: REDIS_DB
+            value: {{ .Values.appConfig.REDIS_DB | quote }}
           - name: RUN_MIGRATIONS_ON_BUILD
             value: {{ .Values.appConfig.RUN_MIGRATIONS_ON_BUILD | quote }}
           - name: DOWNLOAD_TOKEN_EXPIRE_AT
@@ -353,7 +351,6 @@ spec:
             value: {{ .Values.appConfig.srv_namespace | quote }}
           - name: ALEMBIC_CONFIG
             value: {{ .Values.appConfig.srv_namespace | quote }}
-
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
