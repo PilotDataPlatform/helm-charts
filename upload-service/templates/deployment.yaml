@@ -96,7 +96,7 @@ spec:
           - name: KAFKA_URL
             value: "shared-kafka.datastores-helmfile:9092"
           - name: KAFKA_ACTIVITY_TOPIC
-            value: "metadata.items.{{ .Values.appConfig.tenant_id }}.activity"
+            value: "{{ .Values.appConfig.tenant_id}}.metadata.items.activity"
 {{- end}}
           # log levels
           - name: LOG_LEVEL_DEFAULT
