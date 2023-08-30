@@ -55,6 +55,7 @@ appConfig:
   config_center_enabled: false
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_download
+  namespace: ""
 
   LEVEL_DEFAULT: 30 # WARN
   LEVEL_FILE: 30 # WARN
