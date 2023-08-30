@@ -74,6 +74,85 @@ spec:
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
+            # log levels
+          - name: LOG_LEVEL_DEFAULT
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote}}
+          - name: LOG_LEVEL_FILE
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE | quote}}
+          - name: LOG_LEVEL_STDOUT
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote}}
+          - name: LOG_LEVEL_STDERR
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
+          - name: CORE_ZONE_LABEL
+            value: "Core"
+          - name: GREEN_ZONE_LABEL
+            value: "Greenroom"
+          - name: DOWNLOAD_TOKEN_EXPIRE_AT
+            value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
+          #if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: APPROVAL_SERVICE
+            value: "http://approval.utility:8000"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.utility:5081"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: KAFKA_URL
+            value: "kafka.utility:9092"
+          - name: KAFKA_DATASET_ACTIVITY_TOPIC
+            value: "dataset.activity"
+          - name: KAFKA_ITEM_ACTIVITY_TOPIC
+            value: "metadata.items.activity"
+{{- else }}
+          - name: APPROVAL_SERVICE
+            value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5081"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: KAFKA_URL
+            value: "shared-kafka.datastores-helmfile:9092"
+          - name: KAFKA_DATASET_ACTIVITY_TOPIC
+            value: "{{ .Values.appConfig.tenant_id }}.dataset.activity"
+          - name: KAFKA_ITEM_ACTIVITY_TOPIC
+            value: "{{ .Values.appConfig.tenant_id }}.metadata.items.activity"
+{{- end}}
+           # telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+          # redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+          - name: REDIS_DB
+            value: {{ .Values.appConfig.REDIS_DB | quote }}
+{{- if contains "core" .Values.appConfig.namespace }}
+          - name: ROOT_PATH
+            value: "/core-data"
+{{- else }}
+          - name: ROOT_PATH
+            value: "/data/core-storage"
+{{- end}}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}

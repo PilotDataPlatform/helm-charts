@@ -56,6 +56,21 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_download
 
+  LEVEL_DEFAULT: 30 # WARN
+  LEVEL_FILE: 30 # WARN
+  LEVEL_STDOUT: 30 # WARN
+  LEVEL_STDERR: 40 # ERROR
+
+  DOWNLOAD_TOKEN_EXPIRE_AT: "86400"
+
+  REDIS_HOST: "redis-master.redis"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+
+  OPEN_TELEMETRY_ENABLED: "True"
+  OPEN_TELEMETRY_HOST: "127.0.0.1"
+  OPEN_TELEMETRY_PORT: "6831"
+
 extraEnv: {}
 
 extraEnvYaml: {}
