@@ -179,13 +179,13 @@ spec:
           - name: DOWNLOAD_TOKEN_EXPIRE_AT
             value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
           - name: MAX_PREVIEW_SIZE
-            value: {{ .Values.appConfig.config_center_base_url | quote }}
+            value: {{ .Values.appConfig.MAX_PREVIEW_SIZE | quote }}
           - name: ESSENTIALS_NAME
-            value: {{ .Values.appConfig.env | quote }}
+            value: {{ .Values.appConfig.ESSENTIALS_NAME | quote }}
           - name: ESSENTIALS_TPL_NAME
-            value: {{ .Values.appConfig.srv_namespace | quote }}
+            value: {{ .Values.appConfig.ESSENTIALS_TPL_NAME | quote }}
           - name: ALEMBIC_CONFIG
-            value: {{ .Values.appConfig.srv_namespace | quote }}
+            value: {{ .Values.appConfig.ALEMBIC_CONFIG | quote }}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
@@ -348,13 +348,13 @@ spec:
           - name: DOWNLOAD_TOKEN_EXPIRE_AT
             value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
           - name: MAX_PREVIEW_SIZE
-            value: {{ .Values.appConfig.config_center_base_url | quote }}
+            value: {{ .Values.appConfig.MAX_PREVIEW_SIZE | quote }}
           - name: ESSENTIALS_NAME
-            value: {{ .Values.appConfig.env | quote }}
+            value: {{ .Values.appConfig.ESSENTIALS_NAME | quote }}
           - name: ESSENTIALS_TPL_NAME
-            value: {{ .Values.appConfig.srv_namespace | quote }}
+            value: {{ .Values.appConfig.ESSENTIALS_TPL_NAME | quote }}
           - name: ALEMBIC_CONFIG
-            value: {{ .Values.appConfig.srv_namespace | quote }}
+            value: {{ .Values.appConfig.ALEMBIC_CONFIG | quote }}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
