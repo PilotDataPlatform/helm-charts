@@ -83,6 +83,10 @@ spec:
             value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote}}
           - name: LOG_LEVEL_STDERR
             value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
+          - name: CORE_ZONE_LABEL
+            value: "Core"
+          - name: GREEN_ZONE_LABEL
+            value: "Greenroom"
 {{- if contains "core" .Values.appConfig.namespace }}
           - name: ROOT_PATH
             value: "/core-data"
@@ -90,9 +94,6 @@ spec:
           - name: ROOT_PATH
             value: "/data/core-storage"
 {{- end}}
-          - name: CORE_ZONE_LABEL
-            value: "Core"
-          - name: GREEN_ZONE_LABEL
             value: "Greenroom"
           - name: DOWNLOAD_TOKEN_EXPIRE_AT
             value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
