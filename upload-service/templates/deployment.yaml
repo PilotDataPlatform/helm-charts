@@ -86,22 +86,22 @@ spec:
           #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
           - name: DATAOPS_SERVICE
-            value: "http://dataops.utility:5065"
+            value: "http://dataops.utility:5063"
           - name: PROJECT_SERVICE
-            value: "http://project.utility:5065"
+            value: "http://project.utility:5064"
           - name: METADATA_SERVICE
-            value: "http://metadata.utility:5065"
+            value: "http://metadata.utility:5066"
           - name: KAFKA_URL
             value: "kafka.utility:9092"
           - name: KAFKA_ACTIVITY_TOPIC
             value: "metadata.items.activity"
 {{- else }}
           - name: DATAOPS_SERVICE
-            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: PROJECT_SERVICE
-            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: METADATA_SERVICE
-            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: KAFKA_URL
             value: "shared-kafka.datastores-helmfile:9092"
           - name: KAFKA_ACTIVITY_TOPIC
