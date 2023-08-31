@@ -56,12 +56,12 @@ spec:
           env:
           - name: port
             value: {{ .Values.appConfig.port | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
             value: {{ .Values.appConfig.config_center_base_url | quote }}
-          - name: env
-            value: {{ .Values.appConfig.env | quote }}
             # log levels
           - name: LOG_LEVEL_DEFAULT
             value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote}}
@@ -75,8 +75,6 @@ spec:
             value: "Core"
           - name: GREEN_ZONE_LABEL
             value: "Greenroom"
-          - name: DOWNLOAD_TOKEN_EXPIRE_AT
-            value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
           #if core or greenroom
 {{- if contains "core" .Values.appConfig.namespace }}
           - name: ROOT_PATH
@@ -109,22 +107,6 @@ spec:
           - name: KAFKA_ACTIVITY_TOPIC
             value: "{{ .Values.appConfig.tenant_id}}.metadata.items.activity"
 {{- end}}
-          # log levels
-          - name: LOG_LEVEL_DEFAULT
-            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote}}
-          - name: LOG_LEVEL_FILE
-            value: {{ .Values.appConfig.LOG_LEVEL_FILE | quote}}
-          - name: LOG_LEVEL_STDOUT
-            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote}}
-          - name: LOG_LEVEL_STDERR
-            value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
-          # telemetry
-          - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
-          - name: OPEN_TELEMETRY_HOST
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
-          - name: OPEN_TELEMETRY_PORT
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
           # redis
           - name: REDIS_DB
             value: {{ .Values.appConfig.REDIS_DB | quote }}
@@ -137,6 +119,14 @@ spec:
 {{- end }}
           - name: REDIS_PORT
             value: {{ .Values.appConfig.REDIS_PORT | quote }}
+          # telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
