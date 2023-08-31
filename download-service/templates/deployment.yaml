@@ -83,6 +83,13 @@ spec:
             value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote}}
           - name: LOG_LEVEL_STDERR
             value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
+{{- if contains "core" .Values.appConfig.namespace }}
+          - name: ROOT_PATH
+            value: "/core-data"
+{{- else }}
+          - name: ROOT_PATH
+            value: "/data/core-storage"
+{{- end}}
           - name: CORE_ZONE_LABEL
             value: "Core"
           - name: GREEN_ZONE_LABEL
@@ -99,8 +106,6 @@ spec:
             value: "http://dataset.utility:5081"
           - name: METADATA_SERVICE
             value: "http://metadata.utility:5066"
-          - name: PROJECT_SERVICE
-            value: "http://project.utility:5064"
           - name: PROJECT_SERVICE
             value: "http://project.utility:5064"
           - name: KAFKA_URL
@@ -146,13 +151,6 @@ spec:
             value: {{ .Values.appConfig.REDIS_PORT | quote }}
           - name: REDIS_DB
             value: {{ .Values.appConfig.REDIS_DB | quote }}
-{{- if contains "core" .Values.appConfig.namespace }}
-          - name: ROOT_PATH
-            value: "/core-data"
-{{- else }}
-          - name: ROOT_PATH
-            value: "/data/core-storage"
-{{- end}}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
