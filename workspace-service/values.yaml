@@ -19,6 +19,11 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   srv_namespace: service_workspace
 
+  tenant_id: ""
+  
+  GUACAMOLE_HOSTNAME: "dev.pilot.indocresearch.com"
+  GUACAMOLE_URL_PATH: "/workbench/{container_code}/guacamole"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
@@ -26,12 +31,18 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: 
 
+command:
+  - "/bin/bash"
+args:
+  - "-c"
+  - "python run.py"
+
 container:
-  port: 5061
+  port: 5068
 
 service:
   type: ClusterIP
-  port: 80
+  port: 5068
 
 podAnnotations: {}
 
@@ -46,7 +57,13 @@ imagePullSecrets: []
 ingress:
   enabled: false
 
-resources: {}
+resources:
+  limits:
+    cpu: "1"
+    memory: 1000Mi
+  requests:
+    cpu: "10m"
+    memory: 50Mi
 
 autoscaling:
   enabled: false
@@ -61,7 +78,29 @@ extraEnv: {}
 
 extraEnvYaml: {}
 
-readinessProbe: []
+readinessProbe:
+  failureThreshold: 3
+  initialDelaySeconds: 5
+  periodSeconds: 10
+  successThreshold: 1
+  tcpSocket:
+    port: 5068
+
+livenessProbe:
+  failureThreshold: 3
+  httpGet:
+    path: /v1/health
+    port: 5068
+    scheme: HTTP
+  periodSeconds: 10
+  successThreshold: 1
+  timeoutSeconds: 3
+
+updateStrategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 33%
+  type: RollingUpdate
 
 extraVolumeMounts: []
 
