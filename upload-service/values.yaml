@@ -11,11 +11,12 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
 
 appConfig:
-  port: 8080
+  port: 5079
   env: "dev"
-  CONFIG_CENTER_ENABLED: false
-  CONFIG_CENTER_BASE_URL:
-  tenant_id: ""
+  config_center_enabled: false
+  config_center_base_url: http://common.utility:5062/
+  srv_namespace: service_download
+  namespace: ""
 
   LEVEL_DEFAULT: 30 # WARN
   LEVEL_FILE: 30 # WARN
