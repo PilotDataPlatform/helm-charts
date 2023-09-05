@@ -1,0 +1,218 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "queue-service.fullname" . }}
+  labels:
+    {{- include "queue-service.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+    {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "queue-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "queue-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.container }}
+          ports:
+            - containerPort: {{ .Values.container.port }}
+          {{- end }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.command }}
+          {{- with .Values.command }}
+          command: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.args }}
+          {{- with .Values.args }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          env:
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+          - name:  bids_validate_image
+            value: "pilotdataplatform.azurecr.io/pipelines/bids-validator:edge"
+          - name:  bids_validate_pipeline
+            value: "bids_validate"
+          - name:  core_mount
+            value: "/core-data"
+          - name:  core_volume_name
+            value: "nfsvol-core-data"
+          - name:  claim_name
+            value: "greenroom-storage"
+          - name:  copy_pipeline
+            value: "data_transfer"
+          - name:  copy_pipeline_folder
+            value: "data_transfer_folder"
+          - name:  data_lake
+            value: "/data/core-storage"
+          - name:  data_transfer_image
+            value: "pilotdataplatform.azurecr.io/pipelines/filecopy:edge"
+          - name:  gr_queue
+            value: "gr_queue"
+          - name:  gr_exchange
+            value: "gr_exchange"
+          - name:  gm_queue_endpoint
+            value: "message-bus-greenroom.greenroom"
+          - name:  move_pipeline
+            value: "data_delete"
+          - name:  move_pipeline_folder
+            value: "data_delete_folder"
+          - name: CORE_ZONE_LABEL
+            value: "Core"
+          - name: GREEN_ZONE_LABEL
+            value: "Greenroom"
+# Relational Database 
+          - name: RDS_DBNAME
+            value: "approval"
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
+{{- else }}
+          - name: RDS_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.utility:5081"
+          - name: QUEUE_SERVICE
+            value: "http://queue-producer.greenroom:6060"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: APPROVAL_SERVICE
+            value: "http://approval.utility:8000"
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.utility:5065"
+          - names: KAFKA_URL
+            value: "kafka.utility:9092"
+{{- else }}
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5081"
+          - name: QUEUE_SERVICE
+            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: APPROVAL_SERVICE
+            value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - names: KAFKA_URL
+            value: "shared-kafka.datastores-helmfile:9092"
+{{- end}}
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: "redis-master.redis"
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: 6379
+# atlas
+{{- if not .Values.appConfig.tenant_id }}
+          - name: ATLAS_HOST
+            value: "atlas.utility"
+{{- else }}
+          - name: ATLAS_HOST
+            value: "atlas.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end }}
+          - name: ATLAS_PORT
+            value: 6379
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.volumes }}
+          volumeMounts:
+            - mountPath: {{ .Values.volumes.mountPath }}
+              name: {{ .Values.volumes.name }}
+            {{- if .Values.nfsvolumes }}
+            - mountPath: {{ .Values.nfsvolumes.mountPath }}
+              name: {{ .Values.nfsvolumes.name }}
+            {{- end }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+      {{- if .Values.volumes }}
+      volumes:
+        - name: {{ .Values.volumes.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.volumes.claimName }}
+        {{- if .Values.nfsvolumes }}
+        - name: {{ .Values.nfsvolumes.name }}
+          nfs:
+            server: {{ .Values.nfsvolumes.server }}
+            path: {{ .Values.nfsvolumes.path }}
+        {{- end }}
+      {{- end }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
