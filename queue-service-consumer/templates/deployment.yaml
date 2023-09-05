@@ -63,33 +63,33 @@ spec:
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
-          - name:  bids_validate_image
+          - name: bids_validate_image
             value: "pilotdataplatform.azurecr.io/pipelines/bids-validator:edge"
-          - name:  bids_validate_pipeline
+          - name: bids_validate_pipeline
             value: "bids_validate"
-          - name:  core_mount
+          - name: core_mount
             value: "/core-data"
-          - name:  core_volume_name
+          - name: core_volume_name
             value: "nfsvol-core-data"
-          - name:  claim_name
+          - name: claim_name
             value: "greenroom-storage"
-          - name:  copy_pipeline
+          - name: copy_pipeline
             value: "data_transfer"
-          - name:  copy_pipeline_folder
+          - name: copy_pipeline_folder
             value: "data_transfer_folder"
-          - name:  data_lake
+          - name: data_lake
             value: "/data/core-storage"
-          - name:  data_transfer_image
+          - name: data_transfer_image
             value: "pilotdataplatform.azurecr.io/pipelines/filecopy:edge"
-          - name:  gr_queue
+          - name: gr_queue
             value: "gr_queue"
-          - name:  gr_exchange
+          - name: gr_exchange
             value: "gr_exchange"
-          - name:  gm_queue_endpoint
+          - name: gm_queue_endpoint
             value: "message-bus-greenroom.greenroom"
-          - name:  move_pipeline
+          - name: move_pipeline
             value: "data_delete"
-          - name:  move_pipeline_folder
+          - name: move_pipeline_folder
             value: "data_delete_folder"
           - name: CORE_ZONE_LABEL
             value: "Core"
@@ -152,7 +152,7 @@ spec:
             value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
 {{- end }}
           - name: REDIS_PORT
-            value: 6379
+            value: "6379"
 # atlas
 {{- if not .Values.appConfig.tenant_id }}
           - name: ATLAS_HOST
@@ -162,7 +162,7 @@ spec:
             value: "atlas.{{ .Values.appConfig.tenant_id }}-utility"
 {{- end }}
           - name: ATLAS_PORT
-            value: 6379
+            value: "6379"
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}

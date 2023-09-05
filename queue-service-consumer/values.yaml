@@ -5,9 +5,9 @@
 replicaCount: 1
 
 image:
-  repository: queue-socketio
+  repository: pilotdataplatform.azurecr.io/queue/consumer
+  tag: 106
   pullPolicy: Always
-  tag: 97
 
 imagePullSecrets: []
 nameOverride: ""
@@ -19,14 +19,16 @@ serviceAccount:
   name: ""
 
 container:
-  port: 6062
+  port: 6060
 
 appConfig:
   env: "dev"
   CONFIG_CENTER_ENABLED: false
   CONFIG_CENTER_BASE_URL:
+  tenant_id: ""
   RDS_HOST: "postgres.utility"
-  RDS_PORT: 5432
+  RDS_PORT: "5432"
+
 podAnnotations: {}
 
 deploymentAnnotations: {}
@@ -42,7 +44,13 @@ service:
 ingress:
   enabled: false
 
-resources: {}
+resources:
+  requests:
+    memory: "50Mi"
+    cpu: "10m"
+  limits:
+    memory: "1000Mi"
+    cpu: "1"
 
 autoscaling:
   enabled: false
@@ -55,7 +63,11 @@ affinity: {}
 
 readinessProbe: {}
 
-updateStrategy: {}
+updateStrategy:
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 33%
+  type: RollingUpdate
 
 extraEnv: {}
 
