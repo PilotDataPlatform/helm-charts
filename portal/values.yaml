@@ -13,7 +13,7 @@ image:
 
 imagePullSecrets: []
 nameOverride: ""
-fullnameOverride: ""
+fullnameOverride: portal
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -22,11 +22,46 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
-container:
-  port: 80
-
 appConfig:
+  tenant_id: ""
+  use_domain: false
+
   env: "dev"
+  REACT_APP_PORTAL_PATH: ""
+  REACT_APP_BRANDING_PATH: "/login"
+  REACT_APP_SOCKET_PROTOCOL: "wss"
+
+  REACT_APP_SUPPORT_EMAIL: "pilot-support@indocresearch.com"
+
+  REACT_APP_ORGANIZATION_PORTAL_DOMAIN: "indocresearch.com"
+
+  REACT_APP_KEYCLOAK_REALM: "pilot"
+  REACT_APP_DOMAIN: "dev.pilot.indocresearch.com"
+  REACT_APP_DEFAULT_AUTH_URL: "https://iam.dev.pilot.indocresearch.com"
+
+  REACT_APP_PLATFORM: "Pilot"
+
+  REACT_APP_DOWNLOAD_URL_V2: "/download/core/v2/dataset/download"
+  REACT_APP_DOWNLOAD_URL_V1: "/download/core/v1/download"
+  REACT_APP_PROXY_ROUTE: "/pilot/api"
+
+  REACT_APP_API_PATH: "https://api.dev.pilot.indocresearch.com/pilot/portal"
+  REACT_APP_UPLOAD_URL: "https://api.dev.pilot.indocresearch.com/pilot/upload/gr"
+  REACT_APP_DOWNLOAD_GR: "https://api.dev.pilot.indocresearch.com/pilot/portal/download/gr"
+  REACT_APP_DOWNLOAD_CORE: "https://api.dev.pilot.indocresearch.com/pilot/portal/download/core"
+
+  REACT_APP_ARRANGER_API: "https://api.dev.pilot.indocresearch.com/pilot/arranger"
+  REACT_APP_ARRANGER_GRAPHQLFIELD: "pilotdevtestalias"
+  REACT_APP_ARRANGER_PROJECTID: "pilotdev"
+
+  REACT_APP_ENABLE_SELF_REGISTRATION: "true"
+  REACT_APP_SUPERSET_SUBDOMAIN: "true"
+
+  REACT_APP_DOC_BUCKET: "https://prod17796storage.blob.core.windows.net/public-docs"
+
+  REACT_APP_REMOTE_MODULE_BRANDING_URL: "https://portal-dev--portal-branding.netlify.app"
+
+  REACT_APP_SUPERSET_SUBDOMAIN_BASE: "dev.pilot.indocresearch.com"
 
 podAnnotations: {}
 
@@ -36,9 +71,13 @@ podSecurityContext: {}
 
 securityContext: {}
 
+container:
+  port: 3000
+
 service:
   type: ClusterIP
-  port: 80
+  port: 3000
+
 
 ingress:
   enabled: false

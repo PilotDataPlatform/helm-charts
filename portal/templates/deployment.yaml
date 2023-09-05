@@ -39,8 +39,97 @@ spec:
             - containerPort: {{ .Values.container.port }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+###################### START OF APP CONFIG #############################     
           - name: env
-            value: {{ .Values.appConfig.env }}
+            value: {{ .Values.appConfig.env | quote }}
+
+#domain
+          - name: REACT_APP_DOMAIN
+            value: {{ .Values.appConfig.REACT_APP_DOMAIN | quote }}
+          - name: REACT_APP_ORGANIZATION_PORTAL_DOMAIN
+            value: {{ .Values.appConfig.REACT_APP_ORGANIZATION_PORTAL_DOMAIN | quote }} 
+
+          - name: REACT_APP_PORTAL_PATH
+            value: {{ .Values.appConfig.REACT_APP_PORTAL_PATH | quote }}
+          - name: REACT_APP_BRANDING_PATH
+            value: {{ .Values.appConfig.REACT_APP_BRANDING_PATH | quote }}      
+          - name: REACT_APP_SOCKET_PROTOCOL
+            value: {{ .Values.appConfig.REACT_APP_SOCKET_PROTOCOL | quote }} 
+          - name: REACT_APP_PLATFORM
+            value: {{ .Values.appConfig.REACT_APP_PLATFORM | quote }}   
+
+# email
+          - name: REACT_APP_SUPPORT_EMAIL
+            value: {{ .Values.appConfig.REACT_APP_SUPPORT_EMAIL | quote }}   
+
+# auth
+          - name: REACT_APP_DEFAULT_AUTH_URL
+            value: {{ .Values.appConfig.REACT_APP_DEFAULT_AUTH_URL | quote }} 
+{{- if not .Values.appConfig.tenant_id}}
+          - name: REACT_APP_KEYCLOAK_REALM
+            value: {{ .Values.appConfig.REACT_APP_KEYCLOAK_REALM | quote }} 
+{{- else }}
+          - name: REACT_APP_KEYCLOAK_REALM
+            value: {{ .Values.appConfig.tenant_id | quote }} 
+{{- end}}
+
+# public docs
+          - name: REACT_APP_DOC_BUCKET
+            value: {{ .Values.appConfig.REACT_APP_DOC_BUCKET | quote }} 
+
+# download
+          - name: REACT_APP_DOWNLOAD_URL_V2
+            value: {{ .Values.appConfig.REACT_APP_DOWNLOAD_URL_V2 | quote }} 
+          - name: REACT_APP_DOWNLOAD_URL_V1
+            value: {{ .Values.appConfig.REACT_APP_DOWNLOAD_URL_V1 | quote }} 
+          - name: REACT_APP_PROXY_ROUTE
+            value: {{ .Values.appConfig.REACT_APP_PROXY_ROUTE | quote }} 
+
+# arranger
+          - name: REACT_APP_ARRANGER_GRAPHQLFIELD
+            value: {{ .Values.appConfig.REACT_APP_ARRANGER_GRAPHQLFIELD | quote }} 
+          - name: REACT_APP_ARRANGER_PROJECTID
+            value: {{ .Values.appConfig.REACT_APP_ARRANGER_PROJECTID | quote }} 
+
+# branding
+          - name: REACT_APP_REMOTE_MODULE_BRANDING_URL
+            value: {{ .Values.appConfig.REACT_APP_REMOTE_MODULE_BRANDING_URL | quote }} 
+
+# superset
+          - name: REACT_APP_SUPERSET_SUBDOMAIN_BASE
+            value: {{ .Values.appConfig.REACT_APP_SUPERSET_SUBDOMAIN_BASE | quote }} 
+
+# paths
+{{- if not .Values.appConfig.use_domain }}
+          - name: REACT_APP_API_PATH
+            value: {{ .Values.appConfig.REACT_APP_API_PATH | quote }} 
+          - name: REACT_APP_UPLOAD_URL
+            value: {{ .Values.appConfig.REACT_APP_UPLOAD_URL | quote }} 
+          - name: REACT_APP_DOWNLOAD_GR
+            value: {{ .Values.appConfig.REACT_APP_DOWNLOAD_GR | quote }} 
+          - name: REACT_APP_DOWNLOAD_CORE
+            value: {{ .Values.appConfig.REACT_APP_DOWNLOAD_CORE | quote }} 
+          - name: REACT_APP_ARRANGER_API
+            value: {{ .Values.appConfig.REACT_APP_ARRANGER_API | quote }} 
+{{- else }}
+          - name: REACT_APP_API_PATH
+            value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/portal"
+          - name: REACT_APP_UPLOAD_URL
+            value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/upload/gr"
+          - name: REACT_APP_DOWNLOAD_GR
+            value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/portal/download/gr"
+          - name: REACT_APP_DOWNLOAD_CORE
+            value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/portal/download/core"
+          - name: REACT_APP_ARRANGER_API
+            value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/arranger"
+{{- end}}
+
+          - name: REACT_APP_ENABLE_SELF_REGISTRATION
+            value: {{ .Values.appConfig.REACT_APP_ENABLE_SELF_REGISTRATION | quote }} 
+          - name: REACT_APP_SUPERSET_SUBDOMAIN
+            value: {{ .Values.appConfig.REACT_APP_SUPERSET_SUBDOMAIN | quote }} 
+
+###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
