@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "queue-service-consumer.fullname" . }}
+  name: {{ include "queue-consumer-service.fullname" . }}
   labels:
-    {{- include "queue-service-consumer.labels" . | nindent 4 }}
+    {{- include "queue-consumer-service.labels" . | nindent 4 }}
   {{- with .Values.deploymentAnnotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
@@ -18,7 +18,7 @@ spec:
   {{- end }}
   selector:
     matchLabels:
-      {{- include "queue-service-consumer.selectorLabels" . | nindent 6 }}
+      {{- include "queue-consumer-service.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -26,7 +26,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "queue-service-consumer.selectorLabels" . | nindent 8 }}
+        {{- include "queue-consumer-service.selectorLabels" . | nindent 8 }}
     spec:
       {{- with .Values.imagePullSecrets }}
       imagePullSecrets:

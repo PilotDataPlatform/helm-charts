@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "queue-service-consumer.fullname" . }}
+  name: {{ include "queue-consumer-service.fullname" . }}
   labels:
-    {{- include "queue-service-consumer.labels" . | nindent 4 }}
+    {{- include "queue-consumer-service.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "queue-service-consumer.fullname" . }}
+    name: {{ include "queue-consumer-service.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
