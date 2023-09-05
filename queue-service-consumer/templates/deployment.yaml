@@ -123,7 +123,7 @@ spec:
             value: "http://approval.utility:8000"
           - name: NOTIFICATION_SERVICE
             value: "http://notification.utility:5065"
-          - names: KAFKA_URL
+          - name: KAFKA_URL
             value: "kafka.utility:9092"
 {{- else }}
           - name: DATAOPS_SERVICE
@@ -140,7 +140,7 @@ spec:
             value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
           - name: NOTIFICATION_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
-          - names: KAFKA_URL
+          - name: KAFKA_URL
             value: "shared-kafka.datastores-helmfile:9092"
 {{- end}}
 # redis
