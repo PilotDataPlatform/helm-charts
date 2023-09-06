@@ -37,6 +37,10 @@ podSecurityContext: {}
 
 securityContext: {}
 
+service:
+  type: ClusterIP
+  port: 6062
+
 ingress:
   enabled: false
 
