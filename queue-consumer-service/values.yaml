@@ -39,7 +39,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 6062
+  port: 6060
 
 ingress:
   enabled: false
