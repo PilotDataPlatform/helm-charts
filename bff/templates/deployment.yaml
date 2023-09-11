@@ -137,7 +137,7 @@ spec:
           - name: NOTIFY_SERVICE
             value: "http://notification.utility:5065"
           - name: UPLOAD_SERVICE
-            value: "http://upload.greenroom:5065"      
+            value: "http://upload.greenroom:5079"      
           - name: DOWNLOAD_SERVICE_CORE
             value: "http://download.core:5077" 
           - name: DOWNLOAD_SERVICE_GR
@@ -162,7 +162,7 @@ spec:
           - name: NOTIFY_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
           - name: UPLOAD_SERVICE
-            value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5065"  
+            value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5079"  
           - name: DOWNLOAD_SERVICE_CORE
             value: "http://download.{{ .Values.appConfig.tenant_id }}-core:5077" 
           - name: DOWNLOAD_SERVICE_GR
