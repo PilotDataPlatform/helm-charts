@@ -105,9 +105,9 @@ spec:
           - name: ENTITYINFO_SERVICE
             value: "http://entityinfo.utility:5066"
           - name: METADATA_SERVICE
-            value: "http://metadata.utility:5065"
+            value: "http://metadata.utility:5066"
           - name: PROJECT_SERVICE
-            value: "http://project.utility:5065"
+            value: "http://project.utility:5064"
           - name: ELASTIC_SEARCH_SERVICE
             value: "http://elasticsearch-master.utility:9200"
           - name: KAFKA_URL
@@ -132,9 +132,9 @@ spec:
           - name: ENTITYINFO_SERVICE
             value: "http://entityinfo.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: METADATA_SERVICE
-            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: PROJECT_SERVICE
-            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: ELASTIC_SEARCH_SERVICE
             value: "http://elasticsearch-master.{{ .Values.appConfig.tenant_id }}-utility:9200"
           - name: KAFKA_URL
@@ -274,9 +274,9 @@ spec:
           - name: ENTITYINFO_SERVICE
             value: "http://entityinfo.utility:5066"
           - name: METADATA_SERVICE
-            value: "http://metadata.utility:5065"
+            value: "http://metadata.utility:5066"
           - name: PROJECT_SERVICE
-            value: "http://project.utility:5065"
+            value: "http://project.utility:5064"
           - name: ELASTIC_SEARCH_SERVICE
             value: "http://elasticsearch-master.utility:9200"
           - name: KAFKA_URL
@@ -301,9 +301,9 @@ spec:
           - name: ENTITYINFO_SERVICE
             value: "http://entityinfo.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: METADATA_SERVICE
-            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: PROJECT_SERVICE
-            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: ELASTIC_SEARCH_SERVICE
             value: "http://elasticsearch-master.{{ .Values.appConfig.tenant_id }}-utility:9200"
           - name: KAFKA_URL
