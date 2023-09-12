@@ -110,16 +110,16 @@ spec:
           - name: NOTIFY_SERVICE
             value: "http://notification.utility:5065"
           - name: PROJECT_SERVICE
-            value: "http://project.utility:5065"
+            value: "http://project.utility:5064"
           - name: WORKSPACE_SERVICE
-            value: "http://workspace.utility:5065"
+            value: "http://workspace.utility:5068"
 {{- else }}
           - name: NOTIFY_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
           - name: PROJECT_SERVICE
-            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: WORKSPACE_SERVICE
-            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5065"
+            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"
 {{- end}}
 
 # AD
