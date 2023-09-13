@@ -78,14 +78,14 @@ spec:
           #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
           - name: QUEUE_SERVICE
-            value: "http://queue-producer.utility:6060"
+            value: "http://queue-producer.greenroom:6060"
           - name: METADATA_SERVICE
             value: "http://metadata.utility:5066"
           - name: AUTH_SERVICE
             value: "http://auth.utility:5061"
 {{- else }}
           - name: QUEUE_SERVICE
-            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-utility:6060"
+            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
           - name: METADATA_SERVICE
             value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: AUTH_SERVICE
@@ -177,14 +177,14 @@ spec:
           #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
           - name: QUEUE_SERVICE
-            value: "http://queue-producer.utility:6060"
+            value: "http://queue-producer.greenroom:6060"
           - name: METADATA_SERVICE
             value: "http://metadata.utility:5066"
           - name: AUTH_SERVICE
             value: "http://auth.utility:5061"
 {{- else }}
           - name: QUEUE_SERVICE
-            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-utility:6060"
+            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
           - name: METADATA_SERVICE
             value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: AUTH_SERVICE
