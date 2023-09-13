@@ -125,7 +125,7 @@ spec:
           - name: AUTH_SERVICE
             value: "http://auth.utility:5061"
           - name: APPROVAL_SERVICE
-            value: "http://approval.utility:5061"
+            value: "http://approval.utility:8000"
           - name: DATAOPS_SERVICE
             value: "http://dataops.utility:5063"
           - name: DATASET_SERVICE
@@ -150,7 +150,7 @@ spec:
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
           - name: APPROVAL_SERVICE
-            value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:5061"
+            value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
           - name: DATAOPS_SERVICE
             value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: DATASET_SERVICE
