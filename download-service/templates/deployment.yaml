@@ -87,14 +87,8 @@ spec:
             value: "Core"
           - name: GREEN_ZONE_LABEL
             value: "Greenroom"
-{{- if contains "core" .Values.appConfig.namespace }}
           - name: ROOT_PATH
-            value: "/core-data"
-{{- else }}
-          - name: ROOT_PATH
-            value: "/data/core-storage"
-{{- end}}
-            value: "Greenroom"
+            value: {{ .Values.appConfig.ROOT_PATH | quote }}
           - name: DOWNLOAD_TOKEN_EXPIRE_AT
             value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
           #if tenant id is not set
