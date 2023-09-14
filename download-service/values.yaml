@@ -57,6 +57,8 @@ appConfig:
   srv_namespace: service_download
   namespace: ""
 
+  ROOT_PATH: "/data/core-storage"
+
   LEVEL_DEFAULT: 30 # WARN
   LEVEL_FILE: 30 # WARN
   LEVEL_STDOUT: 30 # WARN
