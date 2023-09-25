@@ -103,7 +103,7 @@ spec:
           - name: METADATA_SERVICE
             value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
           - name: KAFKA_URL
-            value: "shared-kafka.datastores-helmfile:9092"
+            value: "kafka.datastores:9092"
           - name: KAFKA_ACTIVITY_TOPIC
             value: "{{ .Values.appConfig.tenant_id}}.metadata.items.activity"
 {{- end}}
