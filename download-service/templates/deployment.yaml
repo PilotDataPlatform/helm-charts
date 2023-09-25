@@ -121,7 +121,7 @@ spec:
           - name: PROJECT_SERVICE
             value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: KAFKA_URL
-            value: "shared-kafka.datastores-helmfile:9092"
+            value: "kafka.datastores:9092"
           - name: KAFKA_DATASET_ACTIVITY_TOPIC
             value: "{{ .Values.appConfig.tenant_id }}.dataset.activity"
           - name: KAFKA_ITEM_ACTIVITY_TOPIC
