@@ -122,8 +122,6 @@ spec:
             value: "http://queue-producer.greenroom:6060"
 {{- else }}
           - name: NEO4J_SERVICE
-            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
-           - name: NEO4J_SERVICE
             value: "http://neo4j.{{ .Values.appConfig.tenant_id }}-utility:5062"
           - name: QUEUE_SERVICE
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
@@ -291,8 +289,6 @@ spec:
             value: "http://queue-producer.greenroom:6060"
 {{- else }}
           - name: NEO4J_SERVICE
-            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
-           - name: NEO4J_SERVICE
             value: "http://neo4j.{{ .Values.appConfig.tenant_id }}-utility:5062"
           - name: QUEUE_SERVICE
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
