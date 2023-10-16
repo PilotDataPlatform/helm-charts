@@ -1,0 +1,27 @@
+apiVersion: v2
+dependencies:
+- condition: eck-elasticsearch.enabled
+  name: eck-elasticsearch
+  repository: ""
+  version: 0.7.0
+- condition: eck-kibana.enabled
+  name: eck-kibana
+  repository: ""
+  version: 0.7.0
+- condition: eck-agent.enabled
+  name: eck-agent
+  repository: ""
+  version: 0.7.0
+- condition: eck-fleet-server.enabled
+  name: eck-fleet-server
+  repository: ""
+  version: 0.7.0
+- condition: eck-beats.enabled
+  name: eck-beats
+  repository: ""
+  version: 0.7.0
+description: Elastic Stack managed by the ECK Operator
+kubeVersion: '>= 1.21.0-0'
+name: eck-stack
+type: application
+version: 0.7.0
