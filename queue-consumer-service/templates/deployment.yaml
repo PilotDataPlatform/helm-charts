@@ -133,7 +133,7 @@ spec:
           - name: NOTIFICATION_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
           - name: KAFKA_URL
-            value: "shared-kafka.datastores-helmfile:9092"
+            value: "kafka.datastores:9092"
 {{- end}}
 # redis
 {{- if not .Values.appConfig.tenant_id }}
