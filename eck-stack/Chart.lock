@@ -1,0 +1,18 @@
+dependencies:
+- name: eck-elasticsearch
+  repository: ""
+  version: 0.7.0
+- name: eck-kibana
+  repository: ""
+  version: 0.7.0
+- name: eck-agent
+  repository: ""
+  version: 0.7.0
+- name: eck-fleet-server
+  repository: ""
+  version: 0.7.0
+- name: eck-beats
+  repository: ""
+  version: 0.7.0
+digest: sha256:18ae404f59c2eea67e540ce9a3ad546a22943d596f47d01d35736f53f27a774e
+generated: "2023-07-25T14:46:03.207560835Z"
