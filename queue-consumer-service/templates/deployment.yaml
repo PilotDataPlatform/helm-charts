@@ -56,7 +56,7 @@ spec:
           - name: env
             value: {{ .Values.appConfig.env | quote }}
           - name: bids_validate_image
-            value: "pilotdataplatform.azurecr.io/pipelines/bids-validator:edge"
+            value: "pilotdataplatform.azurecr.io/pipelines/bids-validator:{{ .Values.appConfig.bids_validator_app_version }}"
           - name: bids_validate_pipeline
             value: "bids_validate"
           - name: core_mount
@@ -72,13 +72,11 @@ spec:
           - name: data_lake
             value: "/data/core-storage"
           - name: data_transfer_image
-            value: "pilotdataplatform.azurecr.io/pipelines/filecopy:edge"
+            value: "pilotdataplatform.azurecr.io/pipelines/filecopy:{{ .Values.appConfig.filecopy_app_version }}"
           - name: gr_queue
             value: "gr_queue"
           - name: gr_exchange
             value: "gr_exchange"
-          - name: gm_queue_endpoint
-            value: "message-bus-greenroom.greenroom"
           - name: move_pipeline
             value: "data_delete"
           - name: move_pipeline_folder
@@ -101,6 +99,8 @@ spec:
             value: {{ .Values.appConfig.RDS_PORT | quote }}
 #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
+          - name: gm_queue_endpoint
+            value: "message-bus-greenroom.greenroom"
           - name: DATAOPS_SERVICE
             value: "http://dataops.utility:5063"
           - name: DATASET_SERVICE
@@ -115,9 +115,9 @@ spec:
             value: "http://approval.utility:8000"
           - name: NOTIFICATION_SERVICE
             value: "http://notification.utility:5065"
-          - name: KAFKA_URL
-            value: "kafka.utility:9092"
 {{- else }}
+          - name: gm_queue_endpoint
+            value: "message-bus-greenroom.{{ .Values.appConfig.tenant_id }}-greenroom"
           - name: DATAOPS_SERVICE
             value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: DATASET_SERVICE
@@ -132,9 +132,9 @@ spec:
             value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
           - name: NOTIFICATION_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
-          - name: KAFKA_URL
-            value: "kafka.datastores:9092"
 {{- end}}
+          - name: KAFKA_URL
+            value: "{{ .Values.appConfig.KAFKA_URL }}"
 # redis
 {{- if not .Values.appConfig.tenant_id }}
           - name: REDIS_HOST

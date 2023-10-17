@@ -22,12 +22,16 @@ container:
   port: 6060
 
 appConfig:
+  bids_validator_app_version: edge
+  filecopy_app_version: edge
   env: "dev"
   CONFIG_CENTER_ENABLED: false
   CONFIG_CENTER_BASE_URL:
+  KAFKA_URL: "kafka.utility:9092"
   tenant_id: ""
   RDS_HOST: "postgres.utility"
   RDS_PORT: "5432"
+
 
 podAnnotations: {}
 
