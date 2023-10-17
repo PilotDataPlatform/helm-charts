@@ -54,6 +54,9 @@ spec:
           {{- end }}
           {{- end }}
           env:
+###################### START OF APP CONFIG #############################  
+          - name: ELASTICSEARCH_URI
+            value: {{ .Values.appConfig.ELASTICSEARCH_URI | quote}}
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
           - name: {{ $key }}
