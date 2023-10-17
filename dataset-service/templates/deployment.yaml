@@ -43,13 +43,13 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.initCommand }}
           {{- with .Values.initCommand }}
-          command: 
+          command:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.initArgs }}
           {{- with .Values.initArgs }}
-          args: 
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
@@ -82,13 +82,17 @@ spec:
           - name: GREEN_ZONE_LABEL
             value: "Greenroom"
 {{- if not .Values.appConfig.tenant_id }}
+          - name: KAFKA_METADATA_TOPIC
+            value: "metadata.items.activity"
+          - name: KAFKA_DATASET_TOPIC
+            value: "dataset.activity"
           - name: MINIO_OPENID_CLIENT
             value: "react-app"
           - name: MINIO_ENDPOINT
             value: "minio.minio:9000"
           - name: MINIO_HTTPS
             value: "False"
-          - name: S3_GATEWAY 
+          - name: S3_GATEWAY
             value: "True"
 {{- end }}
           #keycloak
@@ -146,7 +150,7 @@ spec:
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
 {{- end}}
-          # Relational Database 
+          # Relational Database
 {{- if not .Values.appConfig.tenant_id }}
           - name: OPSDB_UTILITY_HOST
             value: {{ .Values.appConfig.OPSDB_UTILITY_HOST | quote }}
@@ -210,13 +214,13 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.command }}
           {{- with .Values.command }}
-          command: 
+          command:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.args }}
           {{- with .Values.args }}
-          args: 
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
@@ -255,7 +259,7 @@ spec:
             value: "minio.minio:9000"
           - name: MINIO_HTTPS
             value: "False"
-          - name: S3_GATEWAY 
+          - name: S3_GATEWAY
             value: "True"
 {{- end }}
           #keycloak
@@ -313,7 +317,7 @@ spec:
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
 {{- end}}
-          # Relational Database 
+          # Relational Database
 {{- if not .Values.appConfig.tenant_id }}
           - name: OPSDB_UTILITY_HOST
             value: {{ .Values.appConfig.OPSDB_UTILITY_HOST | quote }}
