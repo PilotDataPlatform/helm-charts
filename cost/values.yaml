@@ -1,0 +1,75 @@
+# Default values for billing-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+---
+nameOverride: ""
+fullnameOverride: "cost"
+
+replicaCount: 1
+
+image:
+  repository: pilotdataplatform.azurecr.io/cost
+  tag: 0.1.0
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+
+appConfig:
+  port: 7233
+  env: "dev"
+  srv_namespace: monitoring
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+container:
+  port: 7233
+
+service:
+  type: ClusterIP
+  port: 80
+
+podAnnotations: {}
+
+deploymentAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+imagePullSecrets: []
+
+resources: {}
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+extraEnv: {}
+
+extraEnvYaml: {}
+
+readinessProbe: []
+
+extraVolumeMounts: []
+
+extraVolumes: []
+
+updateStrategy: []
