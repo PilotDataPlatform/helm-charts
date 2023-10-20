@@ -4,6 +4,8 @@ image:
   repository: pilotdataplatform.azurecr.io/operator/workspace-operator
   pullPolicy: Always
 
+namespace: workspace-system
+
 nameOverride: workspace-operator
 fullNameOverride: workspace-operator
 

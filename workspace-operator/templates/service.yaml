@@ -4,6 +4,7 @@ metadata:
   name: {{ include "workspace-operator.fullname" . }}
   labels:
     {{- include "workspace-operator.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace }}
 spec:
   type: {{ .Values.service.type }}
   ports:
