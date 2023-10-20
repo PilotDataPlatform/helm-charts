@@ -1,0 +1,102 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: jupyterhub-manager-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: jupyterhub
+    app.kubernetes.io/part-of: jupyterhub
+    app.kubernetes.io/managed-by: kustomize
+  name: jupyterhub-manager-role
+  namespace: {{ .Values.namespace }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - "*"
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+- apiGroups:
+  - stable.indocpilot.io
+  resources:
+  - jupyterhubs
+  - jupyterhubs/status
+  - jupyterhubs/finalizers
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- verbs:
+  - "*"
+  apiGroups:
+  - "rbac.authorization.k8s.io"
+  resources:
+  - "clusterrolebindings"
+  - "clusterroles"
+- verbs:
+  - "*"
+  apiGroups:
+  - "policy"
+  resources:
+  - "poddisruptionbudgets"
+- verbs:
+  - "*"
+  apiGroups:
+  - ""
+  resources:
+  - "configmaps"
+  - "persistentvolumeclaims"
+  - "secrets"
+  - "serviceaccounts"
+  - "services"
+- verbs:
+  - "*"
+  apiGroups:
+  - "rbac.authorization.k8s.io"
+  resources:
+  - "rolebindings"
+  - "roles"
+- verbs:
+  - "*"
+  apiGroups:
+  - "apps"
+  resources:
+  - "daemonsets"
+  - "deployments"
+  - "statefulsets"
+- verbs:
+  - "*"
+  apiGroups:
+  - "networking.k8s.io"
+  resources:
+  - "networkpolicies"
+  - "ingresses"
+- verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+  apiGroups:
+  - "batch"
+  resources:
+  - "jobs"
