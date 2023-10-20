@@ -1,0 +1,121 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: workspace-manager-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: workspace
+    app.kubernetes.io/part-of: workspace
+    app.kubernetes.io/managed-by: kustomize
+  name: workspace-manager-role
+  namespace: {{ .Values.namespace }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - namespaces
+  - secrets
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - resources.azure.com
+  resources:
+  - resourcegroups
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - resources.azure.com
+  resources:
+  - resourcegroups/status
+  verbs:
+  - get
+- apiGroups:
+  - stable.indocpilot.com
+  resources:
+  - workspaces
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - stable.indocpilot.com
+  resources:
+  - workspaces/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - stable.indocpilot.com
+  resources:
+  - workspaces/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - stable.indocpilot.io
+  resources:
+  - jupyterhubs
+  - guacamoles
+  - postgresqls
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+- apiGroups:
+  - v1.edp.epam.com
+  resources:
+  - keycloakclients
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+- apiGroups:
+  - storage.k8s.io
+  resources:
+  - storageclasses
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - superset.stackable.tech
+  resources:
+  - supersetclusters
+  verbs:
+  - create
+  - delete
+  - get
+  - list

@@ -1,0 +1,51 @@
+replicaCount: 1
+
+image:
+  repository: pilotdataplatform.azurecr.io/operator/workspace-operator
+  pullPolicy: Always
+
+namespace: workspace-system
+
+nameOverride: workspace-operator
+fullNameOverride: workspace-operator
+
+serviceAccount:
+  create: true
+  name: "workspace-operator-sa"
+
+extraEnv: {}
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: NodePort
+  port: 80
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+resources: {}
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
