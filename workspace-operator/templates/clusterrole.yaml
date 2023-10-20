@@ -1,7 +1,7 @@
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
-metadata:  creationTimestamp: null
+metadata:
   name: workspace-manager-role
   namespace: {{ .Values.namespace }}
   labels:
