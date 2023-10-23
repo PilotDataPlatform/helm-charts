@@ -5,7 +5,7 @@ metadata:
   name: jupyterhub-manager-role
   namespace: {{ .Values.namespace }}
   labels:
-    {{- include "workspace-operator.labels" . | nindent 4 }}
+    {{- include "jupyterhub-operator.labels" . | nindent 4 }}
 rules:
 - apiGroups:
   - ""
