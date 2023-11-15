@@ -63,3 +63,24 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
+
+ingress:
+  enabled: false
+
+# Regular environment variables
+env: {}
+#env:
+#  ENV_VAR1: "value1"
+#  ENV_VAR2: "value2"
+
+## Sensitive environment variables from secrets
+secretEnv: {}
+#secretEnv:
+#  SENSITIVE_VAR1:
+#    secretName: "my-secret"
+#    secretKey: "username"
+#  SENSITIVE_VAR2:
+#    secretName: "my-secret"
+#    secretKey: "password"
+
+schedule: "0 3 * * *"  # At 3:00 AM every day
