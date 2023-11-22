@@ -10,7 +10,7 @@ metadata:
   namespace: "{{ .Values.appConfig.tenant_id }}-utility"
 {{- end}}
   labels:
-    {{- include "jupyterhub-operator.labels" . | nindent 4 }}
+    {{- include "workspace-service.labels" . | nindent 4 }}
 rules:
 - apiGroups:
   - "stable.indocpilot.com"
