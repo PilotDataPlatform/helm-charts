@@ -1,0 +1,21 @@
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+{{- if not .Values.appConfig.tenant_id }}
+  name: "workspace-manager"
+  namespace: "utility"
+{{- else }}
+  name: "workspace-manager-{{ .Values.appConfig.tenant_id }}"
+  namespace: "{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+  labels:
+    {{- include "jupyterhub-operator.labels" . | nindent 4 }}
+rules:
+- apiGroups:
+  - "stable.indocpilot.com"
+  resources:
+  - "*"
+  verbs:
+  - "*"
+  
