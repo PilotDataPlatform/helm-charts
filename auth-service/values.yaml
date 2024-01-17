@@ -105,6 +105,13 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name: 
 
+hpa:
+  create: true
+  name: "auth"
+  minReplicas: 1
+  maxReplicas: 10
+  cpuUtilizationPercentage: 80
+
 container:
   port: 5061
 
