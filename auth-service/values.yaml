@@ -106,7 +106,7 @@ serviceAccount:
   name: 
 
 hpa:
-  create: true
+  create: false
   name: "auth"
   minReplicas: 1
   maxReplicas: 3
