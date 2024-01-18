@@ -109,8 +109,9 @@ hpa:
   create: true
   name: "auth"
   minReplicas: 1
-  maxReplicas: 10
-  cpuUtilizationPercentage: 80
+  maxReplicas: 3
+  cpuUtilizationPercentage: 120
+  memoryUtilizationPercentage: 120
 
 container:
   port: 5061
