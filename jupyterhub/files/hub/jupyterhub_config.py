@@ -402,6 +402,27 @@ if cloud_metadata.get("blockWithIptables") == True:
 
     c.KubeSpawner.init_containers.append(ip_block_container)
 
+c.KubeSpawner.spawner_options_form = '''
+    <div class="form-group" id="kubespawner-profiles-list">
+        <label for="profile-item-minimal-environment" class="radio-label">
+            <input type="radio" name="profile" id="profile-item-minimal-environment" value="minimal-environment" checked>
+            <span class="radio-input"></span>
+            <div class="radio-label-text">
+                <p>Minimal environment</p>
+                <p>To avoid too much bells and whistles: Python.</p>
+            </div>
+        </label>
+    
+        <label for="profile-item-datascience-environment" class="radio-label">
+            <input type="radio" name="profile" id="profile-item-datascience-environment" value="datascience-environment">
+            <span class="radio-input"></span>
+            <div class="radio-label-text">
+                <p>Datascience environment</p>
+                <p>If you want the additional bells and whistles: Python, R, and Julia.</p>
+                </div>
+        </label>
+    </div>
+'''
 
 if get_config("debug.enabled", False):
     c.JupyterHub.log_level = "DEBUG"
