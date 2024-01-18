@@ -36,7 +36,7 @@
     */}}
     {{- $fullname_override := .Values.fullnameOverride }}
     {{- $name_override := .Values.nameOverride }}
-    {{- if ne .Chart.Name "jupyterhub" }}
+    {{- if ne .Chart.Name "jupyterhub-pilot" }}
         {{- if .Values.jupyterhub }}
             {{- $fullname_override = .Values.jupyterhub.fullnameOverride }}
             {{- $name_override = .Values.jupyterhub.nameOverride }}
@@ -89,7 +89,7 @@
 {{- define "jupyterhub.hub-existing-secret.fullname" -}}
     {{- /* A hack to avoid issues from invoking this from a parent Helm chart. */}}
     {{- $existing_secret := .Values.hub.existingSecret }}
-    {{- if ne .Chart.Name "jupyterhub" }}
+    {{- if ne .Chart.Name "jupyterhub-pilot" }}
         {{- $existing_secret = .Values.jupyterhub.hub.existingSecret }}
     {{- end }}
     {{- if $existing_secret }}
