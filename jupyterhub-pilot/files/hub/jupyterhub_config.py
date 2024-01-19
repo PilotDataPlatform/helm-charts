@@ -446,7 +446,7 @@ if cloud_metadata.get("blockWithIptables") == True:
 
     c.KubeSpawner.init_containers.append(ip_block_container)
 
-c.KubeSpawner.spawner_options_form = '''
+c.KubeSpawner.options_form = '''
     <div class="form-group" id="kubespawner-profiles-list">
         <label for="profile-item-minimal-environment" class="radio-label">
             <input type="radio" name="profile" id="profile-item-minimal-environment" value="minimal-environment" checked>
