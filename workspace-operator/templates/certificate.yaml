@@ -1,0 +1,25 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  labels:
+    {{- include "workspace-operator.labels" . | nindent 4 }}
+  name: workspace-selfsigned-issuer
+  namespace: {{ .Values.namespace }}
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    {{- include "workspace-operator.labels" . | nindent 4 }}
+  name: workspace-serving-cert
+  namespace: {{ .Values.namespace }}
+spec:
+  dnsNames:
+  - "{{ include "workspace-operator.fullname" . }}.{{ .Values.namespace }}.svc"
+  - "{{ include "workspace-operator.fullname" . }}.{{ .Values.namespace }}.svc.cluster.local"
+  issuerRef:
+    kind: Issuer
+    name: workspace-selfsigned-issuer
+  secretName: webhook-server-cert # this secret will not be prefixed, since it's not managed by kustomize

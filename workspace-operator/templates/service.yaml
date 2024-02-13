@@ -1,16 +1,31 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "workspace-operator.fullname" . }}
   labels:
     {{- include "workspace-operator.labels" . | nindent 4 }}
+    control-plane: controller-manager
+  name: workspace-controller-manager-metrics-service
   namespace: {{ .Values.namespace }}
 spec:
-  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
   selector:
-    {{- include "workspace-operator.selectorLabels" . | nindent 4 }}
+    control-plane: controller-manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    {{- include "workspace-operator.labels" . | nindent 4 }}
+  name: workspace-webhook-service
+  namespace: {{ .Values.namespace }}
+spec:
+  ports:
+  - port: 443
+    protocol: TCP
+    targetPort: 9443
+  selector:
+    control-plane: controller-manager
