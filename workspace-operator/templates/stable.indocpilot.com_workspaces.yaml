@@ -4,7 +4,6 @@ metadata:
   annotations:
     cert-manager.io/inject-ca-from: {{ .Values.namespace }}/workspace-serving-cert
     controller-gen.kubebuilder.io/version: v0.11.1
-  creationTimestamp: "null"
   name: workspaces.stable.indocpilot.com
 spec:
   conversion:
