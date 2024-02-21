@@ -1,0 +1,69 @@
+# Default values for workflow-manager.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: pilotdataplatform.azurecr.io/workflow-manager
+  pullPolicy: IfNotPresent
+  tag: "1.0.1"
+
+
+appConfig:
+  tenant_id: ""
+  kafka_url: "kafka.utility:9092"
+  kafka_topic: "metadata.items.activity"
+  rabbitmq: "rabbitmq.workflow"
+  rabbitmq_user: "workflow"
+  db_url: "jdbc:postgresql://workflow-db-postgresql:5432/workflows"
+  notification_url: "http://notification.utility:5065"
+
+extraEnv: []
+extraEnvYaml: []
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: "workflow-manager-sa"
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 9081
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+
+resources: {}
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
