@@ -1,0 +1,70 @@
+# Default values for nf-weblog.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+consumerReplicaCount: 1
+apiReplicaCount: 1
+
+image:
+  repository: pilotdataplatform.azurecr.io/weblog
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  apiTag: "1.0.0a0-733a8df"
+  consumerTag: "1.0.0a0-efcf37d"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+appConfig:
+    tenant_id: ""
+    kafkaUri: "kafka-headless.utility:9092"
+    kafkaTopic: "nf-events"
+    kafkaConsumerGroup: "nf-consumer-group"
+    seekTobeginning: false
+    elasticserchUri: "http://elasticsearch-data.utility:9201"
+    elasticsearchRunsIndex: "nf-runs"
+    elasticsearchProcessIndex: "nf-processes"
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 5075
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+
+
+resources: {}
+
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

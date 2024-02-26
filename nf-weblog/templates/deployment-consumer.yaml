@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nf-weblog.fullname" . }}-consumer
+  labels:
+    {{- include "nf-weblog.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.consumerReplicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "nf-weblog.consumerSelectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "nf-weblog.consumerSelectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "nf-weblog.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:event-consumer-{{ .Values.image.consumerTag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: KAFKA_URI
+            value: {{ .Values.appConfig.kafkaUri | quote }}
+          - name: KAFKA_TOPIC
+            value: {{ .Values.appConfig.kafkaTopic | quote }}
+          - name: KAFKA_CONSUMER_GROUP
+            value: {{ .Values.appConfig.kafkaConsumerGroup | quote }}
+          - name: SEEK_TO_BEGINNING
+            value: {{ .Values.appConfig.seekTobeginning | quote }}
+          - name: ELASTICSEARCH_URI
+            value: {{ .Values.appConfig.elasticserchUri | quote }}
+          - name: ELASTICSEARCH_RUNS_INDEX
+            value: {{ .Values.appConfig.elasticsearchRunsIndex | quote }}
+          - name: ELASTICSEARCH_PROCESS_INDEX
+            value: {{ .Values.appConfig.elasticsearchProcessIndex | quote }}
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          ports: []
+          livenessProbe: null
+          readinessProbe: null
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
