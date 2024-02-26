@@ -20,7 +20,22 @@ appConfig:
   notification_url: "http://notification.utility:5065"
 
 extraEnv: []
-extraEnvYaml: []
+extraEnvYaml:
+  - name: SPRING_DATASOURCE_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: workflow-db-postgresql
+        key: postgres-password
+  - name: SPRING_FLYWAY_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: workflow-db-postgresql
+        key: postgres-password
+  - name: SPRING_RABBITMQ_PASSWORD
+    valueFrom:
+      secretKeyRef:
+        name: rabbitmq
+        key: rabbitmq-password
 
 imagePullSecrets: []
 nameOverride: ""

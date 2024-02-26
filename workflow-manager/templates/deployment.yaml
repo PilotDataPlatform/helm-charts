@@ -36,19 +36,19 @@ spec:
           env:
           ###################### START OF APP CONFIG #############################
           - name: SERVER_PORT
-            value: {{ .Values.service.port }}
+            value: {{ .Values.service.port | quote}}
           - name: SPRING_KAFKA_BOOTSTRAP-SERVERS
-            value: {{ .Values.appConfig.kafka_url }}
+            value: {{ .Values.appConfig.kafka_url | quote }}
           - name: AVRO_TOPIC_NAME
-            value: {{ .Values.appConfig.kafka_topic }}
+            value: {{ .Values.appConfig.kafka_topic | quote }}
           - name: SPRING_RABBITMQ_HOST
-            value: {{ .Values.appConfig.rabbitmq }}
+            value: {{ .Values.appConfig.rabbitmq | quote }}
           - name: SPRING_DATASOURCE_URL
-            value: {{ .Values.appConfig.db_url }}
+            value: {{ .Values.appConfig.db_url | quote }}
           - name: SPRING_FLYWAY_URL
-            value: {{ .Values.appConfig.db_url }}
+            value: {{ .Values.appConfig.db_url | quote }}
           - name: NOTIFICATION_API_URL
-            value: {{ .Values.appConfig.notification_url }}
+            value: {{ .Values.appConfig.notification_url | quote }}
           ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
