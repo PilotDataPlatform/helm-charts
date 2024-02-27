@@ -27,6 +27,34 @@ spec:
       serviceAccountName: {{ include "nf-weblog.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      initContainers:
+        - name: "init-{{ .Chart.Name }}"
+          image: "{{ .Values.image.repository }}:weblog-api-{{ .Values.image.apiTag | default .Chart.AppVersion }}-init"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+          - name: KAFKA_URI
+            value: {{ .Values.appConfig.kafkaUri | quote }}
+          - name: KAFKA_TOPIC
+            value: {{ .Values.appConfig.kafkaTopic | quote }}
+          - name: KAFKA_CONSUMER_GROUP
+            value: {{ .Values.appConfig.kafkaConsumerGroup | quote }}
+          - name: SEEK_TO_BEGINNING
+            value: {{ .Values.appConfig.seekTobeginning | quote }}
+          - name: ELASTICSEARCH_URI
+            value: {{ .Values.appConfig.elasticserchUri | quote }}
+          - name: ELASTICSEARCH_RUNS_INDEX
+            value: {{ .Values.appConfig.elasticsearchRunsIndex | quote }}
+          - name: ELASTICSEARCH_PROCESS_INDEX
+            value: {{ .Values.appConfig.elasticsearchProcessIndex | quote }}
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
