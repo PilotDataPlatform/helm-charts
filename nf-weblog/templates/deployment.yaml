@@ -87,7 +87,7 @@ spec:
 {{- end }}
           ports:
               - name: http
-                containerPort: {{ .Values.container.port }}
+                containerPort: {{ .Values.service.port }}
           livenessProbe: null
           readinessProbe: null
           resources:
