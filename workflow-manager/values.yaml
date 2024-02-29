@@ -6,8 +6,8 @@ replicaCount: 1
 
 image:
   repository: pilotdataplatform.azurecr.io/workflow-manager
-  pullPolicy: IfNotPresent
-  tag: "1.0.1"
+  pullPolicy: Always
+  tag: "2.0.0"
 
 
 appConfig:
@@ -15,9 +15,14 @@ appConfig:
   kafka_url: "kafka.utility:9092"
   kafka_topic: "metadata.items.activity"
   rabbitmq: "rabbitmq.workflow"
+  rabbitmq_port: "5672"
   rabbitmq_user: "workflow"
+  rabbitmq_concurrent_consumers: "10"
+  rabbitmq_max_concurrent_consumers: "20"
   db_url: "jdbc:postgresql://workflow-db-postgresql:5432/workflows"
-  notification_url: "http://notification.utility:5065"
+  workflows_namespace: "workflow"
+  notification_url: "http://notification.utility:5065/v1"
+  weblog_url: "http://nf-weblog.workflow:5075/v1"
 
 extraEnv: []
 extraEnvYaml:
