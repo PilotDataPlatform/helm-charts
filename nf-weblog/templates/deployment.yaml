@@ -86,9 +86,8 @@ spec:
           {{- toYaml . | nindent 10 }}
 {{- end }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
+              - name: http
+                containerPort: {{ .Values.container.port }}
           livenessProbe: null
           readinessProbe: null
           resources:
