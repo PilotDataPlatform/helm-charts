@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: {{ include "nf-weblog.fullname" . }}-api
   labels:
-    {{- include "nf-weblog.labels" . | nindent 4 }}
+    {{- include "nf-weblog.apiLabels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.apiReplicaCount }}
@@ -86,9 +86,8 @@ spec:
           {{- toYaml . | nindent 10 }}
 {{- end }}
           ports:
-            - name: http
-              containerPort: {{ .Values.service.port }}
-              protocol: TCP
+              - name: http
+                containerPort: {{ .Values.service.port }}
           livenessProbe: null
           readinessProbe: null
           resources:
