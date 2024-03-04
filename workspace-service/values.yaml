@@ -20,16 +20,16 @@ appConfig:
   srv_namespace: service_workspace
 
   tenant_id: ""
-  
+
   GUACAMOLE_HOSTNAME: "dev.pilot.indocresearch.com"
-  GUACAMOLE_URL_PATH: "/workbench/{container_code}/guacamole"
+  GUACAMOLE_URL_PATH: "/workbench/{container_code}/guacamole/"
 
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: 
+  name:
 
 command:
   - "/bin/bash"
