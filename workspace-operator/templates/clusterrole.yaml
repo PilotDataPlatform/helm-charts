@@ -90,11 +90,13 @@ rules:
   - v1.edp.epam.com
   resources:
   - keycloakclients
+  - keycloakauthflows
   verbs:
   - create
   - delete
   - get
   - list
+  - update
 - apiGroups:
   - storage.k8s.io
   resources:
