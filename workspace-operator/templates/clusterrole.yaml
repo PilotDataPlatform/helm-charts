@@ -116,3 +116,29 @@ rules:
   - delete
   - get
   - list
+- apiGroups:
+  - network.azure.com
+  resources:
+  - virtualnetworks
+  - virtualnetworkssubnets
+  - networksecuritygroups
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - compute.azure.com
+  resources:
+  - virtualmachines
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
