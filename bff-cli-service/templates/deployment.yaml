@@ -145,7 +145,7 @@ spec:
           - name: PROJECT_SERVICE
             value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: UPLOAD_SERVICE_CORE
-            value: "http://upload{{ .Values.appConfig.tenant_id }}-.core:5079"     
+            value: "http://upload.{{ .Values.appConfig.tenant_id }}-core:5079"     
           - name: UPLOAD_SERVICE_GREENROOM
             value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5079"  
           - name: DOWNLOAD_SERVICE_CORE
