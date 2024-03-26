@@ -8,6 +8,7 @@ spec:
   schedule: "{{ .Values.schedule }}"
   jobTemplate:
     spec:
+      ttlSecondsAfterFinished: 10
       template:
         metadata:
           {{- with .Values.podAnnotations }}
