@@ -10,6 +10,5 @@ rules:
   resources: ["persistentvolumeclaims"]
   verbs: ["get", "list", "watch", "create", "delete", "update", "patch"]
 - apiGroups: [""]
-  resources: ["pods"]
+  resources: ["pods", "pods/exec"]
   verbs: ["get", "list", "watch", "create", "delete", "update", "patch"]
-  
