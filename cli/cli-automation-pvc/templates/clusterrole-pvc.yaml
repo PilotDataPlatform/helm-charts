@@ -3,6 +3,10 @@ kind: ClusterRole
 metadata:
   name: cli-pvc-clusterrole
 rules:
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get", "list", "watch", "create", "delete", "update", "patch"]
 - apiGroups: [""]
   resources: ["persistentvolumeclaims"]
   verbs: ["get", "list", "watch", "create", "delete", "update", "patch"]
+  
