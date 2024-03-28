@@ -1,7 +1,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: cli-pvc-clusterrole
+  name: {{ include "cli-automation-pvc.fullname" . }}-cli-pvc-crb
 rules:
 - apiGroups: ["apps"]
   resources: ["deployments"]
