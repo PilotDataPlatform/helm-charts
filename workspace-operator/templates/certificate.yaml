@@ -19,6 +19,10 @@ spec:
   dnsNames:
   - "{{ include "workspace-operator.fullname" . }}.{{ .Values.namespace }}.svc"
   - "{{ include "workspace-operator.fullname" . }}.{{ .Values.namespace }}.svc.cluster.local"
+  - "workspace-webhook-service.{{ .Values.namespace }}.svc"
+  - "workspace-webhook-service.{{ .Values.namespace }}.svc.cluster.local"
+  - "workspace-controller-manager-metrics-service.{{ .Values.namespace }}.svc"
+  - "workspace-controller-manager-metrics-service.{{ .Values.namespace }}.svc.cluster.local"
   issuerRef:
     kind: Issuer
     name: workspace-selfsigned-issuer
