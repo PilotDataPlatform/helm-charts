@@ -1,0 +1,22 @@
+apiVersion: v1.edp.epam.com/v1
+kind: KeycloakAuthFlow
+metadata:
+  name: keycloakauthflow-sample
+spec:
+  realm: keycloakrealm-sample
+  alias: MyBrowser
+  description: browser flow
+  providerId: basic-flow
+  topLevel: true
+  builtIn: false
+  authenticationExecutions:
+    - authenticator: "auth-cookie"
+      priority: 0
+      requirement: "ALTERNATIVE"
+    - authenticator: "identity-provider-redirector"
+      priority: 1
+      requirement: "REQUIRED"
+      authenticatorConfig:
+        alias: my-alias
+        config:
+          "defaultProvider": "my-alias"
