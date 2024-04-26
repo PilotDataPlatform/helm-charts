@@ -122,6 +122,8 @@ rules:
   - virtualnetworks
   - virtualnetworkssubnets
   - networksecuritygroups
+  - publicipaddresses
+  - networkinterfaces
   verbs:
   - create
   - delete
