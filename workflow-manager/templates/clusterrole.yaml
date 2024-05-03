@@ -24,3 +24,4 @@ rules:
   - watch
   - create
   - delete
+  - patch
