@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: {{ include "workspace-service.fullname" . }}
+  name: {{ printf "%s-%s" .Values.tenant_id (include "workspace-service.fullname" .) }}
   namespace: {{ .Values.namespace }}
   labels:
     {{- include "workspace-service.labels" . | nindent 4 }}
