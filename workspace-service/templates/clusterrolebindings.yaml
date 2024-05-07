@@ -1,13 +1,13 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ printf "%s-%s" .Values.tenant_id (include "workspace-service.fullname" .) }}
+  name: "{{ .Values.tenant_id }}-{{ include "workspace-service.fullname" . }}"
   labels:
     {{- include "workspace-service.labels" . | nindent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: {{ printf "%s-%s" .Values.tenant_id (include "workspace-service.fullname" .) }}
+  name: "{{ .Values.tenant_id }}-{{ include "workspace-service.fullname" . }}"
 subjects:
 - kind: ServiceAccount
   name: {{ include "workspace-service.serviceAccountName" . }}

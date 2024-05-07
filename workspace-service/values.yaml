@@ -105,5 +105,3 @@ updateStrategy:
 extraVolumeMounts: []
 
 extraVolumes: []
-
-updateStrategy: []
