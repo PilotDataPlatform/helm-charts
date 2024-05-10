@@ -35,3 +35,10 @@ rules:
   - patch
   - update
   - watch
+- apiGroups:
+  - compute.azure.com
+  resources:
+  - virtualmachines
+  verbs:
+  - get
+  - list
