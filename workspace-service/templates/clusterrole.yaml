@@ -40,10 +40,5 @@ rules:
   resources:
   - virtualmachines
   verbs:
-  - create
-  - delete
   - get
   - list
-  - patch
-  - update
-  - watch
