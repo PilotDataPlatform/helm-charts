@@ -4,8 +4,8 @@ metadata:
   name: cli-pvc-clusterrolebinding
 subjects:
 - kind: ServiceAccount
-  name: {{ include "cli-automation-pvc.serviceAccountName" . }}
-  namespace: {{ .Release.Namespace }}
+  name: cli-automation-pvc-cli-automation-public-bucket
+  namespace: doubledouble-cli
 roleRef:
   kind: ClusterRole
   name: cli-pvc-clusterrole
