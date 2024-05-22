@@ -52,7 +52,6 @@ rules:
   resources:
   - "secrets"
   - "services"
-  - "configmaps"
 - verbs:
   - "*"
   apiGroups:
