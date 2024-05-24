@@ -48,8 +48,17 @@ rules:
 - verbs:
   - "*"
   apiGroups:
+  - "storage.k8s.io"
+  resources:
+  - "storageclasses"
+- verbs:
+  - "*"
+  apiGroups:
   - ""
   resources:
+  - "configmaps"
+  - "persistentvolumes"
+  - "persistentvolumeclaims"
   - "secrets"
   - "services"
 - verbs:
