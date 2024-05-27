@@ -42,3 +42,21 @@ rules:
   verbs:
   - get
   - list
+- apiGroups:
+  - network.azure.com
+  resources:
+  - virtualnetworks
+  - publicipaddresses
+  - networkinterfaces
+  - virtualnetworkssubnets
+  - networksecuritygroups
+  verbs:
+  - get
+  - list
+- apiGroups:
+  - resources.azure.com
+  resources:
+  - resourcegroups
+  verbs:
+  - get
+  - list
