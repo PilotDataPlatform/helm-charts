@@ -29,7 +29,7 @@ spec:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       initContainers:
         - name: "init-{{ .Chart.Name }}"
-          image: "{{ .Values.image.apiRepository }}:{{ .Values.image.apiTag | default .Chart.AppVersion }}-init"
+          image: "{{ .Values.image.apiRepository }}:workflow-nf-weblog-api-init-{{ .Values.image.apiTag | default .Chart.AppVersion }}-init"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: KAFKA_URI
@@ -59,7 +59,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.apiRepository }}:{{ .Values.image.apiTag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.apiRepository }}:workflow-nf-weblog-api-{{ .Values.image.apiTag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: KAFKA_URI
