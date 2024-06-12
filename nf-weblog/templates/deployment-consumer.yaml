@@ -31,7 +31,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:event-consumer-{{ .Values.image.consumerTag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.consumerRepository }}:{{ .Values.image.consumerTag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
           - name: KAFKA_URI

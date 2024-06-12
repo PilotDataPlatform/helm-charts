@@ -6,11 +6,12 @@ consumerReplicaCount: 1
 apiReplicaCount: 1
 
 image:
-  repository: pilotdataplatform.azurecr.io/weblog
+  apiRepository: pilotdataplatform.azurecr.io/workflow-nf-weblog-api
+  consumerRepository: pilotdataplatform.azurecr.io/workflow-nf-weblog-consumer
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  apiTag: "1.0.0a0-733a8df"
-  consumerTag: "1.0.0a0-efcf37d"
+  apiTag: "1.0.4a0"
+  consumerTag: "1.0.5a0"
 
 imagePullSecrets: []
 nameOverride: ""
