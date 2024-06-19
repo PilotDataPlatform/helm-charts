@@ -10,7 +10,7 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - pods
+  - podss
   verbs:
   - get
   - watch
