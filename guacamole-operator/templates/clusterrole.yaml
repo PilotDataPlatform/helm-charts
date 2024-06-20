@@ -72,3 +72,11 @@ rules:
   - "apps"
   resources:
   - "deployments"
+- verbs:
+  - "*"
+  apiGroups:
+  - "networking.k8s.io"
+  resources:
+  - "ingresses"
+  - "ingressclasses"
+  - "ingresses/status"
