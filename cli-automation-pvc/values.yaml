@@ -8,7 +8,7 @@ image:
   repository: pilotdataplatform.azurecr.io/cli-automation-pvc
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: cli-automation-public-pvc-0.1.0
+  tag: cli-automation-public-pvc-0.1.3
 
 imagePullSecrets: []
 nameOverride: ""
