@@ -1,12 +1,12 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: {{ include "cli-automation-pvc.fullname" . }}-cli-pvc-crb
+  name: {{ include "cli-automation-pvc.fullname" . }}-{{ .Release.Namespace }}-cli-pvc-crb
 subjects:
 - kind: ServiceAccount
   name: {{ include "cli-automation-pvc.serviceAccountName" . }}
   namespace: {{ .Release.Namespace }}
 roleRef:
   kind: ClusterRole
-  name: {{ include "cli-automation-pvc.fullname" . }}-cli-pvc-cr
+  name: {{ include "cli-automation-pvc.fullname" . }}-{{ .Release.Namespace }}-cli-pvc-cr
   apiGroup: rbac.authorization.k8s.io
