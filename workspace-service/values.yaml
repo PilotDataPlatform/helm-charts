@@ -21,6 +21,12 @@ appConfig:
 
   tenant_id: ""
 
+  RDS_HOST: "postgres-workspace.utility"
+  RDS_PORT: 5432
+  RDS_USERNAME: "postgres"
+  RDS_DB_NAME: "workspace"
+  RDS_ECHO_SQL_QUERIES: false
+
   GUACAMOLE_HOSTNAME: "dev.pilot.indocresearch.com"
   GUACAMOLE_URL_PATH: "/workbench/{container_code}/guacamole/"
 
@@ -89,7 +95,7 @@ readinessProbe:
 livenessProbe:
   failureThreshold: 3
   httpGet:
-    path: /v1/health
+    path: /v1/health/
     port: 5068
     scheme: HTTP
   periodSeconds: 10
