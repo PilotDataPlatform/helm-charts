@@ -21,7 +21,7 @@ appConfig:
 
   tenant_id: ""
 
-  RDS_HOST: "postgres.utility"
+  RDS_HOST: "postgres-workspace.utility"
   RDS_PORT: 5432
   RDS_USERNAME: "postgres"
   RDS_DB_NAME: "workspace"
