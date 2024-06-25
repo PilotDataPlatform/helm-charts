@@ -95,7 +95,7 @@ readinessProbe:
 livenessProbe:
   failureThreshold: 3
   httpGet:
-    path: /v1/health
+    path: /v1/health/
     port: 5068
     scheme: HTTP
   periodSeconds: 10
