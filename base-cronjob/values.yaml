@@ -1,5 +1,5 @@
 cronjob:
-  name: ""
+  name: "custom-cronjob"
   # format
   # MIN HOUR DAY MONTH DAY_OF_WEEK
   schedule: "00 00 * * *"
@@ -7,7 +7,7 @@ cronjob:
   ttlSecondsAfterFinished: 100
 
 container:
-  name: ""
+  name: "my-container"
   image:
     repository: ""
     tag: ""
@@ -23,3 +23,4 @@ volume:
   enabled: false  # Optional: Define if a volume is needed
   name: my-volume
   claimName: my-claim
+  mountPath: "/tmp/volume"

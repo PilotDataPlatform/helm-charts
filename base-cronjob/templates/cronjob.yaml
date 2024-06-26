@@ -12,6 +12,11 @@ spec:
           containers:
           - name: {{ .Values.container.name }}
             image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag | default .Chart.AppVersion }}"
+            {{- if .Values.volume.enabled }}
+            volumeMounts:
+            - mountPath: {{ .Values.volume.mountPath }}
+              name: {{ .Values.volume.name }}
+            {{- end }}
             {{- if .Values.container.env }}
             env:
             {{- range .Values.container.env }}
@@ -24,5 +29,5 @@ spec:
           volumes:
           - name: {{ .Values.volume.name }}
             persistentVolumeClaim:
-              claimName: {{ .Values.volume.clainName }}
+              claimName: {{ .Values.volume.claimName }}
           {{- end }}
