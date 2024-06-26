@@ -26,4 +26,4 @@ helm install deployment-name ./mychart
 ```bash
 helm repo add pilot https://pilotdataplatform.github.io/helm-charts/
 helm install deployment-name pilot/mychart
-```antonio is testing
+```

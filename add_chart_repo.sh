@@ -39,6 +39,9 @@ fi
 # Extract the chart name without the repo prefix
 CHART_NAME=$(echo $FULL_CHART_NAME | cut -d "/" -f 2)
 
+# delete folder if exists
+rm -rf $CHART_NAME
+
 # Step 1: Download the chart
 helm repo update
 # Conditionally pull the chart with or without a specific version
