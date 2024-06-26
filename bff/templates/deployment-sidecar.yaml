@@ -1,0 +1,104 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "bff.fullname" . }}-sidecar
+  {{- with .Values.deploymentAnnotationsSidecar }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  labels:
+    {{- include "bff.labelsSidecar" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+    {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "bff.selectorLabelsSidecar" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "bff.selectorLabelsSidecar" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecretsSidecar }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.serviceAccountSidecar.create }}
+      serviceAccountName: {{ .Values.serviceAccountSidecar.name }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}-sidecar
+          image: "{{ .Values.image.repositorySidecar }}:{{ .Values.image.tagSidecar | default .Chart.AppVersion }}"
+          ports:
+            - containerPort: {{ .Values.container.sidecarPort }}
+          imagePullPolicy: {{ .Values.image.pullPolicySidecar }}
+          {{- if .Values.commandSidecar }}
+          {{- with .Values.commandSidecar }}
+          command: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.argsSidecar }}
+          {{- with .Values.argsSidecar }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          env:
+###################### START OF APP CONFIG #############################    
+          - name: HOST
+            value: {{ .Values.appConfigSidecar.HOST | quote }}
+          - name: PORT
+            value: {{ .Values.appConfigSidecar.PORT | quote }}
+# redis
+{{- if not .Values.appConfigSidecar.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfigSidecar.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfigSidecar.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfigSidecar.REDIS_PORT | quote }}
+
+###################### END OF APP CONFIG #############################
+{{- if .Values.extraEnvSidecar }}
+  {{- range $key, $value := .Values.extraEnvSidecar }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvSidecarYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          resources:
+            {{- toYaml .Values.resourcesSidecar | nindent 12 }}
+          {{- if .Values.readinessProbeSidecar }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbeSidecar | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbeSidecar }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbeSidecar | nindent 12 }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

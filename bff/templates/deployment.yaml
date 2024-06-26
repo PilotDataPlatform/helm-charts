@@ -37,11 +37,11 @@ spec:
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repositoryBff }}:{{ .Values.image.tagBff | default .Chart.AppVersion }}"
           ports:
             - containerPort: {{ .Values.container.port }}
             - containerPort: {{ .Values.container.portalPort }}
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          imagePullPolicy: {{ .Values.image.pullPolicyBff }}
           {{- if .Values.command }}
           {{- with .Values.command }}
           command: 
