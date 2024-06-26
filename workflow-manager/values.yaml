@@ -24,7 +24,7 @@ appConfig:
   notification_url: "http://notification.utility:5065/v1"
   weblog_url: "http://nf-weblog.workflow:5075/v1"
 
-extraEnv: []
+extraEnv: {}
 extraEnvYaml:
   - name: SPRING_DATASOURCE_PASSWORD
     valueFrom:
