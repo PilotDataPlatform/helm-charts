@@ -32,6 +32,7 @@ hpa:
 container:
   port: 5060
   portalPort: 3000
+  
 
 command:
   - "/bin/bash"
@@ -107,3 +108,67 @@ updateStrategy: {}
 extraEnv: {}
 
 extraEnvYaml: {}
+
+sidecar:
+
+  enabled: false
+
+  replicaCount: 1
+
+  image:
+    repository: bff
+    tag: 1471
+    pullPolicy: Always
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: false
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name:
+
+  container:
+    port: 8080
+
+  service:
+    type: ClusterIP
+    port: 8080
+
+  appConfig:
+    REDIS_HOST: redis-master.redis
+    REDIS_PORT: 6379
+
+  command:
+    - "/bin/bash"
+  args:
+    - "-c"
+    - "python -m app"
+
+  resources:
+    requests:
+      memory: "500Mi"
+      cpu: "10m"
+    limits:
+      memory: "1000Mi"
+      cpu: "1"
+
+  readinessProbe:
+    tcpSocket:
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 10
+
+  autoscaling:
+    enabled: false
+
+  podAnnotations: {}
+
+  deploymentAnnotations: {}
+
+  updateStrategy: {}
+
+  imagePullSecrets: []
+
+  extraEnv: {}
+
+  extraEnvYaml: {}
