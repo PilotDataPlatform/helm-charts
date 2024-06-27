@@ -1,15 +1,17 @@
+{{- if .Values.sidecar.enabled -}}
 apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "bff.fullname" . }}-sidecar
   labels:
-    {{- include "bff.labelsSidecar" . | nindent 4 }}
+    {{- include "bff.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.serviceSidecar.type }}
+  type: {{ .Values.sidecar.service.type }}
   ports:
-    - port: {{ .Values.serviceSidecar.port }}
-      targetPort: {{ .Values.serviceSidecar.targetPort }}
+    - port: {{ .Values.sidecar.service.port }}
+      targetPort: {{ .Values.sidecar.service.targetPort }}
       protocol: TCP
       name: {{ include "bff.fullname" . }}-sidecar
   selector:
-    {{- include "bff.selectorLabelsSidecar" . | nindent 4 }}
+    {{- include "bff.selectorLabels" . | nindent 4 }}
+{{- end }}

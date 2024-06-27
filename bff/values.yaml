@@ -5,12 +5,9 @@
 replicaCount: 1
 
 image:
-  repositoryBff: bff
-  tagBff: 1471
-  pullPolicyBff: Always
-  repositorySidecar: bff
-  tagSidecar: 1471
-  pullPolicySidecar: Always
+  repository: bff
+  tag: 1471
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
 
 imagePullSecrets: []
@@ -18,13 +15,6 @@ nameOverride: ""
 fullnameOverride: bff
 
 serviceAccount:
-  # Specifies whether a service account should be created
-  create: false
-  # The name of the service account to use.
-  # If not set and create is true, a name is generated using the fullname template
-  name:
-
-serviceAccountSidecar:
   # Specifies whether a service account should be created
   create: false
   # The name of the service account to use.
@@ -42,7 +32,7 @@ hpa:
 container:
   port: 5060
   portalPort: 3000
-  sidecarPort: 8080
+  
 
 command:
   - "/bin/bash"
@@ -74,10 +64,6 @@ appConfig:
   REDIS_PORT: 6379
   INVITATION_URL_LOGIN: 
 
-appConfigSidecar:
-  REDIS_HOST: redis-master.redis
-  REDIS_PORT: 6379
-
 podAnnotations: {}
 
 deploymentAnnotations: {}
@@ -91,22 +77,10 @@ service:
   port: 5060
   portalPort: 3000
 
-serviceSidecar:
-  type: ClusterIP
-  port: 8080
-
 ingress:
   enabled: false
 
 resources:
-  requests:
-    memory: "500Mi"
-    cpu: "10m"
-  limits:
-    memory: "1000Mi"
-    cpu: "1"
-
-resourcesSidecar:
   requests:
     memory: "500Mi"
     cpu: "10m"
@@ -129,18 +103,72 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
 
-readinessProbeSidecar:
-  tcpSocket:
-    port: 8080
-  initialDelaySeconds: 5
-  periodSeconds: 10
-
 updateStrategy: {}
 
 extraEnv: {}
 
-extraEnvSidecar: {}
-
 extraEnvYaml: {}
 
-extraEnvSidecarYaml: {}
+sidecar:
+
+  enabled: false
+
+  replicaCount: 1
+
+  image:
+    repository: bff
+    tag: 1471
+    pullPolicy: Always
+
+  serviceAccount:
+    # Specifies whether a service account should be created
+    create: false
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name:
+
+  container:
+    port: 8080
+
+  service:
+    type: ClusterIP
+    port: 8080
+
+  appConfig:
+    REDIS_HOST: redis-master.redis
+    REDIS_PORT: 6379
+
+  command:
+    - "/bin/bash"
+  args:
+    - "-c"
+    - "python -m app"
+
+  resources:
+    requests:
+      memory: "500Mi"
+      cpu: "10m"
+    limits:
+      memory: "1000Mi"
+      cpu: "1"
+
+  readinessProbe:
+    tcpSocket:
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 10
+
+  autoscaling:
+    enabled: false
+
+  podAnnotations: {}
+
+  deploymentAnnotations: {}
+
+  updateStrategy: {}
+
+  imagePullSecrets: []
+
+  extraEnv: {}
+
+  extraEnvYaml: {}
