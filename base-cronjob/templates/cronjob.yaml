@@ -1,92 +1,33 @@
-{{- range $job, $val := .Values.cronjob.crons }}
-apiVersion: batch/v1beta1
+apiVersion: batch/v1
 kind: CronJob
 metadata:
-  namespace: {{ .Values.env }}
-  name: {{ .name }}
-  labels:
-    draft: {{ default "draft-app" $.Values.draft }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
+  name: {{ .Values.cronjob.name }}
 spec:
-  schedule: {{ .schedule | quote }}
-  successfulJobsHistoryLimit: 0 
+  schedule: {{ .Values.cronjob.schedule }}
   jobTemplate:
     spec:
+      ttlSecondsAfterFinished: {{ .Values.cronjob.ttlSecondsAfterFinished }}
       template:
-        metadata:
-          {{- with .Values.podAnnotations }}
-          annotations:
-            {{- toYaml . | nindent 8 }}
+        spec:
+          containers:
+          - name: {{ .Values.container.name }}
+            image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag | default .Chart.AppVersion }}"
+            {{- if .Values.volume.enabled }}
+            volumeMounts:
+            - mountPath: {{ .Values.volume.mountPath }}
+              name: {{ .Values.volume.name }}
+            {{- end }}
+            {{- if .Values.container.env }}
+            env:
+            {{- range .Values.container.env }}
+              - name: {{ .name }}
+                value: {{ .value }}
+            {{- end }}
+            {{- end }}
+          restartPolicy: {{ .Values.cronjob.restartPolicy }}
+          {{- if .Values.volume.enabled }}
+          volumes:
+          - name: {{ .Values.volume.name }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.volume.claimName }}
           {{- end }}
-          labels:
-            {{- include "base-chart.selectorLabels" . | nindent 8 }}
-        spec:       
-               containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image.repository }}:{{ .Values.fullnameOverride }}-{{ .Values.image.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image.pullPolicy }}
-          {{- if .Values.command }}
-          {{- with .Values.command }}
-          command: 
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- end }}
-          {{- if .Values.args }}
-          {{- with .Values.args }}
-          args: 
-            {{- toYaml . | nindent 12 }}
-          {{- end }}
-          {{- end }}
-          env:
-          - name: port
-            value: {{ .Values.appConfig.port | quote }}
-          - name: env
-            value: {{ .Values.appConfig.env | quote }}
-          - name: srv_namespace
-            value: {{ .Values.appConfig.srv_namespace | quote }}
-{{- if .Values.extraEnv }}
-  {{- range $key, $value := .Values.extraEnv }}
-          - name: {{ $key }}
-            value: {{ $value | quote }}
-  {{- end }}
-{{- end }}
-{{- with .Values.extraEnvYaml }}
-          {{- toYaml . | nindent 10 }}
-{{- end }}
-          ports:
-              - name: http
-                containerPort: {{ .Values.container.port }}
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-          {{- if .Values.readinessProbe }}
-          readinessProbe:
-            {{- toYaml .Values.readinessProbe | nindent 12 }}
-          {{- end }}
-          {{- if .Values.livenessProbe }}
-          livenessProbe:
-            {{- toYaml .Values.livenessProbe | nindent 12 }}
-          {{- end }}
-          {{- if .Values.extraVolumeMounts }}
-          volumeMounts:
-            {{- toYaml .Values.extraVolumeMounts | nindent 12 }}
-          {{- end }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- if .Values.extraVolumes }}
-      volumes:
-        {{- toYaml .Values.extraVolumes | nindent 10 }}
-      {{- end }}
----
-{{- end}}
