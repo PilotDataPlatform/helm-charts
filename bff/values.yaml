@@ -138,11 +138,8 @@ sidecar:
     REDIS_HOST: redis-master.redis
     REDIS_PORT: 6379
 
-  command:
-    - "/bin/bash"
-  args:
-    - "-c"
-    - "python -m app"
+  command: []
+  args: []
 
   resources:
     requests:
@@ -152,11 +149,7 @@ sidecar:
       memory: "1000Mi"
       cpu: "1"
 
-  readinessProbe:
-    tcpSocket:
-      port: 8080
-    initialDelaySeconds: 5
-    periodSeconds: 10
+  readinessProbe: {}
 
   autoscaling:
     enabled: false
