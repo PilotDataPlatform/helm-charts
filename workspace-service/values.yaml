@@ -37,12 +37,6 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
-command:
-  - "/bin/bash"
-args:
-  - "-c"
-  - "python run.py"
-
 container:
   port: 5068
 
