@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ .Values.job.name }}
+spec:
+  ttlSecondsAfterFinished: {{ .Values.job.ttlSecondsAfterFinished }}
+  template:
+    spec:
+      containers:
+      - name: {{ .Values.container.name }}
+        image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag | default .Chart.AppVersion }}"
+        {{- if .Values.volume.enabled }}
+        volumeMounts:
+        - mountPath: {{ .Values.volume.mountPath }}
+          name: {{ .Values.volume.name }}
+        {{- end }}
+        {{- if .Values.container.env }}
+        env:
+        {{- range .Values.container.env }}
+          - name: {{ .name }}
+            value: {{ .value }}
+        {{- end }}
+        {{- end }}
+      restartPolicy: {{ .Values.job.restartPolicy }}
+      {{- if .Values.volume.enabled }}
+      volumes:
+      - name: {{ .Values.volume.name }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.volume.claimName }}
+      {{- end }}
