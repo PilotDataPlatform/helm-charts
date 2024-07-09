@@ -1,0 +1,17 @@
+job:
+  name: "custom-job"
+  restartPolicy: Never
+  ttlSecondsAfterFinished: 100
+
+container:
+  name: "my-container"
+  image:
+    repository: ""
+    tag: ""
+  env: {}
+
+volume:
+  enabled: false  # Optional: Define if a volume is needed
+  name: my-volume
+  claimName: my-claim
+  mountPath: "/tmp/volume"
