@@ -9,6 +9,7 @@ container:
     repository: ""
     tag: ""
   env: {}
+  extraEnvYaml: {}
 
 volume:
   enabled: false  # Optional: Define if a volume is needed

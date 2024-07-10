@@ -14,12 +14,15 @@ spec:
         - mountPath: {{ .Values.volume.mountPath }}
           name: {{ .Values.volume.name }}
         {{- end }}
-        {{- if .Values.container.env }}
+        {{- if or .Values.container.env .Values.container.extraEnvYaml}}
         env:
         {{- range $key, $value := .Values.container.env }}
           - name: {{ $key }}
             value: {{ $value | quote }}
         {{- end }}
+{{- with .Values.container.extraEnvYaml }}
+        {{- toYaml . | nindent 10 }}
+{{- end }}
         {{- end }}
       restartPolicy: {{ .Values.job.restartPolicy }}
       {{- if .Values.volume.enabled }}
