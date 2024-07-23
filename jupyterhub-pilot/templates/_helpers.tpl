@@ -195,7 +195,7 @@ component: {{ include "jupyterhub.componentLabel" . }}
                 template functions on it.
     */}}
     {{- $jupyterhub_values := .root.Values }}
-    {{- if ne .root.Chart.Name "jupyterhub-pilot" }}
+    {{- if ne .root.Chart.Name "jupyterhub" }}
         {{- if .root.Values.jupyterhub }}
             {{- $jupyterhub_values = .root.Values.jupyterhub }}
         {{- end }}
