@@ -396,8 +396,8 @@ singleuser:
       volumeNameTemplate: volume-{username}{servername}
       storageAccessModes: [ReadWriteOnce]
   image:
-    name: quay.io/jupyterhub/k8s-singleuser-sample
-    tag: "3.3.7"
+    name: quay.io/jupyter/minimal-notebook
+    tag: "2024-07-22"
     pullPolicy:
     pullSecrets: []
   startTimeout: 300
@@ -413,7 +413,15 @@ singleuser:
   cmd: jupyterhub-singleuser
   defaultUrl:
   extraPodConfig: {}
-  profileList: []
+  profileList:
+    - display_name: "Minimal environment"
+      description: "To avoid too much bells and whistles: Python."
+      default: true
+    - display_name: "Datascience environment"
+      description: "If you want the additional bells and whistles: Python, R, and Julia."
+      kubespawner_override:
+        image: quay.io/jupyter/datascience-notebook
+        tag: "2024-07-22"
 
 # scheduling relates to the user-scheduler pods and user-placeholder pods.
 scheduling:
