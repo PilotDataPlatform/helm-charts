@@ -3,8 +3,8 @@
     parent charts to reference these dynamic resource names.
 
     To avoid duplicating documentation, for more information, please see the the
-    fullnameOverride entry in schema.yaml or the configuration reference that
-    schema.yaml renders to.
+    fullnameOverride entry in values.schema.yaml or the configuration reference
+    that values.schema.yaml renders to.
 
     https://z2jh.jupyter.org/en/latest/resources/reference.html#fullnameOverride
 */}}
@@ -36,7 +36,7 @@
     */}}
     {{- $fullname_override := .Values.fullnameOverride }}
     {{- $name_override := .Values.nameOverride }}
-    {{- if ne .Chart.Name "jupyterhub-pilot" }}
+    {{- if ne .Chart.Name "jupyterhub" }}
         {{- if .Values.jupyterhub }}
             {{- $fullname_override = .Values.jupyterhub.fullnameOverride }}
             {{- $name_override = .Values.jupyterhub.nameOverride }}
@@ -89,8 +89,10 @@
 {{- define "jupyterhub.hub-existing-secret.fullname" -}}
     {{- /* A hack to avoid issues from invoking this from a parent Helm chart. */}}
     {{- $existing_secret := .Values.hub.existingSecret }}
-    {{- if ne .Chart.Name "jupyterhub-pilot" }}
-        {{- $existing_secret = .Values.jupyterhub.hub.existingSecret }}
+    {{- if ne .Chart.Name "jupyterhub" }}
+        {{- if .Values.jupyterhub }}
+            {{- $existing_secret = .Values.jupyterhub.hub.existingSecret }}
+        {{- end }}
     {{- end }}
     {{- if $existing_secret }}
         {{- $existing_secret }}
