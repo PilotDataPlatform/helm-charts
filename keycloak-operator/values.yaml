@@ -13,7 +13,7 @@ image:
   repository: pilotdataplatform.azurecr.io/operator/keycloak-operator
   # if not defined then .Chart.AppVersion is used
   # -- EDP keycloak-operator Docker image tag. The released image can be found on [Dockerhub](https://hub.docker.com/r/epamedp/keycloak-operator/tags)
-  tag: 1.18.1-indoc-9
+  tag: 1.21.0-indoc-1
 # -- If defined, a imagePullPolicy applied to the deployment
 imagePullPolicy: "Always"
 
