@@ -18,11 +18,3 @@ rules:
   - "*"
   verbs:
   - "*"
-- apiGroups:
-  - ""
-  resources:
-  - "secrets"
-  verbs:
-  - get
-  - list
-  - watch
