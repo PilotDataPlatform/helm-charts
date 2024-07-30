@@ -72,18 +72,19 @@ podSecurityContext: {}
 securityContext: {}
 
 container:
-  port: 3000
+  port: 80
 
 service:
   type: ClusterIP
   port: 3000
+  targetPort: 80
 
 
 ingress:
   enabled: false
   ## @param ingress.annotations [object] Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
   ## e.g:
-  ## annotations: 
+  ## annotations:
   ##   cert-manager.io/cluster-issuer: letsencrypt-prod
   ##   kubernetes.io/ingress.class: nginx
   annotations: {}
