@@ -22,6 +22,7 @@ container:
   port: 6060
 
 appConfig:
+  repository: "pilotdataplatform.azurecr.io"
   bids_validator_app_version: edge
   filecopy_app_version: edge
   env: "dev"
