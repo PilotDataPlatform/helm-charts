@@ -1,0 +1,23 @@
+app:
+  name: my-app
+
+namespace: my-namespace
+
+pvc:
+  name: my-pvc
+  accessMode: ReadWriteOnce
+  size: 1Gi
+  storageClassName: standard
+
+  limits:
+    size: 5Gi
+
+  selector:
+    app: my-app
+
+  volumeMode: Filesystem
+
+  dataSource:
+    name: ""
+    kind: PersistentVolumeClaim
+    apiGroup: v1

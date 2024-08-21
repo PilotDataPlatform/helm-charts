@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pvc.name }}
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: {{ .Values.app.name }}
+spec:
+  accessModes:
+    - {{ .Values.pvc.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.pvc.size }}
+    limits: # Optional limits (if supported)
+      storage: {{ .Values.pvc.limits.size | default .Values.pvc.size }}
+  storageClassName: {{ .Values.pvc.storageClassName | quote }}
+  selector: # Optional selector to match specific PV
+    matchLabels:
+      app: {{ .Values.pvc.selector.app | default "" }}
+  volumeMode: {{ .Values.pvc.volumeMode | default "Filesystem" }} # Filesystem or Block
+  dataSource: # Optional data source for cloning or restoring from snapshot
+    name: {{ .Values.pvc.dataSource.name | default "" }}
+    kind: {{ .Values.pvc.dataSource.kind | default "PersistentVolumeClaim" }}
+    apiGroup: {{ .Values.pvc.dataSource.apiGroup | default "v1" }}
