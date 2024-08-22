@@ -9,11 +9,9 @@ spec:
       containers:
       - name: {{ .Values.container.name }}
         image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag | default .Chart.AppVersion }}"
-        {{- if .Values.volume.enabled }}
-        volumeMounts:
-        - mountPath: {{ .Values.volume.mountPath }}
-          name: {{ .Values.volume.name }}
-        {{- end }}
+      {{- with .Values.volumeMounts }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
         {{- if or .Values.container.env .Values.container.extraEnvYaml}}
         env:
         {{- range $key, $value := .Values.container.env }}
@@ -25,9 +23,6 @@ spec:
 {{- end }}
         {{- end }}
       restartPolicy: {{ .Values.job.restartPolicy }}
-      {{- if .Values.volume.enabled }}
-      volumes:
-      - name: {{ .Values.volume.name }}
-        persistentVolumeClaim:
-          claimName: {{ .Values.volume.claimName }}
+      {{- with .Values.volumes }}
+        {{- toYaml . | nindent 6 }}
       {{- end }}
