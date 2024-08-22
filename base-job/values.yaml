@@ -11,8 +11,6 @@ container:
   env: {}
   extraEnvYaml: {}
 
-volume:
-  enabled: false  # Optional: Define if a volume is needed
-  name: my-volume
-  claimName: my-claim
-  mountPath: "/tmp/volume"
+volumes: {}
+
+volumeMounts: {}
