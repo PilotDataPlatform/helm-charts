@@ -14,9 +14,11 @@ spec:
     limits: # Optional limits (if supported)
       storage: {{ .Values.pvc.limits.size | default .Values.pvc.size }}
   storageClassName: {{ .Values.pvc.storageClassName | quote }}
+  {{- if .Values.selector }}
   selector: # Optional selector to match specific PV
     matchLabels:
       app: {{ .Values.pvc.selector.app | default "" }}
+  {{- end }}
   volumeMode: {{ .Values.pvc.volumeMode | default "Filesystem" }} # Filesystem or Block
   dataSource: # Optional data source for cloning or restoring from snapshot
     name: {{ .Values.pvc.dataSource.name | default "" }}
