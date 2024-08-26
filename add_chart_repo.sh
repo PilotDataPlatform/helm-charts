@@ -1,13 +1,9 @@
 #!/bin/bash
+
 set -e
 
 HELM_REPOSITORY="pilotdataplatform.github.io"
 
-# Get chart name from the argument
-FULL_CHART_NAME=$1
-CHART_VERSION=$2
-
-# Function to display help
 show_help() {
     echo "Usage: $(basename $0) [OPTIONS] <chart-name> [chart-version]"
     echo
@@ -15,6 +11,7 @@ show_help() {
     echo
     echo "Options:"
     echo "  -h, --help      Show this help message and exit"
+    echo "  --release       Releases new version of a Pilot helm chart"
     echo
     echo "Arguments:"
     echo "  <chart-name>    Full chart name including repository prefix (e.g., myrepo/mychart). Run 'helm search repo myrepo' if you're unsure about the name."
@@ -22,43 +19,76 @@ show_help() {
     echo
     echo "Example:"
     echo "  $(basename $0) myrepo/mychart 1.2.3"
+    echo "  $(basename $0) --release download-service"
 }
 
-# Check for help option
-if [[ $1 == "-h" || $1 == "--help" ]]; then
-    show_help
-    exit 0
-fi
+check_arguments() {
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        show_help
+        exit 0
+    fi
 
-# Ensure chart name is provided
-if [[ -z $FULL_CHART_NAME ]]; then
-    echo "Error: No chart name provided."
-    exit 1
-fi
+    if [[ -z $1 ]]; then
+        echo "Error: No chart name provided."
+        exit 1
+    fi
+}
 
-# Extract the chart name without the repo prefix
-CHART_NAME=$(echo $FULL_CHART_NAME | cut -d "/" -f 2)
+extract_chart_name() {
+    if [[ $1 == "--release" ]]; then
+      echo $2
+    else
+      echo $1 | cut -d "/" -f 2
+    fi
+}
 
-# delete folder if exists
-rm -rf $CHART_NAME
+pull_chart() {
+    helm repo update
+    if [[ -z $2 ]]; then
+        # pull latest version
+        helm pull $1 --untar
+    else
+        # pull specific version
+        helm pull $1 --version $2 --untar
+    fi
+}
 
-# Step 1: Download the chart
-helm repo update
-# Conditionally pull the chart with or without a specific version
-if [[ -z $CHART_VERSION ]]; then
-    helm pull $FULL_CHART_NAME --untar
-else
-    helm pull $FULL_CHART_NAME --version $CHART_VERSION --untar
-fi
+extract_version() {
+    grep '^version:' $1/Chart.yaml | awk '{print $2}'
+}
 
-# Extract version from the chart metadata
-VERSION=$(grep '^version:' $CHART_NAME/Chart.yaml | awk '{print $2}')
+compress_chart() {
+    tar -czvf "$1-$2.tgz" $1/
+}
 
-# Step 2: Compress the chart into a .tgz file
-tar -czvf "$CHART_NAME-$VERSION.tgz" $CHART_NAME/
+move_chart() {
+    mv $1-$2.tgz docs/
+}
 
-# Step 3: Move the .tgz file with version to the docs/ directory
-mv $CHART_NAME-$VERSION.tgz docs/
+update_repo_index() {
+    helm repo index docs --url https://$1/helm-charts/
+}
 
-# Step 4: Update the Helm repo index
-helm repo index docs --url https://$HELM_REPOSITORY/helm-charts/
+main() {
+    local pull_chart=false
+    check_arguments $1
+    if [[ $1 == "--release" ]]; then
+        FULL_CHART_NAME=$2
+        CHART_VERSION=$3
+    else
+        FULL_CHART_NAME=$1
+        CHART_VERSION=$2
+        pull_chart=true
+    fi
+    CHART_NAME=$(extract_chart_name $1 $FULL_CHART_NAME)
+    if $pull_chart; then
+        rm -rf $CHART_NAME
+        pull_chart $FULL_CHART_NAME $CHART_VERSION
+    fi
+    VERSION=$(extract_version $CHART_NAME)
+    compress_chart $CHART_NAME $VERSION
+    move_chart $CHART_NAME $VERSION
+    update_repo_index $HELM_REPOSITORY
+}
+
+main $@

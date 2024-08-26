@@ -20,6 +20,21 @@ serviceAccount:
   # If not set and create is true, a name is generated using the fullname template
   name:
 
+initContainers: {}
+  # - name: init-permissions
+  #   image: busybox
+  #   command: ['sh', '-c', 'chmod 777 /core-data/tmp']
+  #   volumeMounts:
+  #     - name: core-data
+  #       mountPath: /core-data
+  #   resources:
+  #     limits:
+  #       cpu: 100m
+  #       memory: 128Mi
+  #     requests:
+  #       cpu: 50m
+  #       memory: 64Mi
+
 container:
   port: 5077
 
