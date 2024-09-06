@@ -14,3 +14,9 @@ container:
 volumes: {}
 
 volumeMounts: {}
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: "base-job-sa"
+  rules: []

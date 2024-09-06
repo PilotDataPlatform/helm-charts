@@ -11,16 +11,15 @@ container:
   image:
     repository: ""
     tag: ""
-  env: []  
-  # Optional: Define environment variables as a list of { name, value }
-  # Example:
-  # - name: PATH
-  #   value: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/shared"
-  # - name: keycloak_device_client_id
-  #   value: "cli"
+  env: {}
+  extraEnvYaml: {}
 
-volume:
-  enabled: false  # Optional: Define if a volume is needed
-  name: my-volume
-  claimName: my-claim
-  mountPath: "/tmp/volume"
+volumes: {}
+
+volumeMounts: {}
+
+serviceAccount:
+  create: false
+  annotations: {}
+  name: "base-cronjob-sa"
+  rules: []
