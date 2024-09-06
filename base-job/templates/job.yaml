@@ -6,11 +6,15 @@ spec:
   ttlSecondsAfterFinished: {{ .Values.job.ttlSecondsAfterFinished }}
   template:
     spec:
+      {{- if .Values.serviceAccount.create}}
+      serviceAccountName: {{ include "base-job.serviceAccountName" . }}
+      {{- end }}
       containers:
       - name: {{ .Values.container.name }}
         image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag | default .Chart.AppVersion }}"
       {{- with .Values.volumeMounts }}
-        {{- toYaml . | nindent 8 }}
+        volumeMounts:
+        {{- toYaml . | nindent 10 }}
       {{- end }}
         {{- if or .Values.container.env .Values.container.extraEnvYaml}}
         env:
@@ -24,5 +28,6 @@ spec:
         {{- end }}
       restartPolicy: {{ .Values.job.restartPolicy }}
       {{- with .Values.volumes }}
-        {{- toYaml . | nindent 6 }}
+      volumes:
+        {{- toYaml . | nindent 8 }}
       {{- end }}

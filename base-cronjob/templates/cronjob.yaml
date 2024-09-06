@@ -9,25 +9,28 @@ spec:
       ttlSecondsAfterFinished: {{ .Values.cronjob.ttlSecondsAfterFinished }}
       template:
         spec:
+          {{- if .Values.serviceAccount.create}}
+          serviceAccountName: {{ include "base-cronjob.serviceAccountName" . }}
+          {{- end }}
           containers:
           - name: {{ .Values.container.name }}
             image: "{{ .Values.container.image.repository }}:{{ .Values.container.image.tag | default .Chart.AppVersion }}"
-            {{- if .Values.volume.enabled }}
+            {{- with .Values.volumeMounts }}
             volumeMounts:
-            - mountPath: {{ .Values.volume.mountPath }}
-              name: {{ .Values.volume.name }}
+            {{- toYaml . | nindent 14 }}
             {{- end }}
-            {{- if .Values.container.env }}
+            {{- if or .Values.container.env .Values.container.extraEnvYaml}}
             env:
-            {{- range .Values.container.env }}
-              - name: {{ .name }}
-                value: {{ .value }}
+            {{- range $key, $value := .Values.container.env }}
+              - name: {{ $key }}
+                value: {{ $value | quote }}
+            {{- end }}
+            {{- with .Values.container.extraEnvYaml }}
+              {{- toYaml . | nindent 14 }}
             {{- end }}
             {{- end }}
           restartPolicy: {{ .Values.cronjob.restartPolicy }}
-          {{- if .Values.volume.enabled }}
+          {{- with .Values.volumes }}
           volumes:
-          - name: {{ .Values.volume.name }}
-            persistentVolumeClaim:
-              claimName: {{ .Values.volume.claimName }}
+            {{- toYaml . | nindent 12 }}
           {{- end }}
