@@ -56,7 +56,7 @@ spec:
           - name: env
             value: {{ .Values.appConfig.env | quote }}
           - name: bids_validate_image
-            value: "{{ .Values.appConfig.repository }}/pipelines/bids-validator:{{ .Values.appConfig.bids_validator_app_version }}"
+            value: "{{ .Values.appConfig.repository }}/bids-validator:{{ .Values.appConfig.bids_validator_app_version }}"
           - name: bids_validate_pipeline
             value: "bids_validate"
           - name: core_mount
@@ -72,7 +72,7 @@ spec:
           - name: data_lake
             value: "/data/core-storage"
           - name: data_transfer_image
-            value: "{{ .Values.appConfig.repository }}/pipelines/filecopy:{{ .Values.appConfig.filecopy_app_version }}"
+            value: "{{ .Values.appConfig.repository }}/filecopy:{{ .Values.appConfig.filecopy_app_version }}"
           - name: gr_queue
             value: "gr_queue"
           - name: gr_exchange
