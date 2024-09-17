@@ -192,6 +192,62 @@ spec:
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           {{- end }}
+        {{- if .Values.sidecar.enabled }}
+        - name: {{ .Chart.Name }}-sidecar
+          image: "{{ .Values.sidecar.image.repository }}:{{ .Values.sidecar.image.tag | default .Chart.AppVersion }}"
+          ports:
+            - containerPort: {{ .Values.sidecar.container.port }}
+          imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
+          {{- if .Values.sidecar.command }}
+          {{- with .Values.sidecar.command }}
+          command: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.sidecar.args }}
+          {{- with .Values.sidecar.args }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          env:
+###################### START OF APP CONFIG #############################    
+          - name: HOST
+            value: {{ .Values.sidecar.appConfig.HOST | quote }}
+          - name: PORT
+            value: {{ .Values.sidecar.appConfig.PORT | quote }}
+# redis
+{{- if not .Values.sidecar.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.sidecar.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.sidecar.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.sidecar.appConfig.REDIS_PORT | quote }}
+
+###################### END OF APP CONFIG #############################
+{{- if .Values.sidecar.extraEnv }}
+  {{- range $key, $value := .Values.sidecar.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.sidecar.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          resources:
+            {{- toYaml .Values.sidecar.resources | nindent 12 }}
+          {{- if .Values.sidecar.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.sidecar.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.sidecar.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.sidecar.livenessProbe | nindent 12 }}
+          {{- end }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

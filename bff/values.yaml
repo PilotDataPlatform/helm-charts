@@ -113,25 +113,15 @@ sidecar:
 
   enabled: false
 
-  replicaCount: 1
-
   image:
     repository: bff
     tag: 1471
     pullPolicy: Always
 
-  serviceAccount:
-    # Specifies whether a service account should be created
-    create: false
-    # The name of the service account to use.
-    # If not set and create is true, a name is generated using the fullname template
-    name:
-
   container:
     port: 8080
 
   service:
-    type: ClusterIP
     port: 8080
 
   appConfig:
@@ -150,17 +140,6 @@ sidecar:
       cpu: "1"
 
   readinessProbe: {}
-
-  autoscaling:
-    enabled: false
-
-  podAnnotations: {}
-
-  deploymentAnnotations: {}
-
-  updateStrategy: {}
-
-  imagePullSecrets: []
 
   extraEnv: {}
 
