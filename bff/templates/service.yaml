@@ -15,5 +15,11 @@ spec:
       targetPort: {{ .Values.service.portalTargetPort }}
       protocol: TCP
       name: portal-{{ include "bff.fullname" . }}
+    {{- if .Values.sidecar.enabled }}
+    - port: {{ .Values.sidecar.service.port }}
+      targetPort: {{ .Values.sidecar.service.targetPort }}
+      protocol: TCP
+      name: {{ include "bff.fullname" . }}-sidecar
+    {{- end }}
   selector:
     {{- include "bff.selectorLabels" . | nindent 4 }}
