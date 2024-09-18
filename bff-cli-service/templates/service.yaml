@@ -10,5 +10,6 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
+      name: {{ include "bff-cli-service.fullname" . }}
   selector:
     {{- include "bff-cli-service.selectorLabels" . | nindent 4 }}
