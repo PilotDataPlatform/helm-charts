@@ -1,3 +1,8 @@
+{{/*
+Copyright Broadcom, Inc. All Rights Reserved.
+SPDX-License-Identifier: APACHE-2.0
+*/}}
+
 {{/* vim: set filetype=mustache: */}}
 
 {{/*
@@ -18,7 +23,7 @@ Return the proper image name (for the init container volume-permissions image)
 Return the proper Docker Image Registry Secret Names
 */}}
 {{- define "kibana.imagePullSecrets" -}}
-{{- include "common.images.pullSecrets" (dict "images" (list .Values.image .Values.volumePermissions.image) "global" .Values.global) -}}
+{{- include "common.images.renderPullSecrets" (dict "images" (list .Values.image .Values.volumePermissions.image) "context" $) -}}
 {{- end -}}
 
 {{/*
@@ -49,7 +54,7 @@ Set Elasticsearch URL.
 Set Elasticsearch Port.
 */}}
 {{- define "kibana.elasticsearch.port" -}}
-{{- .Values.elasticsearch.port -}}
+{{- include "common.tplvalues.render" (dict "value" .Values.elasticsearch.port "context" $) -}}
 {{- end -}}
 
 {{/*
