@@ -134,7 +134,9 @@ spec:
           - name: DOWNLOAD_SERVICE_GREENROOM
             value: "http://download.greenroom:5077"    
           - name: WORKSPACE_SERVICE
-            value: "http://workspace.utility:5068"      
+            value: "http://workspace.utility:5068"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"      
 {{- else }}
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
@@ -154,6 +156,8 @@ spec:
             value: "http://download.{{ .Values.appConfig.tenant_id }}-greenroom:5077"       
           - name: WORKSPACE_SERVICE
             value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"  
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
 {{- end}}
 ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
