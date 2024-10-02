@@ -13,6 +13,8 @@ rules:
   - namespaces
   - secrets
   - persistentvolumeclaims
+  - roles
+  - rolebindings
   verbs:
   - create
   - delete
