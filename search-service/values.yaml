@@ -27,8 +27,8 @@ appConfig:
   WORKERS: 2
 
   OPEN_TELEMETRY_ENABLED: true
-  OPEN_TELEMETRY_HOST: 127.0.0.1
-  OPEN_TELEMETRY_PORT: 6831
+  OPEN_TELEMETRY_HOST: http://grafana-agent.monitoring
+  OPEN_TELEMETRY_PORT: 4317
 
 
 serviceAccount:
