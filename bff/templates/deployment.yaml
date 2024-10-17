@@ -62,8 +62,8 @@ spec:
             value: {{ .Values.appConfig.config_center_base_url | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
-          - name: PROJECT_NAME
-            value: {{ .Values.appConfig.PROJECT_NAME | quote }}
+          - name: PLATFORM_NAME
+            value: {{ .Values.appConfig.PLATFORM_NAME | quote }}
           - name: KEYCLOAK_REALM
             value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}  
 

@@ -51,7 +51,7 @@ appConfig:
   SITE_DOMAIN: https://dev.pilot.indocresearch.com
   CORE_ZONE_LABEL: Core
   GREENROOM_ZONE_LABEL: Greenroom
-  PROJECT_NAME: PILOT
+  PLATFORM_NAME: PILOT
   KEYCLOAK_REALM: pilot
 
   EMAIL_SUPPORT: pilotplatform_support@indocresearch.com
