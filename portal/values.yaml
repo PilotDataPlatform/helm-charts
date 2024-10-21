@@ -79,6 +79,7 @@ service:
   port: 3000
   targetPort: 80
 
+volumes: {}
 
 ingress:
   enabled: false
