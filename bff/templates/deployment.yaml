@@ -171,6 +171,13 @@ spec:
             value: "http://search.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: WORKSPACE_SERVICE
             value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"  
+          ## Telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 {{- end}}
 ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
