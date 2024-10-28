@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "fileops-service.fullname" . }}-test-connection"
+  labels:
+    {{- include "fileops-service.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['{{ include "fileops-service.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never
