@@ -36,9 +36,15 @@ check_arguments() {
 
 extract_chart_name() {
     if [[ $1 == "--release" ]]; then
-      echo $2
+        echo $2
     else
-      echo $1 | cut -d "/" -f 2
+        if [[ $1 == oci://* ]]; then
+            # For OCI URLs, take the last segment
+            echo $1 | rev | cut -d "/" -f 1 | rev
+        else
+            # For regular helm repo charts
+            echo $1 | cut -d "/" -f 2
+        fi
     fi
 }
 
