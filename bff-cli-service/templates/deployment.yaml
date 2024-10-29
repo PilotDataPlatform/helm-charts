@@ -83,7 +83,13 @@ spec:
             value: {{ .Values.appConfig.GREEN_ZONE_LABEL | quote }}
           - name: CORE_ZONE_LABEL
             value: {{ .Values.appConfig.CORE_ZONE_LABEL | quote }}
-
+          ## Telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 
 # deprecated
           - name: ATLAS_API
