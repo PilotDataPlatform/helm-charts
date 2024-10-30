@@ -19,10 +19,10 @@ appConfig:
 
   ROOT_PATH: "/data/core-storage"
 
-  LEVEL_DEFAULT: 30 # WARN
-  LEVEL_FILE: 30 # WARN
-  LEVEL_STDOUT: 30 # WARN
-  LEVEL_STDERR: 40 # ERROR
+  LOG_LEVEL_DEFAULT: 30 # WARN
+  LOG_LEVEL_FILE: 30 # WARN
+  LOG_LEVEL_STDOUT: 30 # WARN
+  LOG_LEVEL_STDERR: 40 # ERROR
 
   REDIS_HOST: "redis-master.redis"
   REDIS_PORT: "6379"
@@ -61,12 +61,19 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 5078
+  targetPort: 5078
 
 ingress:
   enabled: false
 
-resources: {}
+resources:
+  requests:
+    cpu: "100m"
+    memory: "100Mi"
+  limits:
+    cpu: "300m"
+    memory: "300Mi"
 
 autoscaling:
   enabled: false
@@ -77,7 +84,11 @@ tolerations: []
 
 affinity: {}
 
-readinessProbe: {}
+readinessProbe:
+  tcpSocket:
+    port: 5078
+  initialDelaySeconds: 5
+  periodSeconds: 10
 
 updateStrategy: {}
 
