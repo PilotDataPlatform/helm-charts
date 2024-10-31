@@ -85,6 +85,9 @@ tolerations: []
 affinity: {}
 
 readinessProbe:
+  httpGet:
+   path: /v1/health
+   port: 5078
   tcpSocket:
     port: 5078
   initialDelaySeconds: 5
