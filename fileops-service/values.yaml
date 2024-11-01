@@ -1,0 +1,108 @@
+# Default values for upload-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: fileops
+  tag: 252
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+
+appConfig:
+  port: 5078
+  host: 0.0.0.0
+  env: "dev"
+  config_center_enabled: false
+  config_center_base_url: http://common.utility:5062/
+  namespace: ""
+
+  ROOT_PATH: "/data/core-storage"
+
+  LOG_LEVEL_DEFAULT: 30 # WARN
+  LOG_LEVEL_FILE: 30 # WARN
+  LOG_LEVEL_STDOUT: 30 # WARN
+  LOG_LEVEL_STDERR: 40 # ERROR
+
+  REDIS_HOST: "redis-master.redis"
+  REDIS_PORT: "6379"
+  REDIS_DB: "0"
+
+  DOWNLOAD_TOKEN_EXPIRE_AT: "86400"
+
+  OPEN_TELEMETRY_ENABLED: "True"
+  OPEN_TELEMETRY_HOST: "127.0.0.1"
+  OPEN_TELEMETRY_PORT: "6831"
+
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+container:
+  port: 5078
+
+initContainers: {}
+
+deploymentAnnotations: {}
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 5078
+  targetPort: 5078
+
+ingress:
+  enabled: false
+
+resources:
+  requests:
+    cpu: "100m"
+    memory: "100Mi"
+  limits:
+    cpu: "300m"
+    memory: "300Mi"
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+readinessProbe:
+  httpGet:
+   path: /v1/health
+   port: 5078
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+livenessProbe:
+  httpGet:
+   path: /v1/health
+   port: 5078
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+updateStrategy: {}
+
+extraEnv: {}
+
+extraEnvYaml: {}
+
+hostAliases: {}

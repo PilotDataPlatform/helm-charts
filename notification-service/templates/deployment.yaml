@@ -72,13 +72,6 @@ spec:
             value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
           - name: RDS_ECHO_SQL_QUERIES
             value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
-          ## Telemetry
-          - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
-          - name: OPEN_TELEMETRY_HOST
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
-          - name: OPEN_TELEMETRY_PORT
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
@@ -163,6 +156,14 @@ spec:
             value: {{ .Values.appConfig.RDS_DB_NAME | quote }}
           - name: RDS_ECHO_SQL_QUERIES
             value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
+
+            ## Telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 ###################### END OF APP CONFIG #############################
 
 {{- if .Values.extraEnv }}

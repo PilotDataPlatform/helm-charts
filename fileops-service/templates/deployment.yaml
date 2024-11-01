@@ -1,0 +1,185 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "fileops-service.fullname" . }}
+  labels:
+    {{- include "fileops-service.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+    {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "fileops-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "fileops-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.command }}
+          {{- with .Values.command }}
+          command: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.args }}
+          {{- with .Values.args }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          ports:
+              - name: http
+                containerPort: {{ .Values.container.port }}
+          env:
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
+          - name: host
+            value: {{ .Values.appConfig.host | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+            # log levels
+          - name: LOG_LEVEL_DEFAULT
+            value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote}}
+          - name: LOG_LEVEL_FILE
+            value: {{ .Values.appConfig.LOG_LEVEL_FILE | quote}}
+          - name: LOG_LEVEL_STDOUT
+            value: {{ .Values.appConfig.LOG_LEVEL_STDOUT | quote}}
+          - name: LOG_LEVEL_STDERR
+            value: {{ .Values.appConfig.LOG_LEVEL_STDERR | quote }}
+          - name: CORE_ZONE_LABEL
+            value: "Core"
+          - name: GREEN_ZONE_LABEL
+            value: "Greenroom"
+          - name: DOWNLOAD_TOKEN_EXPIRE_AT
+            value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
+          #if core or greenroom
+{{- if contains "core" .Values.appConfig.namespace }}
+          - name: ROOT_PATH
+            value: "/core-data"
+{{- else }}
+          - name: ROOT_PATH
+            value: "/data/core-storage"
+{{- end}}
+          #if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: APPROVAL_SERVICE
+            value: "http://approval.utility:8000"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.utility:5081"
+          - name: PROJECT_SERVICE
+            value: "http://project.utility:5064"
+          - name: METADATA_SERVICE
+            value: "http://metadata.utility:5066"
+          - name: KAFKA_URL
+            value: "kafka.utility:9092"
+          - name: KAFKA_ACTIVITY_TOPIC
+            value: "metadata.items.activity"
+{{- else }}
+          - name: APPROVAL_SERVICE
+            value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: DATASET_SERVICE
+            value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5081"
+          - name: PROJECT_SERVICE
+            value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
+          - name: METADATA_SERVICE
+            value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: KAFKA_URL
+            value: "kafka.datastores:9092"
+          - name: KAFKA_ACTIVITY_TOPIC
+            value: "{{ .Values.appConfig.tenant_id}}.metadata.items.activity"
+{{- end}}
+          # redis
+          - name: REDIS_DB
+            value: {{ .Values.appConfig.REDIS_DB | quote }}
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+          # telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.volumes }}
+          volumeMounts:
+            - mountPath: {{ .Values.volumes.mountPath }}
+              name: {{ .Values.volumes.name }}
+          {{- end }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+      {{- if .Values.volumes }}
+      volumes:
+        - name: {{ .Values.volumes.name }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.volumes.claimName }}
+      {{- end }}
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
