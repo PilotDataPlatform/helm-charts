@@ -12,6 +12,7 @@ image:
 
 appConfig:
   port: 5078
+  host: 0.0.0.0
   env: "dev"
   config_center_enabled: false
   config_center_base_url: http://common.utility:5062/

@@ -57,6 +57,8 @@ spec:
           env:
           - name: port
             value: {{ .Values.appConfig.port | quote }}
+          - name: host
+            value: {{ .Values.appConfig.host | quote }}
           - name: env
             value: {{ .Values.appConfig.env | quote }}
           - name: CONFIG_CENTER_ENABLED
