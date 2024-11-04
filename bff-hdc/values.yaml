@@ -42,6 +42,11 @@ service:
   type: LoadBalancer
   port: 5060
   portalPort: 3000
+  # Additional custom labels can be added to the service
+  # Example:
+  #labels:
+  #  prometheus.io/scrape: "true"
+  #  team: "backend"
 
 ingress:
   enabled: false

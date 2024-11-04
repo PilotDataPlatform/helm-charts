@@ -3,4 +3,4 @@ appVersion: "1471"
 description: A Helm chart for Kubernetes
 name: bff
 type: application
-version: 0.4.0
+version: 0.5.0
