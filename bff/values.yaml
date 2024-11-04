@@ -105,7 +105,8 @@ readinessProbe:
 
 updateStrategy: {}
 
-extraEnv: {}
+extraEnv:
+  GUACAMOLE_DEPLOY_POLL_WAIT_TIME_SECONDS: 15
 
 extraEnvYaml: {}
 
