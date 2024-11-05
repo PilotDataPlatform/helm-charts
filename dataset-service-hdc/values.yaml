@@ -32,6 +32,12 @@ container:
 service:
   type: ClusterIP
   port: 80
+  portName: "http"
+  # Additional custom labels can be added to the service
+  # Example:
+  #labels:
+  #  prometheus.io/scrape: "true"
+  #  team: "backend"
 
 podAnnotations: {}
 
@@ -61,10 +67,10 @@ extraEnv: {}
 
 extraEnvYaml: {}
 
-readinessProbe: []
+readinessProbe: {}
 
 extraVolumeMounts: []
 
 extraVolumes: []
 
-updateStrategy: []
+updateStrategy: {}

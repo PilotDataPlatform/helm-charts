@@ -4,11 +4,15 @@ metadata:
   name: {{ include "dataset-service.fullname" . }}
   labels:
     {{- include "dataset-service.labels" . | nindent 4 }}
+    {{- with .Values.service.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
+      name: {{ .Values.service.portName }}
   selector:
     {{- include "dataset-service.selectorLabels" . | nindent 4 }}
