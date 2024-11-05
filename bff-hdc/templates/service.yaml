@@ -13,10 +13,10 @@ spec:
     - port: {{ .Values.service.port }}
       targetPort: {{ .Values.service.targetPort }}
       protocol: TCP
-      name: {{ include "bff.fullname" . }}
+      name: {{ .Values.service.portName | default (include "bff.fullname" .) }}
     - port: {{ .Values.service.portalPort }}
       targetPort: {{ .Values.service.portalTargetPort }}
       protocol: TCP
-      name: portal-{{ include "bff.fullname" . }}
+      name: {{ .Values.service.portalPortName | default (printf "portal-%s" (include "bff.fullname" .)) }}
   selector:
     {{- include "bff.selectorLabels" . | nindent 4 }}
