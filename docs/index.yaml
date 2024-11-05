@@ -521,8 +521,6 @@ entries:
     version: 1.1.4
   - apiVersion: v2
     appVersion: "1471"
-    created: "2024-11-03T20:47:56.429975-05:00"
-=======
     created: "2024-11-04T17:19:47.8983532+01:00"
     description: A Helm chart for Kubernetes
     digest: 5e368184d4bcd0cfdf0091eb452f9a3ff83ceb3205715fa16c3dac2436afc6f4
