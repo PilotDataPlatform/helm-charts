@@ -42,6 +42,8 @@ service:
   type: LoadBalancer
   port: 5060
   portalPort: 3000
+  portName: ""
+  portalPortName: ""
   # Additional custom labels can be added to the service
   # Example:
   #labels:
