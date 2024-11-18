@@ -62,6 +62,13 @@ spec:
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
 {{- end}}
+{{- if not .Values.appConfig.tenant_id }}
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.utility:5065"
+{{- else }}
+          - name: NOTIFICATION_SERVICE
+            value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+{{- end}}  
           - name: GUACAMOLE_HOSTNAME
             value: {{ .Values.appConfig.GUACAMOLE_HOSTNAME | quote }}
           - name: GUACAMOLE_URL_PATH
