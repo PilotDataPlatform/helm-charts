@@ -43,7 +43,7 @@ spec:
           image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-###################### START OF APP CONFIG #############################     
+###################### START OF APP CONFIG #############################
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
@@ -95,18 +95,18 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.command }}
           {{- with .Values.command }}
-          command: 
+          command:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.args }}
           {{- with .Values.args }}
-          args: 
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           env:
-###################### START OF APP CONFIG #############################     
+###################### START OF APP CONFIG #############################
           - name: port
             value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
@@ -131,6 +131,8 @@ spec:
             value: {{ .Values.appConfig.GUACAMOLE_HOSTNAME | quote }}
           - name: GUACAMOLE_URL_PATH
             value: {{ .Values.appConfig.GUACAMOLE_URL_PATH | quote }}
+          - name: KAFKA_SERVICE
+            value: {{ .Values.appConfig.KAFKA_SERVICE | quote }}
 ###################### END OF APP CONFIG #############################
 
 {{- if .Values.extraEnv }}
