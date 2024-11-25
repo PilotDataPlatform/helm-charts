@@ -43,19 +43,19 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.initCommand }}
           {{- with .Values.initCommand }}
-          command: 
+          command:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.initArgs }}
           {{- with .Values.initArgs }}
-          args: 
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           env:
-###################### START OF APP CONFIG #############################   
-# Relational Database 
+###################### START OF APP CONFIG #############################
+# Relational Database
 {{- if not .Values.appConfig.tenant_id }}
           - name: RDS_HOST
             value: {{ .Values.appConfig.RDS_HOST | quote }}
@@ -99,18 +99,18 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.command }}
           {{- with .Values.command }}
-          command: 
+          command:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.args }}
           {{- with .Values.args }}
-          args: 
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- end }}          
+          {{- end }}
           env:
-###################### START OF APP CONFIG #############################   
+###################### START OF APP CONFIG #############################
           - name: port
             value: {{ .Values.appConfig.port | quote }}
           - name: CONFIG_CENTER_ENABLED
@@ -120,26 +120,26 @@ spec:
           - name: HOST
             value: {{ .Values.appConfig.HOST | quote }}
           - name: WORKERS
-            value: {{ .Values.appConfig.WORKERS | quote }} 
+            value: {{ .Values.appConfig.WORKERS | quote }}
 # email
           - name: POSTFIX
             value: {{ .Values.appConfig.POSTFIX | quote }}
           - name: POSTFIX_URL
-            value: {{ .Values.appConfig.POSTFIX_URL | quote }}      
+            value: {{ .Values.appConfig.POSTFIX_URL | quote }}
           - name: POSTFIX_PORT
-            value: {{ .Values.appConfig.POSTFIX_PORT | quote }}       
+            value: {{ .Values.appConfig.POSTFIX_PORT | quote }}
           - name: EMAIL_ATTACHMENT_MAX_SIZE_BYTES
-            value: {{ .Values.appConfig.EMAIL_ATTACHMENT_MAX_SIZE_BYTES | quote }} 
+            value: {{ .Values.appConfig.EMAIL_ATTACHMENT_MAX_SIZE_BYTES | quote }}
           - name: SMTP_PORT
-            value: {{ .Values.appConfig.SMTP_PORT | quote }} 
+            value: {{ .Values.appConfig.SMTP_PORT | quote }}
           - name: SMTP_USER
             value: {{ .Values.appConfig.SMTP_USER | quote }}
           - name: SMTP_PASS
-            value: {{ .Values.appConfig.SMTP_PASS | quote }}      
+            value: {{ .Values.appConfig.SMTP_PASS | quote }}
           - name: SMTP_STARTTLS
-            value: {{ .Values.appConfig.SMTP_STARTTLS | quote }} 
+            value: {{ .Values.appConfig.SMTP_STARTTLS | quote }}
 
-# Relational Database 
+# Relational Database
 {{- if not .Values.appConfig.tenant_id }}
           - name: RDS_HOST
             value: {{ .Values.appConfig.RDS_HOST | quote }}
@@ -164,6 +164,8 @@ spec:
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
             value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+          - name: KAFKA_SERVICE
+            value: {{ .Values.appConfig.KAFKA_SERVICE | quote }}
 ###################### END OF APP CONFIG #############################
 
 {{- if .Values.extraEnv }}
