@@ -145,7 +145,11 @@ spec:
           - name: SEARCH_SERVICE
             value: "http://search.utility:5064"
           - name: WORKSPACE_SERVICE
-            value: "http://workspace.utility:5068"      
+            value: "http://workspace.utility:5068"
+          - name: FILEOPS_SERVICE_CORE
+            value: "http://fileops.core:5078" 
+          - name: FILEOPS_SERVICE_GREENROOM
+            value: "http://fileops.greenroom:5078"      
 {{- else }}
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
@@ -170,7 +174,11 @@ spec:
           - name: SEARCH_SERVICE
             value: "http://search.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: WORKSPACE_SERVICE
-            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"  
+            value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"
+          - name: FILEOPS_SERVICE_CORE
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-core:5078" 
+          - name: FILEOPS_SERVICE_GREENROOM
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-greenroom:5078"
           ## Telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
