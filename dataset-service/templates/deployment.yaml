@@ -281,8 +281,6 @@ spec:
             value: "http://project.utility:5064"
           - name: ELASTIC_SEARCH_SERVICE
             value: "http://elasticsearch-master.utility:9200"
-          - name: KAFKA_URL
-            value: "kafka-headless:9092"
           - name: UTILITY_SERVICE
             value: "http://common.utility:5062"
           - name: gm_queue_endpoint
@@ -306,8 +304,6 @@ spec:
             value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: ELASTIC_SEARCH_SERVICE
             value: "http://elasticsearch-master.datastore:9200"
-          - name: KAFKA_URL
-            value: "kafka-headless.datastores:9092"
           - name: UTILITY_SERVICE
             value: "http://common.{{ .Values.appConfig.tenant_id }}-utility:5062"
           - name: gm_queue_endpoint
