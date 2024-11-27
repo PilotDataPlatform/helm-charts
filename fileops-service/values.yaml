@@ -1,4 +1,4 @@
-# Default values for fileops-service.
+# Default values for upload-service.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -17,6 +17,7 @@ appConfig:
   config_center_enabled: false
   config_center_base_url: http://common.utility:5062/
   namespace: ""
+  ROOT_PATH: ""
 
   LOG_LEVEL_DEFAULT: 30 # WARN
   LOG_LEVEL_FILE: 30 # WARN
