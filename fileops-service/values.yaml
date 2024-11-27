@@ -18,8 +18,6 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   namespace: ""
 
-  ROOT_PATH: "/data/core-storage"
-
   LOG_LEVEL_DEFAULT: 30 # WARN
   LOG_LEVEL_FILE: 30 # WARN
   LOG_LEVEL_STDOUT: 30 # WARN
