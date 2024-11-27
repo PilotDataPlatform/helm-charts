@@ -80,14 +80,10 @@ spec:
             value: "Greenroom"
           - name: DOWNLOAD_TOKEN_EXPIRE_AT
             value: {{ .Values.appConfig.DOWNLOAD_TOKEN_EXPIRE_AT | quote }}
-          #if core or greenroom
-{{- if contains "core" .Values.appConfig.namespace }}
+          - name: namespace
+            value: {{ .Values.appConfig.namespace | quote }}
           - name: ROOT_PATH
-            value: "/core-data"
-{{- else }}
-          - name: ROOT_PATH
-            value: "/data/core-storage"
-{{- end}}
+            value: {{ .Values.appConfig.ROOT_PATH | quote }}
           #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
           - name: APPROVAL_SERVICE
