@@ -30,6 +30,10 @@ appConfig:
   GUACAMOLE_HOSTNAME: "dev.pilot.indocresearch.com"
   GUACAMOLE_URL_PATH: "/workbench/{container_code}/guacamole/"
 
+  OPEN_TELEMETRY_ENABLED: "True"
+  OPEN_TELEMETRY_HOST: "127.0.0.1"
+  OPEN_TELEMETRY_PORT: "6831"
+
 serviceAccount:
   # Specifies whether a service account should be created
   create: false
