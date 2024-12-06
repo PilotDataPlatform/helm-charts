@@ -134,6 +134,13 @@ spec:
           - name: KAFKA_SERVICE
             value: {{ .Values.appConfig.KAFKA_SERVICE | quote }}
 ###################### END OF APP CONFIG #############################
+          ## Telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
