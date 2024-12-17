@@ -1,0 +1,18 @@
+{{- if and .Values.metrics.enabled .Values.metrics.lokiRules.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: AlertingRule
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  namespace: {{ default .Release.Namespace .Values.metrics.lokiRules.namespace | quote }}
+  {{- $labels := include "common.tplvalues.merge" ( dict "values" ( list .Values.metrics.lokiRules.labels .Values.commonLabels ) "context" . ) }}
+  labels: {{- include "common.labels.standard" ( dict "customLabels" $labels "context" $ ) | nindent 4 }}
+    app.kubernetes.io/component: metrics
+  {{- if .Values.commonAnnotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- end }}
+spec:
+  groups:
+    - name: {{ include "common.names.fullname" . }}
+      interval: {{ default .Release.Namespace .Values.metrics.lokiRules.interval}}
+      rules: {{- include "common.tplvalues.render" ( dict "value" .Values.metrics.lokiRules.rules "context" $ ) | nindent 8 }}
+{{- end }}
