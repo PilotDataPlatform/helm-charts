@@ -14,6 +14,6 @@ spec:
   selector:
     matchLabels:
       {{- include "loki.gatewaySelectorLabels" . | nindent 6 }}
-  maxUnavailable: 0
+  maxUnavailable: 1
 {{- end }}
 {{- end }}
