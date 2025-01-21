@@ -52,6 +52,11 @@ appConfig:
   REDIS_PORT: 6379
   REDIS_DB: 0
 
+  # Open telemetry
+  OPEN_TELEMETRY_ENABLED: false
+  OPEN_TELEMETRY_HOST: 127.0.0.1
+  OPEN_TELEMETRY_PORT: 6831
+
   # Email configuration
   EMAIL_SUPPORT: "pilotplatform_support@indocresearch.com"
 
