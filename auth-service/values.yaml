@@ -84,6 +84,7 @@ appConfig:
   EMAIL_SUPPORT: pilotplatform_support@indocresearch.com
   EMAIL_ADMIN: pilotplatform_support@indocresearch.com
   EMAIL_HELPDESK: helpdesk@pilot
+  PLATFORM_NAME: PILOT
 
   IDENTITY_BACKEND: freeipa
   FREEIPA_URL: ipa.example.org
