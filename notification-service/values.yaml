@@ -21,6 +21,7 @@ appConfig:
 
   HOST: 0.0.0.0
   WORKERS: 2
+  PLATFORM_NAME: PILOT
 
   POSTFIX: mailhog.utility
   POSTFIX_URL: mailhog.utility

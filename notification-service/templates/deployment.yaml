@@ -121,6 +121,8 @@ spec:
             value: {{ .Values.appConfig.HOST | quote }}
           - name: WORKERS
             value: {{ .Values.appConfig.WORKERS | quote }}
+          - name: PLATFORM_NAME
+            value: {{ .Values.appConfig.PLATFORM_NAME | quote }}
 # email
           - name: POSTFIX
             value: {{ .Values.appConfig.POSTFIX | quote }}
