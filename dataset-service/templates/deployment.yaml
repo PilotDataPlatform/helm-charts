@@ -67,6 +67,10 @@ spec:
           # telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
           #dataset
           - name: DATASET_FILE_FOLDER
             value: {{ .Values.appConfig.DATASET_FILE_FOLDER }}

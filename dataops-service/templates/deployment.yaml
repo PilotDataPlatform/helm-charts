@@ -55,6 +55,10 @@ spec:
           # telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}          
           - name: HOST
             value: {{ .Values.appConfig.HOST }}           
           # Relational Database 
