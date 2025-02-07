@@ -51,14 +51,7 @@ spec:
             value: "https://vault.vault:8200/v1/pilot/app/config"
           - name: VAULT_CRT
             value: "/run/secrets/kubernetes.io/serviceaccount/ca.crt"
-{{- end }}
-          # telemetry
-          - name: OPEN_TELEMETRY_ENABLED
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
-          - name: OPEN_TELEMETRY_HOST
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
-          - name: OPEN_TELEMETRY_PORT
-            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}          
+{{- end }}       
           - name: HOST
             value: {{ .Values.appConfig.HOST }}           
           # Relational Database 
