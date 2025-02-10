@@ -511,6 +511,8 @@ spec:
             value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}
           - name: EMAIL_HELPDESK
             value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}
+          - name: PLATFORM_NAME
+            value: {{ .Values.appConfig.PLATFORM_NAME | quote }}
 
 # ldap object groups
           - name: USER_OBJECT_GROUPS
