@@ -8,8 +8,8 @@ image:
 imagePullSecrets: []
 
 service:
-  type: LoadBalancer
-  port: 8000
+  type: ClusterIP
+  port: 80
 
 serviceAccount:
   # Specifies whether a service account should be created
