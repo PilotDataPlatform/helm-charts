@@ -1,0 +1,150 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ai-chat-service.fullname" . }}
+  labels:
+    {{- include "ai-chat-service.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+    {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "ai-chat-service.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "ai-chat-service.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.serviceAccount.create }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:ai-chat-{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.command }}
+          {{- with .Values.command }}
+          command: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.args }}
+          {{- with .Values.args }}
+          args: 
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.container.port }}
+          env:
+###################### START OF APP CONFIG #############################      
+          - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }}
+          - name: PORT
+            value: {{ .Values.appConfig.PORT | quote }}
+          - name: WORKERS
+            value: {{ .Values.appConfig.WORKERS | quote }}
+          - name: RELOAD
+            value: {{ .Values.appConfig.RELOAD | quote }}
+          - name: LOGGING_LEVEL
+            value: {{ .Values.appConfig.LOGGING_LEVEL | quote }}
+          - name: LOGGING_FORMAT
+            value: {{ .Values.appConfig.LOGGING_FORMAT | quote }}
+          - name: API_VERSION
+            value: {{ .Values.appConfig.API_VERSION | quote }}
+          - name: SYSTEM_PROMPT
+            value: {{ .Values.appConfig.SYSTEM_PROMPT | quote }}
+          - name: AZURE_API_KEY
+            value: {{ .Values.appConfig.AZURE_API_KEY | quote }}
+          - name: AZURE_ENDPOINT_URL
+            value: {{ .Values.appConfig.AZURE_ENDPOINT_URL | quote }}
+          - name: AZURE_SEARCH_ENDPOINT
+            value: {{ .Values.appConfig.AZURE_SEARCH_ENDPOINT | quote }}
+          - name: AZURE_SEARCH_KEY
+            value: {{ .Values.appConfig.AZURE_SEARCH_KEY | quote }}
+          - name: AZURE_SEARCH_INDEX
+            value: {{ .Values.appConfig.AZURE_SEARCH_INDEX | quote }}
+          - name: AZURE_DEPLOYMENT
+            value: {{ .Values.appConfig.AZURE_DEPLOYMENT | quote }}
+          - name: CHAT_HISTORY_LEN
+            value: {{ .Values.appConfig.CHAT_HISTORY_LEN | quote }}
+          - name: SERVICE_CLIENT_TIMEOUT
+            value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT | quote }}
+
+# Microservices connections
+#if tenant id is not set
+{{- if not .Values.appConfig.tenant_id }}
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+{{- else }}
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+{{- end}}
+
+# redis
+{{- if not .Values.appConfig.tenant_id }}
+          - name: REDIS_HOST
+            value: {{ .Values.appConfig.REDIS_HOST | quote }}
+{{- else }}
+          - name: REDIS_HOST
+            value: "redis-master.{{ .Values.appConfig.tenant_id }}-redis"
+{{- end }}
+          - name: REDIS_PORT
+            value: {{ .Values.appConfig.REDIS_PORT | quote }}
+          - name: REDIS_PASSWORD
+            value: {{ .Values.appConfig.REDIS_PASSWORD | quote }}
+          - name: REDIS_USERNAME
+            value: {{ .Values.appConfig.REDIS_USERNAME | quote }}
+
+# open telemetry
+          - name: OPEN_TELEMETRY_ENABLED
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
+          - name: OPEN_TELEMETRY_HOST
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
+          - name: OPEN_TELEMETRY_PORT
+            value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+###################### END OF APP CONFIG #############################
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

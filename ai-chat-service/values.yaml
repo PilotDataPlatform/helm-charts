@@ -1,0 +1,67 @@
+replicaCount: 1
+
+image:
+  repository: ai-chat
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets: []
+
+service:
+  type: LoadBalancer
+  port: 8000
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  name:
+
+appConfig:
+  HOST: "0.0.0.0"
+  PORT: 5071
+  WORKERS: 1
+  RELOAD: false
+  LOGGING_LEVEL: "DEBUG"
+  LOGGING_FORMAT: "json"
+  API_VERSION: ""
+  SYSTEM_PROMPT: ""
+  AZURE_API_KEY: ""
+  AZURE_ENDPOINT_URL: ""
+  AZURE_SEARCH_ENDPOINT: ""
+  AZURE_SEARCH_KEY: ""
+  AZURE_SEARCH_INDEX: ""
+  AZURE_DEPLOYMENT: ""
+  AUTH_SERVICE: "http://auth:5061/v1/"
+  REDIS_HOST: "127.0.0.1"
+  REDIS_PORT: 6379
+  REDIS_PASSWORD: "password"
+  REDIS_USERNAME: "user"
+  CHAT_HISTORY_LEN: 20
+  SERVICE_CLIENT_TIMEOUT: 1000
+  OPEN_TELEMETRY_ENABLED: false
+  OPEN_TELEMETRY_HOST: ""
+  OPEN_TELEMETRY_PORT: ""
+
+podAnnotations: {}
+
+ingress:
+  enabled: false
+
+resources: {}
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+readinessProbe: {}
+
+updateStrategy: {}
+
+extraEnv: {}
+
+extraEnvYaml: {}
