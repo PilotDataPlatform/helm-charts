@@ -67,14 +67,10 @@ spec:
             value: {{ .Values.appConfig.API_VERSION | quote }}
           - name: SYSTEM_PROMPT
             value: {{ .Values.appConfig.SYSTEM_PROMPT | quote }}
-          - name: AZURE_API_KEY
-            value: {{ .Values.appConfig.AZURE_API_KEY | quote }}
           - name: AZURE_ENDPOINT_URL
             value: {{ .Values.appConfig.AZURE_ENDPOINT_URL | quote }}
           - name: AZURE_SEARCH_ENDPOINT
             value: {{ .Values.appConfig.AZURE_SEARCH_ENDPOINT | quote }}
-          - name: AZURE_SEARCH_KEY
-            value: {{ .Values.appConfig.AZURE_SEARCH_KEY | quote }}
           - name: AZURE_SEARCH_INDEX
             value: {{ .Values.appConfig.AZURE_SEARCH_INDEX | quote }}
           - name: AZURE_DEPLOYMENT
@@ -104,10 +100,6 @@ spec:
 {{- end }}
           - name: REDIS_PORT
             value: {{ .Values.appConfig.REDIS_PORT | quote }}
-          - name: REDIS_PASSWORD
-            value: {{ .Values.appConfig.REDIS_PASSWORD | quote }}
-          - name: REDIS_USERNAME
-            value: {{ .Values.appConfig.REDIS_USERNAME | quote }}
 
 # open telemetry
           - name: OPEN_TELEMETRY_ENABLED
