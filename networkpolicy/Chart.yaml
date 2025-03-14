@@ -1,0 +1,16 @@
+apiVersion: v2
+appVersion: v1.0.0
+description: Helm Chart representing a single Network Policy Kubernetes API object
+home: https://github.com/ameijer/k8s-as-helm
+icon: https://ameijer.github.io/k8s-as-helm/icon.png
+keywords:
+- networkpolicy
+- network
+- policy
+- api
+- primitives
+maintainers:
+- name: ameijer
+  url: https://github.com/ameijer
+name: networkpolicy
+version: 1.0.1
