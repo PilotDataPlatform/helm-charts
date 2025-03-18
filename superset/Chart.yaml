@@ -23,4 +23,8 @@ maintainers:
 name: superset
 sources:
 - https://github.com/apache/superset
+<<<<<<< Updated upstream
 version: 0.8.7
+=======
+version: 0.8.8
+>>>>>>> Stashed changes
