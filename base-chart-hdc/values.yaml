@@ -23,9 +23,6 @@ image:
   pullPolicy: IfNotPresent
   # Optional prefix name for the image tag
   tagPrefix: ""
-  # Optional: additional command and args
-  # command: []
-  # args: []
 
 # Application configuration environment variables
 appConfig:
@@ -37,6 +34,9 @@ appConfig:
 # Container settings
 container:
   name: "my-container"
+  # Command and args for the container (optional)
+  command: []
+  args: []
   # Define ports as a list for flexibility
   ports:
     - name: http

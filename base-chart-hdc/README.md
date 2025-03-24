@@ -68,6 +68,7 @@ image:
   repository: my-service-image
   tag: 1.0.0
   pullPolicy: Always
+  tagPrefix: ""
 
 # Application configuration 
 appConfig:
@@ -79,6 +80,10 @@ appConfig:
 
 # Container settings
 container:
+  name: "my-container"
+  # Command and args for the container (optional)
+  command: ["node", "app.js"]
+  args: ["--config", "/etc/config/app.json"]
   # Define multiple ports using a list
   ports:
     - name: http
