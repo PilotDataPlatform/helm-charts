@@ -115,6 +115,8 @@ spec:
             value: "http://approval.utility:8000"
           - name: NOTIFICATION_SERVICE
             value: "http://notification.utility:5065"
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
 {{- else }}
           - name: gm_queue_endpoint
             value: "message-bus-greenroom.{{ .Values.appConfig.tenant_id }}-greenroom"
@@ -132,6 +134,8 @@ spec:
             value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
           - name: NOTIFICATION_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
 {{- end}}
           - name: KAFKA_URL
             value: "{{ .Values.appConfig.KAFKA_URL }}"

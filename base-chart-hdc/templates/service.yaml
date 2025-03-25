@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "base-chart-hdc.fullname" . }}
+  labels:
+    {{- include "base-chart-hdc.labels" . | nindent 4 }}
+    {{- with .Values.service.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    {{- if .Values.service.ports }}
+    {{- range .Values.service.ports }}
+    - port: {{ .port }}
+      targetPort: {{ .targetPort }}
+      protocol: {{ .protocol | default "TCP" }}
+      name: {{ .name }}
+    {{- end }}
+    {{- end }}
+  selector:
+    {{- include "base-chart-hdc.selectorLabels" . | nindent 4 }}
