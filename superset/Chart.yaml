@@ -1,14 +1,14 @@
 apiVersion: v2
-appVersion: 2.0.1
+appVersion: 4.1.1
 dependencies:
 - condition: postgresql.enabled
   name: postgresql
-  repository: https://charts.bitnami.com/bitnami
-  version: 12.1.6
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 13.4.4
 - condition: redis.enabled
   name: redis
-  repository: https://charts.bitnami.com/bitnami
-  version: 17.3.17
+  repository: oci://registry-1.docker.io/bitnamicharts
+  version: 17.9.4
 description: Apache Superset is a modern, enterprise-ready business intelligence web
   application
 home: https://superset.apache.org/
@@ -23,4 +23,4 @@ maintainers:
 name: superset
 sources:
 - https://github.com/apache/superset
-version: 0.8.8
+version: 0.14.1
