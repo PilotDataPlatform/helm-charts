@@ -56,6 +56,9 @@ podSecurityContext: {}
 
 securityContext: {}
 
+configMapData:
+  extraConfig: ""
+
 imagePullSecrets: []
 
 ingress:

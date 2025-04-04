@@ -1,0 +1,8 @@
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: {{ include "workspace-service.fullname" . }}
+  labels:
+    {{- include "workspace-service.labels" . | nindent 4 }}
+data:
+  {{- .Values.configMapData | toYaml | nindent 2 }}
