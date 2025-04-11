@@ -67,6 +67,8 @@ spec:
             value: {{ .Values.appConfig.env | quote }}
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
+          - name: PILOT_VERSION
+            value: {{ .Values.appConfig.PILOT_VERSION | quote }}
 
 # logging
           - name: log_level
