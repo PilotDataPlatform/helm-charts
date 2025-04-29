@@ -38,7 +38,7 @@ command:
   - "/bin/bash"
 args:
   - "-c"
-  - "python -m app"
+  - "python -m bff_web"
 
 appConfig:
   env: "dev"
