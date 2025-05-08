@@ -67,10 +67,6 @@ spec:
       affinity:
 {{ toYaml .Values.controller.affinity | indent 8 }}
       {{- end }}
-      {{- if .Values.controller.topologySpreadConstraints }}
-      topologySpreadConstraints:
-{{ toYaml .Values.controller.topologySpreadConstraints | indent 8 }}
-      {{- end }}
       {{- if quote .Values.controller.terminationGracePeriodSeconds }}
       terminationGracePeriodSeconds: {{ .Values.controller.terminationGracePeriodSeconds }}
       {{- end }}
@@ -80,12 +76,9 @@ spec:
       {{- if .Values.controller.shareProcessNamespace }}
       shareProcessNamespace: true
       {{- end }}
-      {{- if not .Values.controller.enableServiceLinks }}
-      enableServiceLinks: false
-      {{- end }}
 {{- if .Values.controller.usePodSecurityContext }}
       securityContext:
-  {{- if kindIs "map" .Values.controller.podSecurityContextOverride }}
+  {{- if hasKey .Values.controller "podSecurityContextOverride" }}
     {{- tpl (toYaml .Values.controller.podSecurityContextOverride | nindent 8) . -}}
   {{- else }}
     {{/* The rest of this section should be replaced with the contents of this comment one the runAsUser, fsGroup, and securityContextCapabilities Helm chart values have been removed:
@@ -107,7 +100,6 @@ spec:
   {{- end }}
 {{- end }}
       serviceAccountName: "{{ template "jenkins.serviceAccountName" . }}"
-      automountServiceAccountToken: {{ .Values.serviceAccount.automountServiceAccountToken }}
 {{- if .Values.controller.hostNetworking }}
       hostNetwork: true
       dnsPolicy: ClusterFirstWithHostNet
@@ -126,8 +118,8 @@ spec:
 {{- end}}
 
         - name: "init"
-          image: "{{ .Values.controller.image.registry }}/{{ .Values.controller.image.repository }}:{{- include "controller.image.tag" . -}}"
-          imagePullPolicy: "{{ .Values.controller.image.pullPolicy }}"
+          image: "{{ .Values.controller.image }}:{{- include "controller.tag" . -}}"
+          imagePullPolicy: "{{ .Values.controller.imagePullPolicy }}"
           {{- if .Values.controller.containerSecurityContext }}
           securityContext: {{- toYaml .Values.controller.containerSecurityContext | nindent 12 }}
           {{- end }}
@@ -178,8 +170,8 @@ spec:
             {{- end }}
       containers:
         - name: jenkins
-          image: "{{ .Values.controller.image.registry }}/{{ .Values.controller.image.repository }}:{{- include "controller.image.tag" . -}}"
-          imagePullPolicy: "{{ .Values.controller.image.pullPolicy }}"
+          image: "{{ .Values.controller.image }}:{{- include "controller.tag" . -}}"
+          imagePullPolicy: "{{ .Values.controller.imagePullPolicy }}"
           {{- if .Values.controller.containerSecurityContext }}
           securityContext: {{- toYaml .Values.controller.containerSecurityContext | nindent 12 }}
           {{- end }}
@@ -213,7 +205,7 @@ spec:
             {{- if .Values.controller.containerEnv }}
 {{ (tpl ( toYaml .Values.controller.containerEnv) .) | indent 12 }}
             {{- end }}
-            {{- if or .Values.controller.additionalSecrets .Values.controller.existingSecret .Values.controller.additionalExistingSecrets .Values.controller.admin.createSecret }}
+            {{- if or .Values.controller.additionalSecrets .Values.controller.existingSecret .Values.controller.additionalExistingSecrets .Values.controller.adminSecret }}
             - name: SECRETS
               value: /run/secrets/additional
             {{- end }}
@@ -306,7 +298,7 @@ spec:
             - name: sc-config-volume
               mountPath: {{ .Values.controller.sidecars.configAutoReload.folder | default (printf "%s/casc_configs" (.Values.controller.jenkinsRef)) }}
             {{- end }}
-            {{- if or .Values.controller.additionalSecrets .Values.controller.existingSecret .Values.controller.additionalExistingSecrets .Values.controller.admin.createSecret }}
+            {{- if or .Values.controller.additionalSecrets .Values.controller.existingSecret .Values.controller.additionalExistingSecrets .Values.controller.adminSecret }}
             - name: jenkins-secrets
               mountPath: /run/secrets/additional
               readOnly: true
@@ -321,21 +313,14 @@ spec:
 {{- end}}
 
 
-{{- if .Values.controller.sidecars.additionalSidecarContainers}}
-{{ tpl (toYaml .Values.controller.sidecars.additionalSidecarContainers | indent 8) .}}
+{{- if .Values.controller.sidecars.other}}
+{{ tpl (toYaml .Values.controller.sidecars.other | indent 8) .}}
 {{- end }}
 
       volumes:
 {{- if .Values.persistence.volumes }}
 {{ tpl (toYaml .Values.persistence.volumes | indent 6) . }}
 {{- end }}
-      {{- if .Values.controller.sidecars.configAutoReload.logging.configuration.override }}
-      - name: auto-reload-config
-        configMap:
-          name: {{ template "jenkins.fullname" . }}-auto-reload-config
-      - name: auto-reload-config-logs
-        emptyDir: {}
-      {{- end }}
       {{- if .Values.controller.installPlugins }}
       {{- if .Values.controller.overwritePluginsFromImage }}
       - name: plugins
@@ -366,7 +351,7 @@ spec:
       - name: plugin-dir
         emptyDir: {}
       {{- end }}
-      {{- if or .Values.controller.additionalSecrets .Values.controller.existingSecret .Values.controller.additionalExistingSecrets .Values.controller.admin.createSecret }}
+      {{- if or .Values.controller.additionalSecrets .Values.controller.existingSecret .Values.controller.additionalExistingSecrets .Values.controller.adminSecret }}
       - name: jenkins-secrets
         projected:
           sources:
@@ -383,7 +368,7 @@ spec:
                   path: {{ tpl $value.name $ }}-{{ tpl $value.keyName $ }}
           {{- end }}
           {{- end }}
-          {{- if .Values.controller.admin.createSecret }}
+          {{- if .Values.controller.adminSecret }}
           - secret:
               name: {{ .Values.controller.admin.existingSecret | default (include "jenkins.fullname" .) }}
               items:
