@@ -96,6 +96,10 @@ spec:
             value: "http://project.utility:5064"
           - name: METADATA_SERVICE
             value: "http://metadata.utility:5066"
+          - name: AUTH_SERVICE
+            value: "http://auth.utility:5061"
+          - name: QUEUE_SERVICE
+            value: "http://queue-producer.utility:6060"
           - name: KAFKA_URL
             value: "kafka.utility:9092"
           - name: KAFKA_ACTIVITY_TOPIC
@@ -111,6 +115,10 @@ spec:
             value: "http://project.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: METADATA_SERVICE
             value: "http://metadata.{{ .Values.appConfig.tenant_id }}-utility:5066"
+          - name: QUEUE_SERVICE
+            value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
+          - name: AUTH_SERVICE
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
           - name: KAFKA_URL
             value: "kafka.datastores:9092"
           - name: KAFKA_ACTIVITY_TOPIC
@@ -135,6 +143,24 @@ spec:
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
             value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+          # Postgres
+{{- if not .Values.appConfig.tenant_id }}
+          - name: RDS_HOST
+            value: {{ .Values.appConfig.RDS_HOST | quote }}
+{{- else }}
+          - name: RDS_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end}}
+          - name: RDS_PORT
+            value: {{ .Values.appConfig.RDS_PORT | quote }}
+          - name: RDS_NAME
+            value: {{ .Values.appConfig.RDS_NAME | quote }}
+          - name: RDS_USERNAME
+            value: {{ .Values.appConfig.RDS_USERNAME | quote }}
+          - name: RDS_SCHEMA
+            value: {{ .Values.appConfig.RDS_SCHEMA | quote }}
+          - name: RDS_ECHO_SQL_QUERIES
+            value: {{ .Values.appConfig.RDS_ECHO_SQL_QUERIES | quote }}
 
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
