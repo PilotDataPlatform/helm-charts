@@ -84,10 +84,10 @@ spec:
 #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
           - name: AUTH_SERVICE
-            value: "http://auth.utility:5061"
+            value: "http://auth.utility:5061/v1/"
 {{- else }}
           - name: AUTH_SERVICE
-            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
+            value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061/v1/"
 {{- end}}
 
 # redis
@@ -108,6 +108,30 @@ spec:
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
             value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+
+          # AI model configuration
+          - name MODEL_MAX_TOKENS
+            value: {{ .Values.appConfig.MODEL_MAX_TOKENS | quote }}
+          - name MODEL_TEMPERATURE
+            value: {{ .Values.appConfig.MODEL_TEMPERATURE | quote }}
+          - name MODEL_TOP_P
+            value: {{ .Values.appConfig.MODEL_TOP_P | quote }}
+          - name MODEL_FREQUENCY_PENALTY
+            value: {{ .Values.appConfig.MODEL_FREQUENCY_PENALTY | quote }}
+          - name MODEL_PRESENCE_PENALTY
+            value: {{ .Values.appConfig.MODEL_PRESENCE_PENALTY | quote }}
+          
+          # Azure Search parameters
+          - name: AZURE_SEARCH_QUERY_TYPE
+            value: {{ .Values.appConfig.AZURE_SEARCH_QUERY_TYPE | quote }}
+          - name: AZURE_SEARCH_SEMANTIC_CONFIG
+            value: {{ .Values.appConfig.AZURE_SEARCH_SEMANTIC_CONFIG | quote }}
+          - name: AZURE_SEARCH_ROLE_INFORMATION
+            value: {{ .Values.appConfig.AZURE_SEARCH_ROLE_INFORMATION | quote }}
+          - name: AZURE_SEARCH_FILTER
+            value: {{ .Values.appConfig.AZURE_SEARCH_FILTER | quote }}
+          - name: AZURE_SEARCH_STRICTNESS
+            value: {{ .Values.appConfig.AZURE_SEARCH_STRICTNESS | quote }}
 ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
