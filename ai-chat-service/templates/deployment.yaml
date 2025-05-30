@@ -112,15 +112,15 @@ spec:
             value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
 
           # AI model configuration
-          - name MODEL_MAX_TOKENS
+          - name: MODEL_MAX_TOKENS
             value: {{ .Values.appConfig.MODEL_MAX_TOKENS | quote }}
-          - name MODEL_TEMPERATURE
+          - name: MODEL_TEMPERATURE
             value: {{ .Values.appConfig.MODEL_TEMPERATURE | quote }}
-          - name MODEL_TOP_P
+          - name: MODEL_TOP_P
             value: {{ .Values.appConfig.MODEL_TOP_P | quote }}
-          - name MODEL_FREQUENCY_PENALTY
+          - name: MODEL_FREQUENCY_PENALTY
             value: {{ .Values.appConfig.MODEL_FREQUENCY_PENALTY | quote }}
-          - name MODEL_PRESENCE_PENALTY
+          - name: MODEL_PRESENCE_PENALTY
             value: {{ .Values.appConfig.MODEL_PRESENCE_PENALTY | quote }}
           
           # Azure Search parameters
