@@ -8,9 +8,6 @@ spec:
   keycloakRef:
     name: keycloak-sample
     kind: Keycloak
-  ssoRealmName: master
-  ssoRealmEnabled: false
-  ssoAutoRedirectEnabled: false
   passwordPolicy:
     - type: "forceExpiredPasswordChange"
       value: "365"
@@ -19,6 +16,7 @@ spec:
   realmEventConfig:
     adminEventsDetailsEnabled: false
     adminEventsEnabled: true
+    adminEventsExpiration: 544
     enabledEventTypes:
       - UPDATE_CONSENT_ERROR
       - CLIENT_LOGIN
@@ -26,3 +24,74 @@ spec:
     eventsExpiration: 15000
     eventsListeners:
       - jboss-logging
+  tokenSettings:
+    accessTokenLifespan: 300
+    accessCodeLifespan: 300
+    accessToken: 300
+    actionTokenGeneratedByAdminLifespan: 300
+    actionTokenGeneratedByUserLifespan: 300
+    refreshTokenMaxReuse: 300
+    revokeRefreshToken: true
+    defaultSignatureAlgorithm: RS256
+  userProfileConfig:
+    unmanagedAttributePolicy: "ENABLED"
+    attributes:
+      - name: "test-attribute"
+        displayName: "Test Attribute"
+        required:
+          roles:
+            - "admin"
+          scopes:
+            - "profile"
+        multivalued: true
+        group: "test-group"
+        permissions:
+          edit:
+            - "admin"
+          view:
+            - "admin"
+            - "user"
+        selector:
+          scopes:
+            - "profile"
+        annotations:
+          inputType: "text"
+        validations:
+          email:
+            max-local-length:
+              intVal: 64
+          local-date: {}
+          options:
+            options:
+              sliceVal:
+                - "option1"
+                - "option2"
+          multivalued:
+            min:
+              stringVal: "1"
+            max:
+              stringVal: "10"
+    groups:
+      - name: "test-group"
+        displayDescription: "Test Group"
+        displayHeader: "Test Group"
+        annotations:
+          groupAnnotation: "groupAnnotation"
+  smtp:
+    template:
+      from: "frm@mailcom"
+      fromDisplayName: "from display name"
+      replyTo: "to@mail.com"
+      replyToDisplayName: "reply to display name"
+      envelopeFrom: "envelopeFrom@mail.com"
+    connection:
+      host: "host"
+      enableSSL: true
+      enableStartTLS: true
+      authentication:
+        password:
+          secretKeyRef:
+            name: "secret-with-email-authentication"
+            key: "password"
+        username:
+          value: "username"

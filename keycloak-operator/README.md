@@ -1,14 +1,14 @@
 # keycloak-operator
 
-![Version: 1.18.0](https://img.shields.io/badge/Version-1.18.0-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.18.0](https://img.shields.io/badge/AppVersion-1.18.0-informational?style=flat-square)
+![Version: 1.27.1](https://img.shields.io/badge/Version-1.27.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 1.27.1](https://img.shields.io/badge/AppVersion-1.27.1-informational?style=flat-square)
 
-A Helm chart for EDP Keycloak Operator
+A Helm chart for KubeRocketCI Keycloak Operator
 
-**Homepage:** <https://epam.github.io/edp-install/>
+**Homepage:** <https://docs.kuberocketci.io/>
 
 ## Overview
 
-Keycloak Operator is an EDP operator responsible for configuring existing Keycloak instances. The operator runs both on OpenShift and Kubernetes.
+Keycloak Operator is a KubeRocketCI operator responsible for configuring existing Keycloak instances. The operator runs both on OpenShift and Kubernetes.
 
 _**NOTE:** Operator is platform-independent, which is why there is a unified instruction for deployment._
 
@@ -32,8 +32,7 @@ To install the Keycloak Operator, follow the steps below:
      ```bash
      helm search repo epamedp/keycloak-operator -l
      NAME                           CHART VERSION   APP VERSION     DESCRIPTION
-     epamedp/keycloak-operator      1.17.0          1.17.0          A Helm chart for EDP Keycloak Operator
-     epamedp/keycloak-operator      1.16.0          1.16.0          A Helm chart for EDP Keycloak Operator
+     epamedp/keycloak-operator      1.26.0          1.26.0          A Helm chart for KRCI Keycloak Operator
      ```
 
     _**NOTE:** It is highly recommended to use the latest stable version._
@@ -105,19 +104,19 @@ To install the Keycloak Operator, follow the steps below:
 
 ## Local Development
 
-To develop the operator, first set up a local environment, and refer to the [Local Development](https://epam.github.io/edp-install/developer-guide/local-development/) page.
+To develop the operator, first set up a local environment, and refer to the [Local Development](https://docs.kuberocketci.io/docs/developer-guide/local-development) page.
 
 Development versions are also available from the [snapshot helm chart repository](https://epam.github.io/edp-helm-charts/snapshot/) page.
 
 ### Related Articles
 
-* [Install EDP](https://epam.github.io/edp-install/operator-guide/install-edp/)
+* [Install KubeRocketCI](https://docs.kuberocketci.io/docs/operator-guide/install-kuberocketci)
 
 ## Maintainers
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| epmd-edp | <SupportEPMD-EDP@epam.com> | <https://solutionshub.epam.com/solution/epam-delivery-platform> |
+| epmd-edp | <SupportEPMD-EDP@epam.com> | <https://solutionshub.epam.com/solution/kuberocketci> |
 | sergk |  | <https://github.com/SergK> |
 
 ## Source Code
@@ -131,12 +130,16 @@ Development versions are also available from the [snapshot helm chart repository
 | affinity | object | `{}` | Affinity for pod assignment |
 | annotations | object | `{}` | Annotations to be added to the Deployment |
 | clusterReconciliationEnabled | bool | `false` | If clusterReconciliationEnabled is true, the operator reconciles all Keycloak instances in the cluster;  otherwise, it only reconciles instances in the same namespace by default, and cluster-scoped resources are ignored. |
+| containerSecurityContext | object | `{"allowPrivilegeEscalation":false}` | Container Security Context Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
+| enableOwnerRef | bool | `true` | If set to true, the operator will set the owner reference for all resources that have Keycloak or KeycloakRealm as reference. This is legacy behavior and not recommended for use. In the future, this will be set to false by default. |
 | extraVolumeMounts | list | `[]` | Additional volumeMounts to be added to the container |
 | extraVolumes | list | `[]` | Additional volumes to be added to the pod |
-| image.repository | string | `"epamedp/keycloak-operator"` | EDP keycloak-operator Docker image name. The released image can be found on [Dockerhub](https://hub.docker.com/r/epamedp/keycloak-operator) |
-| image.tag | string | `nil` | EDP keycloak-operator Docker image tag. The released image can be found on [Dockerhub](https://hub.docker.com/r/epamedp/keycloak-operator/tags) |
+| image.repository | string | `"epamedp/keycloak-operator"` | KubeRocketCI keycloak-operator Docker image name. The released image can be found on [Dockerhub](https://hub.docker.com/r/epamedp/keycloak-operator) |
+| image.tag | string | `nil` | KubeRocketCI keycloak-operator Docker image tag. The released image can be found on [Dockerhub](https://hub.docker.com/r/epamedp/keycloak-operator/tags) |
 | imagePullPolicy | string | `"IfNotPresent"` | If defined, a imagePullPolicy applied to the deployment |
+| imagePullSecrets | list | `[]` | If defined, imagePullSecrets are applied to deployment |
 | name | string | `"keycloak-operator"` | Application name string |
 | nodeSelector | object | `{}` | Node labels for pod assignment |
 | resources | object | `{"limits":{"memory":"192Mi"},"requests":{"cpu":"50m","memory":"64Mi"}}` | Resource limits and requests for the pod |
+| securityContext | object | `{"runAsNonRoot":true}` | Deployment Security Context Ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/ |
 | tolerations | list | `[]` | Node tolerations for server scheduling to nodes with taints |
