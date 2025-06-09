@@ -193,9 +193,6 @@ annotations:
         id: d1-id-kc-realm-name
         realmName: d2-id-kc-realm-name
         keycloakOwner: main
-        ssoRealmName: openshift
-        ssoRealmEnabled: false # new one
-        ssoAutoRedirectEnabled: false # new one
         passwordPolicy:
           - type: "forceExpiredPasswordChange"
             value: "365"
@@ -275,21 +272,21 @@ annotations:
         secret: secret-name-in-operator-ns
         url: https://keycloak.example.com
   artifacthub.io/images: |
-    - name: keycloak-operator:1.17.0
-      image: epamedp/keycloak-operator:1.17.0
+    - name: keycloak-operator:1.27.1
+      image: epamedp/keycloak-operator:1.27.1
   artifacthub.io/license: Apache-2.0
   artifacthub.io/links: |
-    - name: EDP Documentation
-      url: https://epam.github.io/edp-install/
+    - name: KubeRocketCI Documentation
+      url: https://docs.kuberocketci.io/
     - name: EPAM SolutionHub
-      url: https://solutionshub.epam.com/solution/epam-delivery-platform
+      url: https://solutionshub.epam.com/solution/kuberocketci
   artifacthub.io/operator: "true"
   artifacthub.io/operatorCapabilities: Deep Insights
 apiVersion: v2
-appVersion: 1.21.0-indoc-1
-description: A Helm chart for EDP Keycloak Operator
-home: https://epam.github.io/edp-install/
-icon: https://epam.github.io/edp-install/assets/logo.png
+appVersion: 1.27.1
+description: A Helm chart for KubeRocketCI Keycloak Operator
+home: https://docs.kuberocketci.io/
+icon: https://docs.kuberocketci.io/img/logo.svg
 keywords:
 - authentication
 - authorization
@@ -304,11 +301,11 @@ keywords:
 maintainers:
 - email: SupportEPMD-EDP@epam.com
   name: epmd-edp
-  url: https://solutionshub.epam.com/solution/epam-delivery-platform
+  url: https://solutionshub.epam.com/solution/kuberocketci
 - name: sergk
   url: https://github.com/SergK
 name: keycloak-operator
 sources:
 - https://github.com/epam/edp-keycloak-operator
 type: application
-version: 1.21.0-indoc-1
+version: 1.27.1

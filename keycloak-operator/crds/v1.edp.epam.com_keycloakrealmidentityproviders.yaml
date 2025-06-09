@@ -3,8 +3,7 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
-    controller-gen.kubebuilder.io/version: v0.11.3
-  creationTimestamp: null
+    controller-gen.kubebuilder.io/version: v0.16.5
   name: keycloakrealmidentityproviders.v1.edp.epam.com
 spec:
   group: v1.edp.epam.com
@@ -27,14 +26,19 @@ spec:
           realm identity provider API.
         properties:
           apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation
-              of an object. Servers should convert recognized schemas to the latest
-              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+            description: |-
+              APIVersion defines the versioned schema of this representation of an object.
+              Servers should convert recognized schemas to the latest internal value, and
+              may reject unrecognized values.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
             type: string
           kind:
-            description: 'Kind is a string value representing the REST resource this
-              object represents. Servers may infer this from the endpoint the client
-              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+            description: |-
+              Kind is a string value representing the REST resource this object represents.
+              Servers may infer this from the endpoint the client submits requests to.
+              Cannot be updated.
+              In CamelCase.
+              More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
             type: string
           metadata:
             type: object
@@ -55,10 +59,10 @@ spec:
               config:
                 additionalProperties:
                   type: string
-                description: Config is a map of identity provider configuration. Map
-                  key is a name of configuration property, map value is a value of
-                  configuration property. Any value can be a reference to k8s secret,
-                  in this case value should be in format $secretName:secretKey.
+                description: |-
+                  Config is a map of identity provider configuration.
+                  Map key is a name of configuration property, map value is a value of configuration property.
+                  Any value can be a reference to k8s secret, in this case value should be in format $secretName:secretKey.
                 example:
                   clientId: provider-client
                   clientSecret: $clientSecret:secretKey
@@ -101,14 +105,11 @@ spec:
               providerId:
                 description: ProviderID is a provider ID of identity provider.
                 type: string
-              realm:
-                description: 'Deprecated: use RealmRef instead. Realm is name of KeycloakRealm
-                  custom resource.'
-                type: string
               realmRef:
                 description: RealmRef is reference to Realm custom resource.
                 properties:
                   kind:
+                    default: KeycloakRealm
                     description: Kind specifies the kind of the Keycloak resource.
                     enum:
                     - KeycloakRealm
@@ -117,6 +118,8 @@ spec:
                   name:
                     description: Name specifies the name of the Keycloak resource.
                     type: string
+                required:
+                - name
                 type: object
               storeToken:
                 description: StoreToken is a flag to store token.
@@ -129,6 +132,7 @@ spec:
             - config
             - enabled
             - providerId
+            - realmRef
             type: object
           status:
             description: KeycloakRealmIdentityProviderStatus defines the observed
@@ -143,87 +147,5 @@ spec:
         type: object
     served: true
     storage: true
-    subresources:
-      status: {}
-  - deprecated: true
-    name: v1alpha1
-    schema:
-      openAPIV3Schema:
-        properties:
-          apiVersion:
-            description: 'APIVersion defines the versioned schema of this representation
-              of an object. Servers should convert recognized schemas to the latest
-              internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
-            type: string
-          kind:
-            description: 'Kind is a string value representing the REST resource this
-              object represents. Servers may infer this from the endpoint the client
-              submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
-            type: string
-          metadata:
-            type: object
-          spec:
-            properties:
-              addReadTokenRoleOnCreate:
-                type: boolean
-              alias:
-                type: string
-              authenticateByDefault:
-                type: boolean
-              config:
-                additionalProperties:
-                  type: string
-                type: object
-              displayName:
-                type: string
-              enabled:
-                type: boolean
-              firstBrokerLoginFlowAlias:
-                type: string
-              linkOnly:
-                type: boolean
-              mappers:
-                items:
-                  properties:
-                    config:
-                      additionalProperties:
-                        type: string
-                      nullable: true
-                      type: object
-                    identityProviderAlias:
-                      type: string
-                    identityProviderMapper:
-                      type: string
-                    name:
-                      type: string
-                  type: object
-                nullable: true
-                type: array
-              providerId:
-                type: string
-              realm:
-                type: string
-              storeToken:
-                type: boolean
-              trustEmail:
-                type: boolean
-            required:
-            - alias
-            - config
-            - enabled
-            - providerId
-            - realm
-            type: object
-          status:
-            properties:
-              failureCount:
-                format: int64
-                type: integer
-              value:
-                type: string
-            type: object
-        type: object
-    served: true
-    storage: false
     subresources:
       status: {}
