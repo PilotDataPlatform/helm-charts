@@ -47,6 +47,8 @@ appConfig:
 
   tenant_id: ""
 
+  HOST: "0.0.0.0"
+  PORT: 5060
   WORKERS: 3
   SITE_DOMAIN: https://dev.pilot.indocresearch.com
   CORE_ZONE_LABEL: Core
