@@ -126,8 +126,6 @@ spec:
             value: "http://auth.utility:5061"
           - name: APPROVAL_SERVICE
             value: "http://approval.utility:8000"
-          - name: DATAOPS_SERVICE
-            value: "http://dataops.utility:5063"
           - name: DATASET_SERVICE
             value: "http://dataset.utility:5081"
           - name: METADATA_SERVICE
@@ -149,14 +147,14 @@ spec:
           - name: FILEOPS_SERVICE_CORE
             value: "http://fileops.core:5078" 
           - name: FILEOPS_SERVICE_GREENROOM
-            value: "http://fileops.greenroom:5078"      
+            value: "http://fileops.greenroom:5078" 
+          - name: FILEOPS_SERVICE_UTILITY
+            value: "http://fileops.utility:5078"      
 {{- else }}
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
           - name: APPROVAL_SERVICE
             value: "http://approval.{{ .Values.appConfig.tenant_id }}-utility:8000"
-          - name: DATAOPS_SERVICE
-            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: DATASET_SERVICE
             value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5081"
           - name: METADATA_SERVICE
@@ -179,6 +177,8 @@ spec:
             value: "http://fileops.{{ .Values.appConfig.tenant_id }}-core:5078" 
           - name: FILEOPS_SERVICE_GREENROOM
             value: "http://fileops.{{ .Values.appConfig.tenant_id }}-greenroom:5078"
+          - name: FILEOPS_SERVICE_UTILITY
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-utility:5078"
           ## Telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
