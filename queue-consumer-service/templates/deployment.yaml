@@ -101,8 +101,8 @@ spec:
 {{- if not .Values.appConfig.tenant_id }}
           - name: gm_queue_endpoint
             value: "message-bus-greenroom.greenroom"
-          - name: DATAOPS_SERVICE
-            value: "http://dataops.utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.utility:5078" 
           - name: DATASET_SERVICE
             value: "http://dataset.utility:5081"
           - name: QUEUE_SERVICE
@@ -120,8 +120,8 @@ spec:
 {{- else }}
           - name: gm_queue_endpoint
             value: "message-bus-greenroom.{{ .Values.appConfig.tenant_id }}-greenroom"
-          - name: DATAOPS_SERVICE
-            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-utility:5078"
           - name: DATASET_SERVICE
             value: "http://dataset.{{ .Values.appConfig.tenant_id }}-utility:5081"
           - name: QUEUE_SERVICE
