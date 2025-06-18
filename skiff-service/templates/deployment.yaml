@@ -1,0 +1,48 @@
+{{- if .Values.monitor.enabled }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "skiff-service.fullname" . }}-monitor
+  labels:
+    {{- include "skiff-service.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.monitor.replicas | default 1 }}
+  selector:
+    matchLabels:
+      app: {{ include "skiff-service.name" . }}-monitor
+  template:
+    metadata:
+      labels:
+        app: {{ include "skiff-service.name" . }}-monitor
+        {{- include "skiff-service.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: monitor
+        image: {{ .Values.monitor.image.repository }}:{{ .Values.monitor.image.tag | default "latest" }}
+        imagePullPolicy: {{ .Values.monitor.image.pullPolicy | default "IfNotPresent" }}
+        command:
+          - "/bin/sh"
+          - "-c"
+        args:
+          - |
+            {{ .Values.monitor.script | nindent 12 }}
+        env:
+        - name: NAMESPACE
+          value: "{{ .Values | get "tenant" }}-utility"
+        - name: TENANT_ID
+          value: "{{ .Values | get "tenant" }}"
+        {{- range $key, $value := .Values.monitor.env }}
+        - name: {{ $key }}
+          value: {{ $value | quote }}
+        {{- end }}
+        {{- if .Values.monitor.secretEnv }}
+        {{- range $key, $val := .Values.monitor.secretEnv }}
+        - name: {{ $key }}
+          valueFrom:
+            secretKeyRef:
+              name: {{ $val.secretName }}
+              key: {{ $val.secretKey }}
+        {{- end }}
+        {{- end }}
+      serviceAccountName: {{ .Values.serviceAccount.name }}
+{{- end }}
