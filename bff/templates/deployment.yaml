@@ -55,7 +55,11 @@ spec:
           {{- end }}
           {{- end }}
           env:
-###################### START OF APP CONFIG #############################    
+###################### START OF APP CONFIG #############################
+          - name: HOST
+            value: {{ .Values.appConfig.HOST | quote }}
+          - name: PORT
+            value: {{ .Values.appConfig.PORT | quote }}
           - name: CONFIG_CENTER_ENABLED
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
