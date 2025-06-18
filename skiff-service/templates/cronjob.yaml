@@ -8,7 +8,7 @@ spec:
   schedule: "{{ .Values.schedule }}"
   jobTemplate:
     spec:
-      ttlSecondsAfterFinished: 10
+      ttlSecondsAfterFinished: {{ .Values.ttlSecondsAfterFinished | default 10 }}
       template:
         metadata:
           {{- with .Values.podAnnotations }}
@@ -52,6 +52,39 @@ spec:
               {{- if .Values.commands }}
               command: {{ .Values.commands }}
               {{- end }}
+            {{- if .Values.additionalContainers }}
+            {{- range .Values.additionalContainers }}
+            - name: {{ .name }}
+              image: {{ .image }}
+              imagePullPolicy: {{ .imagePullPolicy | default "IfNotPresent" }}
+              {{- if .command }}
+              command:
+                {{- toYaml .command | nindent 16 }}
+              {{- end }}
+              {{- if .args }}
+              args:
+                {{- toYaml .args | nindent 16 }}
+              {{- end }}
+              {{- if or .env .secretEnv }}
+              env:
+                {{- if .env }}
+                {{- range $key, $value := .env }}
+                - name: {{ $key }}
+                  value: {{ $value | quote }}
+                {{- end }}
+                {{- end }}
+                {{- if .secretEnv }}
+                {{- range $key, $value := .secretEnv }}
+                - name: {{ $key }}
+                  valueFrom:
+                    secretKeyRef:
+                      name: {{ $value.secretName }}
+                      key: {{ $value.secretKey }}
+                {{- end }}
+                {{- end }}
+              {{- end }}
+            {{- end }}
+            {{- end }}
           restartPolicy: OnFailure
           {{- with .Values.nodeSelector }}
           nodeSelector:
