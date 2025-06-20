@@ -40,7 +40,10 @@ spec:
           - name: {{ $key }}
             value: {{ $value | quote }}
   {{- end }}
-{{- end }}       
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
           ports:
           - containerPort: 9443
             name: webhook-server
