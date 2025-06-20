@@ -26,23 +26,23 @@ spec:
         args:
           - |
             {{ .Values.monitor.script | nindent 12 }}
+        {{- if or .Values.monitor.env .Values.monitor.secretEnv }}
         env:
-        - name: NAMESPACE
-          value: "{{ .Values | get "tenant" }}-utility"
-        - name: TENANT_ID
-          value: "{{ .Values | get "tenant" }}"
-        {{- range $key, $value := .Values.monitor.env }}
-        - name: {{ $key }}
-          value: {{ $value | quote }}
-        {{- end }}
-        {{- if .Values.monitor.secretEnv }}
-        {{- range $key, $val := .Values.monitor.secretEnv }}
-        - name: {{ $key }}
-          valueFrom:
-            secretKeyRef:
-              name: {{ $val.secretName }}
-              key: {{ $val.secretKey }}
-        {{- end }}
+          {{- if .Values.monitor.env }}
+          {{- range $key, $value := .Values.monitor.env }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.monitor.secretEnv }}
+          {{- range $key, $value := .Values.monitor.secretEnv }}
+          - name: {{ $key }}
+            valueFrom:
+              secretKeyRef:
+                name: {{ $value.secretName }}
+                key: {{ $value.secretKey }}
+          {{- end }}
+          {{- end }}
         {{- end }}
       serviceAccountName: {{ .Values.serviceAccount.name }}
 {{- end }}
