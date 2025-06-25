@@ -68,7 +68,7 @@ spec:
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
           - name: FILEOPS_SERVICE
-            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-utility:5078"
           - name: EMAIL_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
           - name: METADATA_SERVICE
