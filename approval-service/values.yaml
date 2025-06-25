@@ -34,7 +34,7 @@ appConfig:
 
   # Microservices connections
   AUTH_SERVICE: "http://auth.utility:5061"
-  DATAOPS_SERVICE: "http://dataops.utility:5063"
+  FILEOPS_SERVICE: "http://fileops.utility:5078"
   EMAIL_SERVICE: "http://notification.utility:5065"
   METADATA_SERVICE: "http://metadata.utility:5066"
   PROJECT_SERVICE: "http://project.utility:5064"
