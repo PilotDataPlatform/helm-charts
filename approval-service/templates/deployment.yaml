@@ -54,8 +54,8 @@ spec:
 {{- if not .Values.appConfig.tenant_id }}
           - name: AUTH_SERVICE
             value: "http://auth.utility:5061"
-          - name: DATAOPS_SERVICE
-            value: "http://dataops.utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.utility:5078"
           - name: EMAIL_SERVICE
             value: "http://notification.utility:5065"
           - name: METADATA_SERVICE
@@ -67,7 +67,7 @@ spec:
 {{- else }}
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
-          - name: DATAOPS_SERVICE
+          - name: FILEOPS_SERVICE
             value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: EMAIL_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
@@ -169,8 +169,8 @@ spec:
 {{- if not .Values.appConfig.tenant_id }}
           - name: AUTH_SERVICE
             value: "http://auth.utility:5061"
-          - name: DATAOPS_SERVICE
-            value: "http://dataops.utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.utility:5078"
           - name: EMAIL_SERVICE
             value: "http://notification.utility:5065"
           - name: METADATA_SERVICE
@@ -182,8 +182,8 @@ spec:
 {{- else }}
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
-          - name: DATAOPS_SERVICE
-            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-utility:5078"
           - name: EMAIL_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
           - name: METADATA_SERVICE
