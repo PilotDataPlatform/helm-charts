@@ -44,13 +44,13 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.command }}
           {{- with .Values.command }}
-          command: 
+          command:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.args }}
           {{- with .Values.args }}
-          args: 
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
@@ -69,7 +69,7 @@ spec:
           - name: PLATFORM_NAME
             value: {{ .Values.appConfig.PLATFORM_NAME | quote }}
           - name: KEYCLOAK_REALM
-            value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}  
+            value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}
 
 # workers
           - name: WORKERS
@@ -96,15 +96,15 @@ spec:
           - name: CORE_ZONE_LABEL
             value: {{ .Values.appConfig.CORE_ZONE_LABEL | quote }}
           - name: GREENROOM_ZONE_LABEL
-            value: {{ .Values.appConfig.GREENROOM_ZONE_LABEL | quote }}  
-      
-#email 
+            value: {{ .Values.appConfig.GREENROOM_ZONE_LABEL | quote }}
+
+#email
           - name: EMAIL_SUPPORT
             value: {{ .Values.appConfig.EMAIL_SUPPORT | quote }}
           - name: EMAIL_ADMIN
-            value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}  
+            value: {{ .Values.appConfig.EMAIL_ADMIN | quote }}
           - name: EMAIL_HELPDESK
-            value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}  
+            value: {{ .Values.appConfig.EMAIL_HELPDESK | quote }}
 
 # resource request admin
           - name: RESOURCE_REQUEST_ADMIN
@@ -139,21 +139,23 @@ spec:
           - name: NOTIFY_SERVICE
             value: "http://notification.utility:5065"
           - name: UPLOAD_SERVICE
-            value: "http://upload.greenroom:5079"      
+            value: "http://upload.greenroom:5079"
           - name: DOWNLOAD_SERVICE_CORE
-            value: "http://download.core:5077" 
+            value: "http://download.core:5077"
           - name: DOWNLOAD_SERVICE_GR
-            value: "http://download.greenroom:5077"    
+            value: "http://download.greenroom:5077"
           - name: SEARCH_SERVICE
             value: "http://search.utility:5064"
           - name: WORKSPACE_SERVICE
             value: "http://workspace.utility:5068"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.utility:5063"
           - name: FILEOPS_SERVICE_CORE
-            value: "http://fileops.core:5078" 
+            value: "http://fileops.core:5078"
           - name: FILEOPS_SERVICE_GREENROOM
-            value: "http://fileops.greenroom:5078" 
+            value: "http://fileops.greenroom:5078"
           - name: FILEOPS_SERVICE_UTILITY
-            value: "http://fileops.utility:5078"      
+            value: "http://fileops.utility:5078"
 {{- else }}
           - name: AUTH_SERVICE
             value: "http://auth.{{ .Values.appConfig.tenant_id }}-utility:5061"
@@ -168,17 +170,19 @@ spec:
           - name: NOTIFY_SERVICE
             value: "http://notification.{{ .Values.appConfig.tenant_id }}-utility:5065"
           - name: UPLOAD_SERVICE
-            value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5079"  
+            value: "http://upload.{{ .Values.appConfig.tenant_id }}-greenroom:5079"
           - name: DOWNLOAD_SERVICE_CORE
-            value: "http://download.{{ .Values.appConfig.tenant_id }}-core:5077" 
+            value: "http://download.{{ .Values.appConfig.tenant_id }}-core:5077"
           - name: DOWNLOAD_SERVICE_GR
-            value: "http://download.{{ .Values.appConfig.tenant_id }}-greenroom:5077"       
+            value: "http://download.{{ .Values.appConfig.tenant_id }}-greenroom:5077"
           - name: SEARCH_SERVICE
             value: "http://search.{{ .Values.appConfig.tenant_id }}-utility:5064"
           - name: WORKSPACE_SERVICE
             value: "http://workspace.{{ .Values.appConfig.tenant_id }}-utility:5068"
+          - name: DATAOPS_SERVICE
+            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
           - name: FILEOPS_SERVICE_CORE
-            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-core:5078" 
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-core:5078"
           - name: FILEOPS_SERVICE_GREENROOM
             value: "http://fileops.{{ .Values.appConfig.tenant_id }}-greenroom:5078"
           - name: FILEOPS_SERVICE_UTILITY
@@ -219,18 +223,18 @@ spec:
           imagePullPolicy: {{ .Values.sidecar.image.pullPolicy }}
           {{- if .Values.sidecar.command }}
           {{- with .Values.sidecar.command }}
-          command: 
+          command:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           {{- if .Values.sidecar.args }}
           {{- with .Values.sidecar.args }}
-          args: 
+          args:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           {{- end }}
           env:
-###################### START OF APP CONFIG #############################    
+###################### START OF APP CONFIG #############################
           - name: HOST
             value: {{ .Values.sidecar.appConfig.HOST | quote }}
           - name: PORT
