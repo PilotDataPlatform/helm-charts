@@ -117,8 +117,8 @@ spec:
             value: "http://common.utility:5062"
           - name: gm_queue_endpoint
             value: "message-bus-greenroom.greenroom"
-          - name: DATA_OPS_UTIL
-            value: "http://dataops.utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.utility:5078"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.greenroom:6060"
 {{- else }}
@@ -142,8 +142,8 @@ spec:
             value: "http://common.{{ .Values.appConfig.tenant_id }}-utility:5062"
           - name: gm_queue_endpoint
             value: "message-bus-greenroom.{{ .Values.appConfig.tenant_id }}-greenroom"
-          - name: DATA_OPS_UTIL
-            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-utility:5078"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
 {{- end}}
@@ -286,8 +286,8 @@ spec:
             value: "http://common.utility:5062"
           - name: gm_queue_endpoint
             value: "message-bus-greenroom.greenroom"
-          - name: DATA_OPS_UTIL
-            value: "http://dataops.utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.utility:5078"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.greenroom:6060"
 {{- else }}
@@ -309,8 +309,8 @@ spec:
             value: "http://common.{{ .Values.appConfig.tenant_id }}-utility:5062"
           - name: gm_queue_endpoint
             value: "message-bus-greenroom.{{ .Values.appConfig.tenant_id }}-greenroom"
-          - name: DATA_OPS_UTIL
-            value: "http://dataops.{{ .Values.appConfig.tenant_id }}-utility:5063"
+          - name: FILEOPS_SERVICE
+            value: "http://fileops.{{ .Values.appConfig.tenant_id }}-utility:5078"
           - name: SEND_MESSAGE_URL
             value: "http://queue-producer.{{ .Values.appConfig.tenant_id }}-greenroom:6060"
 {{- end}}
