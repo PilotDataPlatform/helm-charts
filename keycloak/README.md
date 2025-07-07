@@ -22,8 +22,6 @@ Bitnami charts for Helm are carefully engineered, actively maintained and are th
 
 This chart bootstraps a [Keycloak](https://github.com/bitnami/containers/tree/main/bitnami/keycloak) deployment on a [Kubernetes](https://kubernetes.io) cluster using the [Helm](https://helm.sh) package manager.
 
-Bitnami charts can be used with [Kubeapps](https://kubeapps.dev/) for deployment and management of Helm Charts in clusters.
-
 ## Prerequisites
 
 - Kubernetes 1.23+
@@ -49,13 +47,42 @@ These commands deploy a Keycloak application on the Kubernetes cluster in the de
 
 Bitnami charts allow setting resource requests and limits for all containers inside the chart deployment. These are inside the `resources` value (check parameter table). Setting requests is essential for production workloads and these should be adapted to your specific use case.
 
-To make this process easier, the chart contains the `resourcesPreset` values, which automatically sets the `resources` section according to different presets. Check these presets in [the bitnami/common chart](https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15). However, in production workloads using `resourcePreset` is discouraged as it may not fully adapt to your specific needs. Find more information on container resource management in the [official Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+To make this process easier, the chart contains the `resourcesPreset` values, which automatically sets the `resources` section according to different presets. Check these presets in [the bitnami/common chart](https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15). However, in production workloads using `resourcesPreset` is discouraged as it may not fully adapt to your specific needs. Find more information on container resource management in the [official Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 
-### [Rolling vs Immutable tags](https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/services/tutorials/GUID-understand-rolling-tags-containers-index.html)
+### Prometheus metrics
+
+This chart can be integrated with Prometheus by setting `metrics.enabled` to `true`. This will expose Keycloak native Prometheus endpoint in a `metrics` service, which can be configured under the `metrics.service` section. It will have the necessary annotations to be automatically scraped by Prometheus.
+
+#### Prometheus requirements
+
+It is necessary to have a working installation of Prometheus or Prometheus Operator for the integration to work. Install the [Bitnami Prometheus helm chart](https://github.com/bitnami/charts/tree/main/bitnami/prometheus) or the [Bitnami Kube Prometheus helm chart](https://github.com/bitnami/charts/tree/main/bitnami/kube-prometheus) to easily have a working Prometheus in your cluster.
+
+#### Integration with Prometheus Operator
+
+The chart can deploy `ServiceMonitor` objects for integration with Prometheus Operator installations. To do so, set the value `metrics.serviceMonitor.enabled=true`. Ensure that the Prometheus Operator `CustomResourceDefinitions` are installed in the cluster or it will fail with the following error:
+
+```text
+no matches for kind "ServiceMonitor" in version "monitoring.coreos.com/v1"
+```
+
+Install the [Bitnami Kube Prometheus helm chart](https://github.com/bitnami/charts/tree/main/bitnami/kube-prometheus) for having the necessary CRDs and the Prometheus Operator.
+
+### [Rolling vs Immutable tags](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-understand-rolling-tags-containers-index.html)
 
 It is strongly recommended to use immutable tags in a production environment. This ensures your deployment does not change automatically if the same tag is updated with a different image.
 
 Bitnami will release a new chart updating its containers if a new version of the main container, significant changes, or critical vulnerabilities exist.
+
+### Update credentials
+
+Bitnami charts configure credentials at first boot. Any further change in the secrets or credentials require manual intervention. Follow these instructions:
+
+- Update the user password following [the upstream documentation](https://www.keycloak.org/server/configuration)
+- Update the password secret with the new values (replace the SECRET_NAME and PASSWORD placeholders)
+
+```shell
+kubectl create secret generic SECRET_NAME --from-literal=admin-password=PASSWORD --dry-run -o yaml | kubectl apply -f -
+```
 
 ### Use an external database
 
@@ -201,6 +228,13 @@ wrj2wDbCDCFmfqnSJ+dKI3vFLlEz44sAV8jX/kd4Y6ZTQhlLbYc=
 - If your cluster has a [cert-manager](https://github.com/jetstack/cert-manager) add-on to automate the management and issuance of TLS certificates, add to `*.ingress.annotations` the [corresponding ones](https://cert-manager.io/docs/usage/ingress/#supported-annotations) for cert-manager.
 - If using self-signed certificates created by Helm, set both `*.ingress.tls` and `*.ingress.selfSigned` to `true`.
 
+### Securing traffic using TLS
+
+Keycloak can work with TLS interally by setting `tls.enabled=true`. The chart allows two configuration options:
+
+- Provide your own secret using the `tls.existingSecret` value. Also set the correct name of the truststore and keystore using the `tls.truststoreFilename` and `tls.keystoreFilename` values.
+- Have the chart auto-generate the certificates using `tls.autoGenerated=true`.
+
 ### Use with ingress offloading SSL
 
 If your ingress controller has the SSL Termination, you should set `proxy` to `edge`.
@@ -209,16 +243,20 @@ If your ingress controller has the SSL Termination, you should set `proxy` to `e
 
 This chart provides several ways to manage passwords:
 
-- Values passed to the chart: In this scenario, a new secret including all the passwords will be created during the chart installation. When upgrading, it is necessary to provide the secrets to the chart as shown below. Replace the KEYCLOAK_ADMIN_PASSWORD, POSTGRESQL_PASSWORD and POSTGRESQL_PVC placeholders with the correct passwords and PVC name.
+- Values passed to the chart: In this scenario, a new secret including all the passwords will be created during the chart installation. When upgrading, it is necessary to provide the secrets to the chart as shown below. Replace the KC_BOOTSTRAP_ADMIN_PASSWORD, POSTGRESQL_PASSWORD and POSTGRESQL_PVC placeholders with the correct passwords and PVC name.
 
 ```console
 helm upgrade keycloak bitnami/keycloak \
-  --set auth.adminPassword=KEYCLOAK_ADMIN_PASSWORD \
+  --set auth.adminPassword=KC_BOOTSTRAP_ADMIN_PASSWORD \
   --set postgresql.postgresqlPassword=POSTGRESQL_PASSWORD \
   --set postgresql.persistence.existingClaim=POSTGRESQL_PVC
 ```
 
 - An existing secret with all the passwords via the `existingSecret` parameter.
+
+### Backup and restore
+
+To back up and restore Helm chart deployments on Kubernetes, you need to back up the persistent volumes from the source deployment and attach them to a new deployment using [Velero](https://velero.io/), a Kubernetes backup/restore tool. Find the instructions for using Velero in [this guide](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-backup-restore-deployments-velero-index.html).
 
 ### Add extra environment variables
 
@@ -294,13 +332,14 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 
 ### Global parameters
 
-| Name                                                  | Description                                                                                                                                                                                                                                                                                                                                                         | Value  |
-| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| `global.imageRegistry`                                | Global Docker image registry                                                                                                                                                                                                                                                                                                                                        | `""`   |
-| `global.imagePullSecrets`                             | Global Docker registry secret names as an array                                                                                                                                                                                                                                                                                                                     | `[]`   |
-| `global.defaultStorageClass`                          | Global default StorageClass for Persistent Volume(s)                                                                                                                                                                                                                                                                                                                | `""`   |
-| `global.storageClass`                                 | DEPRECATED: use global.defaultStorageClass instead                                                                                                                                                                                                                                                                                                                  | `""`   |
-| `global.compatibility.openshift.adaptSecurityContext` | Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is Openshift), force (perform the adaptation always), disabled (do not perform adaptation) | `auto` |
+| Name                                                  | Description                                                                                                                                                                                                                                                                                                                                                         | Value   |
+| ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `global.imageRegistry`                                | Global Docker image registry                                                                                                                                                                                                                                                                                                                                        | `""`    |
+| `global.imagePullSecrets`                             | Global Docker registry secret names as an array                                                                                                                                                                                                                                                                                                                     | `[]`    |
+| `global.defaultStorageClass`                          | Global default StorageClass for Persistent Volume(s)                                                                                                                                                                                                                                                                                                                | `""`    |
+| `global.storageClass`                                 | DEPRECATED: use global.defaultStorageClass instead                                                                                                                                                                                                                                                                                                                  | `""`    |
+| `global.security.allowInsecureImages`                 | Allows skipping image verification                                                                                                                                                                                                                                                                                                                                  | `false` |
+| `global.compatibility.openshift.adaptSecurityContext` | Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is Openshift), force (perform the adaptation always), disabled (do not perform adaptation) | `auto`  |
 
 ### Common parameters
 
@@ -317,6 +356,7 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 | `dnsConfig`              | DNS Configuration pod                                                                   | `{}`            |
 | `clusterDomain`          | Default Kubernetes cluster domain                                                       | `cluster.local` |
 | `extraDeploy`            | Array of extra objects to deploy with the release                                       | `[]`            |
+| `usePasswordFiles`       | Mount credentials as files instead of using environment variables                       | `true`          |
 | `diagnosticMode.enabled` | Enable diagnostic mode (all probes will be disabled and the command will be overridden) | `false`         |
 | `diagnosticMode.command` | Command to override all containers in the the statefulset                               | `["sleep"]`     |
 | `diagnosticMode.args`    | Args to override all containers in the the statefulset                                  | `["infinity"]`  |
@@ -376,6 +416,7 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 | `revisionHistoryLimitCount`                         | Number of controller revisions to keep                                                                                                                                                                            | `10`             |
 | `containerPorts.http`                               | Keycloak HTTP container port                                                                                                                                                                                      | `8080`           |
 | `containerPorts.https`                              | Keycloak HTTPS container port                                                                                                                                                                                     | `8443`           |
+| `containerPorts.metrics`                            | Keycloak metrics container port                                                                                                                                                                                   | `9000`           |
 | `extraContainerPorts`                               | Optionally specify extra list of additional port-mappings for Keycloak container                                                                                                                                  | `[]`             |
 | `statefulsetAnnotations`                            | Optionally add extra annotations on the statefulset resource                                                                                                                                                      | `{}`             |
 | `podSecurityContext.enabled`                        | Enabled Keycloak pods' Security Context                                                                                                                                                                           | `true`           |
@@ -539,29 +580,33 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 
 ### Metrics parameters
 
-| Name                                       | Description                                                                                                               | Value   |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `metrics.enabled`                          | Enable exposing Keycloak statistics                                                                                       | `false` |
-| `metrics.service.ports.http`               | Metrics service HTTP port                                                                                                 | `8080`  |
-| `metrics.service.annotations`              | Annotations for enabling prometheus to access the metrics endpoints                                                       | `{}`    |
-| `metrics.service.extraPorts`               | Add additional ports to the keycloak metrics service (i.e. admin port 9000)                                               | `[]`    |
-| `metrics.serviceMonitor.enabled`           | Create ServiceMonitor Resource for scraping metrics using PrometheusOperator                                              | `false` |
-| `metrics.serviceMonitor.port`              | Metrics service HTTP port                                                                                                 | `http`  |
-| `metrics.serviceMonitor.endpoints`         | The endpoint configuration of the ServiceMonitor. Path is mandatory. Interval, timeout and labellings can be overwritten. | `[]`    |
-| `metrics.serviceMonitor.path`              | Metrics service HTTP path. Deprecated: Use @param metrics.serviceMonitor.endpoints instead                                | `""`    |
-| `metrics.serviceMonitor.namespace`         | Namespace which Prometheus is running in                                                                                  | `""`    |
-| `metrics.serviceMonitor.interval`          | Interval at which metrics should be scraped                                                                               | `30s`   |
-| `metrics.serviceMonitor.scrapeTimeout`     | Specify the timeout after which the scrape is ended                                                                       | `""`    |
-| `metrics.serviceMonitor.labels`            | Additional labels that can be used so ServiceMonitor will be discovered by Prometheus                                     | `{}`    |
-| `metrics.serviceMonitor.selector`          | Prometheus instance selector labels                                                                                       | `{}`    |
-| `metrics.serviceMonitor.relabelings`       | RelabelConfigs to apply to samples before scraping                                                                        | `[]`    |
-| `metrics.serviceMonitor.metricRelabelings` | MetricRelabelConfigs to apply to samples before ingestion                                                                 | `[]`    |
-| `metrics.serviceMonitor.honorLabels`       | honorLabels chooses the metric's labels on collisions with target labels                                                  | `false` |
-| `metrics.serviceMonitor.jobLabel`          | The name of the label on the target service to use as the job name in prometheus.                                         | `""`    |
-| `metrics.prometheusRule.enabled`           | Create PrometheusRule Resource for scraping metrics using PrometheusOperator                                              | `false` |
-| `metrics.prometheusRule.namespace`         | Namespace which Prometheus is running in                                                                                  | `""`    |
-| `metrics.prometheusRule.labels`            | Additional labels that can be used so PrometheusRule will be discovered by Prometheus                                     | `{}`    |
-| `metrics.prometheusRule.groups`            | Groups, containing the alert rules.                                                                                       | `[]`    |
+| Name                                       | Description                                                                                                                                        | Value     |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
+| `metrics.enabled`                          | Enable exposing Keycloak statistics                                                                                                                | `false`   |
+| `metrics.service.ports.http`               | Metrics service HTTP port                                                                                                                          | `8080`    |
+| `metrics.service.ports.https`              | Metrics service HTTPS port                                                                                                                         | `8443`    |
+| `metrics.service.ports.metrics`            | Metrics service Metrics port                                                                                                                       | `9000`    |
+| `metrics.service.annotations`              | Annotations for enabling prometheus to access the metrics endpoints                                                                                | `{}`      |
+| `metrics.service.extraPorts`               | Add additional ports to the keycloak metrics service (i.e. admin port 9000)                                                                        | `[]`      |
+| `metrics.serviceMonitor.enabled`           | Create ServiceMonitor Resource for scraping metrics using PrometheusOperator                                                                       | `false`   |
+| `metrics.serviceMonitor.port`              | Metrics service HTTP port                                                                                                                          | `metrics` |
+| `metrics.serviceMonitor.scheme`            | Metrics service scheme                                                                                                                             | `http`    |
+| `metrics.serviceMonitor.tlsConfig`         | Metrics service TLS configuration                                                                                                                  | `{}`      |
+| `metrics.serviceMonitor.endpoints`         | The endpoint configuration of the ServiceMonitor. Path is mandatory. Port, scheme, tlsConfig, interval, timeout and labellings can be overwritten. | `[]`      |
+| `metrics.serviceMonitor.path`              | Metrics service HTTP path. Deprecated: Use @param metrics.serviceMonitor.endpoints instead                                                         | `""`      |
+| `metrics.serviceMonitor.namespace`         | Namespace which Prometheus is running in                                                                                                           | `""`      |
+| `metrics.serviceMonitor.interval`          | Interval at which metrics should be scraped                                                                                                        | `30s`     |
+| `metrics.serviceMonitor.scrapeTimeout`     | Specify the timeout after which the scrape is ended                                                                                                | `""`      |
+| `metrics.serviceMonitor.labels`            | Additional labels that can be used so ServiceMonitor will be discovered by Prometheus                                                              | `{}`      |
+| `metrics.serviceMonitor.selector`          | Prometheus instance selector labels                                                                                                                | `{}`      |
+| `metrics.serviceMonitor.relabelings`       | RelabelConfigs to apply to samples before scraping                                                                                                 | `[]`      |
+| `metrics.serviceMonitor.metricRelabelings` | MetricRelabelConfigs to apply to samples before ingestion                                                                                          | `[]`      |
+| `metrics.serviceMonitor.honorLabels`       | honorLabels chooses the metric's labels on collisions with target labels                                                                           | `false`   |
+| `metrics.serviceMonitor.jobLabel`          | The name of the label on the target service to use as the job name in prometheus.                                                                  | `""`      |
+| `metrics.prometheusRule.enabled`           | Create PrometheusRule Resource for scraping metrics using PrometheusOperator                                                                       | `false`   |
+| `metrics.prometheusRule.namespace`         | Namespace which Prometheus is running in                                                                                                           | `""`      |
+| `metrics.prometheusRule.labels`            | Additional labels that can be used so PrometheusRule will be discovered by Prometheus                                                              | `{}`      |
+| `metrics.prometheusRule.groups`            | Groups, containing the alert rules.                                                                                                                | `[]`      |
 
 ### keycloak-config-cli parameters
 
@@ -598,9 +643,11 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 | `keycloakConfigCli.backoffLimit`                                      | Number of retries before considering a Job as failed                                                                                                                                                                                                  | `1`                                   |
 | `keycloakConfigCli.podLabels`                                         | Pod extra labels                                                                                                                                                                                                                                      | `{}`                                  |
 | `keycloakConfigCli.podAnnotations`                                    | Annotations for job pod                                                                                                                                                                                                                               | `{}`                                  |
-| `keycloakConfigCli.extraEnvVars`                                      | Additional environment variables to set                                                                                                                                                                                                               | `[]`                                  |
 | `keycloakConfigCli.nodeSelector`                                      | Node labels for pod assignment                                                                                                                                                                                                                        | `{}`                                  |
 | `keycloakConfigCli.podTolerations`                                    | Tolerations for job pod assignment                                                                                                                                                                                                                    | `[]`                                  |
+| `keycloakConfigCli.availabilityCheck.enabled`                         | Whether to wait until Keycloak is available                                                                                                                                                                                                           | `true`                                |
+| `keycloakConfigCli.availabilityCheck.timeout`                         | Timeout for the availability check (Default is 120s)                                                                                                                                                                                                  | `""`                                  |
+| `keycloakConfigCli.extraEnvVars`                                      | Additional environment variables to set                                                                                                                                                                                                               | `[]`                                  |
 | `keycloakConfigCli.extraEnvVarsCM`                                    | ConfigMap with extra environment variables                                                                                                                                                                                                            | `""`                                  |
 | `keycloakConfigCli.extraEnvVarsSecret`                                | Secret with extra environment variables                                                                                                                                                                                                               | `""`                                  |
 | `keycloakConfigCli.extraVolumes`                                      | Extra volumes to add to the job                                                                                                                                                                                                                       | `[]`                                  |
@@ -639,11 +686,12 @@ As an alternative, you can use of the preset configurations for pod affinity, po
 
 ### Keycloak Cache parameters
 
-| Name              | Description                                                                | Value        |
-| ----------------- | -------------------------------------------------------------------------- | ------------ |
-| `cache.enabled`   | Switch to enable or disable the keycloak distributed cache for kubernetes. | `true`       |
-| `cache.stackName` | Set infinispan cache stack to use                                          | `kubernetes` |
-| `cache.stackFile` | Set infinispan cache stack filename to use                                 | `""`         |
+| Name                                     | Description                                                                                                                             | Value            |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| `cache.enabled`                          | Switch to enable or disable the keycloak distributed cache for kubernetes.                                                              | `true`           |
+| `cache.stack`                            | Set infinispan cache stack to use, sets KC_CACHE_STACK (<https://www.keycloak.org/server/all-config?q=cache-stack>)                     | `kubernetes`     |
+| `cache.configFile`                       | Set infinispan cache stack config filename sets KC_CACHE_CONFIG_FILE (<https://www.keycloak.org/server/all-config?q=cache-config-file>) | `cache-ispn.xml` |
+| `cache.useHeadlessServiceWithAppVersion` | Set to true to create the headless service used for ispn containing the app version                                                     | `false`          |
 
 ### Keycloak Logging parameters
 
@@ -680,6 +728,19 @@ Keycloak realms, users and clients can be created from the Keycloak administrati
 Find more information about how to deal with common errors related to Bitnami's Helm charts in [this troubleshooting guide](https://docs.bitnami.com/general/how-to/troubleshoot-helm-chart-issues).
 
 ## Upgrading
+
+### To 24.3.0
+
+This version introduces image verification for security purposes. To disable it, set `global.security.allowInsecureImages` to `true`. More details at [GitHub issue](https://github.com/bitnami/charts/issues/30850).
+
+### To 24.1.0
+
+With this update the metrics service listening port is switched to 9000, the same as the keycloak management endpoint is using.
+This can be changed by setting `metrics.service.ports.http` to a different value, e.g. 8080 like before this change.
+
+### To 23.0.0
+
+This major updates the PostgreSQL subchart to its newest major, 16.0.0, which uses PostgreSQL 17.x.  Follow the [official instructions](https://www.postgresql.org/docs/17/upgrading.html) to upgrade to 17.x.
 
 ### To 21.0.0
 
@@ -788,13 +849,13 @@ kubectl delete pod keycloak-postgresql-0
 
 #### Useful links
 
-- [Bitnami Tutorial](https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/services/tutorials/GUID-resolve-helm2-helm3-post-migration-issues-index.html)
+- [Bitnami Tutorial](https://techdocs.broadcom.com/us/en/vmware-tanzu/application-catalog/tanzu-application-catalog/services/tac-doc/apps-tutorials-resolve-helm2-helm3-post-migration-issues-index.html)
 - [Helm docs](https://helm.sh/docs/topics/v2_v3_migration)
 - [Helm Blog](https://helm.sh/blog/migrate-from-helm-v2-to-helm-v3)
 
 ## License
 
-Copyright &copy; 2024 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
+Copyright &copy; 2025 Broadcom. The term "Broadcom" refers to Broadcom Inc. and/or its subsidiaries.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
