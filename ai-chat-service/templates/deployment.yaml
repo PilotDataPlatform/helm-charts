@@ -134,6 +134,10 @@ spec:
             value: {{ .Values.appConfig.AZURE_SEARCH_FILTER | quote }}
           - name: AZURE_SEARCH_STRICTNESS
             value: {{ .Values.appConfig.AZURE_SEARCH_STRICTNESS | quote }}
+          - name: FALLBACK_RESPONSE
+            value: {{ .Values.appConfig.FALLBACK_RESPONSE | quote }}
+          - name: FALLBACK_DETECTION_PHRASES
+            value: {{ .Values.appConfig.FALLBACK_DETECTION_PHRASES | quote }}
 ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
