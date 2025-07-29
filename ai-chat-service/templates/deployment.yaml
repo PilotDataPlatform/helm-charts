@@ -79,6 +79,8 @@ spec:
             value: {{ .Values.appConfig.AZURE_DEPLOYMENT | quote }}
           - name: CHAT_HISTORY_LEN
             value: {{ .Values.appConfig.CHAT_HISTORY_LEN | quote }}
+          - name: REDIS_EXPIRE_SECONDS
+            value: {{ .Values.appConfig.REDIS_EXPIRE_SECONDS | quote }}
           - name: SERVICE_CLIENT_TIMEOUT
             value: {{ .Values.appConfig.SERVICE_CLIENT_TIMEOUT | quote }}
 
