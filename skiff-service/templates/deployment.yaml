@@ -17,32 +17,28 @@ spec:
         {{- include "skiff-service.selectorLabels" . | nindent 8 }}
     spec:
       containers:
-      - name: monitor
-        image: {{ .Values.monitor.image.repository }}:{{ .Values.monitor.image.tag | default "latest" }}
-        imagePullPolicy: {{ .Values.monitor.image.pullPolicy | default "IfNotPresent" }}
-        command:
-          - "/bin/sh"
-          - "-c"
-        args:
-          - |
-            {{ .Values.monitor.script | nindent 12 }}
-        {{- if or .Values.monitor.env .Values.monitor.secretEnv }}
-        env:
-          {{- if .Values.monitor.env }}
-          {{- range $key, $value := .Values.monitor.env }}
-          - name: {{ $key }}
-            value: {{ $value | quote }}
+        - name: monitor
+          image: {{ .Values.monitor.image.repository }}:{{ .Values.monitor.image.tag }}
+          imagePullPolicy: {{ .Values.monitor.image.pullPolicy | default "IfNotPresent" }}
+          command: {{ .Values.monitor.command }}
+          args: 
+            - {{ .Values.monitor.args | quote }}
+          {{- if or .Values.monitor.env .Values.monitor.secretEnv }}
+          env:
+            {{- if .Values.monitor.env }}
+            {{- range $key, $value := .Values.monitor.env }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
+            {{- if .Values.monitor.secretEnv }}
+            {{- range $key, $value := .Values.monitor.secretEnv }}
+            - name: {{ $key }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $value.secretName }}
+                  key: {{ $value.secretKey }}
+            {{- end }}
+            {{- end }}
           {{- end }}
-          {{- end }}
-          {{- if .Values.monitor.secretEnv }}
-          {{- range $key, $value := .Values.monitor.secretEnv }}
-          - name: {{ $key }}
-            valueFrom:
-              secretKeyRef:
-                name: {{ $value.secretName }}
-                key: {{ $value.secretKey }}
-          {{- end }}
-          {{- end }}
-        {{- end }}
-      serviceAccountName: {{ .Values.serviceAccount.name }}
 {{- end }}
