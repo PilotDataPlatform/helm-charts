@@ -16,6 +16,7 @@ spec:
         app: {{ include "skiff-service.name" . }}-monitor
         {{- include "skiff-service.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "skiff-service.serviceAccountName" . }}
       containers:
         - name: monitor
           image: {{ .Values.monitor.image.repository }}:{{ .Values.monitor.image.tag }}
