@@ -135,9 +135,15 @@ spec:
           - name: SMTP_PORT
             value: {{ .Values.appConfig.SMTP_PORT | quote }}
           - name: SMTP_USER
-            value: {{ .Values.appConfig.SMTP_USER | quote }}
+            valueFrom:
+                secretKeyRef:
+                  name: smtp-user
+                  key: smtp-user
           - name: SMTP_PASS
-            value: {{ .Values.appConfig.SMTP_PASS | quote }}
+            valueFrom:
+                secretKeyRef:
+                  name: smtp-pass
+                  key: smtp-pass
           - name: SMTP_STARTTLS
             value: {{ .Values.appConfig.SMTP_STARTTLS | quote }}
 
