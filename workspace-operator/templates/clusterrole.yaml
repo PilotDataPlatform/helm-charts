@@ -110,6 +110,7 @@ rules:
   - get
   - list
   - update
+  - patch
 - apiGroups:
   - storage.k8s.io
   resources:
