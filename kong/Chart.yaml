@@ -1,38 +1,17 @@
-annotations:
-  category: Infrastructure
 apiVersion: v2
-appVersion: 2.8.1
+appVersion: "3.9"
 dependencies:
 - condition: postgresql.enabled
   name: postgresql
   repository: https://charts.bitnami.com/bitnami
-  version: 11.x.x
-- name: common
-  repository: https://charts.bitnami.com/bitnami
-  version: 1.x.x
-- condition: cassandra.enabled
-  name: cassandra
-  repository: https://charts.bitnami.com/bitnami
-  version: 9.x.x
-description: Kong is an open source Microservice API gateway and platform designed
-  for managing microservices requests of high-availability, fault-tolerance, and distributed
-  systems.
-home: https://github.com/bitnami/charts/tree/master/bitnami/kong
-icon: https://bitnami.com/assets/stacks/kong/img/kong-stack-220x234.png
-keywords:
-- kong
-- ingress
-- openresty
-- controller
-- http
-- web
-- www
-- reverse proxy
+  version: 11.9.13
+description: The Cloud-Native Ingress and API-management
+home: https://konghq.com/
+icon: https://s3.amazonaws.com/downloads.kong/universe/assets/icon-kong-inc-large.png
 maintainers:
-- name: Bitnami
-  url: https://github.com/bitnami/charts
+- email: team-k8s@konghq.com
+  name: team-k8s-bot
 name: kong
 sources:
-- https://github.com/bitnami/bitnami-docker-kong
-- https://konghq.com/
-version: 6.3.10
+- https://github.com/Kong/charts/tree/main/charts/kong
+version: 2.52.0

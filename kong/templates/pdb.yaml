@@ -1,25 +1,27 @@
-{{- if and .Values.pdb.create (not .Values.useDaemonset) }}
-apiVersion: {{ include "common.capabilities.policy.apiVersion" . }}
+{{- if .Values.podDisruptionBudget.enabled }}
+{{- if and (not .Values.autoscaling.enabled) (le (int .Values.replicaCount) 1) }}
+{{- fail "Enabling PodDisruptionBudget with replicaCount: 1 and no autoscaling prevents pod restarts during upgrades" }}
+{{- end }}
+{{- if and .Values.autoscaling.enabled (le (int .Values.autoscaling.minReplicas) 1) }}
+{{- fail "Enabling PodDisruptionBudget with autoscaling.minReplicas: 1 prevents pod restarts during upgrades" }}
+{{- end }}
+apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
-  name: {{ include "common.names.fullname" . }}
-  namespace: {{ .Release.Namespace }}
-  labels: {{- include "common.labels.standard" . | nindent 4 }}
-    app.kubernetes.io/component: server
-    {{- if .Values.commonLabels }}
-    {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
-    {{- end }}
-  {{- if .Values.commonAnnotations }}
-  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
-  {{- end }}
+  name: {{ template "kong.fullname" . }}
+  namespace: {{ template "kong.namespace" . }}
+  labels:
+    {{- include "kong.metaLabels" . | nindent 4 }}
 spec:
-  {{- if .Values.pdb.minAvailable }}
-  minAvailable: {{ .Values.pdb.minAvailable }}
+  {{- if .Values.podDisruptionBudget.minAvailable }}
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable }}
   {{- end  }}
-  {{- if .Values.pdb.maxUnavailable }}
-  maxUnavailable: {{ .Values.pdb.maxUnavailable }}
+  {{- if .Values.podDisruptionBudget.maxUnavailable }}
+  maxUnavailable: {{ .Values.podDisruptionBudget.maxUnavailable }}
   {{- end  }}
+  unhealthyPodEvictionPolicy: {{ .Values.podDisruptionBudget.unhealthyPodEvictionPolicy }}
   selector:
-    matchLabels: {{- include "common.labels.matchLabels" . | nindent 6 }}
-      app.kubernetes.io/component: server
+    matchLabels:
+      {{- include "kong.metaLabels" . | nindent 6 }}
+      app.kubernetes.io/component: app
 {{- end }}
