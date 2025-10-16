@@ -39,7 +39,12 @@ appConfig:
   S3_BUCKET_ENCRYPTION_ENABLED: "false"
   S3_BUCKET_FOR_PROJECT_LOGOS: "project-logos"
   S3_PREFIX_FOR_PROJECT_IMAGE_URLS: "https://minio.dev.pilot.indocresearch.com/project-logos"
-  OBJECT_STORAGE_PROVIDER: "azure"
+  OBJECT_STORAGE_PROVIDER: "gcp"
+
+  GCP_PROJECT_ID: str = 'molten-precinct-465516-m1'
+  GCP_CREDENTIAL_TYPE: str = 'service_account'
+  GCP_SERVICE_ACCOUNT_CLIENT_EMAIL: str = 'testgcs-tenant-service-account@molten-precinct-465516-m1.iam.gserviceaccount.com'
+  GCP_SERVICE_ACCOUNT_TOKEN_URI: str = 'https://oauth2.googleapis.com/token'
 
   OPEN_TELEMETRY_ENABLED: "false"
   OPEN_TELEMETRY_HOST: "simplest-agent.utility"
