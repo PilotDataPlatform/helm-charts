@@ -75,6 +75,8 @@ spec:
             value: {{ .Values.appConfig.PORT | quote }}
           - name: WORKERS
             value: {{ .Values.appConfig.WORKERS | quote }}
+          - name: ENVIRONMENT
+            value: {{ .Values.appConfig.ENVIRONMENT | quote }}
 
 
 # Relational Database 
@@ -221,6 +223,8 @@ spec:
             value: {{ .Values.appConfig.PORT | quote }}
           - name: WORKERS
             value: {{ .Values.appConfig.WORKERS | quote }}
+          - name: ENVIRONMENT
+            value: {{ .Values.appConfig.ENVIRONMENT | quote }}
 
 
 # Relational Database 
