@@ -113,6 +113,14 @@ spec:
             value: {{ .Values.appConfig.S3_PREFIX_FOR_PROJECT_IMAGE_URLS | quote }}
           - name: OBJECT_STORAGE_PROVIDER
             value: {{ .Values.appConfig.OBJECT_STORAGE_PROVIDER | quote }}
+          - name: GCP_PROJECT_ID
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          - name: GCP_CREDENTIAL_TYPE
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          - name: GCP_SERVICE_ACCOUNT_CLIENT_EMAIL
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          - name: GCP_SERVICE_ACCOUNT_TOKEN_URI
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
 
 # open telemetry
           - name: OPEN_TELEMETRY_ENABLED
@@ -251,7 +259,15 @@ spec:
             value: {{ .Values.appConfig.S3_PREFIX_FOR_PROJECT_IMAGE_URLS | quote }}
           - name: OBJECT_STORAGE_PROVIDER
             value: {{ .Values.appConfig.OBJECT_STORAGE_PROVIDER | quote }}
-
+          - name: GCP_PROJECT_ID
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          - name: GCP_CREDENTIAL_TYPE
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          - name: GCP_SERVICE_ACCOUNT_CLIENT_EMAIL
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          - name: GCP_SERVICE_ACCOUNT_TOKEN_URI
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          
 # open telemetry
           - name: OPEN_TELEMETRY_ENABLED
             value: {{ .Values.appConfig.OPEN_TELEMETRY_ENABLED | quote }}
