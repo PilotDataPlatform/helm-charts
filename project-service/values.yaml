@@ -41,6 +41,7 @@ appConfig:
   S3_PREFIX_FOR_PROJECT_IMAGE_URLS: "https://minio.dev.pilot.indocresearch.com/project-logos"
   OBJECT_STORAGE_PROVIDER: "gcp"
 
+  ENVIRONMENT: "lab"
   GCP_PROJECT_ID: str = 'molten-precinct-465516-m1'
   GCP_CREDENTIAL_TYPE: str = 'service_account'
   GCP_SERVICE_ACCOUNT_CLIENT_EMAIL: str = 'testgcs-tenant-service-account@molten-precinct-465516-m1.iam.gserviceaccount.com'
