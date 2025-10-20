@@ -69,7 +69,7 @@ spec:
           - name: ENVIRONMENT
             value: {{ .Values.appConfig.ENVIRONMENT | quote }}
           - name: TENANT_ID
-            value: {{ .Values.appConfig.TENANT_ID | quote }}
+            value: {{ .Values.appConfig.tenant_id | quote }}
 
           - name: APP_NAME
             value: {{ .Values.appConfig.APP_NAME | quote }}
@@ -219,7 +219,7 @@ spec:
           - name: ENVIRONMENT
             value: {{ .Values.appConfig.ENVIRONMENT | quote }}
           - name: TENANT_ID
-            value: {{ .Values.appConfig.TENANT_ID | quote }}
+            value: {{ .Values.appConfig.tenant_id | quote }}
 
           - name: APP_NAME
             value: {{ .Values.appConfig.APP_NAME | quote }}
