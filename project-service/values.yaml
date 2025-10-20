@@ -41,10 +41,12 @@ appConfig:
   S3_PREFIX_FOR_PROJECT_IMAGE_URLS: "https://minio.dev.pilot.indocresearch.com/project-logos"
   OBJECT_STORAGE_PROVIDER: "gcp"
 
-  GCP_PROJECT_ID: str = ''
-  GCP_CREDENTIAL_TYPE: str = ''
-  GCP_SERVICE_ACCOUNT_CLIENT_EMAIL: str = ''
-  GCP_SERVICE_ACCOUNT_TOKEN_URI: str = ''
+  ENVIRONMENT: ''
+
+  GCP_PROJECT_ID: ''
+  GCP_CREDENTIAL_TYPE: ''
+  GCP_SERVICE_ACCOUNT_CLIENT_EMAIL: ''
+  GCP_SERVICE_ACCOUNT_TOKEN_URI: ''
 
   OPEN_TELEMETRY_ENABLED: "false"
   OPEN_TELEMETRY_HOST: "simplest-agent.utility"

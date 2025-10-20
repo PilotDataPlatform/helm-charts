@@ -66,6 +66,10 @@ spec:
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
 
+          - name: ENVIRONMENT
+            value: {{ .Values.appConfig.ENVIRONMENT | quote }}
+          - name: TENANT_ID
+            value: {{ .Values.appConfig.tenant_id | quote }}
 
           - name: APP_NAME
             value: {{ .Values.appConfig.APP_NAME | quote }}
@@ -212,6 +216,10 @@ spec:
           - name: srv_namespace
             value: {{ .Values.appConfig.srv_namespace | quote }}
 
+          - name: ENVIRONMENT
+            value: {{ .Values.appConfig.ENVIRONMENT | quote }}
+          - name: TENANT_ID
+            value: {{ .Values.appConfig.tenant_id | quote }}
 
           - name: APP_NAME
             value: {{ .Values.appConfig.APP_NAME | quote }}
