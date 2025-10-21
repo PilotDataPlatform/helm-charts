@@ -65,6 +65,10 @@ spec:
             value: {{ .Values.appConfig.config_center_enabled | quote }}
           - name: CONFIG_CENTER_BASE_URL
             value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: ENVIRONMENT
+            value: {{ .Values.appConfig.ENVIRONMENT | quote }}
+          - name: TENANT_ID
+            value: {{ .Values.appConfig.tenant_id | quote }}
             # log levels
           - name: LOG_LEVEL_DEFAULT
             value: {{ .Values.appConfig.LOG_LEVEL_DEFAULT | quote}}
@@ -143,6 +147,16 @@ spec:
             value: {{ .Values.appConfig.OPEN_TELEMETRY_HOST | quote }}
           - name: OPEN_TELEMETRY_PORT
             value: {{ .Values.appConfig.OPEN_TELEMETRY_PORT | quote }}
+          
+          # object storage
+          - name: GCP_PROJECT_ID
+            value: {{ .Values.appConfig.GCP_PROJECT_ID | quote }}
+          - name: GCP_CREDENTIAL_TYPE
+            value: {{ .Values.appConfig.GCP_CREDENTIAL_TYPE | quote }}
+          - name: GCP_SERVICE_ACCOUNT_CLIENT_EMAIL
+            value: {{ .Values.appConfig.GCP_SERVICE_ACCOUNT_CLIENT_EMAIL | quote }}
+          - name: GCP_SERVICE_ACCOUNT_TOKEN_URI
+            value: {{ .Values.appConfig.GCP_SERVICE_ACCOUNT_TOKEN_URI | quote }}
 
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}

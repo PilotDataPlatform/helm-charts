@@ -18,6 +18,14 @@ appConfig:
   config_center_base_url: http://common.utility:5062/
   namespace: ""
   ROOT_PATH: ""
+  
+  tenant_id:
+  ENVIRONMENT: ''
+
+  GCP_PROJECT_ID: ''
+  GCP_CREDENTIAL_TYPE: ''
+  GCP_SERVICE_ACCOUNT_CLIENT_EMAIL: ''
+  GCP_SERVICE_ACCOUNT_TOKEN_URI: ''
 
   LOG_LEVEL_DEFAULT: 30 # WARN
   LOG_LEVEL_FILE: 30 # WARN
