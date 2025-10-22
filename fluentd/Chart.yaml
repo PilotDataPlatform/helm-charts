@@ -1,31 +1,15 @@
-annotations:
-  category: Analytics
-  images: |
-    - name: fluentd
-      image: docker.io/bitnami/fluentd:1.16.4-debian-12-r0
-  licenses: Apache-2.0
 apiVersion: v2
-appVersion: 1.16.4
-dependencies:
-- name: common
-  repository: oci://registry-1.docker.io/bitnamicharts
-  tags:
-  - bitnami-common
-  version: 2.x.x
-description: Fluentd collects events from various data sources and writes them to
-  files, RDBMS, NoSQL, IaaS, SaaS, Hadoop and so on.
-home: https://bitnami.com
-icon: https://bitnami.com/assets/stacks/fluentd/img/fluentd-stack-220x234.png
-keywords:
-- fluentd
-- logging
-- logs
-- data
-- collector
+appVersion: v1.17.1
+description: A Helm chart for Kubernetes
+home: https://www.fluentd.org/
+icon: https://www.fluentd.org/images/miscellany/fluentd-logo_2x.png
 maintainers:
-- name: VMware, Inc.
-  url: https://github.com/bitnami/charts
+- email: eduardo@treasure-data.com
+  name: edsiper
+- email: diogo.filipe.tomas.guerra@cern.ch
+  name: dioguerra
 name: fluentd
 sources:
-- https://github.com/bitnami/charts/tree/main/bitnami/fluentd
-version: 5.19.1
+- https://github.com/fluent/fluentd/
+- https://github.com/fluent/fluentd-kubernetes-daemonset
+version: 0.5.3
