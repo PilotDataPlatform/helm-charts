@@ -125,6 +125,8 @@ spec:
             value: {{ .Values.appConfig.GCP_SERVICE_ACCOUNT_CLIENT_EMAIL | quote }}
           - name: GCP_SERVICE_ACCOUNT_TOKEN_URI
             value: {{ .Values.appConfig.GCP_SERVICE_ACCOUNT_TOKEN_URI | quote }}
+          - name: BUCKET_FOR_PROJECT_LOGOS
+            value: {{ .Values.appConfig.BUCKET_FOR_PROJECT_LOGOS | quote }}
 
 # open telemetry
           - name: OPEN_TELEMETRY_ENABLED
@@ -275,6 +277,8 @@ spec:
             value: {{ .Values.appConfig.GCP_SERVICE_ACCOUNT_CLIENT_EMAIL | quote }}
           - name: GCP_SERVICE_ACCOUNT_TOKEN_URI
             value: {{ .Values.appConfig.GCP_SERVICE_ACCOUNT_TOKEN_URI | quote }}
+          - name: BUCKET_FOR_PROJECT_LOGOS
+            value: {{ .Values.appConfig.BUCKET_FOR_PROJECT_LOGOS | quote }}
           
 # open telemetry
           - name: OPEN_TELEMETRY_ENABLED
