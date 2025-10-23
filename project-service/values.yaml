@@ -41,6 +41,8 @@ appConfig:
   S3_PREFIX_FOR_PROJECT_IMAGE_URLS: "https://minio.dev.pilot.indocresearch.com/project-logos"
   OBJECT_STORAGE_PROVIDER: "gcp"
 
+  BUCKET_FOR_PROJECT_LOGOS: ''
+
   ENVIRONMENT: ''
 
   GCP_PROJECT_ID: ''
