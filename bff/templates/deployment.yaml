@@ -70,6 +70,8 @@ spec:
             value: {{ .Values.appConfig.PLATFORM_NAME | quote }}
           - name: KEYCLOAK_REALM
             value: {{ .Values.appConfig.KEYCLOAK_REALM | quote }}
+          - name: OBJECT_STORAGE_PROVIDER
+            value: {{ .Values.appConfig.OBJECT_STORAGE_PROVIDER | quote }}
 
 # workers
           - name: WORKERS

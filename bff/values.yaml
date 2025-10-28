@@ -66,6 +66,8 @@ appConfig:
   REDIS_PORT: 6379
   INVITATION_URL_LOGIN: 
 
+  OBJECT_STORAGE_PROVIDER: 'azure'
+
 podAnnotations: {}
 
 deploymentAnnotations: {}
