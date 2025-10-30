@@ -4,6 +4,10 @@ metadata:
   name: {{ include "cli-automation-public-bucket.fullname" . }}
   labels:
     {{- include "cli-automation-public-bucket.labels" . | nindent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   ttlSecondsAfterFinished: 120
   template:
