@@ -9,7 +9,7 @@ metadata:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  ttlSecondsAfterFinished: 120
+  # ttlSecondsAfterFinished: 120
   template:
     metadata:
       {{- with .Values.podAnnotations }}
