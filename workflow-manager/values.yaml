@@ -75,6 +75,8 @@ ingress:
 
 resources: {}
 
+livenessProbe: {}
+readinessProbe: {}
 
 autoscaling:
   enabled: false
