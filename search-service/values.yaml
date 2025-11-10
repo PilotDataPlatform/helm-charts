@@ -75,6 +75,8 @@ extraEnvYaml: {}
 
 readinessProbe: []
 
+livenessProbe: {}
+
 extraVolumeMounts: []
 
 extraVolumes: []

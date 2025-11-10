@@ -53,6 +53,8 @@ affinity: {}
 
 readinessProbe: {}
 
+livenessProbe: {}
+
 updateStrategy: {}
 
 extraEnv: {}
