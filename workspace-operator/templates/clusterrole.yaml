@@ -13,6 +13,7 @@ rules:
   - namespaces
   - secrets
   - persistentvolumeclaims
+  - persistentvolumes
   verbs:
   - create
   - delete
