@@ -1,0 +1,119 @@
+# Default values for pilotx-frontend.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: us-central1-docker.pkg.dev/lab-project-20251119-4241/pilotx-containers/pilotx-ui
+  tag: "latest"
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: pilotx-frontend
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# Application configuration - these are injected as environment variables
+# and used by envsubst at container startup to populate env-config.js
+appConfig:
+  # Platform name displayed in the UI
+  VITE_PLATFORM: "PilotX"
+
+  # Public documentation bucket URL
+  VITE_DOC_BUCKET: ""
+
+  # Keycloak authentication settings
+  VITE_DEFAULT_AUTH_URL: "https://keycloak.dev-pilotx.example.com"
+  VITE_KEYCLOAK_REALM: "pilotx"
+
+  # Domain configuration
+  VITE_DOMAIN: "dev-pilotx.example.com"
+
+  # Path prefixes
+  VITE_PORTAL_PATH: ""
+  VITE_REST_API_PATH: "/api"
+  VITE_BRANDING_PATH: "/login"
+
+  # Branding module URL (Netlify hosted)
+  VITE_BRAND_URL: ""
+
+podAnnotations: {}
+
+deploymentAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+container:
+  port: 80
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+  # kubernetes.io/ingress.class: nginx
+  # cert-manager.io/cluster-issuer: letsencrypt-prod
+  hostname: pilotx.example.com
+  path: /
+  pathType: Prefix
+  tls: false
+
+resources:
+  requests:
+    memory: "128Mi"
+    cpu: "100m"
+  limits:
+    memory: "256Mi"
+    cpu: "200m"
+
+autoscaling:
+  enabled: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+readinessProbe:
+  httpGet:
+    path: /health
+    port: 80
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 3
+  successThreshold: 1
+  failureThreshold: 3
+
+livenessProbe:
+  httpGet:
+    path: /health
+    port: 80
+  initialDelaySeconds: 30
+  periodSeconds: 15
+  timeoutSeconds: 3
+  successThreshold: 1
+  failureThreshold: 3
+
+updateStrategy: {}
+
+# Additional environment variables (key-value pairs)
+extraEnv: {}
+
+# Additional environment variables (full YAML format for secrets, configmaps, etc.)
+extraEnvYaml: {}
