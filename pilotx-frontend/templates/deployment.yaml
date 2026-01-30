@@ -81,6 +81,10 @@ spec:
             # Branding module URL
             - name: VITE_BRAND_URL
               value: {{ .Values.appConfig.VITE_BRAND_URL | quote }}
+
+            # Backend API URL
+            - name: VITE_API_URL
+              value: {{ .Values.appConfig.VITE_API_URL | quote }}
 ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}

@@ -46,6 +46,9 @@ appConfig:
   # Branding module URL (Netlify hosted)
   VITE_BRAND_URL: ""
 
+  # Backend API URL (e.g., https://api.example.com)
+  VITE_API_URL: ""
+
 podAnnotations: {}
 
 deploymentAnnotations: {}
