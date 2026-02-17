@@ -36,6 +36,22 @@ spec:
     - host: {{ .Values.ingress.hostname | quote }}
       http:
         paths:
+          {{- range .Values.ingress.additionalPaths }}
+          - path: {{ .path }}
+            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+            pathType: {{ .pathType | default "Prefix" }}
+            {{- end }}
+            backend:
+              {{- if semverCompare ">=1.19-0" $.Capabilities.KubeVersion.GitVersion }}
+              service:
+                name: {{ .serviceName }}
+                port:
+                  number: {{ .servicePort }}
+              {{- else }}
+              serviceName: {{ .serviceName }}
+              servicePort: {{ .servicePort }}
+              {{- end }}
+          {{- end }}
           - path: {{ .Values.ingress.path }}
             {{- if and .Values.ingress.pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
             pathType: {{ .Values.ingress.pathType }}

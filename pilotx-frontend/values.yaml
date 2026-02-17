@@ -75,6 +75,17 @@ ingress:
   path: /
   pathType: Prefix
   tls: false
+  # Additional paths for routing API requests to backend services
+  additionalPaths: []
+  # Example for routing API requests to the pilotx backend:
+  # - path: /graphql
+  #   pathType: Prefix
+  #   serviceName: pilotx
+  #   servicePort: 8080
+  # - path: /api
+  #   pathType: Prefix
+  #   serviceName: pilotx
+  #   servicePort: 8080
 
 resources:
   requests:
@@ -119,4 +130,4 @@ updateStrategy: {}
 extraEnv: {}
 
 # Additional environment variables (full YAML format for secrets, configmaps, etc.)
-extraEnvYaml: {}
+extraEnvYaml: []
