@@ -1,0 +1,210 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pilotx.fullname" . }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  labels:
+    {{- include "pilotx.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "pilotx.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "pilotx.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "pilotx.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- if .Values.initContainers.waitForDb.enabled }}
+      initContainers:
+        - name: wait-for-db
+          image: {{ .Values.initContainers.waitForDb.image }}
+          command: ['sh', '-c', 'until pg_isready -h {{ .Values.appConfig.database.host }} -p {{ .Values.appConfig.database.port }}; do sleep 2; done']
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.container.port }}
+              protocol: TCP
+          env:
+            # GCP Configuration
+            - name: SPRING_CLOUD_GCP_PROJECT_ID
+              value: {{ .Values.appConfig.gcpProjectId | quote }}
+            - name: SPRING_CLOUD_GCP_CREDENTIALS_LOCATION
+              value: {{ .Values.appConfig.gcpCredentialsLocation | quote }}
+
+            # R2DBC Database Configuration
+            - name: SPRING_R2DBC_URL
+              value: {{ include "pilotx.r2dbcUrl" . | quote }}
+            - name: SPRING_R2DBC_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key: {{ .Values.database.secretKeys.username }}
+            - name: SPRING_R2DBC_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key: {{ .Values.database.secretKeys.password }}
+
+            # Flyway Database Configuration
+            - name: SPRING_FLYWAY_URL
+              value: {{ include "pilotx.jdbcUrl" . | quote }}
+            - name: SPRING_FLYWAY_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key: {{ .Values.database.secretKeys.username }}
+            - name: SPRING_FLYWAY_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key: {{ .Values.database.secretKeys.password }}
+
+            # Datasource Configuration (for Casbin)
+            - name: SPRING_DATASOURCE_URL
+              value: {{ include "pilotx.jdbcUrl" . | quote }}
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key: {{ .Values.database.secretKeys.username }}
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.database.existingSecret }}
+                  key: {{ .Values.database.secretKeys.password }}
+
+            # Security Configuration
+            - name: PILOTX_SECURITY_ISSUER_HOST
+              value: {{ .Values.appConfig.keycloakIssuerHost | quote }}
+            - name: PILOTX_UI_ALLOWED_ORIGINS
+              value: {{ .Values.appConfig.allowedOrigins | quote }}
+
+            # Email Configuration
+            - name: EMAIL_ENABLED
+              value: {{ .Values.appConfig.email.enabled | quote }}
+            {{- if .Values.appConfig.email.enabled }}
+            - name: PILOTX_EMAIL_PROVIDER
+              value: {{ .Values.appConfig.email.provider | quote }}
+            - name: PILOTX_EMAIL_FROM_EMAIL
+              value: {{ .Values.appConfig.email.fromEmail | quote }}
+            - name: PILOTX_EMAIL_FROM_NAME
+              value: {{ .Values.appConfig.email.fromName | quote }}
+            - name: PILOTX_EMAIL_REPLY_TO
+              value: {{ .Values.appConfig.email.replyTo | quote }}
+            - name: PILOTX_EMAIL_REPLY_TO_DISPLAY_NAME
+              value: {{ .Values.appConfig.email.replyToDisplayName | quote }}
+            - name: PILOTX_REGISTRATION_URL_BASE
+              value: {{ .Values.appConfig.email.registrationUrlBase | quote }}
+
+            # SMTP Configuration
+            - name: PILOTX_SMTP_HOST
+              value: {{ .Values.appConfig.smtp.host | quote }}
+            - name: PILOTX_SMTP_PORT
+              value: {{ .Values.appConfig.smtp.port | quote }}
+            - name: PILOTX_SMTP_SSL
+              value: {{ .Values.appConfig.smtp.ssl | quote }}
+            - name: PILOTX_SMTP_STARTTLS
+              value: {{ .Values.appConfig.smtp.starttls | quote }}
+            {{- if .Values.smtpSecret.existingSecret }}
+            - name: SMTP_USER
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.smtpSecret.existingSecret }}
+                  key: {{ .Values.smtpSecret.secretKeys.username }}
+            - name: SMTP_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.smtpSecret.existingSecret }}
+                  key: {{ .Values.smtpSecret.secretKeys.password }}
+            {{- end }}
+            {{- end }}
+
+            # Logging Configuration
+            - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_GRAPHQL
+              value: {{ .Values.appConfig.logging.levelGraphql | quote }}
+            - name: LOGGING_LEVEL_GRAPHQL
+              value: {{ .Values.appConfig.logging.levelGraphql | quote }}
+            - name: LOGGING_LEVEL_IO_INDOCPILOT_PILOTX
+              value: {{ .Values.appConfig.logging.levelApp | quote }}
+
+            # Extra environment variables (simple key-value)
+            {{- if .Values.extraEnv }}
+            {{- range $key, $value := .Values.extraEnv }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+            {{- end }}
+            {{- end }}
+
+            # Extra environment variables (full YAML format)
+            {{- with .Values.extraEnvYaml }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+      {{- with .Values.client.auth.postgresql.cloudSqlProxy }}
+      {{- range . }}
+        - name: {{ .name }}
+          image: {{ .image }}
+          {{- if .args }}
+          args:
+          {{- range .args }}
+            - {{ . | quote }}
+          {{- end }}
+          {{- end }}
+          {{- with .securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+      {{- end }}
+      {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
