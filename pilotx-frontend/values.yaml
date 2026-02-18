@@ -49,6 +49,14 @@ appConfig:
   # Backend API URL (e.g., https://api.example.com)
   VITE_API_URL: ""
 
+  # Tenant terms-of-use
+  VITE_TENANT_TOU_NAME: ""
+  VITE_TENANT_TOU_URL: ""
+
+  # Help / support
+  VITE_USER_GUIDE_URL: ""
+  VITE_CONTACT_US_EMAIL: ""
+
 podAnnotations: {}
 
 deploymentAnnotations: {}

@@ -83,6 +83,18 @@ spec:
             # Backend API URL
             - name: VITE_API_URL
               value: {{ .Values.appConfig.VITE_API_URL | quote }}
+
+            # Tenant terms-of-use
+            - name: VITE_TENANT_TOU_NAME
+              value: {{ .Values.appConfig.VITE_TENANT_TOU_NAME | quote }}
+            - name: VITE_TENANT_TOU_URL
+              value: {{ .Values.appConfig.VITE_TENANT_TOU_URL | quote }}
+
+            # Help / support
+            - name: VITE_USER_GUIDE_URL
+              value: {{ .Values.appConfig.VITE_USER_GUIDE_URL | quote }}
+            - name: VITE_CONTACT_US_EMAIL
+              value: {{ .Values.appConfig.VITE_CONTACT_US_EMAIL | quote }}
 ###################### END OF APP CONFIG #############################
 {{- if .Values.extraEnv }}
   {{- range $key, $value := .Values.extraEnv }}
