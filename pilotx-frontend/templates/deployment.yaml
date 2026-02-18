@@ -32,9 +32,7 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-      {{- if .Values.serviceAccount.create }}
       serviceAccountName: {{ include "pilotx-frontend.serviceAccountName" . }}
-      {{- end }}
       {{- with .Values.podSecurityContext }}
       securityContext:
         {{- toYaml . | nindent 8 }}

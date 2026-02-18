@@ -32,11 +32,11 @@ appConfig:
   VITE_DOC_BUCKET: ""
 
   # Keycloak authentication settings
-  VITE_DEFAULT_AUTH_URL: "https://keycloak.dev-pilotx.example.com"
+  VITE_DEFAULT_AUTH_URL: ""  # REQUIRED: e.g. https://keycloak.example.com
   VITE_KEYCLOAK_REALM: "pilotx"
 
   # Domain configuration
-  VITE_DOMAIN: "dev-pilotx.example.com"
+  VITE_DOMAIN: ""            # REQUIRED: e.g. app.example.com
 
   # Path prefixes
   VITE_PORTAL_PATH: ""
@@ -97,6 +97,10 @@ resources:
 
 autoscaling:
   enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
 
 nodeSelector: {}
 

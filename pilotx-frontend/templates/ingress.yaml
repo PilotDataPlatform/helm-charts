@@ -30,7 +30,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.hostname | quote }}
-      secretName: {{ printf "%s-tls" .Values.ingress.hostname }}
+      secretName: {{ printf "%s-tls" (include "pilotx-frontend.fullname" .) }}
   {{- end }}
   rules:
     - host: {{ .Values.ingress.hostname | quote }}
@@ -38,7 +38,7 @@ spec:
         paths:
           {{- range .Values.ingress.additionalPaths }}
           - path: {{ .path }}
-            {{- if and .pathType (semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion) }}
+            {{- if semverCompare ">=1.18-0" $.Capabilities.KubeVersion.GitVersion }}
             pathType: {{ .pathType | default "Prefix" }}
             {{- end }}
             backend:
