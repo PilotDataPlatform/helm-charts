@@ -36,8 +36,8 @@ appConfig:
     name: pilotx
 
   # Security / Authentication
-  keycloakIssuerHost: "https://lab-iam.indocpilot.io"
-  allowedOrigins: "http://pilotxui:80"
+  keycloakIssuerHost: ""   # REQUIRED: e.g. https://keycloak.example.com/realms/pilotx
+  allowedOrigins: ""        # REQUIRED: e.g. https://app.example.com
 
   # Email configuration (optional)
   email:
@@ -164,6 +164,13 @@ client:
       #     - "PROJECT:REGION:INSTANCE"
       #   securityContext:
       #     runAsNonRoot: true
+      #   resources:
+      #     requests:
+      #       memory: "128Mi"
+      #       cpu: "100m"
+      #     limits:
+      #       memory: "256Mi"
+      #       cpu: "500m"
 
 # SMTP credentials from existing secret (optional, when email is enabled)
 smtpSecret:

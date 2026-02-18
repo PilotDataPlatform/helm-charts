@@ -30,7 +30,7 @@ spec:
   tls:
     - hosts:
         - {{ .Values.ingress.hostname | quote }}
-      secretName: {{ printf "%s-tls" .Values.ingress.hostname }}
+      secretName: {{ printf "%s-tls" (include "pilotx.fullname" .) }}
   {{- end }}
   rules:
     - host: {{ .Values.ingress.hostname | quote }}

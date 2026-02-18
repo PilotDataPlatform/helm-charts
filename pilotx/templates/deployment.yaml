@@ -56,10 +56,14 @@ spec:
               protocol: TCP
           env:
             # GCP Configuration
+            {{- if .Values.appConfig.gcpProjectId }}
             - name: SPRING_CLOUD_GCP_PROJECT_ID
               value: {{ .Values.appConfig.gcpProjectId | quote }}
+            {{- end }}
+            {{- if .Values.appConfig.gcpCredentialsLocation }}
             - name: SPRING_CLOUD_GCP_CREDENTIALS_LOCATION
               value: {{ .Values.appConfig.gcpCredentialsLocation | quote }}
+            {{- end }}
 
             # R2DBC Database Configuration
             - name: SPRING_R2DBC_URL
@@ -192,6 +196,10 @@ spec:
           {{- end }}
           {{- with .securityContext }}
           securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .resources }}
+          resources:
             {{- toYaml . | nindent 12 }}
           {{- end }}
       {{- end }}
