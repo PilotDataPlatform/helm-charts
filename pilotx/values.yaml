@@ -1,0 +1,180 @@
+# Default values for pilotx.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: us-central1-docker.pkg.dev/lab-project-20251119-4241/pilotx-containers/pilotx
+  tag: "0.0.22-SNAPSHOT"
+  pullPolicy: Always
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: pilotx
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account (e.g., for GCP Workload Identity)
+  annotations: {}
+    # iam.gke.io/gcp-service-account: pilotx-sa@PROJECT.iam.gserviceaccount.com
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# Application configuration - these are injected as environment variables
+appConfig:
+  # GCP Configuration
+  gcpProjectId: ""
+  gcpCredentialsLocation: ""
+
+  # Database connection settings (credentials are in secrets)
+  database:
+    host: postgres
+    port: 5432
+    name: pilotx
+
+  # Security / Authentication
+  keycloakIssuerHost: ""   # REQUIRED: e.g. https://keycloak.example.com/realms/pilotx
+  allowedOrigins: ""        # REQUIRED: e.g. https://app.example.com
+
+  # Email configuration (optional)
+  email:
+    enabled: false
+    provider: smtp
+    fromEmail: ""
+    fromName: "Pilot Support"
+    replyTo: ""
+    replyToDisplayName: "Pilot Support"
+    registrationUrlBase: ""
+
+  # SMTP configuration (when email is enabled)
+  smtp:
+    host: "smtp.office365.com"
+    port: 587
+    ssl: false
+    starttls: true
+
+  # Logging levels
+  logging:
+    levelGraphql: "INFO"
+    levelApp: "INFO"
+
+# Database credentials from existing secret
+database:
+  existingSecret: "db-credentials"
+  secretKeys:
+    username: POSTGRES_USER
+    password: POSTGRES_PASSWORD
+
+# Init containers configuration
+initContainers:
+  waitForDb:
+    enabled: true
+    image: postgres:18
+
+podAnnotations: {}
+
+deploymentAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+container:
+  port: 8080
+
+service:
+  type: ClusterIP
+  port: 8080
+  targetPort: 8080
+
+ingress:
+  enabled: false
+  className: nginx
+  annotations: {}
+    # cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/proxy-body-size: "100m"
+  hostname: api.pilotx.example.com
+  path: /
+  pathType: Prefix
+  tls: false
+
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "250m"
+  limits:
+    memory: "1Gi"
+    cpu: "1000m"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 80
+  targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+readinessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  initialDelaySeconds: 20
+  periodSeconds: 10
+  timeoutSeconds: 3
+  successThreshold: 1
+  failureThreshold: 3
+
+livenessProbe:
+  httpGet:
+    path: /actuator/health
+    port: 8080
+  initialDelaySeconds: 60
+  periodSeconds: 20
+  timeoutSeconds: 3
+  successThreshold: 1
+  failureThreshold: 3
+
+updateStrategy: {}
+
+# Additional environment variables (key-value pairs)
+extraEnv: {}
+
+# Additional environment variables (full YAML format for secrets, configmaps, etc.)
+extraEnvYaml: []
+
+# Cloud SQL Proxy sidecar containers (for GKE Cloud SQL connectivity)
+client:
+  auth:
+    postgresql:
+      cloudSqlProxy: []
+      # Example:
+      # - name: cloud-sql-proxy
+      #   image: gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.15.0
+      #   args:
+      #     - "--structured-logs"
+      #     - "--auto-iam-authn"
+      #     - "PROJECT:REGION:INSTANCE"
+      #   securityContext:
+      #     runAsNonRoot: true
+      #   resources:
+      #     requests:
+      #       memory: "128Mi"
+      #       cpu: "100m"
+      #     limits:
+      #       memory: "256Mi"
+      #       cpu: "500m"
+
+# SMTP credentials from existing secret (optional, when email is enabled)
+smtpSecret:
+  existingSecret: ""
+  secretKeys:
+    username: SMTP_USER
+    password: SMTP_PASSWORD
