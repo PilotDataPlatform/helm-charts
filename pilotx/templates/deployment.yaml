@@ -113,6 +113,10 @@ spec:
             - name: PILOTX_UI_ALLOWED_ORIGINS
               value: {{ .Values.appConfig.allowedOrigins | quote }}
 
+            # Invitation configuration
+            - name: PILOTX_INVITATION_DEFAULT_EXPIRY_DAYS
+              value: {{ .Values.appConfig.invitation.defaultExpiryDays | default 30 | quote }}
+
             # Email Configuration
             - name: EMAIL_ENABLED
               value: {{ .Values.appConfig.email.enabled | quote }}
