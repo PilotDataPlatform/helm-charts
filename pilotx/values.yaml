@@ -65,6 +65,13 @@ appConfig:
     levelGraphql: "INFO"
     levelApp: "INFO"
 
+  # Guacamole configuration (when guacamole is enabled)
+  guacamole:
+    enabled: false
+    host: ""
+    username: ""
+    password: ""
+
 # Database credentials from existing secret
 database:
   existingSecret: "db-credentials"

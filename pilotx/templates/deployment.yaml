@@ -165,6 +165,24 @@ spec:
             - name: LOGGING_LEVEL_IO_INDOCPILOT_PILOTX
               value: {{ .Values.appConfig.logging.levelApp | quote }}
 
+            # Guacamole Configuration
+            - name: GUACAMOLE_ENABLED
+              value: {{ .Values.appConfig.guacamole.enabled | quote }}
+            {{- if .Values.appConfig.guacamole.enabled }}
+            - name: GUACAMOLE_HOST
+              value: {{ .Values.appConfig.guacamole.host | quote }}
+            - name: GUACAMOLE_ADMIN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.guacamoleSecret.existingSecret }}
+                  key: {{ .Values.guacamoleSecret.secretKeys.username }}
+            - name: GUACAMOLE_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.guacamoleSecret.existingSecret }}
+                  key: {{ .Values.guacamoleSecret.secretKeys.password }}
+            {{- end }}
+
             # Extra environment variables (simple key-value)
             {{- if .Values.extraEnv }}
             {{- range $key, $value := .Values.extraEnv }}
