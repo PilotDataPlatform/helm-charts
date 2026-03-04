@@ -1,3 +1,57 @@
+{{- $appConfig := .Values.appConfig | default dict -}}
+{{- $emailConfig := (get $appConfig "email" | default dict) -}}
+{{- $smtpConfig := (get $appConfig "smtp" | default dict) -}}
+{{- $loggingConfig := (get $appConfig "logging" | default dict) -}}
+{{- $guacamoleConfig := (get $appConfig "guacamole" | default dict) -}}
+{{- $ldapConfig := (get $appConfig "ldap" | default dict) -}}
+{{- $keycloakConfig := (get $appConfig "keycloak" | default dict) -}}
+{{- $legacyKeycloakIssuerHost := (get $appConfig "keycloakIssuerHost" | default "") -}}
+{{- $allowedOrigins := (get $appConfig "allowedOrigins" | default "") -}}
+{{- $invitationConfig := (get $appConfig "invitation" | default dict) -}}
+{{- $databaseConfig := (get $appConfig "database" | default dict) -}}
+{{- $gcpProjectId := (get $appConfig "gcpProjectId" | default "") -}}
+{{- $gcpCredentialsLocation := (get $appConfig "gcpCredentialsLocation" | default "") -}}
+{{- $keycloakUrl := (get $keycloakConfig "url" | default $legacyKeycloakIssuerHost) -}}
+{{- $emailEnabled := (get $emailConfig "enabled" | default false) -}}
+{{- $guacamoleEnabled := (get $guacamoleConfig "enabled" | default false) -}}
+{{- $ldapEnabled := (get $ldapConfig "enabled" | default false) -}}
+{{- $smtpSecret := .Values.smtpSecret | default dict -}}
+{{- $smtpSecretName := (get $smtpSecret "existingSecret" | default "") -}}
+{{- $smtpSecretKeys := (get $smtpSecret "secretKeys" | default dict) -}}
+{{- $guacamoleSecret := .Values.guacamoleSecret | default dict -}}
+{{- $guacamoleSecretName := (get $guacamoleSecret "existingSecret" | default "") -}}
+{{- $guacamoleSecretKeys := (get $guacamoleSecret "secretKeys" | default dict) -}}
+{{- $ldapSecret := .Values.ldapSecret | default dict -}}
+{{- $ldapSecretName := (get $ldapSecret "existingSecret" | default "") -}}
+{{- $ldapSecretKeys := (get $ldapSecret "secretKeys" | default dict) -}}
+{{- $keycloakSecret := .Values.keycloakSecret | default dict -}}
+{{- $keycloakSecretName := (get $keycloakSecret "existingSecret" | default "") -}}
+{{- $keycloakSecretKeys := (get $keycloakSecret "secretKeys" | default dict) -}}
+{{- $ldapUrl := (get $ldapConfig "url" | default (get $ldapConfig "host" | default "")) -}}
+{{- if and $emailEnabled (not $smtpSecretName) -}}
+{{- fail "appConfig.email.enabled=true requires smtpSecret.existingSecret" -}}
+{{- end }}
+{{- if and $emailEnabled (not (get $emailConfig "fromEmail")) -}}
+{{- fail "appConfig.email.fromEmail must be set when appConfig.email.enabled=true" -}}
+{{- end }}
+{{- if and $emailEnabled (not (get $emailConfig "replyTo")) -}}
+{{- fail "appConfig.email.replyTo must be set when appConfig.email.enabled=true" -}}
+{{- end }}
+{{- if and $emailEnabled (not (get $emailConfig "registrationUrlBase")) -}}
+{{- fail "appConfig.email.registrationUrlBase must be set when appConfig.email.enabled=true" -}}
+{{- end }}
+{{- if and $emailEnabled (not $keycloakSecretName) -}}
+{{- fail "appConfig.email.enabled=true requires keycloakSecret.existingSecret for PILOTX_INVITATION_HMAC_SECRET" -}}
+{{- end }}
+{{- if and $emailEnabled (not $keycloakUrl) -}}
+{{- fail "appConfig.email.enabled=true requires appConfig.keycloak.url (or deprecated appConfig.keycloakIssuerHost)" -}}
+{{- end }}
+{{- if and $guacamoleEnabled (not $guacamoleSecretName) -}}
+{{- fail "appConfig.guacamole.enabled=true requires guacamoleSecret.existingSecret" -}}
+{{- end }}
+{{- if and $ldapEnabled (not $ldapSecretName) -}}
+{{- fail "appConfig.ldap.enabled=true requires ldapSecret.existingSecret" -}}
+{{- end }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -41,7 +95,7 @@ spec:
       initContainers:
         - name: wait-for-db
           image: {{ .Values.initContainers.waitForDb.image }}
-          command: ['sh', '-c', 'until pg_isready -h {{ .Values.appConfig.database.host }} -p {{ .Values.appConfig.database.port }}; do sleep 2; done']
+          command: ['sh', '-c', 'until pg_isready -h {{ (get $databaseConfig "host" | default "postgres") }} -p {{ (get $databaseConfig "port" | default 5432) }}; do sleep 2; done']
       {{- end }}
       containers:
         - name: {{ .Chart.Name }}
@@ -56,13 +110,13 @@ spec:
               protocol: TCP
           env:
             # GCP Configuration
-            {{- if .Values.appConfig.gcpProjectId }}
+            {{- if $gcpProjectId }}
             - name: SPRING_CLOUD_GCP_PROJECT_ID
-              value: {{ .Values.appConfig.gcpProjectId | quote }}
+              value: {{ $gcpProjectId | quote }}
             {{- end }}
-            {{- if .Values.appConfig.gcpCredentialsLocation }}
+            {{- if $gcpCredentialsLocation }}
             - name: SPRING_CLOUD_GCP_CREDENTIALS_LOCATION
-              value: {{ .Values.appConfig.gcpCredentialsLocation | quote }}
+              value: {{ $gcpCredentialsLocation | quote }}
             {{- end }}
 
             # R2DBC Database Configuration
@@ -108,79 +162,130 @@ spec:
                   key: {{ .Values.database.secretKeys.password }}
 
             # Security Configuration
+            {{- if $keycloakUrl }}
             - name: PILOTX_SECURITY_ISSUER_HOST
-              value: {{ .Values.appConfig.keycloakIssuerHost | quote }}
+              value: {{ $keycloakUrl | quote }}
+            {{- end }}
+            {{- if $allowedOrigins }}
             - name: PILOTX_UI_ALLOWED_ORIGINS
-              value: {{ .Values.appConfig.allowedOrigins | quote }}
+              value: {{ $allowedOrigins | quote }}
+            {{- end }}
 
             # Invitation configuration
             - name: PILOTX_INVITATION_DEFAULT_EXPIRY_DAYS
-              value: {{ .Values.appConfig.invitation.defaultExpiryDays | default 30 | quote }}
+              value: {{ (get $invitationConfig "defaultExpiryDays" | default 30) | quote }}
 
             # Email Configuration
             - name: EMAIL_ENABLED
-              value: {{ .Values.appConfig.email.enabled | quote }}
-            {{- if .Values.appConfig.email.enabled }}
+              value: {{ $emailEnabled | quote }}
+            {{- if $emailEnabled }}
             - name: PILOTX_EMAIL_PROVIDER
-              value: {{ .Values.appConfig.email.provider | quote }}
+              value: {{ (get $emailConfig "provider" | default "smtp") | quote }}
             - name: PILOTX_EMAIL_FROM_EMAIL
-              value: {{ .Values.appConfig.email.fromEmail | quote }}
+              value: {{ (get $emailConfig "fromEmail" | required "appConfig.email.fromEmail is required when appConfig.email.enabled=true") | quote }}
             - name: PILOTX_EMAIL_FROM_NAME
-              value: {{ .Values.appConfig.email.fromName | quote }}
+              value: {{ (get $emailConfig "fromName" | default "Pilot Support") | quote }}
             - name: PILOTX_EMAIL_REPLY_TO
-              value: {{ .Values.appConfig.email.replyTo | quote }}
+              value: {{ (get $emailConfig "replyTo" | required "appConfig.email.replyTo is required when appConfig.email.enabled=true") | quote }}
             - name: PILOTX_EMAIL_REPLY_TO_DISPLAY_NAME
-              value: {{ .Values.appConfig.email.replyToDisplayName | quote }}
+              value: {{ (get $emailConfig "replyToDisplayName" | default "Pilot Support") | quote }}
             - name: PILOTX_REGISTRATION_URL_BASE
-              value: {{ .Values.appConfig.email.registrationUrlBase | quote }}
+              value: {{ (get $emailConfig "registrationUrlBase" | required "appConfig.email.registrationUrlBase is required when appConfig.email.enabled=true") | quote }}
 
             # SMTP Configuration
             - name: PILOTX_SMTP_HOST
-              value: {{ .Values.appConfig.smtp.host | quote }}
+              value: {{ (get $smtpConfig "host" | default "smtp.office365.com") | quote }}
             - name: PILOTX_SMTP_PORT
-              value: {{ .Values.appConfig.smtp.port | quote }}
+              value: {{ (get $smtpConfig "port" | default 587) | quote }}
             - name: PILOTX_SMTP_SSL
-              value: {{ .Values.appConfig.smtp.ssl | quote }}
+              value: {{ (get $smtpConfig "ssl" | default false) | quote }}
             - name: PILOTX_SMTP_STARTTLS
-              value: {{ .Values.appConfig.smtp.starttls | quote }}
-            {{- if .Values.smtpSecret.existingSecret }}
+              value: {{ (get $smtpConfig "starttls" | default true) | quote }}
+            {{- if $smtpSecretName }}
             - name: SMTP_USER
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.smtpSecret.existingSecret }}
-                  key: {{ .Values.smtpSecret.secretKeys.username }}
+                  name: {{ $smtpSecretName }}
+                  key: {{ (get $smtpSecretKeys "username" | default "SMTP_USER") }}
             - name: SMTP_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.smtpSecret.existingSecret }}
-                  key: {{ .Values.smtpSecret.secretKeys.password }}
+                  name: {{ $smtpSecretName }}
+                  key: {{ (get $smtpSecretKeys "password" | default "SMTP_PASSWORD") }}
             {{- end }}
             {{- end }}
 
             # Logging Configuration
             - name: LOGGING_LEVEL_ORG_SPRINGFRAMEWORK_GRAPHQL
-              value: {{ .Values.appConfig.logging.levelGraphql | quote }}
+              value: {{ (get $loggingConfig "levelGraphql" | default "INFO") | quote }}
             - name: LOGGING_LEVEL_GRAPHQL
-              value: {{ .Values.appConfig.logging.levelGraphql | quote }}
+              value: {{ (get $loggingConfig "levelGraphql" | default "INFO") | quote }}
             - name: LOGGING_LEVEL_IO_INDOCPILOT_PILOTX
-              value: {{ .Values.appConfig.logging.levelApp | quote }}
+              value: {{ (get $loggingConfig "levelApp" | default "INFO") | quote }}
 
             # Guacamole Configuration
             - name: GUACAMOLE_ENABLED
-              value: {{ .Values.appConfig.guacamole.enabled | quote }}
-            {{- if .Values.appConfig.guacamole.enabled }}
+              value: {{ $guacamoleEnabled | quote }}
+            {{- if $guacamoleEnabled }}
             - name: GUACAMOLE_HOST
-              value: {{ .Values.appConfig.guacamole.host | quote }}
+              value: {{ (get $guacamoleConfig "host" | default "") | quote }}
             - name: GUACAMOLE_ADMIN_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.guacamoleSecret.existingSecret }}
-                  key: {{ .Values.guacamoleSecret.secretKeys.username }}
+                  name: {{ $guacamoleSecretName }}
+                  key: {{ (get $guacamoleSecretKeys "username" | default "GUACAMOLE_ADMIN_USERNAME") }}
             - name: GUACAMOLE_ADMIN_PASSWORD
               valueFrom:
                 secretKeyRef:
-                  name: {{ .Values.guacamoleSecret.existingSecret }}
-                  key: {{ .Values.guacamoleSecret.secretKeys.password }}
+                  name: {{ $guacamoleSecretName }}
+                  key: {{ (get $guacamoleSecretKeys "password" | default "GUACAMOLE_ADMIN_PASSWORD") }}
+            {{- end }}
+
+            # LDAP Configuration
+            - name: LDAP_ENABLED
+              value: {{ $ldapEnabled | quote }}
+            {{- if $ldapEnabled }}
+            - name: LDAP_URL
+              value: {{ $ldapUrl | quote }}
+            - name: LDAP_BASE_DN
+              value: {{ (get $ldapConfig "baseDn" | default "") | quote }}
+            - name: AD_GROUPS_OU
+              value: {{ (get $ldapConfig "groupsOu" | default "") | quote }}
+            - name: LDAP_BIND_DN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $ldapSecretName }}
+                  key: {{ (get $ldapSecretKeys "username" | default "LDAP_BIND_DN") }}
+            - name: LDAP_BIND_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $ldapSecretName }}
+                  key: {{ (get $ldapSecretKeys "password" | default "LDAP_BIND_PASSWORD") }}
+            {{- end }}
+
+            # Keycloak Configuration
+            {{- if $keycloakUrl }}
+            - name: PILOTX_KEYCLOAK_URL
+              value: {{ $keycloakUrl | quote }}
+            {{- end }}
+            {{- if (get $keycloakConfig "realm") }}
+            - name: PILOTX_KEYCLOAK_REALM
+              value: {{ (get $keycloakConfig "realm") | quote }}
+            {{- end }}
+            {{- if (get $keycloakConfig "clientId") }}
+            - name: PILOTX_KEYCLOAK_CLIENT_ID
+              value: {{ (get $keycloakConfig "clientId") | quote }}
+            {{- end }}
+            {{- if (get $keycloakConfig "callbackBaseUrl") }}
+            - name: PILOTX_KEYCLOAK_CALLBACK_BASE_URL
+              value: {{ (get $keycloakConfig "callbackBaseUrl") | quote }}
+            {{- end }}
+            {{- if $keycloakSecretName }}
+            - name: PILOTX_INVITATION_HMAC_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $keycloakSecretName }}
+                  key: {{ (get $keycloakSecretKeys "invitationHmacSecret" | default "PILOTX_INVITATION_HMAC_SECRET") }}
             {{- end }}
 
             # Extra environment variables (simple key-value)
