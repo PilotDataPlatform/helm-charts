@@ -63,6 +63,8 @@ appConfig:
     replyTo: ""
     replyToDisplayName: "Pilot Support"
     registrationUrlBase: ""
+    supportEmail: ""
+    platformUrl: ""
 
   # SMTP configuration (when email is enabled)
   smtp:

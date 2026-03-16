@@ -52,6 +52,12 @@
 {{- if and $ldapEnabled (not $ldapSecretName) -}}
 {{- fail "appConfig.ldap.enabled=true requires ldapSecret.existingSecret" -}}
 {{- end }}
+{{- if and $emailEnabled (not (get $emailConfig "supportEmail")) -}}
+{{- fail "appConfig.email.supportEmail must be set when appConfig.email.enabled=true" -}}
+{{- end }}
+{{- if and $emailEnabled (not (get $emailConfig "platformUrl")) -}}
+{{- fail "appConfig.email.platformUrl must be set when appConfig.email.enabled=true" -}}
+{{- end }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -191,6 +197,10 @@ spec:
               value: {{ (get $emailConfig "replyToDisplayName" | default "Pilot Support") | quote }}
             - name: PILOTX_REGISTRATION_URL_BASE
               value: {{ (get $emailConfig "registrationUrlBase" | required "appConfig.email.registrationUrlBase is required when appConfig.email.enabled=true") | quote }}
+            - name: SUPPORT_EMAIL
+              value: { { (get $emailConfig "supportEmail" | required "appConfig.email.supportEmail is required when appConfig.email.enabled=true") | quote } }
+            - name: PILOTX_PLATFORM_URI
+              value: { { (get $emailConfig "platformUrl" | required "appConfig.email.platformUrl is required when appConfig.email.enabled=true") | quote } }
 
             # SMTP Configuration
             - name: PILOTX_SMTP_HOST
