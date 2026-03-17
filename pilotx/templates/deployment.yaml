@@ -27,6 +27,9 @@
 {{- $keycloakSecret := .Values.keycloakSecret | default dict -}}
 {{- $keycloakSecretName := (get $keycloakSecret "existingSecret" | default "") -}}
 {{- $keycloakSecretKeys := (get $keycloakSecret "secretKeys" | default dict) -}}
+{{- $keycloakClientSecret := .Values.keycloakClientSecret | default dict -}}
+{{- $keycloakClientSecretName := (get $keycloakClientSecret "existingSecret" | default "") -}}
+{{- $keycloakClientSecretKeys := (get $keycloakClientSecret "secretKeys" | default dict) -}}
 {{- $ldapUrl := (get $ldapConfig "url" | default (get $ldapConfig "host" | default "")) -}}
 {{- if and $emailEnabled (not $smtpSecretName) -}}
 {{- fail "appConfig.email.enabled=true requires smtpSecret.existingSecret" -}}
@@ -198,9 +201,9 @@ spec:
             - name: PILOTX_REGISTRATION_URL_BASE
               value: {{ (get $emailConfig "registrationUrlBase" | required "appConfig.email.registrationUrlBase is required when appConfig.email.enabled=true") | quote }}
             - name: SUPPORT_EMAIL
-              value: { { (get $emailConfig "supportEmail" | required "appConfig.email.supportEmail is required when appConfig.email.enabled=true") | quote } }
+              value: {{ (get $emailConfig "supportEmail" | required "appConfig.email.supportEmail is required when appConfig.email.enabled=true") | quote }}
             - name: PILOTX_PLATFORM_URI
-              value: { { (get $emailConfig "platformUrl" | required "appConfig.email.platformUrl is required when appConfig.email.enabled=true") | quote } }
+              value: {{ (get $emailConfig "platformUrl" | required "appConfig.email.platformUrl is required when appConfig.email.enabled=true") | quote }}
 
             # SMTP Configuration
             - name: PILOTX_SMTP_HOST
@@ -277,9 +280,13 @@ spec:
             {{- if $keycloakUrl }}
             - name: PILOTX_KEYCLOAK_URL
               value: {{ $keycloakUrl | quote }}
+            - name: KEYCLOAK_ADMIN_BASE_URL
+              value: {{ $keycloakUrl | quote }}
             {{- end }}
             {{- if (get $keycloakConfig "realm") }}
             - name: PILOTX_KEYCLOAK_REALM
+              value: {{ (get $keycloakConfig "realm") | quote }}
+            - name: KEYCLOAK_ADMIN_REALM
               value: {{ (get $keycloakConfig "realm") | quote }}
             {{- end }}
             {{- if (get $keycloakConfig "clientId") }}
@@ -296,6 +303,18 @@ spec:
                 secretKeyRef:
                   name: {{ $keycloakSecretName }}
                   key: {{ (get $keycloakSecretKeys "invitationHmacSecret" | default "PILOTX_INVITATION_HMAC_SECRET") }}
+            {{- end }}
+            {{- if $keycloakClientSecretName }}
+            - name: KEYCLOAK_ADMIN_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $keycloakClientSecretName }}
+                  key: {{ (get $keycloakClientSecretKeys "clientId" | default "KEYCLOAK_ADMIN_CLIENT_ID") }}
+            - name: KEYCLOAK_ADMIN_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $keycloakClientSecretName }}
+                  key: {{ (get $keycloakClientSecretKeys "clientSecret" | default "KEYCLOAK_ADMIN_CLIENT_SECRET") }}
             {{- end }}
 
             # Extra environment variables (simple key-value)

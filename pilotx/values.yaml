@@ -229,3 +229,10 @@ keycloakSecret:
   existingSecret: ""
   secretKeys:
     invitationHmacSecret: PILOTX_INVITATION_HMAC_SECRET
+
+# Keycloak admin client credentials for the OAuth2 client used by admin API calls
+keycloakClientSecret:
+  existingSecret: ""
+  secretKeys:
+    clientId: KEYCLOAK_ADMIN_CLIENT_ID
+    clientSecret: KEYCLOAK_ADMIN_CLIENT_SECRET
