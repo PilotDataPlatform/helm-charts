@@ -279,11 +279,11 @@ spec:
 
             # Rate limiting configuration
             - name: PILOTX_RATE_LIMIT_INVITATION_MAX_REQUESTS
-              value: {{ (get $rateLimitConfig "invitation" "maxRequests" | default 20) | quote }}
+              value: {{ $rateLimitConfig.invitation.maxRequests | default 20 | quote }}
             - name: PILOTX_RATE_LIMIT_INVITATION_WINDOW_SECONDS
-              value: {{ (get $rateLimitConfig "invitation" "windowSeconds" | default 60) | quote }}
+              value: {{ $rateLimitConfig.invitation.windowSeconds | default 60 | quote }}
             - name: PILOTX_RATE_LIMIT_CLEANUP_INTERVAL_MS
-              value: {{ (get $rateLimitConfig "cleanupIntervalMs" | default 300000) | quote }}
+              value: {{ $rateLimitConfig.cleanupIntervalMs | default 300000 | quote }}
 
             # Keycloak Configuration
             {{- if $keycloakUrl }}
