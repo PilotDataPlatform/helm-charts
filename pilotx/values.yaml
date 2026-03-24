@@ -92,6 +92,13 @@ appConfig:
     baseDn: ""
     groupsOu: ""
 
+  # Rate limit configuration
+  rateLimit:
+    invitation:
+      maxRequests: 20
+      windowSeconds: 60
+    cleanupIntervalMs: 300000
+
 # Database credentials from existing secret
 database:
   existingSecret: "db-credentials"
