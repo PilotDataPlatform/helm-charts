@@ -31,6 +31,7 @@
 {{- $keycloakClientSecretName := (get $keycloakClientSecret "existingSecret" | default "") -}}
 {{- $keycloakClientSecretKeys := (get $keycloakClientSecret "secretKeys" | default dict) -}}
 {{- $ldapUrl := (get $ldapConfig "url" | default (get $ldapConfig "host" | default "")) -}}
+{{- $rateLimitConfig := (get $appConfig "rateLimit" | default dict) -}}
 {{- if and $emailEnabled (not $smtpSecretName) -}}
 {{- fail "appConfig.email.enabled=true requires smtpSecret.existingSecret" -}}
 {{- end }}
@@ -275,6 +276,14 @@ spec:
                   name: {{ $ldapSecretName }}
                   key: {{ (get $ldapSecretKeys "password" | default "LDAP_BIND_PASSWORD") }}
             {{- end }}
+
+            # Rate limiting configuration
+            - name: PILOTX_RATE_LIMIT_INVITATION_MAX_REQUESTS
+              value: {{ (get $rateLimitConfig "invitation" "maxRequests" | default 20) | quote }}
+            - name: PILOTX_RATE_LIMIT_INVITATION_WINDOW_SECONDS
+              value: {{ (get $rateLimitConfig "invitation" "windowSeconds" | default 60) | quote }}
+            - name: PILOTX_RATE_LIMIT_CLEANUP_INTERVAL_MS
+              value: {{ (get $rateLimitConfig "cleanupIntervalMs" | default 300000) | quote }}
 
             # Keycloak Configuration
             {{- if $keycloakUrl }}
