@@ -1,0 +1,129 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "pilotx-frontend.fullname" . }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+  labels:
+    {{- include "pilotx-frontend.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  {{- if .Values.updateStrategy }}
+  strategy:
+    {{- toYaml .Values.updateStrategy | nindent 4 }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "pilotx-frontend.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "pilotx-frontend.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "pilotx-frontend.serviceAccountName" . }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- with .Values.securityContext }}
+          securityContext:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          ports:
+            - containerPort: {{ .Values.container.port }}
+              protocol: TCP
+          env:
+###################### START OF APP CONFIG #############################
+            # Platform settings
+            - name: VITE_PLATFORM
+              value: {{ .Values.appConfig.VITE_PLATFORM | quote }}
+
+            # Public documentation
+            - name: VITE_DOC_BUCKET
+              value: {{ .Values.appConfig.VITE_DOC_BUCKET | quote }}
+
+            # Authentication settings
+            - name: VITE_DEFAULT_AUTH_URL
+              value: {{ .Values.appConfig.VITE_DEFAULT_AUTH_URL | quote }}
+            - name: VITE_KEYCLOAK_REALM
+              value: {{ .Values.appConfig.VITE_KEYCLOAK_REALM | quote }}
+
+            # Domain configuration
+            - name: VITE_DOMAIN
+              value: {{ .Values.appConfig.VITE_DOMAIN | quote }}
+
+            # Path configuration
+            - name: VITE_PORTAL_PATH
+              value: {{ .Values.appConfig.VITE_PORTAL_PATH | quote }}
+            - name: VITE_REST_API_PATH
+              value: {{ .Values.appConfig.VITE_REST_API_PATH | quote }}
+            - name: VITE_BRANDING_PATH
+              value: {{ .Values.appConfig.VITE_BRANDING_PATH | quote }}
+
+            # Branding module URL
+            - name: VITE_BRAND_URL
+              value: {{ .Values.appConfig.VITE_BRAND_URL | quote }}
+
+            # Backend API URL
+            - name: VITE_API_URL
+              value: {{ .Values.appConfig.VITE_API_URL | quote }}
+
+            # Tenant terms-of-use
+            - name: VITE_TENANT_TOU_NAME
+              value: {{ .Values.appConfig.VITE_TENANT_TOU_NAME | quote }}
+            - name: VITE_TENANT_TOU_URL
+              value: {{ .Values.appConfig.VITE_TENANT_TOU_URL | quote }}
+
+            # Help / support
+            - name: VITE_USER_GUIDE_URL
+              value: {{ .Values.appConfig.VITE_USER_GUIDE_URL | quote }}
+            - name: VITE_CONTACT_US_EMAIL
+              value: {{ .Values.appConfig.VITE_CONTACT_US_EMAIL | quote }}
+###################### END OF APP CONFIG #############################
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+            - name: {{ $key }}
+              value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+            {{- toYaml . | nindent 12 }}
+{{- end }}
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          {{- if .Values.readinessProbe }}
+          readinessProbe:
+            {{- toYaml .Values.readinessProbe | nindent 12 }}
+          {{- end }}
+          {{- if .Values.livenessProbe }}
+          livenessProbe:
+            {{- toYaml .Values.livenessProbe | nindent 12 }}
+          {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

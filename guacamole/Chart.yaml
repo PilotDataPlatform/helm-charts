@@ -1,0 +1,13 @@
+apiVersion: v2
+name: guacamole
+appVersion: 1.6.0
+description: A Helm chart for deploying Apache Guacamole, a clientless remote desktop gateway that supports standard protocols like VNC, RDP and SSH.
+keywords:
+- guacamole
+kubeVersion: '>= 1.19.0-0'
+maintainers:
+- name: dmunozv04
+sources:
+- https://artifacthub.io/packages/helm/dmunozv04/guacamole
+type: application
+version: 0.3.0
