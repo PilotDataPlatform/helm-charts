@@ -194,7 +194,7 @@ spec:
             - name: PILOTX_EMAIL_FROM_EMAIL
               value: {{ (get $emailConfig "fromEmail" | required "appConfig.email.fromEmail is required when appConfig.email.enabled=true") | quote }}
             - name: PILOTX_EMAIL_FROM_NAME
-              value: {{ (get $emailConfig "fromName" | default "Pilot Support") | quote }}\
+              value: {{ (get $emailConfig "fromName" | default "Pilot Support") | quote }}
             - name: PILOTX_REGISTRATION_URL_BASE
               value: {{ (get $emailConfig "registrationUrlBase" | required "appConfig.email.registrationUrlBase is required when appConfig.email.enabled=true") | quote }}
             - name: SUPPORT_EMAIL
