@@ -194,11 +194,7 @@ spec:
             - name: PILOTX_EMAIL_FROM_EMAIL
               value: {{ (get $emailConfig "fromEmail" | required "appConfig.email.fromEmail is required when appConfig.email.enabled=true") | quote }}
             - name: PILOTX_EMAIL_FROM_NAME
-              value: {{ (get $emailConfig "fromName" | default "Pilot Support") | quote }}
-            - name: PILOTX_EMAIL_REPLY_TO
-              value: {{ (get $emailConfig "replyTo" | required "appConfig.email.replyTo is required when appConfig.email.enabled=true") | quote }}
-            - name: PILOTX_EMAIL_REPLY_TO_DISPLAY_NAME
-              value: {{ (get $emailConfig "replyToDisplayName" | default "Pilot Support") | quote }}
+              value: {{ (get $emailConfig "fromName" | default "Pilot Support") | quote }}\
             - name: PILOTX_REGISTRATION_URL_BASE
               value: {{ (get $emailConfig "registrationUrlBase" | required "appConfig.email.registrationUrlBase is required when appConfig.email.enabled=true") | quote }}
             - name: SUPPORT_EMAIL
@@ -211,10 +207,14 @@ spec:
               value: {{ (get $smtpConfig "host" | default "smtp.office365.com") | quote }}
             - name: PILOTX_SMTP_PORT
               value: {{ (get $smtpConfig "port" | default 587) | quote }}
-            - name: PILOTX_SMTP_SSL
-              value: {{ (get $smtpConfig "ssl" | default false) | quote }}
-            - name: PILOTX_SMTP_STARTTLS
+            - name: PILOTX_SMTP_AUTH
+              value: {{ (get $smtpConfig "auth" | default true) | quote }}
+            - name: PILOTX_SMTP_STARTTLS_ENABLED
               value: {{ (get $smtpConfig "starttls" | default true) | quote }}
+            - name: PILOTX_SMTP_STARTTLS_REQUIRED
+              value: {{ (get $smtpConfig "starttlsRequired" | default true) | quote }}
+            - name: PILOTX_SMTP_SSL_ENABLED
+              value: {{ (get $smtpConfig "ssl" | default false) | quote }}
             {{- if $smtpSecretName }}
             - name: SMTP_USER
               valueFrom:
