@@ -38,8 +38,6 @@
 {{- if and $emailEnabled (not (get $emailConfig "fromEmail")) -}}
 {{- fail "appConfig.email.fromEmail must be set when appConfig.email.enabled=true" -}}
 {{- end }}
-{{- if and $emailEnabled (not (get $emailConfig "replyTo")) -}}
-{{- fail "appConfig.email.replyTo must be set when appConfig.email.enabled=true" -}}
 {{- end }}
 {{- if and $emailEnabled (not (get $emailConfig "registrationUrlBase")) -}}
 {{- fail "appConfig.email.registrationUrlBase must be set when appConfig.email.enabled=true" -}}
