@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "loki.bloomBuilderFullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "loki.namespace" . }}
   labels:
     {{- include "loki.bloomBuilderLabels" . | nindent 4 }}
   {{- with .Values.loki.annotations }}
@@ -34,12 +34,9 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
       labels:
-        {{- include "loki.bloomBuilderSelectorLabels" . | nindent 8 }}
+        {{- include "loki.bloomBuilderLabels" . | nindent 8 }}
         app.kubernetes.io/part-of: memberlist
-        {{- with .Values.loki.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
-        {{- with .Values.bloomBuilder.podLabels }}
+        {{- with merge (dict) .Values.loki.podLabels .Values.bloomBuilder.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
@@ -48,14 +45,25 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.bloomBuilder.dnsConfig | default .Values.loki.dnsConfig }}
+      dnsConfig:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.bloomBuilder.hostAliases }}
       hostAliases:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if and (semverCompare ">=1.33-0" (include "loki.kubeVersion" .)) (kindIs "bool" .Values.bloomBuilder.hostUsers) }}
+      hostUsers: {{ .Values.bloomBuilder.hostUsers }}
+      {{- end }}
       {{- include "loki.bloomBuilderPriorityClassName" . | nindent 6 }}
       securityContext:
-        {{- toYaml .Values.loki.podSecurityContext | nindent 8 }}
+        {{- include "loki.podSecurityContext" . | nindent 8 }}
       terminationGracePeriodSeconds: {{ .Values.bloomBuilder.terminationGracePeriodSeconds }}
+      {{- with .Values.bloomBuilder.initContainers }}
+      initContainers:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: bloom-builder
           image: {{ include "loki.image" . }}
@@ -67,7 +75,7 @@ spec:
           args:
             - -config.file=/etc/loki/config/config.yaml
             - -target=bloom-builder
-            {{- with .Values.bloomBuilder.extraArgs }}
+            {{- with (concat .Values.global.extraArgs .Values.bloomBuilder.extraArgs) | uniq }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
           ports:
@@ -80,18 +88,28 @@ spec:
             - name: http-memberlist
               containerPort: 7946
               protocol: TCP
-          {{- with .Values.bloomBuilder.extraEnv }}
+          {{- with (concat .Values.global.extraEnv .Values.bloomBuilder.extraEnv) | uniq }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.bloomBuilder.extraEnvFrom }}
+          {{- with (concat .Values.global.extraEnvFrom .Values.bloomBuilder.extraEnvFrom) | uniq }}
           envFrom:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           securityContext:
             {{- toYaml .Values.loki.containerSecurityContext | nindent 12 }}
+          {{- with .Values.loki.livenessProbe }}
+          livenessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.loki.readinessProbe }}
           readinessProbe:
-            {{- toYaml .Values.loki.readinessProbe | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.loki.startupProbe }}
+          startupProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: config
               mountPath: /etc/loki/config
@@ -105,7 +123,7 @@ spec:
               mountPath: /tmp
             - name: data
               mountPath: /var/loki
-            {{- with .Values.bloomBuilder.extraVolumeMounts }}
+            {{- with (concat .Values.global.extraVolumeMounts .Values.bloomBuilder.extraVolumeMounts) | uniq }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
           resources:
@@ -115,7 +133,7 @@ spec:
         {{- end }}
       {{- with .Values.bloomBuilder.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl ( . | toYaml) $ | nindent 8 }}
       {{- end }}
       {{- with .Values.bloomBuilder.nodeSelector }}
       nodeSelector:
@@ -144,7 +162,7 @@ spec:
           emptyDir: {}
         - name: data
           emptyDir: {}
-        {{- with .Values.bloomBuilder.extraVolumes }}
+        {{- with (concat .Values.global.extraVolumes .Values.bloomBuilder.extraVolumes) | uniq }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
 {{- end -}}

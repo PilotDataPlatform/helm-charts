@@ -7,7 +7,7 @@ apiVersion: {{ include "loki.pdb.apiVersion" . }}
 kind: PodDisruptionBudget
 metadata:
   name: {{ include "loki.ingesterFullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "loki.namespace" . }}
   labels:
     {{- include "loki.ingesterLabels" . | nindent 4 }}
 spec:
@@ -19,7 +19,7 @@ spec:
       - key: rollout-group
         operator: NotIn
         values:
-          - "ingester"
+          - '{{ include "loki.prefixRolloutGroup" . }}ingester'
   {{- with .Values.ingester.maxUnavailable }}
   maxUnavailable: {{ . }}
   {{- end }}

@@ -5,12 +5,15 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: {{ include "loki.ingesterFullname" . }}-zone-b
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "loki.namespace" . }}
   labels:
     {{- include "loki.ingesterLabels" . | nindent 4 }}
     app.kubernetes.io/part-of: memberlist
-    rollout-group: ingester
-    name: ingester-zone-b
+    name: {{ include "loki.prefixIngesterName" . }}ingester-zone-b
+    rollout-group: {{ include "loki.prefixRolloutGroup" . }}ingester
+    {{- with .Values.ingester.labels }}
+    {{- toYaml . | nindent 4 }}
+    {{- end }}
   annotations:
     rollout-max-unavailable: "{{ include "loki.ingester.maxUnavailable" (dict "ctx" . "replicas" $replicas)}}"
     {{- with .Values.loki.annotations }}
@@ -24,7 +27,7 @@ spec:
   replicas: {{ $replicas }}
 {{- end }}
   podManagementPolicy: Parallel
-  serviceName: {{ include "loki.ingesterFullname" . }}-zone-b
+  serviceName: {{ include "loki.ingesterFullname" . }}-zone-b-headless
   revisionHistoryLimit: {{ .Values.loki.revisionHistoryLimit }}
   {{- if and (semverCompare ">= 1.23-0" (include "loki.kubeVersion" .)) (.Values.ingester.persistence.enableStatefulSetAutoDeletePVC)  }}
   {{/*
@@ -38,8 +41,8 @@ spec:
   selector:
     matchLabels:
       {{- include "loki.ingesterSelectorLabels" . | nindent 6 }}
-      name: ingester-zone-b
-      rollout-group: ingester
+      name: {{ include "loki.prefixIngesterName" . }}ingester-zone-b
+      rollout-group: {{ include "loki.prefixRolloutGroup" . }}ingester
 {{- with .Values.ingester.updateStrategy }}
   updateStrategy:
      {{- tpl (. | toYaml) $ | nindent 4 }}
@@ -58,21 +61,18 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
       labels:
-        {{- include "loki.ingesterSelectorLabels" . | nindent 8 }}
+        {{- include "loki.ingesterLabels" . | nindent 8 }}
         app.kubernetes.io/part-of: memberlist
-        name: ingester-zone-b
-        rollout-group: ingester
-        {{- with .Values.loki.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
-        {{- with .Values.ingester.podLabels }}
+        name: {{ include "loki.prefixIngesterName" . }}ingester-zone-b
+        rollout-group: {{ include "loki.prefixRolloutGroup" . }}ingester
+        {{- with merge (dict) .Values.ingester.podLabels .Values.loki.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.Version }}
+      {{- if semverCompare ">=1.19-0" (include "loki.kubeVersion" .) }}
       {{- with .Values.ingester.topologySpreadConstraints }}
       topologySpreadConstraints:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl ( . | toYaml) $ | nindent 8 }}
       {{- end }}
       {{- end }}
       serviceAccountName: {{ include "loki.serviceAccountName" . }}
@@ -80,13 +80,20 @@ spec:
       imagePullSecrets:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.ingester.dnsConfig | default .Values.loki.dnsConfig }}
+      dnsConfig:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       {{- with .Values.ingester.hostAliases }}
       hostAliases:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if and (semverCompare ">=1.33-0" (include "loki.kubeVersion" .)) (kindIs "bool" .Values.ingester.hostUsers) }}
+      hostUsers: {{ .Values.ingester.hostUsers }}
+      {{- end }}
       {{- include "loki.ingesterPriorityClassName" . | nindent 6 }}
       securityContext:
-        {{- toYaml .Values.loki.podSecurityContext | nindent 8 }}
+        {{- include "loki.podSecurityContext" . | nindent 8 }}
       terminationGracePeriodSeconds: {{ .Values.ingester.terminationGracePeriodSeconds }}
       {{- with .Values.ingester.initContainers }}
       initContainers:
@@ -106,7 +113,7 @@ spec:
             - -ingester.unregister-on-shutdown=false
             - -ingester.tokens-file-path=/var/loki/ring-tokens
             - -target=ingester
-            {{- with .Values.ingester.extraArgs }}
+            {{- with (concat .Values.global.extraArgs .Values.ingester.extraArgs) | uniq }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
           ports:
@@ -119,11 +126,11 @@ spec:
             - name: http-memberlist
               containerPort: 7946
               protocol: TCP
-          {{- with .Values.ingester.extraEnv }}
+          {{- with (concat .Values.global.extraEnv .Values.ingester.extraEnv) | uniq }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.ingester.extraEnvFrom }}
+          {{- with (concat .Values.global.extraEnvFrom .Values.ingester.extraEnvFrom) | uniq }}
           envFrom:
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -131,6 +138,7 @@ spec:
             {{- toYaml .Values.loki.containerSecurityContext | nindent 12 }}
           {{- include "loki.ingester.readinessProbe" . | nindent 10 }}
           {{- include "loki.ingester.livenessProbe" . | nindent 10 }}
+          {{- include "loki.ingester.startupProbe" . | nindent 10 }}
           volumeMounts:
             - name: config
               mountPath: /etc/loki/config
@@ -142,7 +150,7 @@ spec:
             - name: license
               mountPath: /etc/loki/license
             {{- end }}
-            {{- with .Values.ingester.extraVolumeMounts }}
+            {{- with (concat .Values.global.extraVolumeMounts .Values.ingester.extraVolumeMounts) | uniq }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
           {{- with .Values.ingester.resources }}
@@ -164,14 +172,14 @@ spec:
                   - key: rollout-group
                     operator: In
                     values:
-                      - ingester
+                      - {{ include "loki.prefixRolloutGroup" . }}ingester
                   - key: name
                     operator: NotIn
                     values:
-                      - ingester-zone-b
+                      - {{ include "loki.prefixIngesterName" . }}ingester-zone-b
               topologyKey: kubernetes.io/hostname
         {{- with .Values.ingester.zoneAwareReplication.zoneB.extraAffinity }}
-        {{- toYaml . | nindent 8 }}
+          {{- tpl ( . | toYaml) $ | nindent 8 }}
         {{- end }}
       {{- with .Values.ingester.zoneAwareReplication.zoneB.nodeSelector }}
       nodeSelector:
@@ -196,7 +204,7 @@ spec:
             secretName: enterprise-logs-license
           {{- end }}
         {{- end }}
-        {{- with .Values.ingester.extraVolumes }}
+        {{- with (concat .Values.global.extraVolumes .Values.ingester.extraVolumes) | uniq }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
   {{- if not .Values.ingester.persistence.enabled }}
@@ -214,7 +222,9 @@ spec:
   {{- else }}
   volumeClaimTemplates:
   {{- range .Values.ingester.persistence.claims }}
-    - metadata:
+    - apiVersion: v1
+      kind: PersistentVolumeClaim
+      metadata:
         name: {{ .name }}
         {{- with .annotations }}
         annotations:
@@ -222,9 +232,12 @@ spec:
         {{- end }}
       spec:
         accessModes:
-          - ReadWriteOnce
+          {{- toYaml .accessModes | nindent 10 }}
         {{- with .storageClass }}
         storageClassName: {{ if (eq "-" .) }}""{{ else }}{{ . }}{{ end }}
+        {{- end }}
+        {{- with .volumeAttributesClassName }}
+        volumeAttributesClassName: {{ . }}
         {{- end }}
         resources:
           requests:
