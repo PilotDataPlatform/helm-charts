@@ -4,7 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "loki.distributorFullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: {{ include "loki.namespace" . }}
   labels:
     {{- include "loki.distributorLabels" . | nindent 4 }}
     app.kubernetes.io/part-of: memberlist
@@ -35,18 +35,19 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
       labels:
-        {{- include "loki.distributorSelectorLabels" . | nindent 8 }}
+        {{- include "loki.distributorLabels" . | nindent 8 }}
         app.kubernetes.io/part-of: memberlist
-        {{- with .Values.loki.podLabels }}
-        {{- toYaml . | nindent 8 }}
-        {{- end }}
-        {{- with .Values.distributor.podLabels }}
+        {{- with merge (dict) .Values.loki.podLabels .Values.distributor.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      {{- if semverCompare ">=1.19-0" .Capabilities.KubeVersion.Version }}
+      {{- if semverCompare ">=1.19-0" (include "loki.kubeVersion" .) }}
       {{- with .Values.distributor.topologySpreadConstraints }}
       topologySpreadConstraints:
+        {{- tpl ( . | toYaml) $ | nindent 8 }}
+      {{- end }}
+      {{- with .Values.distributor.dnsConfig | default .Values.loki.dnsConfig }}
+      dnsConfig:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       {{- end }}
@@ -59,10 +60,17 @@ spec:
       hostAliases:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if and (semverCompare ">=1.33-0" (include "loki.kubeVersion" .)) (kindIs "bool" .Values.distributor.hostUsers) }}
+      hostUsers: {{ .Values.distributor.hostUsers }}
+      {{- end }}
       {{- include "loki.distributorPriorityClassName" . | nindent 6 }}
       securityContext:
-        {{- toYaml .Values.loki.podSecurityContext | nindent 8 }}
+        {{- include "loki.podSecurityContext" . | nindent 8 }}
       terminationGracePeriodSeconds: {{ .Values.distributor.terminationGracePeriodSeconds }}
+      {{- with .Values.distributor.initContainers }}
+      initContainers:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
         - name: distributor
           image: {{ include "loki.image" . }}
@@ -81,7 +89,7 @@ spec:
             - -distributor.zone-awareness-enabled=true
             {{- end }}
             {{- end }}
-            {{- with .Values.distributor.extraArgs }}
+            {{- with (concat .Values.global.extraArgs .Values.distributor.extraArgs) | uniq }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
           ports:
@@ -94,20 +102,28 @@ spec:
             - name: http-memberlist
               containerPort: 7946
               protocol: TCP
-          {{- with .Values.distributor.extraEnv }}
+          {{- with (concat .Values.global.extraEnv .Values.distributor.extraEnv) | uniq }}
           env:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.distributor.extraEnvFrom }}
+          {{- with (concat .Values.global.extraEnvFrom .Values.distributor.extraEnvFrom) | uniq }}
           envFrom:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           securityContext:
             {{- toYaml .Values.loki.containerSecurityContext | nindent 12 }}
-          readinessProbe:
-            {{- toYaml .Values.loki.readinessProbe | nindent 12 }}
+          {{- with .Values.loki.livenessProbe }}
           livenessProbe:
-            {{- toYaml .Values.loki.livenessProbe | nindent 12 }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.loki.readinessProbe }}
+          readinessProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.loki.startupProbe }}
+          startupProbe:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - name: config
               mountPath: /etc/loki/config
@@ -117,7 +133,7 @@ spec:
             - name: license
               mountPath: /etc/loki/license
             {{- end }}
-            {{- with .Values.distributor.extraVolumeMounts }}
+            {{- with (concat .Values.global.extraVolumeMounts .Values.distributor.extraVolumeMounts) | uniq }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
           resources:
@@ -127,7 +143,7 @@ spec:
         {{- end }}
       {{- with .Values.distributor.affinity }}
       affinity:
-        {{- toYaml . | nindent 8 }}
+        {{- tpl ( . | toYaml) $ | nindent 8 }}
       {{- end }}
       {{- with .Values.distributor.nodeSelector }}
       nodeSelector:
@@ -152,7 +168,7 @@ spec:
             secretName: enterprise-logs-license
           {{- end }}
         {{- end }}
-        {{- with .Values.distributor.extraVolumes }}
+        {{- with (concat .Values.global.extraVolumes .Values.distributor.extraVolumes) | uniq }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
 {{- end -}}
