@@ -99,6 +99,23 @@ appConfig:
       windowSeconds: 60
     cleanupIntervalMs: 300000
 
+  # Samba bridge integration (ADR021 PILOT-9630). When enabled, the backend exposes the
+  # internal /internal/share-bridges/** API for the bridge VM to read desired state and
+  # report status, and writes per-share SMB password secrets to GCP Secret Manager.
+  bridge:
+    enabled: false
+    # Logical bridge identifier. Must match the bridge_id wired in pilot-gcp-infra
+    # (e.g. "lab-dev-samba-bridge", "lab-staging-samba-bridge", "prod-bd2datarelease-samba-bridge").
+    bridgeId: ""
+    # Prefix used to build per-project SMB password secret IDs. Must match the
+    # project_share_password_secret_prefix wired in pilot-gcp-infra (terraform module input).
+    passwordSecretPrefix: "project-share"
+
+  # GCP Secret Manager — required for backend to provision per-share SMB password secrets
+  # (PILOT-9857). Should be enabled whenever appConfig.bridge.enabled=true in a real env.
+  gcp:
+    secretManagerEnabled: false
+
 # Database credentials from existing secret
 database:
   existingSecret: "db-credentials"
@@ -242,4 +259,12 @@ keycloakClientSecret:
   existingSecret: ""
   secretKeys:
     clientId: KEYCLOAK_ADMIN_CLIENT_ID
+
+# Samba bridge bearer token from existing K8s secret (required when appConfig.bridge.enabled=true).
+# The K8s secret should be sourced from GCP Secret Manager (e.g. via External Secrets Operator)
+# and reference the same value as the bridge VM's controller_auth_secret_id (PILOT-9638).
+bridgeSecret:
+  existingSecret: ""
+  secretKeys:
+    apiToken: PILOTX_BRIDGE_API_TOKEN
     clientSecret: KEYCLOAK_ADMIN_CLIENT_SECRET

@@ -32,6 +32,13 @@
 {{- $keycloakClientSecretKeys := (get $keycloakClientSecret "secretKeys" | default dict) -}}
 {{- $ldapUrl := (get $ldapConfig "url" | default (get $ldapConfig "host" | default "")) -}}
 {{- $rateLimitConfig := (get $appConfig "rateLimit" | default dict) -}}
+{{- $bridgeConfig := (get $appConfig "bridge" | default dict) -}}
+{{- $bridgeEnabled := (get $bridgeConfig "enabled" | default false) -}}
+{{- $bridgeSecret := .Values.bridgeSecret | default dict -}}
+{{- $bridgeSecretName := (get $bridgeSecret "existingSecret" | default "") -}}
+{{- $bridgeSecretKeys := (get $bridgeSecret "secretKeys" | default dict) -}}
+{{- $gcpConfig := (get $appConfig "gcp" | default dict) -}}
+{{- $gcpSecretManagerEnabled := (get $gcpConfig "secretManagerEnabled" | default false) -}}
 {{- if and $emailEnabled (not $smtpSecretName) -}}
 {{- fail "appConfig.email.enabled=true requires smtpSecret.existingSecret" -}}
 {{- end }}
@@ -58,6 +65,12 @@
 {{- end }}
 {{- if and $emailEnabled (not (get $emailConfig "platformUrl")) -}}
 {{- fail "appConfig.email.platformUrl must be set when appConfig.email.enabled=true" -}}
+{{- end }}
+{{- if and $bridgeEnabled (not $bridgeSecretName) -}}
+{{- fail "appConfig.bridge.enabled=true requires bridgeSecret.existingSecret holding PILOTX_BRIDGE_API_TOKEN" -}}
+{{- end }}
+{{- if and $bridgeEnabled (not (get $bridgeConfig "bridgeId")) -}}
+{{- fail "appConfig.bridge.bridgeId must be set when appConfig.bridge.enabled=true (must match bridge_id in pilot-gcp-infra)" -}}
 {{- end }}
 apiVersion: apps/v1
 kind: Deployment
@@ -322,6 +335,23 @@ spec:
                   name: {{ $keycloakClientSecretName }}
                   key: {{ (get $keycloakClientSecretKeys "clientSecret" | default "KEYCLOAK_ADMIN_CLIENT_SECRET") }}
             {{- end }}
+
+            # Samba Bridge Configuration (ADR021)
+            {{- if $bridgeEnabled }}
+            - name: PILOTX_BRIDGE_ID
+              value: {{ (get $bridgeConfig "bridgeId" | required "appConfig.bridge.bridgeId is required when appConfig.bridge.enabled=true") | quote }}
+            - name: PILOTX_BRIDGE_PASSWORD_SECRET_PREFIX
+              value: {{ (get $bridgeConfig "passwordSecretPrefix" | default "project-share") | quote }}
+            - name: PILOTX_BRIDGE_API_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $bridgeSecretName }}
+                  key: {{ (get $bridgeSecretKeys "apiToken" | default "PILOTX_BRIDGE_API_TOKEN") }}
+            {{- end }}
+
+            # GCP Secret Manager — required for backend to provision per-share SMB password secrets
+            - name: PILOTX_GCP_SECRETMANAGER_ENABLED
+              value: {{ $gcpSecretManagerEnabled | quote }}
 
             # Extra environment variables (simple key-value)
             {{- if .Values.extraEnv }}
