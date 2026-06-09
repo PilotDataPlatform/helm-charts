@@ -1,19 +1,16 @@
 {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
-{{- if .Values.metrics.enable -}}
 apiVersion: v1
 kind: Service
 metadata:
   labels:
     app.kubernetes.io/name: azure-service-operator
-    app.kubernetes.io/version: v2.6.0
-    control-plane: controller-manager
-  name: azureserviceoperator-controller-manager-metrics-service
+    app.kubernetes.io/version: v2.16.0
+  name: azureserviceoperator-webhook-service
   namespace: {{ .Release.Namespace }}
 spec:
   ports:
-  - name: metrics
-    port: {{ .Values.metrics.port | default 8080 }}
+  - port: 443
+    targetPort: {{ .Values.webhook.port }}
   selector:
     control-plane: controller-manager
-{{- end }}
 {{- end }}
