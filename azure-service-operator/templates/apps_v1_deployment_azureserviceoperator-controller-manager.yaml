@@ -1,31 +1,41 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   labels:
     app.kubernetes.io/name: azure-service-operator
-    app.kubernetes.io/version: v2.6.0
+    app.kubernetes.io/version: v2.16.0
     control-plane: controller-manager
   name: azureserviceoperator-controller-manager
   namespace: {{ .Release.Namespace }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
+  revisionHistoryLimit: {{ .Values.revisionHistoryLimit }}
   selector:
     matchLabels:
       control-plane: controller-manager
+  strategy:
+    type: Recreate
   template:
     metadata:
       annotations:
-        {{- if .Values.podAnnotations }}
-        {{ toYaml .Values.podAnnotations }}
+        {{- with .Values.podAnnotations }}
+        {{- toYaml . | nindent 8}}
         {{- end }}
         kubectl.kubernetes.io/default-container: manager
       labels:
-   {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "watchers") }}
+        {{- if .Values.aadPodIdentity.enable }}
         aadpodidbinding: aso-manager-binding
-   {{- end }}
+        {{- end }}
         app.kubernetes.io/name: azure-service-operator
-        app.kubernetes.io/version: v2.6.0
+        app.kubernetes.io/version: v2.16.0
         control-plane: controller-manager
+        {{- with .Values.podLabels }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
     spec:
       {{- with .Values.tolerations }}
       tolerations:
@@ -35,24 +45,35 @@ spec:
       affinity:
       {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- with .Values.image.pullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       containers:
       - args:
-   {{- if .Values.metrics.enable}}
+        {{- if .Values.metrics.enable}}
         - --metrics-addr={{ tpl .Values.metrics.address . }}
-   {{- end }}
+        - --secure-metrics={{ .Values.metrics.secure }}
+        - --profiling-metrics={{ .Values.metrics.profiling }}
+        {{- end }}
         - --health-addr=:8081
-   {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "watchers") }}
         - --enable-leader-election
-   {{- end }}
         - --v=2
-   {{- if and (eq .Values.installCRDs true) (or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks")) }}
+        {{- if and (eq .Values.installCRDs true) (or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks")) }}
         - --crd-pattern={{ .Values.crdPattern }}
-   {{- end }}
+        {{- end }}
         - --webhook-port={{ .Values.webhook.port }}
-   {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
+        {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
         - --webhook-cert-dir={{ .Values.webhook.certDir }}
-   {{- end }}
+        {{- end }}
+        {{- if (eq .Values.useJSONLogging true) }}
+        - --json-logging
+        {{- end }}
         env:
+        {{- if .Values.go.memLimit }}
+        - name: GOMEMLIMIT
+          value: {{ .Values.go.memLimit }}
+        {{- end }}
         - name: AZURE_CLIENT_ID
           valueFrom:
             secretKeyRef:
@@ -69,11 +90,23 @@ spec:
             secretKeyRef:
               key: AZURE_TENANT_ID
               name: aso-controller-settings
+        - name: AZURE_ADDITIONAL_TENANTS
+          valueFrom:
+            secretKeyRef:
+              name: aso-controller-settings
+              key: AZURE_ADDITIONAL_TENANTS
+              optional: true
         - name: AZURE_SUBSCRIPTION_ID
           valueFrom:
             secretKeyRef:
               key: AZURE_SUBSCRIPTION_ID
               name: aso-controller-settings
+        - name: AZURE_USER_ASSIGNED_IDENTITY_CREDENTIALS
+          valueFrom:
+            secretKeyRef:
+              name: aso-controller-settings
+              key: AZURE_USER_ASSIGNED_IDENTITY_CREDENTIALS
+              optional: true
         - name: AZURE_CLIENT_CERTIFICATE
           valueFrom:
             secretKeyRef:
@@ -128,17 +161,55 @@ spec:
               key: USE_WORKLOAD_IDENTITY_AUTH
               name: aso-controller-settings
               optional: true
+        - name: AZURE_USER_AGENT_SUFFIX
+          valueFrom:
+            secretKeyRef:
+              key: AZURE_USER_AGENT_SUFFIX
+              name: aso-controller-settings
+              optional: true
+        - name: MAX_CONCURRENT_RECONCILES
+          valueFrom:
+            secretKeyRef:
+              key: MAX_CONCURRENT_RECONCILES
+              name: aso-controller-settings
+              optional: true
+        - name: RATE_LIMIT_MODE
+          valueFrom:
+            secretKeyRef:
+              key: RATE_LIMIT_MODE
+              name: aso-controller-settings
+              optional: true
+        - name: RATE_LIMIT_QPS
+          valueFrom:
+            secretKeyRef:
+              key: RATE_LIMIT_QPS
+              name: aso-controller-settings
+              optional: true
+        - name: RATE_LIMIT_BUCKET_SIZE
+          valueFrom:
+            secretKeyRef:
+              key: RATE_LIMIT_BUCKET_SIZE
+              name: aso-controller-settings
+              optional: true
+        - name: DEFAULT_RECONCILE_POLICY
+          valueFrom:
+            secretKeyRef:
+              key: DEFAULT_RECONCILE_POLICY
+              name: aso-controller-settings
+              optional: true
         - name: POD_NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
-        image: {{.Values.image.repository}}
+        {{- with .Values.extraEnv }}
+        {{- toYaml . | nindent 8 }}
+        {{- end }}
+        image: {{ tpl .Values.image.repository . }}
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
             path: /healthz
             port: 8081
-          initialDelaySeconds: 60
         name: manager
         ports:
         - containerPort: {{ .Values.webhook.port }}
@@ -147,57 +218,56 @@ spec:
         - containerPort: 8081
           name: health-port
           protocol: TCP
-        - containerPort: {{ .Values.metrics.port | default 8080 }}
+        - containerPort: 8443
           name: metrics-port
           protocol: TCP
         readinessProbe:
           httpGet:
             path: /readyz
             port: 8081
-          initialDelaySeconds: 60
+        {{- with .Values.resources }}
         resources:
-          limits:
-            cpu: 500m
-            memory: 512Mi
-          requests:
-            cpu: 200m
-            memory: 256Mi
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        {{- with .Values.securityContext }}
         securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
+          {{- toYaml . | nindent 10 }}
+        {{- end }}
+        startupProbe:
+          httpGet:
+            path: /healthz
+            port: 8081
+          periodSeconds: 10
+          failureThreshold: 12
         volumeMounts:
         - mountPath: /var/run/secrets/tokens
           name: azure-identity
           readOnly: true
-   {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
+        {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
         - mountPath: {{ .Values.webhook.certDir }}
           name: cert
           readOnly: true
-      - args:
-        - --secure-listen-address=0.0.0.0:8443
-        - --upstream=http://127.0.0.1:8080/
-        - --logtostderr=true
-        - --v=10
-        image: {{.Values.image.kubeRBACProxy}}
-        name: kube-rbac-proxy
-        ports:
-        - containerPort: 8443
-          name: https
-   {{- end }}
-        securityContext:
-          allowPrivilegeEscalation: false
-          readOnlyRootFilesystem: true
+        {{- end }}
+      {{- with .Values.nodeSelector }}
       nodeSelector:
-        kubernetes.io/os: linux
-      serviceAccountName: azureserviceoperator-default
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.priorityClassName }}
+      priorityClassName: "{{ . }}"
+      {{- end }}
+      {{- with .Values.podSecurityContext }}
+      securityContext:
+      {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "azure-service-operator.serviceAccountName" . }}
       terminationGracePeriodSeconds: 10
       volumes:
-   {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
+      {{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
       - name: cert
         secret:
           defaultMode: 420
           secretName: webhook-server-cert
-   {{- end }}
+      {{- end }}
       - name: azure-identity
         projected:
           defaultMode: 420
