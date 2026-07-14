@@ -36,6 +36,11 @@ appConfig:
   REDIS_PORT: "6379"
   REDIS_DB: "0"
 
+  FILEOPS_DB_USERNAME: "fileops"
+  FILEOPS_DB_HOST: "postgres.utility"
+  FILEOPS_DB_PORT: "5432"
+  FILEOPS_DB_SCHEMA: "fileops"
+
   DOWNLOAD_TOKEN_EXPIRE_AT: "86400"
 
   OPEN_TELEMETRY_ENABLED: "True"
