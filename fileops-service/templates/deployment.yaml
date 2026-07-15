@@ -35,9 +35,74 @@ spec:
       {{- if .Values.serviceAccount.create }}
       serviceAccountName: {{ .Values.serviceAccount.name }}
       {{- end }}
+      {{- if or .Values.initCommand .Values.initArgs }}
+      initContainers:
+        - name: "init{{ .Values.name }}"
+          image: "{{ .Values.image.repository }}:alembic-{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          {{- if .Values.initCommand }}
+          {{- with .Values.initCommand }}
+          command:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.initArgs }}
+          {{- with .Values.initArgs }}
+          args:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          env:
+          - name: port
+            value: {{ .Values.appConfig.port | quote }}
+          - name: host
+            value: {{ .Values.appConfig.host | quote }}
+          - name: env
+            value: {{ .Values.appConfig.env | quote }}
+          - name: CONFIG_CENTER_ENABLED
+            value: {{ .Values.appConfig.config_center_enabled | quote }}
+          - name: CONFIG_CENTER_BASE_URL
+            value: {{ .Values.appConfig.config_center_base_url | quote }}
+          - name: ENVIRONMENT
+            value: {{ .Values.appConfig.ENVIRONMENT | quote }}
+          - name: TENANT_ID
+            value: {{ .Values.appConfig.tenant_id | quote }}
+          - name: CORE_ZONE_LABEL
+            value: "Core"
+          - name: GREEN_ZONE_LABEL
+            value: "Greenroom"
+          - name: namespace
+            value: {{ .Values.appConfig.namespace | quote }}
+          - name: ROOT_PATH
+            value: {{ .Values.appConfig.ROOT_PATH | quote }}
+{{- if not .Values.appConfig.tenant_id }}
+          - name: FILEOPS_DB_HOST
+            value: {{ .Values.appConfig.FILEOPS_DB_HOST | quote }}
+{{- else }}
+          - name: FILEOPS_DB_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end }}
+          - name: FILEOPS_DB_PORT
+            value: {{ .Values.appConfig.FILEOPS_DB_PORT | quote }}
+          - name: FILEOPS_DB_NAME
+            value: {{ .Values.appConfig.FILEOPS_DB_NAME | quote }}
+          - name: FILEOPS_DB_SCHEMA
+            value: {{ .Values.appConfig.FILEOPS_DB_SCHEMA | quote }}
+          - name: FILEOPS_DB_USERNAME
+            value: {{ .Values.appConfig.FILEOPS_DB_USERNAME | quote }}
+{{- if .Values.extraEnv }}
+  {{- range $key, $value := .Values.extraEnv }}
+          - name: {{ $key }}
+            value: {{ $value | quote }}
+  {{- end }}
+{{- end }}
+{{- with .Values.extraEnvYaml }}
+          {{- toYaml . | nindent 10 }}
+{{- end }}
+      {{- end }}
       containers:
         - name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:fileops-{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           {{- if .Values.command }}
           {{- with .Values.command }}
@@ -88,6 +153,21 @@ spec:
             value: {{ .Values.appConfig.namespace | quote }}
           - name: ROOT_PATH
             value: {{ .Values.appConfig.ROOT_PATH | quote }}
+{{- if not .Values.appConfig.tenant_id }}
+          - name: FILEOPS_DB_HOST
+            value: {{ .Values.appConfig.FILEOPS_DB_HOST | quote }}
+{{- else }}
+          - name: FILEOPS_DB_HOST
+            value: "postgres.{{ .Values.appConfig.tenant_id }}-utility"
+{{- end }}
+          - name: FILEOPS_DB_PORT
+            value: {{ .Values.appConfig.FILEOPS_DB_PORT | quote }}
+          - name: FILEOPS_DB_NAME
+            value: {{ .Values.appConfig.FILEOPS_DB_NAME | quote }}
+          - name: FILEOPS_DB_SCHEMA
+            value: {{ .Values.appConfig.FILEOPS_DB_SCHEMA | quote }}
+          - name: FILEOPS_DB_USERNAME
+            value: {{ .Values.appConfig.FILEOPS_DB_USERNAME | quote }}
           #if tenant id is not set
 {{- if not .Values.appConfig.tenant_id }}
           - name: APPROVAL_SERVICE
