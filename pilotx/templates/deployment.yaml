@@ -279,6 +279,10 @@ spec:
               value: {{ $rateLimitConfig.invitation.maxRequests | default 20 | quote }}
             - name: PILOTX_RATE_LIMIT_INVITATION_WINDOW_SECONDS
               value: {{ $rateLimitConfig.invitation.windowSeconds | default 60 | quote }}
+            - name: PILOTX_RATE_LIMIT_GRAPHQL_MAX_REQUESTS
+              value: {{ $rateLimitConfig.graphql.maxRequests | default 10000 | quote }}
+            - name: PILOTX_RATE_LIMIT_GRAPHQL_WINDOW_SECONDS
+              value: {{ $rateLimitConfig.graphql.windowSeconds | default 60 | quote }}  
             - name: PILOTX_RATE_LIMIT_CLEANUP_INTERVAL_MS
               value: {{ $rateLimitConfig.cleanupIntervalMs | default 300000 | quote }}
 
