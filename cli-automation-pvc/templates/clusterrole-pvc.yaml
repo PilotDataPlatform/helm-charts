@@ -12,3 +12,6 @@ rules:
 - apiGroups: [""]
   resources: ["pods", "pods/exec"]
   verbs: ["get", "list", "create", "delete", "update"]
+- apiGroups: ["stable.indocpilot.io"]
+  resources: ["jupyterhubs"]
+  verbs: ["get", "list", "patch"]
