@@ -101,6 +101,8 @@ readinessProbe:
   tcpSocket:
     port: 5080
 
+startupProbe: {}
+
 extraVolumeMounts: []
 
 extraVolumes: []

@@ -84,6 +84,8 @@ extraEnvYaml: {}
 
 readinessProbe: []
 
+startupProbe: []
+
 extraVolumeMounts: []
 
 extraVolumes: []

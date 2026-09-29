@@ -55,6 +55,8 @@ readinessProbe: {}
 
 livenessProbe: {}
 
+startupProbe: {}
+
 updateStrategy: {}
 
 extraEnv: {}

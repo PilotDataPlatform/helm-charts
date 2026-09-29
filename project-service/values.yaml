@@ -135,6 +135,8 @@ livenessProbe:
   successThreshold: 1
   timeoutSeconds: 3
 
+startupProbe: {}
+
 extraVolumeMounts: []
 
 extraVolumes: []

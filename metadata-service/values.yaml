@@ -77,6 +77,8 @@ envSecrets: {}
 
 readinessProbe: []
 
+startupProbe: []
+
 extraVolumeMounts: []
 
 extraVolumes: []

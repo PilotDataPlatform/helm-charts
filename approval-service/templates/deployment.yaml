@@ -254,6 +254,10 @@ spec:
           livenessProbe:
             {{- toYaml .Values.livenessProbe | nindent 12 }}
           {{- end }}
+          {{- if .Values.startupProbe }}
+          startupProbe:
+            {{- toYaml .Values.startupProbe | nindent 12 }}
+          {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

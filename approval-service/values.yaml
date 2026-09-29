@@ -88,6 +88,8 @@ affinity: {}
 
 readinessProbe: {}
 
+startupProbe: {}
+
 updateStrategy: {}
 
 extraEnv: {}

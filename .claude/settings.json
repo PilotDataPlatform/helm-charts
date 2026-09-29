@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk 'NR>=64 && NR<=140' jupyterhub-pilot/values.yaml)",
+      "Bash(awk '/^singleuser:/,/^scheduling:/' jupyterhub-pilot/values.yaml)"
+    ]
+  }
+}
