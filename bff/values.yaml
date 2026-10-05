@@ -105,6 +105,8 @@ readinessProbe:
   initialDelaySeconds: 5
   periodSeconds: 10
 
+startupProbe: {}
+
 updateStrategy: {}
 
 extraEnv: {}

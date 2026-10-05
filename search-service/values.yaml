@@ -77,6 +77,8 @@ readinessProbe: []
 
 livenessProbe: {}
 
+startupProbe: {}
+
 extraVolumeMounts: []
 
 extraVolumes: []

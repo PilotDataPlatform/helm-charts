@@ -68,6 +68,8 @@ affinity: {}
 
 readinessProbe: {}
 
+startupProbe: {}
+
 updateStrategy:
   rollingUpdate:
     maxSurge: 1
