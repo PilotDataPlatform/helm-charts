@@ -68,6 +68,13 @@ azureResourceManagerEndpoint: ""
 # audience is referred to as "activeDirectoryResourceId" in the Azure CLI.
 azureResourceManagerAudience: ""
 
+# allowMultiEnvManagement determines whether per-namespace and per-resource credentials can specify
+# their own Azure cloud environment settings (AZURE_RESOURCE_MANAGER_ENDPOINT, AZURE_RESOURCE_MANAGER_AUDIENCE,
+# and AZURE_AUTHORITY_HOST). When enabled, credentials must specify ALL three of these settings or NONE of them.
+# When disabled, any attempt to specify these settings in a credential will cause reconciliation to fail.
+# This defaults to false for security reasons.
+allowMultiEnvManagement: false
+
 # azureTargetNamespaces lists the namespaces the operator will watch
 # for Azure resources (if the mode includes running watchers). If
 # it's empty the operator will watch all namespaces.
@@ -91,7 +98,7 @@ webhook:
 # corresponding CRD yaml in the cart (and so no CRD in the k8s
 # repository).
 image:
-  tag: v2.16.0
+  tag: v2.19.0
   repositoryBase: mcr.microsoft.com/k8s/azureserviceoperator
   repository: "{{ .Values.image.repositoryBase }}:{{ .Values.image.tag }}"
   pullSecrets: []
@@ -122,7 +129,7 @@ metrics:
 # the operator will only reconcile that subset if those are the only CRDs it finds when the pod starts.
 installCRDs: true
 
-# crdPattern is a semicolon delimited string containing the CRD patterns for the operator to install.
+# crdPattern is a semicolon delimited string or a list of strings containing the CRD patterns for the operator to install.
 # Setting this has no effect if installCRDs is false.
 # This defines what new CRDs will be installed by ASO. Will always upgrade any existing CRDs even if no
 # crdPattern is defined. Leaving this field unspecified for a fresh install of ASO will result in the operator pod
@@ -241,16 +248,16 @@ tolerations: []
 affinity: {}
 
 # MaxConcurrentReconciles is the number of threads/goroutines dedicated to reconciling each resource type.
-# If not specified, the default is 1.
+# If not specified, the default is 4.
 # IMPORTANT: Having MaxConcurrentReconciles set to N does not mean that ASO is limited to N interactions with
 # Azure at any given time, because the control loop yields to another resource while it is not actively issuing HTTP
 # calls to Azure. Any single resource only blocks the control-loop for its resource-type for as long as it takes to issue
 # an HTTP call to Azure, view the result, and make a decision. In most cases the time taken to perform these actions
 # (and thus how long the loop is blocked and preventing other resources from being acted upon) is a few hundred
-# milliseconds to at most a second or two. In a typical 60s period, many hundreds or even thousands of resources
-# can be managed with this set to 1.
+# milliseconds to at most a second or two. In a typical 60s period, hundreds of resources
+# for a given resource type can be managed with this set to 1.
 # MaxConcurrentReconciles applies to every registered resource type being watched/managed by ASO.
-maxConcurrentReconciles: 1
+maxConcurrentReconciles: 4
 
 rateLimit:
   # mode configures the internal rate-limiting mode.

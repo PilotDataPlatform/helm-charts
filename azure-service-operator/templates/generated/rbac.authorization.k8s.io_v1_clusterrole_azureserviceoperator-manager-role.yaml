@@ -63,20 +63,30 @@ rules:
 - apiGroups:
   - apimanagement.azure.com
   resources:
+  - apidiagnostics
+  - apipolicies
   - apis
   - apiversionsets
   - authorizationproviders
   - authorizationprovidersauthorizations
   - authorizationprovidersauthorizationsaccesspolicies
   - backends
+  - certificates
+  - groups
+  - loggers
   - namedvalues
   - policies
   - policyfragments
   - productapis
   - productpolicies
   - products
+  - servicegatewayapis
+  - servicegatewaycertificateauthorities
+  - servicegatewayhostnameconfigurations
+  - servicegateways
   - services
   - subscriptions
+  - users
   verbs:
   - create
   - delete
@@ -88,6 +98,10 @@ rules:
 - apiGroups:
   - apimanagement.azure.com
   resources:
+  - apidiagnostics/finalizers
+  - apidiagnostics/status
+  - apipolicies/finalizers
+  - apipolicies/status
   - apis/finalizers
   - apis/status
   - apiversionsets/finalizers
@@ -100,6 +114,12 @@ rules:
   - authorizationprovidersauthorizationsaccesspolicies/status
   - backends/finalizers
   - backends/status
+  - certificates/finalizers
+  - certificates/status
+  - groups/finalizers
+  - groups/status
+  - loggers/finalizers
+  - loggers/status
   - namedvalues/finalizers
   - namedvalues/status
   - policies/finalizers
@@ -112,10 +132,20 @@ rules:
   - productpolicies/status
   - products/finalizers
   - products/status
+  - servicegatewayapis/finalizers
+  - servicegatewayapis/status
+  - servicegatewaycertificateauthorities/finalizers
+  - servicegatewaycertificateauthorities/status
+  - servicegatewayhostnameconfigurations/finalizers
+  - servicegatewayhostnameconfigurations/status
+  - servicegateways/finalizers
+  - servicegateways/status
   - services/finalizers
   - services/status
   - subscriptions/finalizers
   - subscriptions/status
+  - users/finalizers
+  - users/status
   verbs:
   - get
   - patch
@@ -154,6 +184,9 @@ rules:
   - appconfiguration.azure.com
   resources:
   - configurationstores
+  - keyvalues
+  - replicas
+  - snapshots
   verbs:
   - create
   - delete
@@ -167,6 +200,12 @@ rules:
   resources:
   - configurationstores/finalizers
   - configurationstores/status
+  - keyvalues/finalizers
+  - keyvalues/status
+  - replicas/finalizers
+  - replicas/status
+  - snapshots/finalizers
+  - snapshots/status
   verbs:
   - get
   - patch
@@ -222,6 +261,7 @@ rules:
   - redis
   - redisaccesspolicies
   - redisaccesspolicyassignments
+  - redisenterprisedatabaseaccesspolicyassignments
   - redisenterprisedatabases
   - redisenterprises
   - redisfirewallrules
@@ -244,6 +284,8 @@ rules:
   - redisaccesspolicies/status
   - redisaccesspolicyassignments/finalizers
   - redisaccesspolicyassignments/status
+  - redisenterprisedatabaseaccesspolicyassignments/finalizers
+  - redisenterprisedatabaseaccesspolicyassignments/status
   - redisenterprisedatabases/finalizers
   - redisenterprisedatabases/status
   - redisenterprises/finalizers
@@ -329,6 +371,36 @@ rules:
   - accounts/status
   - deployments/finalizers
   - deployments/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - communication.azure.com
+  resources:
+  - communicationservices
+  - domains
+  - emailservices
+  - senderusernames
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - communication.azure.com
+  resources:
+  - communicationservices/finalizers
+  - communicationservices/status
+  - domains/finalizers
+  - domains/status
+  - emailservices/finalizers
+  - emailservices/status
+  - senderusernames/finalizers
+  - senderusernames/status
   verbs:
   - get
   - patch
@@ -604,6 +676,7 @@ rules:
   - dbforpostgresql.azure.com
   resources:
   - flexibleservers
+  - flexibleserversadministrators
   - flexibleserversadvancedthreatprotectionsettings
   - flexibleserversbackups
   - flexibleserversconfigurations
@@ -624,6 +697,8 @@ rules:
   resources:
   - flexibleservers/finalizers
   - flexibleservers/status
+  - flexibleserversadministrators/finalizers
+  - flexibleserversadministrators/status
   - flexibleserversadvancedthreatprotectionsettings/finalizers
   - flexibleserversadvancedthreatprotectionsettings/status
   - flexibleserversbackups/finalizers
@@ -666,6 +741,8 @@ rules:
 - apiGroups:
   - documentdb.azure.com
   resources:
+  - cassandraclusters
+  - cassandradatacenters
   - databaseaccounts
   - firewallrules
   - mongoclusters
@@ -694,6 +771,10 @@ rules:
 - apiGroups:
   - documentdb.azure.com
   resources:
+  - cassandraclusters/finalizers
+  - cassandraclusters/status
+  - cassandradatacenters/finalizers
+  - cassandradatacenters/status
   - databaseaccounts/finalizers
   - databaseaccounts/status
   - firewallrules/finalizers
