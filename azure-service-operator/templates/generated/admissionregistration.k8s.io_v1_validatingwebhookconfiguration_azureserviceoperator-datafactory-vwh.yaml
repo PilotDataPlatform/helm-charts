@@ -1,0 +1,30 @@
+{{- if or (eq .Values.multitenant.enable false) (eq .Values.azureOperatorMode "webhooks") }}
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    cert-manager.io/inject-ca-from: {{ .Release.Namespace }}/azureserviceoperator-serving-cert
+  name: azureserviceoperator-datafactory-vwh
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    service:
+      name: azureserviceoperator-webhook-service
+      namespace: {{ .Release.Namespace }}
+      path: /validate-datafactory-azure-com-v1api20180601-factory
+  failurePolicy: Fail
+  matchPolicy: Exact
+  name: validate.v1api20180601.factories.datafactory.azure.com
+  rules:
+  - apiGroups:
+    - datafactory.azure.com
+    apiVersions:
+    - v1api20180601
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - factories
+  sideEffects: None
+{{- end }}
