@@ -7657,6 +7657,16 @@ entries:
   project-service:
   - apiVersion: v2
     appVersion: "1"
+    created: "2026-10-14T10:28:44.130916178-04:00"
+    description: A Helm chart for Kubernetes
+    digest: 647ad378610edc7870696fa14149d868dd92f95e1bdd99ee309911c1f8578bc0
+    name: project-service
+    type: application
+    urls:
+    - https://pilotdataplatform.github.io/helm-charts/project-service-1.0.8.tgz
+    version: 1.0.8
+  - apiVersion: v2
+    appVersion: "1"
     created: "2026-10-09T16:19:48.469344-04:00"
     description: A Helm chart for Kubernetes
     digest: 25983ddc564905ed34cd1bd811a56cbc590ccad3f12510a77dae21259a4b9b7c

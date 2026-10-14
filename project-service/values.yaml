@@ -39,7 +39,7 @@ appConfig:
   S3_BUCKET_ENCRYPTION_ENABLED: "false"
   S3_BUCKET_FOR_PROJECT_LOGOS: "project-logos"
   S3_PREFIX_FOR_PROJECT_IMAGE_URLS: "https://minio.dev.pilot.indocresearch.com/project-logos"
-  OBJECT_STORAGE_PROVIDER: "gcp"
+  OBJECT_STORAGE_PROVIDER: "azure"
 
   BUCKET_FOR_PROJECT_LOGOS: ''
   GCP_PREFIX_FOR_PROJECT_IMAGE_URLS: ''
