@@ -50,10 +50,6 @@ appConfig:
   REACT_APP_DOWNLOAD_GR: "https://api.dev.pilot.indocresearch.com/pilot/portal/download/gr"
   REACT_APP_DOWNLOAD_CORE: "https://api.dev.pilot.indocresearch.com/pilot/portal/download/core"
 
-  REACT_APP_ARRANGER_API: "https://api.dev.pilot.indocresearch.com/pilot/arranger"
-  REACT_APP_ARRANGER_GRAPHQLFIELD: "pilotdevtestalias"
-  REACT_APP_ARRANGER_PROJECTID: "pilotdev"
-
   REACT_APP_ENABLE_SELF_REGISTRATION: "true"
   REACT_APP_SUPERSET_SUBDOMAIN: "true"
 
