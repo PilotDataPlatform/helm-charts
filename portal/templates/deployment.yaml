@@ -85,12 +85,6 @@ spec:
           - name: REACT_APP_PROXY_ROUTE
             value: {{ .Values.appConfig.REACT_APP_PROXY_ROUTE | quote }} 
 
-# arranger
-          - name: REACT_APP_ARRANGER_GRAPHQLFIELD
-            value: {{ .Values.appConfig.REACT_APP_ARRANGER_GRAPHQLFIELD | quote }} 
-          - name: REACT_APP_ARRANGER_PROJECTID
-            value: {{ .Values.appConfig.REACT_APP_ARRANGER_PROJECTID | quote }} 
-
 # branding
           - name: REACT_APP_REMOTE_MODULE_BRANDING_URL
             value: {{ .Values.appConfig.REACT_APP_REMOTE_MODULE_BRANDING_URL | quote }} 
@@ -109,8 +103,6 @@ spec:
             value: {{ .Values.appConfig.REACT_APP_DOWNLOAD_GR | quote }} 
           - name: REACT_APP_DOWNLOAD_CORE
             value: {{ .Values.appConfig.REACT_APP_DOWNLOAD_CORE | quote }} 
-          - name: REACT_APP_ARRANGER_API
-            value: {{ .Values.appConfig.REACT_APP_ARRANGER_API | quote }} 
 {{- else }}
           - name: REACT_APP_API_PATH
             value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/portal"
@@ -120,8 +112,6 @@ spec:
             value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/portal/download/gr"
           - name: REACT_APP_DOWNLOAD_CORE
             value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/portal/download/core"
-          - name: REACT_APP_ARRANGER_API
-            value: "https://api.{{ .Values.appConfig.REACT_APP_DOMAIN }}/pilot/arranger"
 {{- end}}
 
           - name: REACT_APP_ENABLE_SELF_REGISTRATION
